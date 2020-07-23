@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【GitLab】Docker和docker-compose部署GitLab（第一天） | shirx blog</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <meta name="description" content="思想persistent">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <link rel="preload" href="/docs/assets/css/0.styles.3a63be74.css" as="style"><link rel="preload" href="/docs/assets/js/app.73d5ae7a.js" as="script"><link rel="preload" href="/docs/assets/js/4.eeda011b.js" as="script"><link rel="preload" href="/docs/assets/js/2.d5d9fd8b.js" as="script"><link rel="preload" href="/docs/assets/js/26.7d07b784.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.31ff824c.js"><link rel="prefetch" href="/docs/assets/js/11.6c87e8cd.js"><link rel="prefetch" href="/docs/assets/js/12.2e403592.js"><link rel="prefetch" href="/docs/assets/js/13.62275a0f.js"><link rel="prefetch" href="/docs/assets/js/14.c65c3361.js"><link rel="prefetch" href="/docs/assets/js/15.169a524d.js"><link rel="prefetch" href="/docs/assets/js/16.c870e72a.js"><link rel="prefetch" href="/docs/assets/js/17.d3182a4f.js"><link rel="prefetch" href="/docs/assets/js/18.c25dd801.js"><link rel="prefetch" href="/docs/assets/js/19.fa6b7722.js"><link rel="prefetch" href="/docs/assets/js/20.69d65599.js"><link rel="prefetch" href="/docs/assets/js/21.668167da.js"><link rel="prefetch" href="/docs/assets/js/22.c7cd150a.js"><link rel="prefetch" href="/docs/assets/js/23.2a8b04a2.js"><link rel="prefetch" href="/docs/assets/js/24.dd00d2bd.js"><link rel="prefetch" href="/docs/assets/js/25.67aa4bf4.js"><link rel="prefetch" href="/docs/assets/js/27.d9ceda14.js"><link rel="prefetch" href="/docs/assets/js/28.ce26a417.js"><link rel="prefetch" href="/docs/assets/js/29.9f2e5218.js"><link rel="prefetch" href="/docs/assets/js/3.cd65b2dc.js"><link rel="prefetch" href="/docs/assets/js/30.f2849d55.js"><link rel="prefetch" href="/docs/assets/js/31.a0d32b08.js"><link rel="prefetch" href="/docs/assets/js/32.93bf81bc.js"><link rel="prefetch" href="/docs/assets/js/33.1179de40.js"><link rel="prefetch" href="/docs/assets/js/34.bc616b64.js"><link rel="prefetch" href="/docs/assets/js/35.024808bd.js"><link rel="prefetch" href="/docs/assets/js/36.44847016.js"><link rel="prefetch" href="/docs/assets/js/37.6c908b2b.js"><link rel="prefetch" href="/docs/assets/js/38.126a269a.js"><link rel="prefetch" href="/docs/assets/js/39.350bdd43.js"><link rel="prefetch" href="/docs/assets/js/40.e1113f97.js"><link rel="prefetch" href="/docs/assets/js/41.6f58119e.js"><link rel="prefetch" href="/docs/assets/js/42.13d01ff6.js"><link rel="prefetch" href="/docs/assets/js/43.80d7fe9e.js"><link rel="prefetch" href="/docs/assets/js/44.6703a068.js"><link rel="prefetch" href="/docs/assets/js/45.5f1e891c.js"><link rel="prefetch" href="/docs/assets/js/46.c19f7530.js"><link rel="prefetch" href="/docs/assets/js/47.09b8d200.js"><link rel="prefetch" href="/docs/assets/js/48.49e32548.js"><link rel="prefetch" href="/docs/assets/js/49.6b7a35a2.js"><link rel="prefetch" href="/docs/assets/js/5.84114cb9.js"><link rel="prefetch" href="/docs/assets/js/50.f273083e.js"><link rel="prefetch" href="/docs/assets/js/51.f0a68350.js"><link rel="prefetch" href="/docs/assets/js/52.a26c861e.js"><link rel="prefetch" href="/docs/assets/js/53.2ab9669f.js"><link rel="prefetch" href="/docs/assets/js/54.6d89fa0b.js"><link rel="prefetch" href="/docs/assets/js/55.0bf57e81.js"><link rel="prefetch" href="/docs/assets/js/56.3e2af1db.js"><link rel="prefetch" href="/docs/assets/js/57.ab11eb4c.js"><link rel="prefetch" href="/docs/assets/js/58.db221aff.js"><link rel="prefetch" href="/docs/assets/js/59.cc659ce8.js"><link rel="prefetch" href="/docs/assets/js/6.437b9bcc.js"><link rel="prefetch" href="/docs/assets/js/60.ed7fe1f4.js"><link rel="prefetch" href="/docs/assets/js/61.a5707905.js"><link rel="prefetch" href="/docs/assets/js/62.4dbe4f12.js"><link rel="prefetch" href="/docs/assets/js/63.38d012f3.js"><link rel="prefetch" href="/docs/assets/js/64.f5e1119d.js"><link rel="prefetch" href="/docs/assets/js/65.fef05fe0.js"><link rel="prefetch" href="/docs/assets/js/66.1ddebfbe.js"><link rel="prefetch" href="/docs/assets/js/67.925ef78c.js"><link rel="prefetch" href="/docs/assets/js/68.5282a1d4.js"><link rel="prefetch" href="/docs/assets/js/69.800fd358.js"><link rel="prefetch" href="/docs/assets/js/7.ead932bf.js"><link rel="prefetch" href="/docs/assets/js/70.1663d681.js"><link rel="prefetch" href="/docs/assets/js/71.70d6262b.js"><link rel="prefetch" href="/docs/assets/js/72.451e5b1c.js"><link rel="prefetch" href="/docs/assets/js/73.198210f0.js"><link rel="prefetch" href="/docs/assets/js/8.1677c79e.js"><link rel="prefetch" href="/docs/assets/js/9.9538ea37.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.3a63be74.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="shirx blog" class="logo"> <span class="site-name can-hide">shirx blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>gitlab</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html" class="active sidebar-link">【GitLab】Docker和docker-compose部署GitLab（第一天）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html#docker-部署gitlab" class="sidebar-link">docker 部署gitlab</a></li><li class="sidebar-sub-header"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html#docker-compose-部署gitlab" class="sidebar-link">docker compose 部署gitlab</a></li></ul></li><li><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html" class="sidebar-link">【GitLab】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab使用自签名证书开启https.html" class="sidebar-link">【Gitlab】使用自签名证书开启Https</a></li><li><a href="/docs/gitlab/2020-7-3-gitlabTroubleShooting.html" class="sidebar-link">【GitLab】gitlab ci trouble shootting（持续更新中）</a></li><li><a href="/docs/gitlab/" aria-current="page" class="sidebar-link">gitlab相关</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>一个是docker部署gitlab，另一个是docker-compose部署gitlab
+我尝试的是docker-compose。安装到192.168.3.111上。</p> <h2 id="docker-部署gitlab"><a href="#docker-部署gitlab" class="header-anchor">#</a> docker 部署gitlab</h2> <p>这个视频仅仅10分钟，非常非常简洁。
+就是按照官方文档docker方式安装gitlab。
+volumen目录定义一下就完事了。
+https://www.bilibili.com/video/BV1Eb411N7sJ?from=search&amp;seid=7154314386199342873</p> <hr> <h2 id="docker-compose-部署gitlab"><a href="#docker-compose-部署gitlab" class="header-anchor">#</a> docker compose 部署gitlab</h2> <p>https://www.bilibili.com/video/BV1NJ41137nE?from=search&amp;seid=18101917166552153507</p> <h3 id="用compose搭建gitlab单点服务器（成功了）"><a href="#用compose搭建gitlab单点服务器（成功了）" class="header-anchor">#</a> 用compose搭建gitlab单点服务器（成功了）</h3> <p>参考：gitlab官网
+<a href="https://docs.gitlab.com/omnibus/docker/" target="_blank" rel="noopener noreferrer">install gitlab by docker，docker-compose，swarm<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://docs.gitlab.com/ee/install/README.html#installing-gitlab-on-kubernetes-via-the-gitlab-helm-charts" target="_blank" rel="noopener noreferrer">k8s安装部署gitlab<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
+docker-compose方法
+Install GitLab using Docker Compose
+With Docker Compose you can easily configure, install, and upgrade your Docker-based GitLab installation:</p> <ol><li>Install Docker Compose.</li> <li>Create a docker-compose.yml file (or download an example):</li></ol> <div class="language- extra-class"><pre><code>```
+web:
+image: 'gitlab/gitlab-ce:latest'
+restart: always
+hostname: '192.168.3.111' 
+environment:
+    GITLAB_OMNIBUS_CONFIG: |
+    external_url 'https://192.168.3.111'
+    # Add any other gitlab.rb configuration here, each on its own line
+ports:
+    - '80:80'
+    - '443:443'
+    - '2222:22' # 注意，一般centos7启动的时候22端口就是被占用的。所以改成2222.
+volumes:
+    - '$GITLAB_HOME/config:/etc/gitlab'
+    - '$GITLAB_HOME/logs:/var/log/gitlab'
+    - '$GITLAB_HOME/data:/var/opt/gitlab'
+```
+</code></pre></div><ol start="3"><li>Make sure you are in the same directory as docker-compose.yml and start GitLab:</li></ol> <div class="language- extra-class"><pre><code>`docker-compose up -d`
+</code></pre></div><ol start="4"><li>稍等2分钟
+验证gitlab启动：https://192.168.3.111</li></ol> <h3 id="配置邮件服务器"><a href="#配置邮件服务器" class="header-anchor">#</a> 配置邮件服务器</h3> <h5 id="【配置公司自己的smtp服务】"><a href="#【配置公司自己的smtp服务】" class="header-anchor">#</a> 【配置公司自己的SMTP服务】</h5> <div class="language- extra-class"><pre class="language-text"><code>[root@centos111 config]# docker ps
+CONTAINER ID        IMAGE                     COMMAND             CREATED             STATUS
+          PORTS                                                            NAMES
+191b986289c6        gitlab/gitlab-ce:latest   &quot;/assets/wrapper&quot;   About an hour ago   Up About an hour (healthy)   0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 0.0.0.0:2222-&gt;22/tcp   root_web_1
+
+[root@centos111 config]# pwd
+/srv/gitlab/config
+[root@centos111 config]# ls
+gitlab.rb            ssh_host_ecdsa_key      ssh_host_ed25519_key.pub  ssl
+gitlab.rb.bak        ssh_host_ecdsa_key.pub  ssh_host_rsa_key          trusted-certs
+gitlab-secrets.json  ssh_host_ed25519_key    ssh_host_rsa_key.pub
+</code></pre></div><p>该目录是gitlab的数据卷，等同于进入gitlab容器修改/etc/gitlab/gitlab.rb</p> <p><code>vi gitlab.rd</code></p> <div class="language- extra-class"><pre class="language-text"><code>gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = &quot;服务器IP&quot;
+gitlab_rails['smtp_port'] = 25
+gitlab_rails['smtp_user_name'] = &quot;shirx@ccbjb.com.cn&quot;
+gitlab_rails['smtp_password'] = &quot;密码&quot;
+gitlab_rails['smtp_domain'] = &quot;ccbjb.com.cn&quot;
+gitlab_rails['smtp_authentication'] = &quot;login&quot;
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = false
+gitlab_rails['gitlab_email_from'] = 'shirx@ccbjb.com.cn'
+gitlab_rails['gitlab_email_reply_to'] = 'shirx@ccbjb.com.cn'
+</code></pre></div><p>进入gitlab容器，让配置生效</p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -it root_web_1 /bin/bash
+
+gitlab-ctl reconfigure
+
+</code></pre></div><p>报错，见TroubleShooting的Bug1.解决，再次运行。OK
+进入控制台</p> <div class="language- extra-class"><pre class="language-text"><code>gitlab-rails console  
+
+//执行发送邮件测试命令
+Notify.test_email(&quot;个人邮箱@qq.com&quot;,&quot;title&quot;,&quot;text&quot;).deliver_now
+</code></pre></div><p>结果：</p> <div class="language- extra-class"><pre class="language-text"><code>
+=&gt; #&lt;Mail::Message:70335281250660, Multipart: false, Headers: &lt;Date: Thu, 02 Jul 2020 06:33:34 +0000&gt;, &lt;From: GitLab &lt;shirx@ccbjb.com.cn&gt;&gt;, &lt;Reply-To: GitLab &lt;shirx@ccbjb.com.cn&gt;&gt;, &lt;To: shirx@ccbjb.com.cn&gt;, &lt;Message-ID: &lt;5efd7fbee008b_1f8d3ff84ced39a4792f2@gitlab.mail&gt;&gt;, &lt;Subject: title&gt;, &lt;Mime-Version: 1.0&gt;, &lt;Content-Type: text/html; charset=UTF-8&gt;, &lt;Content-Transfer-Encoding: 7bit&gt;, &lt;Auto-Submitted: auto-generated&gt;, &lt;X-Auto-Response-Suppress: All&gt;&gt;
+
+</code></pre></div><p>邮件也在手机上真实收到了。</p> <p>其它SMTP配置，<a href="https://docs.gitlab.com/omnibus/settings/smtp.html" target="_blank" rel="noopener noreferrer">参考官方<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>：</p> <h3 id="troubleshooting"><a href="#troubleshooting" class="header-anchor">#</a> TroubleShooting:</h3> <p>#####[Bug1]</p> <div class="language- extra-class"><pre class="language-text"><code>There was an error running gitlab-ctl reconfigure:
+
+letsencrypt_certificate[gitlab.ccbjb.com.cn] (letsencrypt::http_authorization line 5) had an error: RuntimeError: acme_certificate[staging] (/opt/gitlab/embedded/cookbooks/cache/cookbooks/letsencrypt/resources/certificate.rb line 25) had an error: RuntimeError: ruby_block[create certificate for gitlab.ccbjb.com.cn] (/opt/gitlab/embedded/cookbooks/cache/cookbooks/acme/resources/certificate.rb line 108) had an error: RuntimeError: [gitlab.ccbjb.com.cn] Validation failed, unable to request certificate
+</code></pre></div><h5 id="解决"><a href="#解决" class="header-anchor">#</a> [解决]</h5> <p>原因：gitlab的bug（<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/5000" target="_blank" rel="noopener noreferrer">bug 5000 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）
+为了使Gitlab正常工作，/etc/gitlab/gitlab.rb必须将其更改为letsencrypt['enable'] = false并重新运行 gitlab-ctl reconfigure.</p> <div class="language- extra-class"><pre class="language-text"><code>=&gt; #&lt;Mail::Message:70335281250660, Multipart: false, Headers: &lt;Date: Thu, 02 Jul 2020 06:33:34 +0000&gt;, &lt;From: GitLab &lt;shirx@ccbjb.com.cn&gt;&gt;, &lt;Reply-To: GitLab &lt;shirx@ccbjb.com.cn&gt;&gt;, &lt;To: shirx@ccbjb.com.cn&gt;, &lt;Message-ID: &lt;5efd7fbee008b_1f8d3ff84ced39a4792f2@gitlab.mail&gt;&gt;, &lt;Subject: title&gt;, &lt;Mime-Version: 1.0&gt;, &lt;Content-Type: text/html; charset=UTF-8&gt;, &lt;Content-Transfer-Encoding: 7bit&gt;,
+ &lt;Auto-Submitted: auto-generated&gt;, &lt;X-Auto-Response-Suppress: All&gt;&gt;
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">7/23/2020, 6:53:09 AM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html">
+        【GitLab】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.73d5ae7a.js" defer></script><script src="/docs/assets/js/4.eeda011b.js" defer></script><script src="/docs/assets/js/2.d5d9fd8b.js" defer></script><script src="/docs/assets/js/26.7d07b784.js" defer></script>
+  </body>
+</html>
