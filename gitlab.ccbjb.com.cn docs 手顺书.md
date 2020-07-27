@@ -3,6 +3,8 @@ layout: post
 title: vuepress手顺书
 ---
 
+
+
 ## 基本描述
 
 - 可以单机版使用。意义不大
@@ -64,5 +66,11 @@ config.js 修改base和你的github库名一致。
 然后在根目录下 git push. Travis-ci会自动生成静态内容，网页可以访问了
 
 
+
+## gitlab-runner docker 里没有yarn命令
+curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
+yum install -y nodejs
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+npm install yarn
 
 
