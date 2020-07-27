@@ -1,6 +1,8 @@
-image: node:9.11.1
+stages:
+  - build
 
-pages:
+pages build job:
+  stage: build
   cache:
     paths:
     - node_modules/
