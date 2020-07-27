@@ -102,6 +102,7 @@ apt install -y yarn
 ## 进入容器看看
 docker exec -it gitlab_runner /bin/sh
 docker exec -it gitlab_runner yarn
+cd /home/gitlab-runner/builds/N1Bf5i3f/0/shirongxin
 
 
 # 用宿主机安装一遍二进制gitlab runner，看看config.toml默认什么样

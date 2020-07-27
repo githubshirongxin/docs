@@ -8,8 +8,8 @@ pages build job:
     - node_modules/
 
   script:
-  #- /usr/bin/yarn install
-  #- /usr/bin/yarn run build
+   - yarn install
+   - yarn run build
    - echo "just ok for me!"
 
   artifacts:
