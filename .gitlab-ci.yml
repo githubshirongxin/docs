@@ -15,6 +15,3 @@ pages:
   
   only:
   - master
-
-  tags:
-  - deploy
