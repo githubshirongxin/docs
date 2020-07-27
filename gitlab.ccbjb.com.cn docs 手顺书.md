@@ -65,13 +65,20 @@ config.js 修改base和你的github库名一致。
 
 然后在根目录下 git push. Travis-ci会自动生成静态内容，网页可以访问了
 
+---
 
+## gitlab-runner docker 里没有npm ,修改~/enviroment/Dockerfile
+vi enviroment/Dockerfile
 
-## gitlab-runner docker 里没有yarn命令
 curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
 yum install -y nodejs
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install yarn
+
+apt install npm -y
+npm config set registry https://registry.npm.taobao.org
+npm config list　
+npm install npm@latest -g
 
 # 删掉所有容器，删掉指定镜像
 docker stop $(docker ps -q) && docker rm $(docker ps -aq) 
