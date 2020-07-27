@@ -6,12 +6,13 @@ pages:
     - node_modules/
 
   script:
-  - yarn install
-  - yarn run build
+  #- /usr/bin/yarn install
+  #- /usr/bin/yarn run build
+   - echo "just ok for me!"
 
   artifacts:
     paths:
-    - public
+    - .vuepress/dist
   
   only:
   - master
