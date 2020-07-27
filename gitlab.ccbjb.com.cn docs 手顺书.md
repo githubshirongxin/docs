@@ -73,4 +73,48 @@ yum install -y nodejs
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install yarn
 
+# 删掉所有容器，删掉指定镜像
+docker stop $(docker ps -q) && docker rm $(docker ps -aq) 
+docker rmi -f root_gitlab-runner
 
+## 给Runner镜像增加工具
+vi enviroment/Dockerfile
+docker-compose up -d
+docker-compose up --build -d
+
+docker ps
+docker logs -f acd4399a6692
+
+## ubuntu docker-runner:latest
+//试试ubuntu怎么安装curl,yarn
+docker run -it ubuntu  /bin/sh 
+// ubuntu install curl
+apt-get update
+apt install -y curl
+
+// ubuntu install yarn
+apt-get update && apt-get install -y gnupg2
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+apt-get update
+apt install -y yarn
+
+## 进入容器看看
+docker exec -it gitlab_runner /bin/sh
+docker exec -it gitlab_runner yarn
+
+
+# 用宿主机安装一遍二进制gitlab runner，看看config.toml默认什么样
+```
+sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+
+sudo chmod +x /usr/local/bin/gitlab-runner
+
+
+sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+
+sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+sudo gitlab-runner start
+
+sudo gitlab-runner register
+```
