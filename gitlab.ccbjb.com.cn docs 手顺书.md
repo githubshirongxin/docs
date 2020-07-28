@@ -7,6 +7,8 @@ title: vuepress手顺书
 
 ## 基本描述
 
+image:node:latest
+
 - 可以单机版使用。意义不大
 - 可以当作github的pages使用，前提是必须能上网。
   这样，当作自己的个人博客非常合适。
