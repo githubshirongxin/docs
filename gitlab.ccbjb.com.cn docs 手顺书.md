@@ -95,7 +95,7 @@ docker run -d --name gitlab_runner --restart always \
      gitlab/gitlab-runner:latest
 
 docker exec -it gitlab_runner gitlab-runner register
-
+docker exec -it gitlab_runner gitlab-runner start
 docker restart gitlab-runner
 
 ```
