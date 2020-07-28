@@ -1,6 +1,6 @@
 ---
 layout: post
-title: vuepress手顺书
+title: vuepress手顺书（gitlab本地部署）
 ---
 
 
