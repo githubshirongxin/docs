@@ -96,8 +96,8 @@ docker run -d --name gitlab_runner --restart always \
 
 docker exec -it gitlab_runner gitlab-runner register
 docker exec -it gitlab_runner gitlab-runner start
-docker restart gitlab-runner
-
+docker restart gitlab_runner
+docker exec -it gitlab_runner gitlab-runner unregister 
 ```
 
 ## gitlab-runner docker 里没有npm ,修改~/enviroment/Dockerfile
