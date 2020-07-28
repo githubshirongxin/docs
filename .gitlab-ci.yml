@@ -9,8 +9,8 @@ pages build job:
     - node_modules/
 
   script:
-   - npm ci
-   - npm run build 
+   - yarn install
+   - yarn run build 
  
   artifacts:
     paths:
