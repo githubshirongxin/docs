@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【vuepress】（十四）使用Travis CI | blog</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <meta name="description" content="思想persistent">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <link rel="preload" href="/docs/assets/css/0.styles.0018e6f0.css" as="style"><link rel="preload" href="/docs/assets/js/app.227970c7.js" as="script"><link rel="preload" href="/docs/assets/js/5.59f0796b.js" as="script"><link rel="preload" href="/docs/assets/js/2.c8f13a71.js" as="script"><link rel="preload" href="/docs/assets/js/28.148b55e6.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.5f214ca1.js"><link rel="prefetch" href="/docs/assets/js/11.bcbfec7c.js"><link rel="prefetch" href="/docs/assets/js/12.429d2af4.js"><link rel="prefetch" href="/docs/assets/js/13.45cf0e06.js"><link rel="prefetch" href="/docs/assets/js/14.6304d0f9.js"><link rel="prefetch" href="/docs/assets/js/15.c30ec26e.js"><link rel="prefetch" href="/docs/assets/js/16.a43f4ffd.js"><link rel="prefetch" href="/docs/assets/js/17.2c464b23.js"><link rel="prefetch" href="/docs/assets/js/18.c8c2b0a9.js"><link rel="prefetch" href="/docs/assets/js/19.627e4c68.js"><link rel="prefetch" href="/docs/assets/js/20.a9ab7206.js"><link rel="prefetch" href="/docs/assets/js/21.b68c038e.js"><link rel="prefetch" href="/docs/assets/js/22.0ed52377.js"><link rel="prefetch" href="/docs/assets/js/23.a2933d13.js"><link rel="prefetch" href="/docs/assets/js/24.1724a858.js"><link rel="prefetch" href="/docs/assets/js/25.a2ae07c6.js"><link rel="prefetch" href="/docs/assets/js/26.57dffd1e.js"><link rel="prefetch" href="/docs/assets/js/27.fd8a1b62.js"><link rel="prefetch" href="/docs/assets/js/29.fe491325.js"><link rel="prefetch" href="/docs/assets/js/3.c1037640.js"><link rel="prefetch" href="/docs/assets/js/30.89b0bfe4.js"><link rel="prefetch" href="/docs/assets/js/31.2817d740.js"><link rel="prefetch" href="/docs/assets/js/32.ce069137.js"><link rel="prefetch" href="/docs/assets/js/4.543b9c64.js"><link rel="prefetch" href="/docs/assets/js/6.45e04c48.js"><link rel="prefetch" href="/docs/assets/js/7.73d42ca4.js"><link rel="prefetch" href="/docs/assets/js/8.92ccf7f5.js"><link rel="prefetch" href="/docs/assets/js/9.5bb961e5.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.0018e6f0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="blog" class="logo"> <span class="site-name can-hide">blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link router-link-active">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link router-link-active">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><p><a href="https://travis-ci.com/github/githubshirongxin/docs" target="_blank" rel="noopener noreferrer">自动部署vuepress/docs<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
+可以看到编译结果。</p> <p>部署→Github→<a href="https://www.vuepress.cn/guide/deploy.html#github-pages" target="_blank" rel="noopener noreferrer">TravisCI<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>在项目的根目录创建一个名为 .travis.yml 的文件；</p> <div class="language- extra-class"><pre class="language-text"><code>language: node_js
+node_js:
+  - lts/*
+install:
+  - npm ci # npm ci
+script:
+  - npm run build # npm run docs:build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: docs/.vuepress/dist
+  github_token: $GITHUB_TOKEN # 在 GitHub 中生成，用于允许 Travis 向你的仓库推送代码。在 Travis 的项目设置页面进行配置，设置为 secure variable
+  keep_history: true
+  on:
+    branch: master
+</code></pre></div><p>https://travis-ci.com/
+github用户登陆
+会显示github所有工程，在docs后点击【Trigger abuild】
+注意不是vuepress库，因为vuepress只有dist没有编译需要的源代码。</p> <p>github生成GitHubTOKEN，一个用户只有一个。
+<img src="/docs/images/2020-07-23-11-04-50.png" alt=""> <img src="/docs/images/2020-07-23-11-06-19.png" alt=""></p> <p>把这个变量定义在travis-ci网站
+<img src="/docs/images/2020-07-23-11-06-51.png" alt=""></p> <p>随便改改某个md</p> <p>别忘了把.gitignore的私密信息注释，也push到github。
+例如.gitignore
+secret.js</p> <p>否则Travis-ci编译不成功</p> <h3 id="修改某md后git-push"><a href="#修改某md后git-push" class="header-anchor">#</a> 修改某md后git push</h3> <h3 id="去travis-ci网页上查看"><a href="#去travis-ci网页上查看" class="header-anchor">#</a> 去Travis-ci网页上查看</h3> <p>Current
+https://travis-ci.com/github/githubshirongxin/docs
+<img src="/docs/images/2020-07-23-11-20-29.png" alt=""></p> <h3 id="github-pages"><a href="#github-pages" class="header-anchor">#</a> Github pages</h3> <p><img src="/docs/images/2020-07-23-11-21-08.png" alt="">
+Your site is published at https://githubshirongxin.github.io/docs/</p> <p>网页也都反映了md的修改。</p> <h3 id="我还真是不明白"><a href="#我还真是不明白" class="header-anchor">#</a> 我还真是不明白</h3> <p>docs这样的目录统统传上去之后，travis-ci怎么编译的。
+如果这样就可以的化，就不需要两个库了。
+一个docs库：/project
+一个vuepress库：/dist</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">7/24/2020, 11:49:28 AM</span></div></footer> <!---->  <Vssue options="[object Object]" class="theme-default-content content__default"></Vssue></main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.227970c7.js" defer></script><script src="/docs/assets/js/5.59f0796b.js" defer></script><script src="/docs/assets/js/2.c8f13a71.js" defer></script><script src="/docs/assets/js/28.148b55e6.js" defer></script>
+  </body>
+</html>
