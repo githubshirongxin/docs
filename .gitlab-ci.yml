@@ -1,9 +1,6 @@
 image: node:latest
-stages:
-  - build
 
-pages build job:
-  stage: build
+pages:
   cache:
     paths:
     - node_modules/

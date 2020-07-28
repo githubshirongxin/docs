@@ -1,11 +1,13 @@
 ---
 layout: post
-title: vuepress手顺书
+title: vuepress手顺书（gitlab本地部署）
 ---
 
 
 
 ## 基本描述
+
+image:node: latest  14
 
 - 可以单机版使用。意义不大
 - 可以当作github的pages使用，前提是必须能上网。
