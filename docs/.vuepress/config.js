@@ -6,6 +6,7 @@ const nav = require("./nav");
 module.exports = {
   base: "/docs/",
   title: 'blog',
+  dest: "public"
   description: '思想persistent',
   head: headConf,
   markdown: {
