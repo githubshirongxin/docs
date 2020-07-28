@@ -66,6 +66,39 @@ config.js 修改base和你的github库名一致。
 然后在根目录下 git push. Travis-ci会自动生成静态内容，网页可以访问了
 
 ---
+## rpm版 gitlab install
+1.添加gitlab镜像
+访问
+https://packages.gitlab.com/gitlab/gitlab-ce/packages/ol/7/gitlab-ce-13.1.5-ce.0.el7.x86_64.rpm
+
+```
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+sudo yum install gitlab-ce-13.1.5-ce.0.el7.x86_64
+
+vim  /etc/gitlab/gitlab.rb
+gitlab-ctl reconfigure
+gitlab-ctl restart
+```
+
+```
+查看与rpm包相关的文件和其他信息   rpm -qa | grep 包名
+查询包是否被安装，命令：rpm -q 包名
+删除软件包，命令：rpm -e 包名
+```
+
+## docker版gitlab runner install
+挂载到文件系统
+```
+docker run -d --name gitlab-runner --restart always \
+     -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+     -v /var/run/docker.sock:/var/run/docker.sock \
+     gitlab/gitlab-runner:latest
+
+docker run --rm -it -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register
+
+docker restart gitlab-runner
+
+```
 
 ## gitlab-runner docker 里没有npm ,修改~/enviroment/Dockerfile
 vi enviroment/Dockerfile
@@ -91,7 +124,7 @@ docker-compose up --build -d
 
 docker ps
 docker logs -f acd4399a6692
-
+docker exec -it 860b485a5599 /bin/bash
 ## ubuntu docker-runner:latest
 //试试ubuntu怎么安装curl,yarn
 docker run -it ubuntu  /bin/sh 
