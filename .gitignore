@@ -1,0 +1,8 @@
+node_modules
+#.gitignore
+public
+.cache
+.vuepress/dist
+
+# 隐藏私密信息。该文件会变灰
+#secret.js
