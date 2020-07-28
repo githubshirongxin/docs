@@ -10,11 +10,9 @@ pages build job:
   script:
    - npm ci
    - npm run build 
-
+ 
   artifacts:
     paths:
-#    - docs/.vuepress/dist
-     - docs/.vuepress/public
-
+    - docs/.vuepress/dist
   only:
   - master
