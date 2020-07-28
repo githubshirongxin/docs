@@ -14,7 +14,7 @@ pages build job:
   artifacts:
     paths:
 #    - docs/.vuepress/dist
-     - public
+     - docs/.vuepress/public
 
   only:
   - master
