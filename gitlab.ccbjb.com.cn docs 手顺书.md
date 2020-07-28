@@ -89,12 +89,12 @@ gitlab-ctl restart
 ## docker版gitlab runner install
 挂载到文件系统
 ```
-docker run -d --name gitlab-runner --restart always \
+docker run -d --name gitlab_runner --restart always \
      -v /srv/gitlab-runner/config:/etc/gitlab-runner \
      -v /var/run/docker.sock:/var/run/docker.sock \
      gitlab/gitlab-runner:latest
 
-docker run --rm -it -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register
+docker exec -it gitlab_runner gitlab-runner register
 
 docker restart gitlab-runner
 
