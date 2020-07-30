@@ -3,7 +3,7 @@ layout: post
 title: vuepress手顺书（gitlab本地部署）
 ---
 
-
+share runner , spec runner which execute ?
 
 ## 基本描述
 
