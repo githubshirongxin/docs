@@ -3,7 +3,8 @@ layout: post
 title: vuepress手顺书（gitlab本地部署）
 ---
 
-share runner , spec runner which execute ?
+share runner , spec runner which execute ? spec first.
+pause all spec runner only shared runner left . then what ?
 
 ## 基本描述
 
