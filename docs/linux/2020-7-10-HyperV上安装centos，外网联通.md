@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 
+title: hyperv上安装centos7 外网联通，宿主机共享文件
 ---
-hyperv上安装centos7
+
 
 步骤要点：
 1，首先新建一个虚拟交换机bridge。交换机选择外部网络。我只有一块网卡，下拉列表里就会弹出来这块。
