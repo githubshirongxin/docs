@@ -1,6 +1,6 @@
 ---
 layout: post
-title: remote: You are not allowed to push code to this project.
+title: You are not allowed to push code to this project.
 ---
 
 可能是git凭证出现了错误，如果是，你可以看看下面步骤：
