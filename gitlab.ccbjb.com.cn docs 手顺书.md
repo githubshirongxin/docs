@@ -3,6 +3,12 @@ layout: post
 title: vuepress手顺书
 ---
 
+<<<<<<< HEAD
+=======
+share runner , spec runner which execute ? spec first.
+pause all spec runner only shared runner left . then what ?
+
+>>>>>>> 428f99717a0992f2e6473f0f0a7b86cd9bb92443
 ## 基本描述
 
 ### 共同操作：
