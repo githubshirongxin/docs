@@ -1,50 +1,17 @@
 ---
 layout: post
-title: vuepress手顺书（gitlab本地部署）
+title: vuepress手顺书
 ---
-
-
 
 ## 基本描述
 
-image:node: latest  14
-
-- 可以单机版使用。意义不大
-- 可以当作github的pages使用，前提是必须能上网。
-  这样，当作自己的个人博客非常合适。
-  当作项目文档也比较合适。
-- 挂在本地的gitlab的pages上。
-  还没实践。
-
-本手顺书当作挂载外网的github的pages上。
-
-## 先安装依赖包
-
-包里的node_module 184M ，可以运行下列两个命令自动生成。要是没有网络的话可以直接拷过去。
-
-- yarn install或npm install
-
-- npm run build
-
-## 修改配置文件。
-config.js 修改base和你的github库名一致。
-修改manifest.json，把/vuepress/修改成和你的库名一致。
-修改secret.js , clientID，SclientSecret修改成你的github一致。
-
-## 建github库
-把代码git push上去
-
-## 运行travis-ci
-把该库和travis-ci（https://travis-ci.com）绑定
-登陆，激活github库，就可以自动帮你编译，你一push，它就build deploy到虚拟机
-你的github page就更新了。
-
-
-## 写md文件，git push
-### 在.vuepress目录下写md文件或子目录
-
-### 先介绍一下引入图片的两种写法。
-
+### 共同操作：
+#### 把该工程拷贝到某处，修改配置文件
+- config.js 修改base和你的github库名一致。
+- 修改manifest.json，把/vuepress/修改成和你的库名一致。
+- 修改secret.js , clientID，SclientSecret修改成你的github一致。
+- 在.vuepress目录下写md文件或子目录写md文件，git push
+#####  先介绍一下引入图片的两种写法。
 推荐这么写。设置你的vscode或typora自动生成的图片可以写成这样
 `<img :src="$withBase('/images/2020-06-19-10-55-15.png')" >`  
 <img :src="$withBase('/images/2020-06-19-10-55-15.png')">
@@ -53,7 +20,7 @@ config.js 修改base和你的github库名一致。
 `![](/docs/logo.png)`  
 ![](/docs/logo.png)
 
-### 目录多了以后，需要生成导航栏
+#### 目录多了以后，需要生成导航栏
 把原来的.vuepress/nav.js删掉
 .vuepress/config.js 注释两行
 // const nav = require("./nav");
@@ -68,96 +35,47 @@ config.js 修改base和你的github库名一致。
 然后在根目录下 git push. Travis-ci会自动生成静态内容，网页可以访问了
 
 ---
-## rpm版 gitlab install
-1.添加gitlab镜像
-访问
-https://packages.gitlab.com/gitlab/gitlab-ce/packages/ol/7/gitlab-ce-13.1.5-ce.0.el7.x86_64.rpm
 
-```
-curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
-sudo yum install gitlab-ce-13.1.5-ce.0.el7.x86_64
+### 单机版运行：
+   ```
+   npm run build 
+   npm run dev
+   然后访问http://localhost:8080/base
+   ```
+   base通常是project，看docs/.vuepress/config.js里配置的base，当与你的工程名不符时修改该base
 
-vim  /etc/gitlab/gitlab.rb
-gitlab-ctl reconfigure
-gitlab-ctl restart
-```
+### github公网上运行：
+   - 维护travis.yml
+   - 查看title: 【vuepress】（十四）使用Travis CI文章
 
-```
-查看与rpm包相关的文件和其他信息   rpm -qa | grep 包名
-查询包是否被安装，命令：rpm -q 包名
-删除软件包，命令：rpm -e 包名
-```
+#### 建github库
+把代码git push上去
 
-## docker版gitlab runner install
-挂载到文件系统
-```
-docker run -d --name gitlab_runner --restart always \
-     -v /srv/gitlab-runner/config:/etc/gitlab-runner \
-     -v /var/run/docker.sock:/var/run/docker.sock \
-     gitlab/gitlab-runner:latest
+#### 运行travis-ci
+把该库和travis-ci（https://travis-ci.com）绑定
+登陆，激活github库，就可以自动帮你编译，你一push，它就build deploy到虚拟机
+你的github page就更新了。
 
-docker exec -it gitlab_runner gitlab-runner register
-docker exec -it gitlab_runner gitlab-runner start
-docker restart gitlab_runner
-docker exec -it gitlab_runner gitlab-runner unregister 
-```
+---
 
-## gitlab-runner docker 里没有npm ,修改~/enviroment/Dockerfile
-vi enviroment/Dockerfile
-
-curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-yum install -y nodejs
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-npm install yarn
-
-apt install npm -y
-npm config set registry https://registry.npm.taobao.org
-npm config list　
-npm install npm@latest -g
-
-# 删掉所有容器，删掉指定镜像
-docker stop $(docker ps -q) && docker rm $(docker ps -aq) 
-docker rmi -f root_gitlab-runner
-
-## 给Runner镜像增加工具
-vi enviroment/Dockerfile
-docker-compose up -d
-docker-compose up --build -d
-
-docker ps
-docker logs -f acd4399a6692
-docker exec -it 860b485a5599 /bin/bash
-## ubuntu docker-runner:latest
-//试试ubuntu怎么安装curl,yarn
-docker run -it ubuntu  /bin/sh 
-// ubuntu install curl
-apt-get update
-apt install -y curl
-
-// ubuntu install yarn
-apt-get update && apt-get install -y gnupg2
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-apt-get update
-apt install -y yarn
-
-## 进入容器看看
-docker exec -it gitlab_runner /bin/sh
-docker exec -it gitlab_runner yarn
-cd /home/gitlab-runner/builds/N1Bf5i3f/0/shirongxin
+### gitlab公网上运行
+   - 维护gitlab-ci.yml
+   - 无需配置runner，gitlab上自带share runner，push之后自动发布
 
 
-# 用宿主机安装一遍二进制gitlab runner，看看config.toml默认什么样
-```
-sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+---
+### gitlab本地部署（公司内部）运行
+   - 维护gitlab-ci.yml
+   - 需要配置runner，专门的runner服务器192.168.3.112
+   - docker exec -it gitlab_runner gitlab-runner register
+      - 输入该项目→设置→CICD→URL和TOKEN
+      - 描述：写明时什么executor最好
+      - tag 什么也不输入，直接回车
+      - executor = docker
+      - 镜像 = node:latest
+   - docker exec -it gitlab_runner gitlab-runner start // 有时Runner变灰色时需要执行
+   - push代码即可，到CICD的pipeline上看执行结果。成功后，到SETTING的PAGE上的URL查看结果。
 
-sudo chmod +x /usr/local/bin/gitlab-runner
+#### 注意：有时网页上没有css
+【解决】：多半时因为.vuepress/config.js的base配置的不对。
 
-
-sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
-
-sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
-sudo gitlab-runner start
-
-sudo gitlab-runner register
-```
