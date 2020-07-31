@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【GitLab】gitlab ci trouble shootting（持续更新中） | blog</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <meta name="description" content="思想persistent">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <link rel="preload" href="/docs/assets/css/0.styles.723bd2fc.css" as="style"><link rel="preload" href="/docs/assets/js/app.80eb84b7.js" as="script"><link rel="preload" href="/docs/assets/js/5.a6977be1.js" as="script"><link rel="preload" href="/docs/assets/js/2.e00a8c90.js" as="script"><link rel="preload" href="/docs/assets/js/30.b62e409b.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.7515b225.js"><link rel="prefetch" href="/docs/assets/js/11.309b5487.js"><link rel="prefetch" href="/docs/assets/js/12.35b2c4ec.js"><link rel="prefetch" href="/docs/assets/js/13.3e009af0.js"><link rel="prefetch" href="/docs/assets/js/14.eeb6b736.js"><link rel="prefetch" href="/docs/assets/js/15.becb762f.js"><link rel="prefetch" href="/docs/assets/js/16.110545de.js"><link rel="prefetch" href="/docs/assets/js/17.7c23e69a.js"><link rel="prefetch" href="/docs/assets/js/18.d8ce82c7.js"><link rel="prefetch" href="/docs/assets/js/19.236cff8d.js"><link rel="prefetch" href="/docs/assets/js/20.86b589b0.js"><link rel="prefetch" href="/docs/assets/js/21.167d73cd.js"><link rel="prefetch" href="/docs/assets/js/22.ffbce72d.js"><link rel="prefetch" href="/docs/assets/js/23.b21b61f2.js"><link rel="prefetch" href="/docs/assets/js/24.4dde8e03.js"><link rel="prefetch" href="/docs/assets/js/25.4d528283.js"><link rel="prefetch" href="/docs/assets/js/26.2b7df8b5.js"><link rel="prefetch" href="/docs/assets/js/27.8ceb0c47.js"><link rel="prefetch" href="/docs/assets/js/28.6899be4d.js"><link rel="prefetch" href="/docs/assets/js/29.2271f752.js"><link rel="prefetch" href="/docs/assets/js/3.87414a74.js"><link rel="prefetch" href="/docs/assets/js/31.6257c645.js"><link rel="prefetch" href="/docs/assets/js/32.4312922a.js"><link rel="prefetch" href="/docs/assets/js/33.c7c207b3.js"><link rel="prefetch" href="/docs/assets/js/34.b908040a.js"><link rel="prefetch" href="/docs/assets/js/35.dd63faa9.js"><link rel="prefetch" href="/docs/assets/js/36.f5e4d2fb.js"><link rel="prefetch" href="/docs/assets/js/37.5c92127e.js"><link rel="prefetch" href="/docs/assets/js/38.689efa2d.js"><link rel="prefetch" href="/docs/assets/js/39.32b7bd64.js"><link rel="prefetch" href="/docs/assets/js/4.5835baff.js"><link rel="prefetch" href="/docs/assets/js/40.f603986a.js"><link rel="prefetch" href="/docs/assets/js/41.9bc6c7b3.js"><link rel="prefetch" href="/docs/assets/js/42.e3dfcbcd.js"><link rel="prefetch" href="/docs/assets/js/43.21704f89.js"><link rel="prefetch" href="/docs/assets/js/44.63592120.js"><link rel="prefetch" href="/docs/assets/js/45.00d2331a.js"><link rel="prefetch" href="/docs/assets/js/46.813fd55a.js"><link rel="prefetch" href="/docs/assets/js/47.30862595.js"><link rel="prefetch" href="/docs/assets/js/48.923a4d72.js"><link rel="prefetch" href="/docs/assets/js/49.793535cc.js"><link rel="prefetch" href="/docs/assets/js/50.de4fad01.js"><link rel="prefetch" href="/docs/assets/js/51.6be39263.js"><link rel="prefetch" href="/docs/assets/js/52.5eea5f57.js"><link rel="prefetch" href="/docs/assets/js/53.fbddb50b.js"><link rel="prefetch" href="/docs/assets/js/54.27ec2c2c.js"><link rel="prefetch" href="/docs/assets/js/55.c39ca669.js"><link rel="prefetch" href="/docs/assets/js/56.48284d5f.js"><link rel="prefetch" href="/docs/assets/js/57.0c921e01.js"><link rel="prefetch" href="/docs/assets/js/58.95e8f9a2.js"><link rel="prefetch" href="/docs/assets/js/59.f52a6a98.js"><link rel="prefetch" href="/docs/assets/js/6.6775d64b.js"><link rel="prefetch" href="/docs/assets/js/60.6fb5df77.js"><link rel="prefetch" href="/docs/assets/js/61.3a6e1621.js"><link rel="prefetch" href="/docs/assets/js/62.4ef6a05e.js"><link rel="prefetch" href="/docs/assets/js/63.2d22dfed.js"><link rel="prefetch" href="/docs/assets/js/64.33c108b5.js"><link rel="prefetch" href="/docs/assets/js/65.80094236.js"><link rel="prefetch" href="/docs/assets/js/66.cd570ad5.js"><link rel="prefetch" href="/docs/assets/js/67.237e4c65.js"><link rel="prefetch" href="/docs/assets/js/68.bc3515e7.js"><link rel="prefetch" href="/docs/assets/js/69.0d49b05c.js"><link rel="prefetch" href="/docs/assets/js/7.7cde2ee1.js"><link rel="prefetch" href="/docs/assets/js/70.a1c5e977.js"><link rel="prefetch" href="/docs/assets/js/71.d4d331cb.js"><link rel="prefetch" href="/docs/assets/js/72.80623533.js"><link rel="prefetch" href="/docs/assets/js/73.c822cef9.js"><link rel="prefetch" href="/docs/assets/js/74.95ba5401.js"><link rel="prefetch" href="/docs/assets/js/75.8852fcb0.js"><link rel="prefetch" href="/docs/assets/js/8.53cf5fb9.js"><link rel="prefetch" href="/docs/assets/js/9.38f6e926.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.723bd2fc.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="blog" class="logo"> <span class="site-name can-hide">blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><p>gitlab来做CICD时，出现的问题。在这里做个整理。
+方便日后查找。</p> <h2 id="【问题】【已解决】：我的gitlab-runner问题，成功注册，但是就一直pending"><a href="#【问题】【已解决】：我的gitlab-runner问题，成功注册，但是就一直pending" class="header-anchor">#</a> 【问题】【已解决】：我的gitlab runner问题，成功注册，但是就一直pending</h2> <h4 id="【现象】："><a href="#【现象】：" class="header-anchor">#</a> 【现象】：</h4> <p>gitlab-runner</p> <blockquote><p>WARNING: Checking for jobs... failed                runner=gYEgXsvL status=couldn't execute POST against https://gitlab.ccbjb.com.cn/api/v4/jobs/request: Post https://gitlab.ccbjb.com.cn/api/v4/jobs/request: read tcp 172.20.0.3:42366-&gt;192.168.3.111:443: read: connection reset by peer</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>[root@centos111 ~]# docker exec -it root_gitlab-runner_1 /bin/bash
+
+bash-5.0# gitlab-runner status
+Runtime platform                                    arch=amd64 os=linux pid=28 revision=6fbc7474 version=13.1.1
+gitlab-runner: Service is not running.
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>bash-5.0# gitlab-runner run
+Runtime platform                                    arch=amd64 os=linux pid=33 revision=6fbc7474 version=13.1.1
+Starting multi-runner from /etc/gitlab-runner/config.toml...  builds=0
+Running in system-mode.
+
+Configuration loaded                                builds=0
+listen_address not defined, metrics &amp; debug endpoints disabled  builds=0
+[session_server].listen_address not defined, session endpoints disabled  builds=0
+</code></pre></div><h4 id="【原因】-问题在与-git-ci-yml中tags没有指定！"><a href="#【原因】-问题在与-git-ci-yml中tags没有指定！" class="header-anchor">#</a> 【原因】 问题在与.git-ci.yml中tags没有指定！**</h4> <p>所以runner成功注册但状态一直是“pending”，然后超时，failed
+见：https://blog.csdn.net/qingchuwudi/article/details/103089075</p> <h4 id="【解决】：-gitlab-ci-yml中增加tags：与runner的tags对应上。"><a href="#【解决】：-gitlab-ci-yml中增加tags：与runner的tags对应上。" class="header-anchor">#</a> 【解决】：** .gitlab-ci.yml中增加tags：与runner的tags对应上。</h4> <h2 id="【问题】【没办法解决】-docker-compose方式安装gitlab，安装在sambada挂载盘上面"><a href="#【问题】【没办法解决】-docker-compose方式安装gitlab，安装在sambada挂载盘上面" class="header-anchor">#</a> 【问题】【没办法解决】 docker-compose方式安装gitlab，安装在sambada挂载盘上面</h2> <p>/srv是192.168.3.122的挂载盘，挂载192.168.100.11/shi目录。
+<code>docker-compose up -d</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>alpine: Pulling from gitlab/gitlab-runner
+21c83c524219: Pull complete
+4de95b93bf1d: Pull complete
+651e812d526b: Pull complete
+1e95a28388dc: Pull complete
+eb618f17f262: Pull complete
+e3d8175fc390: Pull complete
+3fbd3623c394: Pull complete
+f88b016862ab: Pull complete
+Digest: sha256:b46c3c1f8a46e14cc54c480684f67e7b73e94f21e1d8eb9fd9d2a436b405ccbf
+Status: Downloaded newer image <span class="token keyword">for</span> gitlab/gitlab-runner:alpine
+Creating gitlab <span class="token punctuation">..</span>. error
+
+ERROR: <span class="token keyword">for</span> gitlab  Cannot start <span class="token function">service</span> gitlab: error <span class="token keyword">while</span> creating <span class="token function">mount</span> <span class="token builtin class-name">source</span> path <span class="token string">'/srv/gitlab/logs'</span><span class="token builtin class-name">:</span> <span class="token function">chown</span> /srv/gitlab/logs: permission denied
+
+ERROR: <span class="token keyword">for</span> gitlab  Cannot start <span class="token function">service</span> gitlab: error <span class="token keyword">while</span> creating <span class="token function">mount</span> <span class="token builtin class-name">source</span> path <span class="token string">'/srv/gitlab/logs'</span><span class="token builtin class-name">:</span> <span class="token function">chown</span> /srv/gitlab/logs: permission denied
+ERROR: Encountered errors <span class="token keyword">while</span> bringing up the project.
+
+<span class="token comment">#[root@centos122 ~]# ll /srv</span>
+总用量 <span class="token number">0</span>
+drwxrwxrwx. <span class="token number">1</span> <span class="token number">1032</span> <span class="token function">users</span> <span class="token number">0</span> <span class="token number">7</span>月  <span class="token number">14</span> <span class="token number">13</span>:59 data
+drwxrwxrwx. <span class="token number">1</span> <span class="token number">1032</span> <span class="token function">users</span> <span class="token number">0</span> <span class="token number">7</span>月  <span class="token number">16</span> <span class="token number">15</span>:00 gitlab
+</code></pre></div><h4 id="【无法解决】：sambda挂载盘就是不支持gitlab安装。"><a href="#【无法解决】：sambda挂载盘就是不支持gitlab安装。" class="header-anchor">#</a> 【无法解决】：sambda挂载盘就是不支持gitlab安装。</h4></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">7/31/2020, 2:52:42 PM</span></div></footer> <!---->  <Vssue options="[object Object]" class="theme-default-content content__default"></Vssue></main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.80eb84b7.js" defer></script><script src="/docs/assets/js/5.a6977be1.js" defer></script><script src="/docs/assets/js/2.e00a8c90.js" defer></script><script src="/docs/assets/js/30.b62e409b.js" defer></script>
+  </body>
+</html>
