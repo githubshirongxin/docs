@@ -3,20 +3,43 @@ layout: post
 title: vuepress手顺书
 ---
 
-<<<<<<< HEAD
-=======
-share runner , spec runner which execute ? spec first.
-pause all spec runner only shared runner left . then what ?
+**一般使用者只需要再docs/目录下放置目录和.md文件即可。**
 
->>>>>>> 428f99717a0992f2e6473f0f0a7b86cd9bb92443
+注意两点要求：
+
+1. .md文件的前四行必须符合规定
+
+   ```
+   ---
+   layout: post
+   title: 【vuepress】（十五）使用徽章,图片缩放
+   ---
+   ```
+
+   如果没有写全，或者：是中文的：，都会编译不通过。
+
+2. 每个目录里，都必须有一个README.md
+
+   注意，文件名必须是大写！
+
+---
+
+对于维护者来说
+npm install vuepress //同下
+npm run build //一般用来生成nav.js（导航目录才用到）
+npm run dev //本地运行localhost:8080查看
+
 ## 基本描述
 
 ### 共同操作：
+
 #### 把该工程拷贝到某处，修改配置文件
 - config.js 修改base和你的github库名一致。
 - 修改manifest.json，把/vuepress/修改成和你的库名一致。
 - 修改secret.js , clientID，SclientSecret修改成你的github一致。
 - 在.vuepress目录下写md文件或子目录写md文件，git push
+
+
 #####  先介绍一下引入图片的两种写法。
 推荐这么写。设置你的vscode或typora自动生成的图片可以写成这样
 `<img :src="$withBase('/images/2020-06-19-10-55-15.png')" >`  
