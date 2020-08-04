@@ -305,19 +305,21 @@ systemctl disable NetworkManager
 `# mkdir -p /data`
 
 ##### 安装NFS（在安装完nfs-utils后，rpcbind默认是启动了的）
-`# yum -y install nfs-utils rpcbind`
+
+`sudo yum -y install nfs-utils`
+
 
 ##### 启动NFS相关服务并设置开机启动
 
 ```
-# systemctl start rpcbind
-# systemctl enable rpcbind
-# systemctl start nfs-server
-# systemctl enable nfs-server
-# systemctl start nfs-lock
-# systemctl enable nfs-lock
-# systemctl start nfs-idmap
-# systemctl enable nfs-idmap
+systemctl start rpcbind
+systemctl enable rpcbind
+systemctl start nfs-server
+systemctl enable nfs-server
+systemctl start nfs-lock
+systemctl enable nfs-lock
+systemctl start nfs-idmap
+systemctl enable nfs-idmap
 ```
 
 ##### 使用如下命令像/etc/exports中添加配置
@@ -340,6 +342,18 @@ Export list for localhost:
 # firewall-cmd --add-service=rpc-bind --permanent --zone=public
 # firewall-cmd --reload
 ```
+
+**我推荐关闭防火墙**
+```
+yum -y install wget vim net-tools ntpdate
+systemctl stop firewalld
+systemctl disable firewalld
+sed -i 's/enforcing/disabled/' /etc/selinux/config
+setenforce 0
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+```
+
 
 ### 1.5.2 客户端 192.168.3.108，192.168.3.109
 ##### 创建NFS挂载文件路径
