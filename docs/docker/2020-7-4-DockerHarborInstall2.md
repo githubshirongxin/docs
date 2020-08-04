@@ -109,8 +109,10 @@ An optional company name []:   # 可留空
 
 ##### 生成自签名证书
 注意：在使用自签名的临时证书时，浏览器会提示证书的颁发机构是未知的。
-`# echo subjectAltName = IP:192.168.3.120 > extfile.cnf`
+`# echo subjectAltName = IP:192.168.3.120 > extfile.cnf`  
+
 `# openssl x509 -req -days 365 -in harbor.csr -signkey harbor.key -out harbor.crt -extfile extfile.cnf`
+
 
 ```
 Signature ok
@@ -286,12 +288,21 @@ services:
 # firewall-cmd --reload
 ```
 > 我一般推荐关闭防火墙。在内网里面开启防火墙没有任何意义。
+```
+yum -y install wget vim net-tools ntpdate
+systemctl stop firewalld
+systemctl disable firewalld
+sed -i 's/enforcing/disabled/' /etc/selinux/config
+setenforce 0
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+```
 
 ## 1.5 NFS
 ### 1.5.1 服务端 192.168.3.120
 ##### 创建NFS共享文件路径
 
-`# mkdir -p /data/nfs`
+`# mkdir -p /data`
 
 ##### 安装NFS（在安装完nfs-utils后，rpcbind默认是启动了的）
 `# yum -y install nfs-utils rpcbind`
