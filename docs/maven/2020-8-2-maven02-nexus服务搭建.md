@@ -81,6 +81,116 @@ Starting nexus
 
 ---
 
-## 修改maven的setting.xml
+## 3. 使用nexus
+
+### 3.1 修改maven的setting.xml
+修改客户机：maven下的setting.xml
+- $MAVEN_HOME/conf/setting.xml或.m2/setting.xml
+我修改的是$MAVEN_HOME/conf/setting.xml
+
+C:\Program Files (x86)\apache-maven-3.6.3\conf
+```
+      <server>
+        <id>nexus</id>
+        <username>admin</username>
+        <password>admin123</password>
+      </server>
+```
+然后修改工程的pom.xml文件
+F:\work\maven test\my-app\pom.xml
+```
+<distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Nexus Release Repository</name>
+      <url>http://192.168.3.124:8081/repository/maven-snapshots/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Nexus Snapshot Repository</name>
+      <url>http://192.168.3.124:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  ```
+然后在工程里命令行执行  
+`mvn clean compile package deploy`
+
+执行后，去nexus网页查看。
+
+## CentOS7配置nexus开机自启动
+1. 新建nexus启动脚本#
+进入/etc/init.d目录，新建脚本文件nexus
+```
+[root@linux_maven etc]# cd /etc/init.d/
+```
+
+2. 新建脚本文件nexus
+[root@linux_maven init.d]# vim nexus
+``` 
+#!/bin/bash
+#chkconfig:2345 20 90
+#description:nexus
+#processname:nexus
+ 
+export JAVA_HOME=/root/apps/jdk1.8/
+ 
+case $1 in
+        start) su root /usr/local/nexus3.21/bin/nexus start;;
+        stop) su root /usr/local/nexus3.21/bin/nexus stop;;
+        status) su root /usr/local/nexus3.21/bin/nexus status;;
+        restart) su root /usr/local/nexus3.21/bin/nexus restart;;
+        dump) su root /usr/local/nexus3.21/bin/nexus dump;;
+        console) su root /usr/local/nexus3.21/bin/nexus console;;
+        *) echo "Usage: nexus {start|stop|run|run-redirect|status|restart|force-reload}"
+esac
+```
+
+3. 设置脚本权限#
+```
+[root@linux_maven init.d]# chmod +x /etc/init.d/nexus 
+使用service命令使用nexus#
+Copy 
+[root@linux_maven init.d]# service nexus status
+WARNING: ************************************************************
+WARNING: Detected execution as "root" user.  This is NOT recommended!
+WARNING: ************************************************************
+nexus is running.
+```
+
+4. 添加到开机启动#
+```
+[root@linux_maven init.d]# chkconfig nexus on
+```
+
+5. 查看nexus开机启动#
+```
+[root@linux_maven ~]# chkconfig --list nexus
+ 
+Note: This output shows SysV services only and does not include native
+      systemd services. SysV configuration data might be overridden by native
+      systemd configuration.
+ 
+      If you want to list systemd services use 'systemctl list-unit-files'.
+      To see services enabled on particular target use
+      'systemctl list-dependencies [target]'.
+ 
+nexus           0:off   1:off   2:on    3:on    4:on    5:on    6:off
+```
+
+6. 设置防火墙#
+```
+// 进入防火墙设置文件目录
+[root@linux_maven init.d]# cd /etc/firewalld/zones/
+// 使用vim, 修改防火墙配置文件
+[root@linux_maven zones]# vim public.xml
+添加以下放开端口内容, 其它不变
+  <rule family="ipv4">
+  <!-- 开放8081端口给任意ip  -->
+　　<port protocol="tcp" port="8081"/>
+　　<accept/>
+  </rule>
+```
+![](https://img2020.cnblogs.com/blog/1176089/202004/1176089-20200408055215908-1985164690.png)
+
 
 
