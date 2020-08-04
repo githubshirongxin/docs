@@ -65,7 +65,7 @@ postgres=# select version();
 #### 正式生产环境建议使用商业证书！
 
 ##### 使用openssl工具生成一个RSA私钥
-`# openssl genrsa -des3 -out harbor.key 2048`
+`# openssl genrsa -des3 -out harbor1.key 2048`
 ```
 Generating RSA private key, 2048 bit long modulus
 .......................+++
@@ -79,7 +79,8 @@ Enter pass phrase for harbor.key:                 # 输入刚才创建时的密�
 writing RSA key
 ```
 
-
+##### 去掉key的密码
+`openssl rsa -in harbor1.key -out harbor.key`
 
 ##### 生成CSR（证书签名请求）
 `# openssl req -new -key harbor.key -out harbor.csr`
@@ -123,6 +124,8 @@ Getting Private key
 ##### 存放证书
 复制证书到/www/certs待用
 `# mkdir -p /www/certs && cp harbor.crt harbor.key /www/certs`
+拷贝到nginx的证书目录
+`cp /www/certs/* /etc/nginx/certs/`
 
 ## 1.2 Docker
 ##### 官方一键脚本安装
@@ -289,7 +292,6 @@ services:
 ```
 > 我一般推荐关闭防火墙。在内网里面开启防火墙没有任何意义。
 ```
-yum -y install wget vim net-tools ntpdate
 systemctl stop firewalld
 systemctl disable firewalld
 sed -i 's/enforcing/disabled/' /etc/selinux/config
@@ -297,6 +299,25 @@ setenforce 0
 systemctl stop NetworkManager
 systemctl disable NetworkManager
 ```
+
+##### TroubleShooting
+###### Error:
+```
+ERROR: Failed to Setup IP tables: Unable to enable SKIP DNAT rule:  (iptables failed: iptables --wait -t nat -I DOCKER -i br-02aaea983fab -j RETURN: iptables: No chain/target/match by that name.
+```  
+  
+解决：
+- 1.查看nginx日志/var/log/nginx/access.log
+
+```
+2020/08/04 12:04:29 [emerg] 24778#24778: cannot load certificate key "/etc/nginx/certs/harbor.key": PEM_read_bio_PrivateKey() failed (SSL: error:0906406D:PEM routines:PEM_def_callback:problems getting password error:0906A068:PEM routines:PEM_do_header:bad password read)
+```
+原来是，自己的密钥忘了去掉密码了。
+```
+openssl rsa -in harbor1.key -out harbor.key
+```
+- 2.另外，3.108和3.109的防火墙允许80端口，或者干脆关闭两台机器的防火墙。
+
 
 ## 1.5 NFS
 ### 1.5.1 服务端 192.168.3.120
@@ -584,7 +605,7 @@ location /service/
 harbor安装目录（harbor.xml同级目录）`/root/harbor`，修改nginx的配置文件
 `/root/harbor/common/config/nginx/nginx.conf` 三处，注意只改三处。
 否则，push的时候会一直retring！！！！！！！！
-<font color=red>该配置文件的注释会有误导，导致你都注释掉，就怎么也push不成功,  注意只改三处!</font>
+<font color=red>该配置文件的注释会有误导，导致你都注释掉，就怎么也push不成功,  注意只改三处（/，/v2/,/service/）! 注释“proxy_set_header X-Forwarded-Proto $scheme;”</font>
 
 
 ```
