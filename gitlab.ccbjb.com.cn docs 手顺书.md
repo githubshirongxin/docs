@@ -25,7 +25,7 @@ title: vuepress手顺书
 ---
 
 对于维护者来说
-npm install vuepress //同下
+npm install //同下,这样所有插件就都下载下来了，否则build虽然不报错，但是没效果。
 npm run build //一般用来生成nav.js（导航目录才用到）
 npm run dev //本地运行localhost:8080查看
 
