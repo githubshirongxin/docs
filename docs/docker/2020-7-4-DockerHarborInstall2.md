@@ -499,6 +499,13 @@ ssl_certificate_key ./certs/harbor.key;
 #### 修改harbor.yml配置文件
 `# vim harbor.yml`
 
+- 使用NFS存储/data存储harobr的磁盘数据，NFS服务端磁盘在3.120上
+```
+# The default data volume
+data_volume: /data
+```
+
+- 使用120上配置的postgress和redis等服务，外部存储数据也在3.120
 主要配置参数如下，由于我们这里使用外置PostgreSQL与Redis所以直接注释掉database相关配置改用external_database与external_redis
 
 以192.168.3.108为例，192.168.3.109只需要修改hostname
@@ -567,6 +574,10 @@ external_redis:
   jobservice_db_index: 2
   chartmuseum_db_index: 3
 ```
+
+- 所以 3.120存在单点问题。
+3.120要是损坏了。就什么都完了。
+改进：我写了个shell，每天备份3.120数据到另外一个机器。
 
 ### 2.2 安装Harbor
 
