@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【私有SSL证书】签发私有SSL证书，给nginx | blog</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <meta name="description" content="思想persistent">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <link rel="preload" href="/docs/assets/css/0.styles.e76adbff.css" as="style"><link rel="preload" href="/docs/assets/js/app.5e10640b.js" as="script"><link rel="preload" href="/docs/assets/js/4.646ea11f.js" as="script"><link rel="preload" href="/docs/assets/js/2.a085fc5b.js" as="script"><link rel="preload" href="/docs/assets/js/54.c355c7ae.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.9a37f644.js"><link rel="prefetch" href="/docs/assets/js/11.af5048ad.js"><link rel="prefetch" href="/docs/assets/js/12.71300ec6.js"><link rel="prefetch" href="/docs/assets/js/13.111d3652.js"><link rel="prefetch" href="/docs/assets/js/14.dcaf72ee.js"><link rel="prefetch" href="/docs/assets/js/15.a3c65cc3.js"><link rel="prefetch" href="/docs/assets/js/16.6a1bb8bb.js"><link rel="prefetch" href="/docs/assets/js/17.cc6e0865.js"><link rel="prefetch" href="/docs/assets/js/18.d1b47423.js"><link rel="prefetch" href="/docs/assets/js/19.f1fe2f25.js"><link rel="prefetch" href="/docs/assets/js/20.95f8a36c.js"><link rel="prefetch" href="/docs/assets/js/21.ee937ff6.js"><link rel="prefetch" href="/docs/assets/js/22.a674b575.js"><link rel="prefetch" href="/docs/assets/js/23.197433de.js"><link rel="prefetch" href="/docs/assets/js/24.9579f898.js"><link rel="prefetch" href="/docs/assets/js/25.1f419fd8.js"><link rel="prefetch" href="/docs/assets/js/26.248a0130.js"><link rel="prefetch" href="/docs/assets/js/27.11bb48b8.js"><link rel="prefetch" href="/docs/assets/js/28.029c87b8.js"><link rel="prefetch" href="/docs/assets/js/29.3ee9064b.js"><link rel="prefetch" href="/docs/assets/js/3.bdf2af31.js"><link rel="prefetch" href="/docs/assets/js/30.f160c0c9.js"><link rel="prefetch" href="/docs/assets/js/31.801f9ace.js"><link rel="prefetch" href="/docs/assets/js/32.555fb55b.js"><link rel="prefetch" href="/docs/assets/js/33.9039d10e.js"><link rel="prefetch" href="/docs/assets/js/34.b4c51541.js"><link rel="prefetch" href="/docs/assets/js/35.85aa8bba.js"><link rel="prefetch" href="/docs/assets/js/36.c106cd5d.js"><link rel="prefetch" href="/docs/assets/js/37.7283f69e.js"><link rel="prefetch" href="/docs/assets/js/38.fdd6106c.js"><link rel="prefetch" href="/docs/assets/js/39.011419d6.js"><link rel="prefetch" href="/docs/assets/js/40.ac858c9c.js"><link rel="prefetch" href="/docs/assets/js/41.9364d326.js"><link rel="prefetch" href="/docs/assets/js/42.2f059371.js"><link rel="prefetch" href="/docs/assets/js/43.fe210edd.js"><link rel="prefetch" href="/docs/assets/js/44.ff23b684.js"><link rel="prefetch" href="/docs/assets/js/45.dd3f4f89.js"><link rel="prefetch" href="/docs/assets/js/46.ed68671d.js"><link rel="prefetch" href="/docs/assets/js/47.7fac27f6.js"><link rel="prefetch" href="/docs/assets/js/48.0001c6b5.js"><link rel="prefetch" href="/docs/assets/js/49.988cac85.js"><link rel="prefetch" href="/docs/assets/js/5.22cc210d.js"><link rel="prefetch" href="/docs/assets/js/50.b77127c2.js"><link rel="prefetch" href="/docs/assets/js/51.eb653392.js"><link rel="prefetch" href="/docs/assets/js/52.589266e0.js"><link rel="prefetch" href="/docs/assets/js/53.0b11b707.js"><link rel="prefetch" href="/docs/assets/js/55.bd8f0b05.js"><link rel="prefetch" href="/docs/assets/js/56.aa85850f.js"><link rel="prefetch" href="/docs/assets/js/57.7c389ce4.js"><link rel="prefetch" href="/docs/assets/js/58.92d178b3.js"><link rel="prefetch" href="/docs/assets/js/59.be3b47b0.js"><link rel="prefetch" href="/docs/assets/js/6.49e132e5.js"><link rel="prefetch" href="/docs/assets/js/60.f651ae93.js"><link rel="prefetch" href="/docs/assets/js/61.8a2b644c.js"><link rel="prefetch" href="/docs/assets/js/62.b4b1740a.js"><link rel="prefetch" href="/docs/assets/js/63.02e2fe0f.js"><link rel="prefetch" href="/docs/assets/js/64.50fd3580.js"><link rel="prefetch" href="/docs/assets/js/65.737577ac.js"><link rel="prefetch" href="/docs/assets/js/66.45cb1a74.js"><link rel="prefetch" href="/docs/assets/js/67.a1d7d5c2.js"><link rel="prefetch" href="/docs/assets/js/68.6057dd67.js"><link rel="prefetch" href="/docs/assets/js/69.06524269.js"><link rel="prefetch" href="/docs/assets/js/7.1a0fa442.js"><link rel="prefetch" href="/docs/assets/js/70.0d0364c7.js"><link rel="prefetch" href="/docs/assets/js/71.bead1a4f.js"><link rel="prefetch" href="/docs/assets/js/72.c1f5429c.js"><link rel="prefetch" href="/docs/assets/js/73.b153d258.js"><link rel="prefetch" href="/docs/assets/js/74.84e7eb81.js"><link rel="prefetch" href="/docs/assets/js/75.705b8307.js"><link rel="prefetch" href="/docs/assets/js/76.56308051.js"><link rel="prefetch" href="/docs/assets/js/77.f01ca301.js"><link rel="prefetch" href="/docs/assets/js/78.45c97a20.js"><link rel="prefetch" href="/docs/assets/js/79.cb86e05c.js"><link rel="prefetch" href="/docs/assets/js/8.d200284b.js"><link rel="prefetch" href="/docs/assets/js/80.f870164b.js"><link rel="prefetch" href="/docs/assets/js/81.a283cb18.js"><link rel="prefetch" href="/docs/assets/js/82.ab46dc8c.js"><link rel="prefetch" href="/docs/assets/js/83.e33873c3.js"><link rel="prefetch" href="/docs/assets/js/84.372e6b5e.js"><link rel="prefetch" href="/docs/assets/js/85.3adb4213.js"><link rel="prefetch" href="/docs/assets/js/86.5e7bc10f.js"><link rel="prefetch" href="/docs/assets/js/87.553af854.js"><link rel="prefetch" href="/docs/assets/js/88.e285901c.js"><link rel="prefetch" href="/docs/assets/js/89.a8152e21.js"><link rel="prefetch" href="/docs/assets/js/9.f94ec771.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.e76adbff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="blog" class="logo"> <span class="site-name can-hide">blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link router-link-active">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven" class="dropdown-title"><span class="title">maven</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven/" class="nav-link">
+  maven
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link router-link-active">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven" class="dropdown-title"><span class="title">maven</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven/" class="nav-link">
+  maven
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>linux</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/linux/2020-7-10-HyperV上安装centos，外网联通.html" class="sidebar-link">hyperv上安装centos7 外网联通，宿主机共享文件</a></li><li><a href="/docs/linux/2020-7-10-linux如何查看mount的源路径.html" class="sidebar-link">【linux】如何查看mount的源路径</a></li><li><a href="/docs/linux/2020-7-10-win10开机启动vmware虚拟机.html" class="sidebar-link">win10 开机启动vmware并自动启动虚机</a></li><li><a href="/docs/linux/2020-7-10-【坑】Win10互相ping不通但能上网.html" class="sidebar-link">【坑】宿主机ping不通win10，连不上win10，但win10能ping通宿主机，win10能上网</a></li><li><a href="/docs/linux/2020-7-10-查看某个命令在哪个包yum.html" class="sidebar-link">【linux】【基础】查某个命令属于哪个包然后yum install 这个包</a></li><li><a href="/docs/linux/2020-7-10-查看端口.html" class="sidebar-link">【linux】查看端口</a></li><li><a href="/docs/linux/2020-8-4-hyperVError无法连接到虚拟机配置存储.html" class="sidebar-link">【hyperV】Error，无法连接虚拟机配置存储</a></li><li><a href="/docs/linux/2020-8-4-签发私有SSL证书.html" class="active sidebar-link">【私有SSL证书】签发私有SSL证书，给nginx</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#生成私钥" class="sidebar-link">生成私钥</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#去掉key的密码" class="sidebar-link">去掉key的密码</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#生成csr（证书签名请求）" class="sidebar-link">生成CSR（证书签名请求）</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#生成自签名证书" class="sidebar-link">生成自签名证书</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#存放证书" class="sidebar-link">存放证书</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#配置证书到nginx" class="sidebar-link">配置证书到nginx</a></li><li class="sidebar-sub-header"><a href="/docs/linux/2020-8-4-签发私有SSL证书.html#测试" class="sidebar-link">测试</a></li></ul></li><li><a href="/docs/linux/" aria-current="page" class="sidebar-link">Linux相关</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>以nexus配置nginx的SSL私有证书为例。</p> <h1 id="签发私有证书"><a href="#签发私有证书" class="header-anchor">#</a> 签发私有证书</h1> <h2 id="生成私钥"><a href="#生成私钥" class="header-anchor">#</a> 生成私钥</h2> <p>正式生产环境建议使用商业证书！
+使用openssl工具生成一个RSA私钥</p> <p><code>openssl genrsa -des3 -out nexus1.key 2048</code></p> <div class="language- extra-class"><pre class="language-text"><code>Generating RSA private key, 2048 bit long modulus
+.......................+++
+......+++
+e is 65537 (0x10001)
+Enter pass phrase for nexus.key:                   # 输入一个至少4位的密码
+Verifying - Enter pass phrase for nexus.key:       # 重复输入密码
+复制代码删除nexus.key中的密码
+# openssl rsa -in nexus.key -out nexus.key
+Enter pass phrase for nexus.key:                 # 输入刚才创建时的密码
+writing RSA key
+</code></pre></div><h2 id="去掉key的密码"><a href="#去掉key的密码" class="header-anchor">#</a> 去掉key的密码</h2> <p><code>openssl rsa -in nexus1.key -out nexus.key</code></p> <h2 id="生成csr（证书签名请求）"><a href="#生成csr（证书签名请求）" class="header-anchor">#</a> 生成CSR（证书签名请求）</h2> <div class="language- extra-class"><pre class="language-text"><code># openssl req -new -key nexus.key -out nexus.csr
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:cn             # 国家
+State or Province Name (full name) []:Sichuan    # 地区 
+Locality Name (eg, city) [Default City]:Chengdu  # 城市
+Organization Name (eg, company) [Default Company Ltd]:akiya  # 组织
+Organizational Unit Name (eg, section) []:akiya  # 组织单位
+Common Name (eg, your name or your server's hostname) []:akiya    # 常用名可填自己名字或域名
+Email Address []:a@b.com                         # 邮件地址
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request      
+A challenge password []:       # 可留空
+An optional company name []:   # 可留空
+</code></pre></div><h2 id="生成自签名证书"><a href="#生成自签名证书" class="header-anchor">#</a> 生成自签名证书</h2> <p>注意：在使用自签名的临时证书时，浏览器会提示证书的颁发机构是未知的。</p> <div class="language- extra-class"><pre class="language-text"><code>echo subjectAltName = IP:192.168.3.120 &gt; extfile.cnf
+openssl x509 -req -days 365 -in nexus.csr -signkey nexus.key -out nexus.crt -extfile extfile.cnf
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>Signature ok
+subject=/C=cn/ST=Sichuan/L=Chengdu/O=akiya/OU=akiya/CN=akiya/emailAddress=a@b.com
+Getting Private key
+</code></pre></div><h2 id="存放证书"><a href="#存放证书" class="header-anchor">#</a> 存放证书</h2> <p>拷贝到nginx的证书目录 cp nexus.* /etc/nginx/certs/</p> <h2 id="配置证书到nginx"><a href="#配置证书到nginx" class="header-anchor">#</a> 配置证书到nginx</h2> <p>vim /etc/nginx/conf.d/nexus.conf</p> <div class="language- extra-class"><pre class="language-text"><code>server {
+    listen 2222 ssl;
+    server_name nexus.ccbjb.com.cn;
+
+    # SSL 证书
+    ssl_certificate ./certs/nexus.crt;
+    # SSL 私钥
+    ssl_certificate_key ./certs/nexus.key;
+    ssl_session_cache shared:SSL:50m;
+
+    location / {
+        proxy_set_header        Host $host:$server_port;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        proxy_redirect          http:// https://;
+        proxy_pass              http://127.0.0.1:8082;
+        client_max_body_size       1024m;
+        client_body_buffer_size    128k;
+    }
+}
+
+server {
+    listen 3333 ssl;
+    server_name registry.ntpstat.com;
+
+    # SSL 证书
+    ssl_certificate ./certs/nexus.crt;
+    # SSL 私钥
+    ssl_certificate_key ./certs/nexus.key;
+    ssl_session_cache shared:SSL:50m;
+
+    location / {
+        proxy_set_header        Host $host:$server_port;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        proxy_redirect          http:// https://;
+        proxy_pass              http://127.0.0.1:8083;
+        client_max_body_size       1024m;
+        client_body_buffer_size    128k;
+    }
+}
+</code></pre></div><h2 id="测试"><a href="#测试" class="header-anchor">#</a> 测试</h2> <p>https://nexus.ccbjb.com.cn</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/linux/2020-8-4-hyperVError无法连接到虚拟机配置存储.html" class="prev">
+        【hyperV】Error，无法连接虚拟机配置存储
+      </a></span> <span class="next"><a href="/docs/linux/" class="router-link-active">
+        Linux相关
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.5e10640b.js" defer></script><script src="/docs/assets/js/4.646ea11f.js" defer></script><script src="/docs/assets/js/2.a085fc5b.js" defer></script><script src="/docs/assets/js/54.c355c7ae.js" defer></script>
+  </body>
+</html>
