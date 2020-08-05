@@ -1,3 +1,8 @@
+---
+layout: post
+title: 【nexus】 nexus服务器搭建
+---
+ 
 参考文档：https://help.sonatype.com/repomanager3
 
 ## 1、要使用nexus服务需要安装jdk和maven
