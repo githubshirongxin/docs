@@ -194,3 +194,5 @@ nexus           0:off   1:off   2:on    3:on    4:on    5:on    6:off
 
 
 
+## 最后引申一下，安装按nexus之后，pom及setting的各种配置
+参考：https://blog.csdn.net/cwh056056/category_5915341.html
