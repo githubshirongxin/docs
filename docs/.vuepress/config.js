@@ -5,9 +5,9 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: "思想持久化",
+  title: '思想持久化',
   dest: "public",
-  description: "CCBJB资料共享库",
+  description: 'CCBJB资料共享库',
   head: headConf,
   markdown: {
     lineNumbers: true // 代码块显示行号
