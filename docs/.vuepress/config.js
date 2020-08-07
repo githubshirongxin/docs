@@ -7,7 +7,7 @@ module.exports = {
   base: "/docs/",
   title: '思想持久化',
   dest: "public",
-  description: '',
+  description: 'CCBJB资料共享库',
   head: headConf,
   markdown: {
     lineNumbers: false // 代码块显示行号
