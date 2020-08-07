@@ -5,9 +5,9 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: '',
+  title: '思想持久化',
   dest: "public",
-  description: '思想persistent',
+  description: '',
   head: headConf,
   markdown: {
     lineNumbers: false // 代码块显示行号
