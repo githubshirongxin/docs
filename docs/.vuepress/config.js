@@ -5,7 +5,7 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: '思想持久化',
+  title: '',
   dest: "public",
   description: 'CCBJB资料共享库',
   head: headConf,
