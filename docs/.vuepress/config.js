@@ -5,17 +5,17 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: '思想持久化',
+  title: "思想持久化",
   dest: "public",
-  description: 'CCBJB资料共享库',
+  description: "CCBJB资料共享库",
   head: headConf,
   markdown: {
-    lineNumbers: false // 代码块显示行号
+    lineNumbers: true // 代码块显示行号
   },
   plugins: pluginsConf,
   themeConfig: {
     lastUpdated: '更新时间',
-    logo: '/logo.png',
+    logo: '/logo2.png',
     nav: nav,
     searchMaxSuggestions: 10
     /* 方案1：侧边栏只显示三组中的一组链接 */

@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo2.png
+heroImage: /logo.png
 actionText:  →
 actionLink: /vuepress/
 features:
