@@ -1,23 +1,16 @@
 ---
-home: false
+home: true
 heroImage: /hero.png
-actionText: 快速上手 →
-actionLink: /zh/guide/
+actionText:  →
+actionLink: /vuepress/
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-footer: MIT Licensed | Copyright © 2018-present Evan You
+- title: 持久化思想
+  details: 不论内容多么庞杂只要你肯持久化下来，就会积累下来。
+- title: 一直向前走
+  details: 不用思考过多，太在乎成败，一直向前发展下去，做完就完了。
+- title: 相信时间的力量
+  details: 长期的沉淀一定会体现出时间积累的力量，毋庸置疑，不用总盯着眼前。
+footer: MIT Licensed | Copyright © 2020-present Shirongxin
 ---
-[![Build Status](https://travis-ci.com/githubshirongxin/docs.svg?branch=gh-pages)](https://travis-ci.com/githubshirongxin/docs)
 
-## HOME 
-### home 
-
-
-Travis-Ci只需要push不需要手工deploy
-
-<Vssue/>
+shirx@ccbjb.com.cn
