@@ -5,7 +5,7 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: '',
+  title: 'BJB资料共享',
   dest: "public",
   description: 'CCBJB资料共享库',
   head: headConf,
@@ -15,7 +15,7 @@ module.exports = {
   plugins: pluginsConf,
   themeConfig: {
     lastUpdated: '更新时间',
-    logo: '/logo2.png',
+    logo: '/logo.png',
     nav: nav,
     searchMaxSuggestions: 10
     /* 方案1：侧边栏只显示三组中的一组链接 */

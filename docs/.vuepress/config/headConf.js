@@ -2,7 +2,7 @@ module.exports = [ // 注入到当前页面的 HTML <head> 中的标签 favicon.
     // SEO
     ['meta', { name: 'name', content: 'cjb的资料库' }],
     ['meta', { name: 'keywords', content: 'java,cobol,分布式存储' }], // 增加一个自定义的 favicon(网页标签的图标)
-    ['link', { rel: 'icon', href: '/logo2.png' }],
+    ['link', { rel: 'icon', href: '/logo.png' }],
     // PWA
     // ['link', { rel: 'icon', href: '/logo.png' }],
     // ['link', { rel: 'manifest', href: '/manifest.json' }],
