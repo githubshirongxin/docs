@@ -8,7 +8,7 @@ fi
 
 echo "git add -A"
 git add -A
-sdfa
+
 echo "git commit "
 git commit -m"I update my blog .md again"
 
