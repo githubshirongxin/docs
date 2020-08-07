@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【nexus】开启nexus的https服务。制作泛域名证书 | blog</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <meta name="description" content="思想persistent">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <link rel="preload" href="/docs/assets/css/0.styles.e76adbff.css" as="style"><link rel="preload" href="/docs/assets/js/app.1101581f.js" as="script"><link rel="preload" href="/docs/assets/js/4.646ea11f.js" as="script"><link rel="preload" href="/docs/assets/js/2.a085fc5b.js" as="script"><link rel="preload" href="/docs/assets/js/61.51e303fc.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.9a37f644.js"><link rel="prefetch" href="/docs/assets/js/100.44e61ec9.js"><link rel="prefetch" href="/docs/assets/js/11.af5048ad.js"><link rel="prefetch" href="/docs/assets/js/12.71300ec6.js"><link rel="prefetch" href="/docs/assets/js/13.111d3652.js"><link rel="prefetch" href="/docs/assets/js/14.8c4a19a3.js"><link rel="prefetch" href="/docs/assets/js/15.5097bab9.js"><link rel="prefetch" href="/docs/assets/js/16.86a49dbb.js"><link rel="prefetch" href="/docs/assets/js/17.52c31aa7.js"><link rel="prefetch" href="/docs/assets/js/18.d1b47423.js"><link rel="prefetch" href="/docs/assets/js/19.e513908f.js"><link rel="prefetch" href="/docs/assets/js/20.dd845089.js"><link rel="prefetch" href="/docs/assets/js/21.ba8ca371.js"><link rel="prefetch" href="/docs/assets/js/22.0f74317d.js"><link rel="prefetch" href="/docs/assets/js/23.197433de.js"><link rel="prefetch" href="/docs/assets/js/24.fa87b531.js"><link rel="prefetch" href="/docs/assets/js/25.4f119ffb.js"><link rel="prefetch" href="/docs/assets/js/26.68989689.js"><link rel="prefetch" href="/docs/assets/js/27.d081e398.js"><link rel="prefetch" href="/docs/assets/js/28.3c1fd490.js"><link rel="prefetch" href="/docs/assets/js/29.2822f71b.js"><link rel="prefetch" href="/docs/assets/js/3.10e6db9f.js"><link rel="prefetch" href="/docs/assets/js/30.f160c0c9.js"><link rel="prefetch" href="/docs/assets/js/31.801f9ace.js"><link rel="prefetch" href="/docs/assets/js/32.c397cf92.js"><link rel="prefetch" href="/docs/assets/js/33.711d1a18.js"><link rel="prefetch" href="/docs/assets/js/34.8ee8d3a8.js"><link rel="prefetch" href="/docs/assets/js/35.85aa8bba.js"><link rel="prefetch" href="/docs/assets/js/36.c106cd5d.js"><link rel="prefetch" href="/docs/assets/js/37.7283f69e.js"><link rel="prefetch" href="/docs/assets/js/38.fdd6106c.js"><link rel="prefetch" href="/docs/assets/js/39.011419d6.js"><link rel="prefetch" href="/docs/assets/js/40.1fba2743.js"><link rel="prefetch" href="/docs/assets/js/41.4cbd4461.js"><link rel="prefetch" href="/docs/assets/js/42.c89ab299.js"><link rel="prefetch" href="/docs/assets/js/43.9be0d5db.js"><link rel="prefetch" href="/docs/assets/js/44.1ad25e43.js"><link rel="prefetch" href="/docs/assets/js/45.dd3f4f89.js"><link rel="prefetch" href="/docs/assets/js/46.ed68671d.js"><link rel="prefetch" href="/docs/assets/js/47.de397416.js"><link rel="prefetch" href="/docs/assets/js/48.535b92ec.js"><link rel="prefetch" href="/docs/assets/js/49.2efa72fa.js"><link rel="prefetch" href="/docs/assets/js/5.22cc210d.js"><link rel="prefetch" href="/docs/assets/js/50.b77127c2.js"><link rel="prefetch" href="/docs/assets/js/51.eb653392.js"><link rel="prefetch" href="/docs/assets/js/52.1a37e509.js"><link rel="prefetch" href="/docs/assets/js/53.4c928486.js"><link rel="prefetch" href="/docs/assets/js/54.898c1ebe.js"><link rel="prefetch" href="/docs/assets/js/55.c193215e.js"><link rel="prefetch" href="/docs/assets/js/56.415536dc.js"><link rel="prefetch" href="/docs/assets/js/57.a31837d0.js"><link rel="prefetch" href="/docs/assets/js/58.ac8d963e.js"><link rel="prefetch" href="/docs/assets/js/59.ee25cfc1.js"><link rel="prefetch" href="/docs/assets/js/6.49e132e5.js"><link rel="prefetch" href="/docs/assets/js/60.eb5d87d2.js"><link rel="prefetch" href="/docs/assets/js/62.f731b481.js"><link rel="prefetch" href="/docs/assets/js/63.15f12baa.js"><link rel="prefetch" href="/docs/assets/js/64.44987750.js"><link rel="prefetch" href="/docs/assets/js/65.6ff4cb04.js"><link rel="prefetch" href="/docs/assets/js/66.f1e2a5b2.js"><link rel="prefetch" href="/docs/assets/js/67.758e876a.js"><link rel="prefetch" href="/docs/assets/js/68.2c3fbf01.js"><link rel="prefetch" href="/docs/assets/js/69.a5ca34d6.js"><link rel="prefetch" href="/docs/assets/js/7.f4ba88f5.js"><link rel="prefetch" href="/docs/assets/js/70.5391e589.js"><link rel="prefetch" href="/docs/assets/js/71.63d168a6.js"><link rel="prefetch" href="/docs/assets/js/72.768eb603.js"><link rel="prefetch" href="/docs/assets/js/73.a64476a1.js"><link rel="prefetch" href="/docs/assets/js/74.55089d9a.js"><link rel="prefetch" href="/docs/assets/js/75.00b8e754.js"><link rel="prefetch" href="/docs/assets/js/76.ffd8722e.js"><link rel="prefetch" href="/docs/assets/js/77.4f6e461f.js"><link rel="prefetch" href="/docs/assets/js/78.f3142c30.js"><link rel="prefetch" href="/docs/assets/js/79.1222e837.js"><link rel="prefetch" href="/docs/assets/js/8.d200284b.js"><link rel="prefetch" href="/docs/assets/js/80.6d646e23.js"><link rel="prefetch" href="/docs/assets/js/81.eb0caa56.js"><link rel="prefetch" href="/docs/assets/js/82.da30af61.js"><link rel="prefetch" href="/docs/assets/js/83.ec22fc7b.js"><link rel="prefetch" href="/docs/assets/js/84.bbbbdb31.js"><link rel="prefetch" href="/docs/assets/js/85.50f7aabe.js"><link rel="prefetch" href="/docs/assets/js/86.00749d42.js"><link rel="prefetch" href="/docs/assets/js/87.0dd2cbb4.js"><link rel="prefetch" href="/docs/assets/js/88.2f88f96a.js"><link rel="prefetch" href="/docs/assets/js/89.d8a28c47.js"><link rel="prefetch" href="/docs/assets/js/9.2b304f64.js"><link rel="prefetch" href="/docs/assets/js/90.29e2545f.js"><link rel="prefetch" href="/docs/assets/js/91.d4402911.js"><link rel="prefetch" href="/docs/assets/js/92.516f3d8c.js"><link rel="prefetch" href="/docs/assets/js/93.5c5974e1.js"><link rel="prefetch" href="/docs/assets/js/94.a0ce4cbc.js"><link rel="prefetch" href="/docs/assets/js/95.6dfd72d5.js"><link rel="prefetch" href="/docs/assets/js/96.9e610f3c.js"><link rel="prefetch" href="/docs/assets/js/97.2815d1a4.js"><link rel="prefetch" href="/docs/assets/js/98.9ea30b0a.js"><link rel="prefetch" href="/docs/assets/js/99.ca8d7911.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.e76adbff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="blog" class="logo"> <span class="site-name can-hide">blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven" class="dropdown-title"><span class="title">maven</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven/" class="nav-link">
+  maven
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><span class="title">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux/" class="nav-link">
+  linux
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven" class="dropdown-title"><span class="title">maven</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven/" class="nav-link">
+  maven
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>maven-nexus</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/maven-nexus/2020-8-5-maven-mirror与repository的区别.html" class="sidebar-link">【maven】 setting中mirror与repository的区别</a></li><li><a href="/docs/maven-nexus/2020-8-5-maven-pom.xml详解.html" class="sidebar-link">【maven】 pom.xml详解</a></li><li><a href="/docs/maven-nexus/2020-8-5-maven-pom及setting中配置远程库.html" class="sidebar-link">【maven】pom中 repositories，pluginrepositories 和setting中profile：repositoreis,pluginrepositories以及mirror的关系。</a></li><li><a href="/docs/maven-nexus/2020-8-5-maven-依赖仓库和插件仓库的区别.html" class="sidebar-link">【maven】 依赖仓库和插件仓库的区别 repositories与pluginRepositories</a></li><li><a href="/docs/maven-nexus/2020-8-5-maven-依赖查询search.maven.org.html" class="sidebar-link">【maven】 查找某个jar在中央库中是否存在 search.maven.org</a></li><li><a href="/docs/maven-nexus/2020-8-5-nexus-SSL证书.html" class="active sidebar-link">【nexus】开启nexus的https服务。制作泛域名证书</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/maven-nexus/2020-8-5-nexus-SSL证书.html#制作泛域名证书" class="sidebar-link">制作泛域名证书</a></li></ul></li><li><a href="/docs/maven-nexus/2020-8-5-nexus-maven证书err.html" class="sidebar-link">【nexus】nexus使用ssl之后，工程mvn deploy出错“unable to find valid certification path to requested target”</a></li><li><a href="/docs/maven-nexus/2020-8-5-nexus-服务搭建.html" class="sidebar-link">【nexus】 nexus服务器搭建</a></li><li><a href="/docs/maven-nexus/2020-8-6-nexus-管理docker镜像.html" class="sidebar-link">【nexus-docker】nexus作为docker镜像的私服</a></li><li><a href="/docs/maven-nexus/2020-8-6-nexus-管理npm模块.html" class="sidebar-link">【nexus-npm】npm管理</a></li><li><a href="/docs/maven-nexus/2020-8-7-nexus-知识点.html" class="sidebar-link">【nexus】技术点</a></li><li><a href="/docs/maven-nexus/2020-8-7-nexus-管理maven依赖.html" class="sidebar-link">【nexus】管理maven依赖</a></li><li><a href="/docs/maven-nexus/" aria-current="page" class="sidebar-link">maven基础</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>https://blog.csdn.net/u011607971/article/details/86700855</p> <h2 id="制作泛域名证书"><a href="#制作泛域名证书" class="header-anchor">#</a> 制作泛域名证书</h2> <p>https://github.com/Fishdrowned/ssl</p> <p>clone 到192.168.3.107</p> <div class="language- extra-class"><pre class="language-text"><code>[root@centos3 ssl]# cd ssl
+[root@centos3 ssl]# ls
+ca.cnf  docs  flush.sh  gen.cert.sh  gen.root.sh  LICENSE  README.md
+[root@centos3 ssl]# ./gen.cert.sh nexus.ccbjb.com.cn
+Removing dir out
+Creating output structure
+Done
+Generating a 2048 bit RSA private key
+....+++
+...+++
+writing new private key to 'out/root.key.pem'
+-----
+Generating RSA private key, 2048 bit long modulus
+......................+++
+..+++
+e is 65537 (0x10001)
+Using configuration from ./ca.cnf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'CN'
+stateOrProvinceName   :ASN.1 12:'Guangdong'
+localityName          :ASN.1 12:'Guangzhou'
+organizationName      :ASN.1 12:'Fishdrowned'
+organizationalUnitName:ASN.1 12:'nexus.ccbjb.com.cn'
+commonName            :ASN.1 12:'*.nexus.ccbjb.com.cn'
+Certificate is to be certified until Aug  5 01:54:11 2022 GMT (730 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+Certificates are located in:
+lrwxrwxrwx 1 root root 45 8月   5 09:54 /root/ssl/ssl/out/nexus.ccbjb.com.cn/nexus.ccbjb.com.cn.bundle.crt -&gt; ./20200805-0954/nexus.ccbjb.com.cn .bundle.crt
+lrwxrwxrwx 1 root root 38 8月   5 09:54 /root/ssl/ssl/out/nexus.ccbjb.com.cn/nexus.ccbjb.com.cn.crt -&gt; ./20200805-0954/nexus.ccbjb.com.cn.crt
+lrwxrwxrwx 1 root root 15 8月   5 09:54 /root/ssl/ssl/out/nexus.ccbjb.com.cn/nexus.ccbjb.com.cn.key.pem -&gt; ../cert.key.pem
+lrwxrwxrwx 1 root root 11 8月   5 09:54 /root/ssl/ssl/out/nexus.ccbjb.com.cn/root.crt -&gt; ../root.crt
+[root@centos3 ssl]#
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/maven-nexus/2020-8-5-maven-依赖查询search.maven.org.html" class="prev">
+        【maven】 查找某个jar在中央库中是否存在 search.maven.org
+      </a></span> <span class="next"><a href="/docs/maven-nexus/2020-8-5-nexus-maven证书err.html">
+        【nexus】nexus使用ssl之后，工程mvn deploy出错“unable to find valid certification path to requested target”
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.1101581f.js" defer></script><script src="/docs/assets/js/4.646ea11f.js" defer></script><script src="/docs/assets/js/2.a085fc5b.js" defer></script><script src="/docs/assets/js/61.51e303fc.js" defer></script>
+  </body>
+</html>
