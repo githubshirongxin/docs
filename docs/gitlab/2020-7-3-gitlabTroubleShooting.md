@@ -36,7 +36,7 @@ listen_address not defined, metrics & debug endpoints disabled  builds=0
 见：https://blog.csdn.net/qingchuwudi/article/details/103089075
 #### 【解决】：** .gitlab-ci.yml中增加tags：与runner的tags对应上。
 
-
+---
 
 ## 【问题】【没办法解决】 docker-compose方式安装gitlab，安装在sambada挂载盘上面
 /srv是192.168.3.122的挂载盘，挂载192.168.100.11/shi目录。
@@ -69,6 +69,17 @@ drwxrwxrwx. 1 1032 users 0 7月  16 15:00 gitlab
 
 #### 【无法解决】：sambda挂载盘就是不支持gitlab安装。
 
+---
+
+## 【问题】【gitlab runner registe error】
+
+#### [现象] 
+在runner机器上，`docker exec -it gitlab_runner gitlab-runner register` ,填写tag的时候就僵住不动，
+不一会就报error。说连不上gitci服务器了。ping GitCi服务器都能ping通。
+
+#### [解决] docker 重启 
+`systemctl restart docker`
+重新关掉容器`docker stop xxx && docker rm xxx`，然后`docker-compose up -d`重启容器
 
 
 

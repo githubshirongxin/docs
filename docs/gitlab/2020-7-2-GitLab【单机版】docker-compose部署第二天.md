@@ -79,9 +79,9 @@ services:
 ### 2. 运行docker-compose之前，免费证书申请
 https://freessl.org/apply?domains=gitlab.ccbjb.com.cn&product=buypass01&from=
 
- ![](/docs/images/2020-07-03-16-27-18.png)
- ![](/docs/images/2020-07-03-16-27-33.png)
- ![](/docs/images/2020-07-03-16-28-18.png)
+ ![](/images/2020-07-03-16-27-18.png)
+ ![](/images/2020-07-03-16-27-33.png)
+ ![](/images/2020-07-03-16-28-18.png)
 + KeyManage 选择导出的时候选择**ngix方式**，因为gitlab的证书是配置在nginx里的。
 + 并用DNS验证的方式验证。下载下来压缩包解压后是两个文件，
 gitlab.ccbjb.com.cn_chain.crt
@@ -150,7 +150,7 @@ systemctl restart  docker
 
 ## 5. 验证gitlab运行状态
 #### 5.1 docker logs 看容器启动日志
- ![](/docs/images/2020-07-03-20-08-21.png)
+ ![](/images/2020-07-03-20-08-21.png)
  `docker logs -f 32de52f7ae22` 查看容器日志，看到gitlab启动情况
 
 现在能看到,别的都正常！
@@ -161,7 +161,7 @@ ERROR: Failed to load config stat /etc/gitlab-runner/config.toml: no such file o
 ```
 
 #### 5.2 画面正常启动，原来的内容都保留着。
- ![](/docs/images/2020-07-03-20-20-38.png)
+ ![](/images/2020-07-03-20-20-38.png)
 
 #### 5.3 git clone ssh看看是否正常
 ```
