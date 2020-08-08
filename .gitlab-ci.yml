@@ -1,4 +1,4 @@
-image: node:latest
+image: 192.168.3.124:8082/node:latest
 
 pages:
   cache:
