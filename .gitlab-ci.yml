@@ -1,5 +1,5 @@
-image: 192.168.3.124:8082/node:latest
-
+# image: 192.168.3.124:8082/node:latest
+image: node:latest
 pages:
   cache:
     paths:

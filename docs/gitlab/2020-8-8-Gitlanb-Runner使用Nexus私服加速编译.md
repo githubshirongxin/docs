@@ -284,5 +284,11 @@ Getting source from Git repository
 
  NEXUS上node镜像下来了。编译时间1m3s
 
-这个基础，再次更新vuepress，看看编译时间。
+这个基础，再次更新vuepress，看看编译时间。1m2s，也是这个时间。
+
+纳闷了。不用本地库呢？
+
+gitlab-ci.yml使用远程库。
+
+
 
