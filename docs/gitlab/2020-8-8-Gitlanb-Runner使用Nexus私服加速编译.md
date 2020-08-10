@@ -281,4 +281,8 @@ Getting source from Git repository
  ```
 
  试试把nexus上的node删掉，看看nexus是否能自动下载
- 
+
+ NEXUS上node镜像下来了。编译时间1m3s
+
+这个基础，再次更新vuepress，看看编译时间。
+
