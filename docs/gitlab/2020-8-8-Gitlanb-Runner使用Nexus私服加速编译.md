@@ -258,3 +258,27 @@ Preparing the "docker" executor
 
 试试
 
+果然，更新vuepress，自动编译了。好用了
+```bash
+Running with gitlab-runner 13.2.1 (efa30e33)
+   on shared runner form 3.112 Unz4U-uF
+Preparing the "docker" executor
+ Using Docker executor with image 192.168.3.124:8082/node:latest ...
+ Authenticating with credentials from /root/.docker/config.json
+ Pulling docker image 192.168.3.124:8082/node:latest ...
+ Using docker image sha256:002df0b34ccb8b3bcaf022b8fea4e6b5cce1bc811fbd33d38840cdc21ee5f931 for 192.168.3.124:8082/node:latest ...
+Preparing environment
+00:00
+ Running on runner-unz4u-uf-project-11-concurrent-0 via b2fd1f150f12...
+Getting source from Git repository
+00:03
+ Fetching changes with git depth set to 50...
+ Reinitialized existing Git repository in /builds/shirongxin/docs/.git/
+ Checking out 5c0d0b1e as master...
+ Removing node_modules/
+ Removing public/
+ Skipping Git submodules setup
+ ```
+
+ 试试把nexus上的node删掉，看看nexus是否能自动下载
+ 
