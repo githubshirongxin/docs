@@ -240,3 +240,21 @@ ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
 WORKDIR /
 ```
+
+
+docker-compose up -d
+docker exec -it gitlab_runner /bin/bash
+
+
+Runner error:
+```
+Preparing the "docker" executor
+ Using Docker executor with image 192.168.3.124:8082/node:latest ...
+ Pulling docker image 192.168.3.124:8082/node:latest ...
+ ERROR: Preparation failed: Error response from daemon: Get http://192.168.3.124:8082/v2/node/manifests/latest: no basic auth credentials (docker.go:131:0s)
+```
+
+难道Runner里需要先docker login 192.158.3.124:8082 ?
+
+试试
+
