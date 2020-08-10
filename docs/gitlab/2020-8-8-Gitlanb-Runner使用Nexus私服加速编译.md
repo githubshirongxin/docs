@@ -63,3 +63,180 @@ docker-compose up -d
 3.102
 git push
 
+3.112 error the same.
+
+---
+参考:https://blog.csdn.net/renguiriyue/article/details/102769884
+
+
+课题：为什么runner里没安装docker，却能使用docker regiser？
+
+课题：runner调用docker时使用了什么机制？
+
+课题：runner和gitlab-ci使用什么机制通讯，日志和状态是怎么传递给gitlab-ci的？
+
+```bash
+# 生成镜像
+ docker build -t srximg . 
+ docker images
+# 运行容器
+ docker run -d --name srxcontainer srximg:latest && docker exec -it srxcontainer /bin/bash
+ docker stop srxcontainer && docker rm srxcontainer && docker rmi srximg
+
+#清除坏的<none>:<none>镜像
+docker rmi $(docker images -f "dangling=true" -q)
+
+#删除所有停止的容器
+sudo docker container prune
+```
+
+
+```bash
+[root@centos112 enviroment]# docker build -t srximg .
+Sending build context to Docker daemon  471.2MB
+Step 1/8 : FROM gitlab/gitlab-runner:latest
+ ---> a0153b77b0da
+Step 2/8 : MAINTAINER shirongxin <shirx@ccbjb.com.cn>
+ ---> Using cache
+ ---> 362be8f59e24
+Step 3/8 : RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse' > /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse' >> /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse' >> /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list &&     apt-get update -y &&     apt-get clean
+ ---> Using cache
+ ---> d0b29c3c05ee
+Step 4/8 : RUN mkdir -p /usr/local/java
+ ---> Running in f6f79795f236
+Removing intermediate container f6f79795f236
+ ---> e76dcfbdeba9
+Step 5/8 : WORKDIR /usr/local/java
+ ---> Running in f6263cebe3a2
+Removing intermediate container f6263cebe3a2
+ ---> 2dce5a8195d3
+Step 6/8 : COPY openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz /usr/local/java
+ ---> b62304fa0fa3
+Step 7/8 : ENV JAVA_HOME /usr/java/jdk1.8.0_261-amd64/bin/java
+ ---> Running in fa0376ce9194
+Removing intermediate container fa0376ce9194
+ ---> acd17be40649
+Step 8/8 : WORKDIR /
+ ---> Running in c250388054b2
+Removing intermediate container c250388054b2
+ ---> 70a3aa0cad5e
+Successfully built 70a3aa0cad5e
+Successfully tagged srximg:latest
+[root@centos112 enviroment]#
+```
+
+
+GitLab Runner Docker images (based on Ubuntu or Alpine Linux)，安装docker时候出错。
+```bash
+Creating config file /etc/apt/apt.conf.d/50unattended-upgrades with new version
+Setting up python3-software-properties (0.96.20.9) ...
+Setting up software-properties-common (0.96.20.9) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Processing triggers for sgml-base (1.26+nmu4ubuntu1) ...
+Processing triggers for dbus (1.10.6-1ubuntu3.6) ...
+E: gnupg, gnupg2 and gnupg1 do not seem to be installed, but one of them is required for this operation
+(23) Failed writing body
+The command '/bin/sh -c dpkg --configure -a &&     apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" &&     apt-get update -y &&     apt-get install -y docker-ce' returned a non-zero code: 255
+[root@centos112 enviroment]#
+```
+
+
+root@def6fbc9a09a:/# cd /etc
+root@def6fbc9a09a:/etc# ls red*
+ls: cannot access 'red*': No such file or directory
+root@def6fbc9a09a:/etc# ls issue
+issue
+root@def6fbc9a09a:/etc# cat issue
+Ubuntu 18.04.4 LTS \n \l
+
+识别操作系统的方法：
+https://blog.csdn.net/Dafei4/article/details/79589369/
+
+
+gitlab Runner的系统名字
+lsb_release -cs = **bionic**
+https://download.docker.com/linux/ubuntu 
+```
+Index of linux/ubuntu/dists/
+../
+artful/
+bionic/
+cosmic/
+disco/
+eoan/
+focal/
+trusty/
+xenial/
+yakkety/
+zesty/
+```
+所以使用库的时候，必须指定bionic
+原来博文中的史xenial，而我下载的gitlabrunner使用的史bionic
+```bash
+# 修改软件源
+RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse' > /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse' >> /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse' >> /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse' >> /etc/apt/sources.list && \
+    apt-get update -y && \
+    apt-get clean
+```
+
+// 完整Dockerfile如下，安装好docker，docker-compose，java，maven
+```bash
+MAINTAINER shirongxin <shirx@ccbjb.com.cn>
+
+# 修改软件源
+RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse' > /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse' >> /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse' >> /etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse' >> /etc/apt/sources.list && \
+    apt-get update -y && \
+    apt-get clean
+
+# 安装 Docker
+RUN apt-get -y install apt-transport-https ca-certificates curl software-properties-common && \
+    curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get update -y && \
+    apt-get install -y docker-ce
+#RUN apt-get update && apt-get install -y gnupg2 && \
+#    dpkg --configure -a && \
+#    apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
+#    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -no-tty - && \
+#    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+#    apt-get update -y && \
+#    apt-get install -y docker-ce
+COPY daemon.json /etc/docker/daemon.json
+
+# 安装 Docker Compose（这边的链接会失效的，所以还需要自己到docker-compose 确认）
+WORKDIR /usr/local/bin
+#RUN wget https://raw.githubusercontent.com/topsale/resources/master/docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname  -s)-$(uname -m)" -o /usr/local/bin/docker-composeRUN chmod +x /usr/local/bin/docker-compose
+
+# 安装 java
+RUN mkdir -p /usr/local/java
+WORKDIR /usr/local/java
+COPY openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz /usr/local/java
+RUN tar -zxvf openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz
+#     rm -fr openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz
+
+# 安装 Maven
+RUN mkdir -p /usr/local/maven
+WORKDIR /usr/local/maven
+#RUN wget https://raw.githubusercontent.com/topsale/resources/master/maven/apache-maven-3.5.3-bin.tar.gz
+#RUN wget https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
+COPY apache-maven-3.6.3-bin.tar.gz /usr/local/maven
+RUN tar -zxvf apache-maven-3.6.3-bin.tar.gz
+#    rm -fr apache-maven-3.6.3-bin.tar.gz
+# 准备一份maven 配置好的文件，这里参考 nexus 配置
+COPY settings.xml /usr/local/maven/apache-maven-3.6.3/conf/settings.xml
+
+# 配置环境变量
+ENV JAVA_HOME /usr/local/java/java-se-8u41-ri
+ENV MAVEN_HOME /usr/local/maven/apache-maven-3.6.3
+ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+
+WORKDIR /
+```
