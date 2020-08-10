@@ -288,7 +288,11 @@ Getting source from Git repository
 
 纳闷了。不用本地库呢？
 
-gitlab-ci.yml使用远程库。
+gitlab-ci.yml使用远程库。看看，编译时间1m10s，没差多少。
+
+难道是应为runner走的都是nexus？
+
+
 
 
 
