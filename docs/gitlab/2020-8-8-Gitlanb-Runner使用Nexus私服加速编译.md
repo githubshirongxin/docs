@@ -292,7 +292,62 @@ gitlab-ci.yml使用远程库。看看，编译时间1m10s，没差多少。
 
 难道是应为runner走的都是nexus？
 
+把runner
 
+
+不使用runner、随便3.125上命令行测试docker pull node 1m
+// 3.124上还没有node
+docker pull 192.168.3.124:8082/node  1m20s
+// 3.123已经有node的前提下
+docker pull 192.168.3.124:8082/node  15s ， 比外网下载快多了啊。
+
+那么，为什么runner上用不用私服差别不大呢？ 
+另外，gitlab-ci.yml中使用image: 192.168.3.124:8082/node:latest开头，应该不对。正确做法应该让gitlabci对nexus无意识，旨在runner上配置。
+
+
+## 阿里云镜像也不快，还不如不用。
+### // 另外，不用阿里云镜像呢 , 1m5s
+```bash
+root@centos125:~# cat /etc/docker/daemon.json
+{
+ // "registry-mirrors": ["https://ji1i86y7.mirror.aliyuncs.com"],
+  "insecure-registries": ["harbor.ccbjb.com.cn","192.168.3.124:8082","192.168.3.124:8083"]
+}
+root@centos125:~#
+```
+### //使用阿里云镜像呢 ,1m25s.
+```bash
+root@centos125:~# cat /etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://ji1i86y7.mirror.aliyuncs.com"],
+  "insecure-registries": ["harbor.ccbjb.com.cn","192.168.3.124:8082","192.168.3.124:8083"]
+}
+root@centos125:~#
+```
+### //使用192.168.3.124：8082做镜像呢？ 59s
+```bash
+root@centos125:~# cat /etc/docker/daemon.json
+{
+  "registry-mirrors": ["http://192.168.3.124:8082"],
+  "insecure-registries": ["harbor.ccbjb.com.cn","192.168.3.124:8082","192.168.3.124:8083"]
+}
+root@centos125:~# docker pull node
+```
+### //使用私服上已经有node 15s
+```bash
+root@centos125:~# docker pull 192.168.3.124:8082/node
+```
+
+
+## 如何让docker pull 自动去找私服，而不用写打私服的tag呢？
+
+
+### 尝试：registry-mirrors:设置成私库地址，docker pull srximg // srximg只在私库上存在
+结果：找不到，出错。
+分析：daemon.json里配置的registry-mirrors对“docker pull 不加私服ip”这样的命令不起作用。
+结论：想让`docker pull 不加私服ip` 这样的命令主动去私服下载，别指望daemon.json.
+
+### 
 
 
 
