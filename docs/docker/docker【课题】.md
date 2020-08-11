@@ -13,7 +13,8 @@ nexus为什么允许匿名pull，Docker public，Docker hub，Docker private三�
 
 ::: warning registry的框架什么样
  registry的框架什么样，怎么自己做一个registry？
+ 客户端指定的registry-mirror随便指定一个ip都行，还是指定的主机需要满足某些条件？
 :::
-![](https://segmentfault.com/img/bVOrOl?w=1526&h=803)
 
-客户端指定的registry-mirror随便指定一个ip都行，还是指定的主机需要满足某些条件？
+![](https://image-static.segmentfault.com/113/339/1133395216-592e0f95c505c_articlex)
+
