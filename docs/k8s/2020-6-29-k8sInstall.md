@@ -281,7 +281,8 @@ ca.crt:     1025 bytes
 
 #### [问题1：raw.githubusercontent.com 找不到不识别]
 **解决：**
-```
+
+```bash
 https://site.ip138.com/raw.Githubusercontent.com/
 
 输入raw.githubusercontent.com
