@@ -21,19 +21,19 @@ module.exports = {
     autoCreateIssue: true
   },
   //为了测试方便，暂时把PWA功能注释了。
-  // '@vuepress/pwa': {
-  //   serviceWorker: true,
-  //   updatePopup: {
-  //     '/': {
-  //       message: "New content is available.",
-  //       buttonText: "Refresh"
-  //     },
-  //     '/zh/': {
-  //       message: "发现新内容可用",  
-  //       buttonText: "刷新"
-  //     }
-  //   }
-  // },
+  '@vuepress/pwa': {
+    serviceWorker: true,
+    updatePopup: {
+      '/': {
+        message: "New content is available.",
+        buttonText: "Refresh"
+      },
+      '/zh/': {
+        message: "发现新内容可用",  
+        buttonText: "刷新"
+      }
+    }
+  },
   "vuepress-plugin-auto-sidebar": {
     nav: true
   },
