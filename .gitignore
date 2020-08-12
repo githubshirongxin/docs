@@ -6,3 +6,8 @@ docs/.vuepress/dist
 
 # 隐藏私密信息。该文件会变灰
 #secret.js
+
+# 这个文件在两个个gitlab以及gitlab上的内容不一样，所以注释了
+# 公司内部使用 image: docker.ccbjb.com.cn/node:latest
+# 而且runner已经docker login docker.ccbjb.com.cn
+.gitlab-ci.yml
