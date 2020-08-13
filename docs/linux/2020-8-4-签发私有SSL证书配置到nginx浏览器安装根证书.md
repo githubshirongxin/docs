@@ -3,37 +3,107 @@ layout: post
 title: 【私有SSL证书】签发私有SSL证书，给nginx
 ---
 
-以nexus配置nginx的SSL私有证书为例。
+## 一，最先进得方式：使用开源方式
+https://github.com/Fishdrowned/ssl
 
-# 签发私有证书
+好处，
+- 一步搞定。
+- 有Root.crt供客户端浏览器安装。
 
-## 生成私钥
+clone 到192.168.3.107
+
+```bash
+[root@centos3 ssl]# cd ssl
+[root@centos3 ssl]# ls
+ca.cnf  docs  flush.sh  gen.cert.sh  gen.root.sh  LICENSE  README.md
+[root@centos3 ssl]# ./gen.cert.sh harbor.ccbjb.com.cn
+Removing dir out
+Creating output structure
+Done
+Generating a 2048 bit RSA private key
+....+++
+...+++
+writing new private key to 'out/root.key.pem'
+-----
+Generating RSA private key, 2048 bit long modulus
+......................+++
+..+++
+e is 65537 (0x10001)
+Using configuration from ./ca.cnf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'CN'
+stateOrProvinceName   :ASN.1 12:'Guangdong'
+localityName          :ASN.1 12:'Guangzhou'
+organizationName      :ASN.1 12:'Fishdrowned'
+organizationalUnitName:ASN.1 12:'harbor.ccbjb.com.cn'
+commonName            :ASN.1 12:'*.harbor.ccbjb.com.cn'
+Certificate is to be certified until Aug  5 01:54:11 2022 GMT (730 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+Certificates are located in:
+lrwxrwxrwx 1 root root 45 8月   5 09:54 /root/ssl/ssl/out/harbor.ccbjb.com.cn/harbor.ccbjb.com.cn.bundle.crt -> ./20200805-0954/harbor.ccbjb.com.cn .bundle.crt
+lrwxrwxrwx 1 root root 38 8月   5 09:54 /root/ssl/ssl/out/harbor.ccbjb.com.cn/harbor.ccbjb.com.cn.crt -> ./20200805-0954/harbor.ccbjb.com.cn.crt
+lrwxrwxrwx 1 root root 15 8月   5 09:54 /root/ssl/ssl/out/harbor.ccbjb.com.cn/harbor.ccbjb.com.cn.key.pem -> ../cert.key.pem
+lrwxrwxrwx 1 root root 11 8月   5 09:54 /root/ssl/ssl/out/harbor.ccbjb.com.cn/root.crt -> ../root.crt
+[root@centos3 ssl]#
+```
+
+out/有
+- harbor.ccbjb.com.cn.bundle.crt
+- harbor.ccbjb.com.cn.crt
+- harbor.ccbjb.com.cn.key.pem
+- root.crt
+
+##### 下载root.crt到客户端，双击。
+为了浏览器能够不提示“不安全，是否继续”
+
+安装根证书：
+- 双击根dao证书文件 弹出证du书属性的对话框，此zhi时该根证书并不受信任，我们dao需要将其加入“版受信任的根证书颁发机权构”
+- 步骤二：点击“安装证书”，弹出证书导入向导
+- 步骤三：点击下一步，选择证书的存储区
+- 步骤四：选择“将所有的证书放入下列存储区”，然后点击下一步，选择证书存储
+- 步骤五：在“选择证书存储”对话框中选择“受信任的根证书颁发机构”，点击确定，此时返回到证书导入向导页面
+- 步骤六：在证书导入向导页面，证书存储变为“受信任的根证书颁发机构”，点击下一步
+- 步骤七：点击“完成”，此时会弹出安全警告 步骤八：点击“是”，安装该证书。此时所有操作完成，成功将根证书加入“受信任的根证书颁发机构”。
+
+
+
+## 二，原始得命令方式：
+以harbor配置nginx的SSL私有证书为例。
+
+### 签发私有证书
+
+#### 生成私钥
 正式生产环境建议使用商业证书！
 使用openssl工具生成一个RSA私钥
 
-`openssl genrsa -des3 -out nexus1.key 2048`
+`openssl genrsa -des3 -out harbor1.key 2048`
 
 ```
 Generating RSA private key, 2048 bit long modulus
 .......................+++
 ......+++
 e is 65537 (0x10001)
-Enter pass phrase for nexus.key:                   # 输入一个至少4位的密码
-Verifying - Enter pass phrase for nexus.key:       # 重复输入密码
-复制代码删除nexus.key中的密码
-# openssl rsa -in nexus.key -out nexus.key
-Enter pass phrase for nexus.key:                 # 输入刚才创建时的密码
+Enter pass phrase for harbor.key:                   # 输入一个至少4位的密码
+Verifying - Enter pass phrase for harbor.key:       # 重复输入密码
+复制代码删除harbor.key中的密码
+# openssl rsa -in harbor.key -out harbor.key
+Enter pass phrase for harbor.key:                 # 输入刚才创建时的密码
 writing RSA key
 ```
 
-## 去掉key的密码 
+#### 去掉key的密码 
 
-`openssl rsa -in nexus1.key -out nexus.key`
+`openssl rsa -in harbor1.key -out harbor.key`
 
 
-## 生成CSR（证书签名请求）
+#### 生成CSR（证书签名请求）
 ```
-# openssl req -new -key nexus.key -out nexus.csr
+# openssl req -new -key harbor.key -out harbor.csr
 ```
 
 ```
@@ -59,12 +129,12 @@ An optional company name []:   # 可留空
 ```
 
 
-## 生成自签名证书
+#### 生成自签名证书
 注意：在使用自签名的临时证书时，浏览器会提示证书的颁发机构是未知的。 
 
 ```
 echo subjectAltName = IP:192.168.3.120 > extfile.cnf
-openssl x509 -req -days 365 -in nexus.csr -signkey nexus.key -out nexus.crt -extfile extfile.cnf
+openssl x509 -req -days 365 -in harbor.csr -signkey harbor.key -out harbor.crt -extfile extfile.cnf
 ```
 
 ```
@@ -73,10 +143,10 @@ subject=/C=cn/ST=Sichuan/L=Chengdu/O=akiya/OU=akiya/CN=akiya/emailAddress=a@b.co
 Getting Private key
 ```
 
-## 存放证书
-拷贝到nginx的证书目录 cp nexus.* /etc/nginx/certs/
+#### 存放证书
+拷贝到nginx的证书目录 cp harbor.* /etc/nginx/certs/
 
-## 配置证书到nginx
+#### 配置证书到nginx
 ```
 # vim /etc/nginx/nginx.conf
 # 替换 http 上下文的内容
@@ -103,13 +173,13 @@ http {
 }
 
 
-# vim /etc/nginx/conf.d/nexus.conf
+# vim /etc/nginx/conf.d/harbor.conf
 server {
     listen 2222 ssl;
-    server_name nexus.ccbjb.com.cn;
+    server_name harbor.ccbjb.com.cn;
 
-    ssl_certificate /etc/nginx/certs/nexus.crt;
-    ssl_certificate_key /etc/nginx/certs/nexus.key;
+    ssl_certificate /etc/nginx/certs/harbor.crt;
+    ssl_certificate_key /etc/nginx/certs/harbor.key;
     ssl_session_cache shared:SSL:50m;
 
     location / {
@@ -126,10 +196,10 @@ server {
 
 server {
     listen 3333 ssl;
-    server_name nexus.ccbjb.com.cn;
+    server_name harbor.ccbjb.com.cn;
 
-    ssl_certificate /etc/nginx/certs/nexus.crt;
-    ssl_certificate_key /etc/nginx/certs/nexus.key;
+    ssl_certificate /etc/nginx/certs/harbor.crt;
+    ssl_certificate_key /etc/nginx/certs/harbor.key;
     ssl_session_cache shared:SSL:50m;
 
     location / {
@@ -149,7 +219,7 @@ server {
 # vim /etc/nginx/conf.d/ssl.conf
 server {
     listen   443 ssl;
-    server_name  nexus.ccbjb.com.cn;
+    server_name  harbor.ccbjb.com.cn;
 
     # 允许大文件上传
     client_max_body_size 1G;
@@ -158,8 +228,8 @@ server {
     #proxy_max_temp_file_size 2G;
 
     #ssl on;
-    ssl_certificate      /etc/nginx/certs/nexus.crt;
-    ssl_certificate_key  /etc/nginx/certs/nexus.key;
+    ssl_certificate      /etc/nginx/certs/harbor.crt;
+    ssl_certificate_key  /etc/nginx/certs/harbor.key;
 
     location / {
         proxy_pass http://192.168.3.124:8081/;
@@ -209,8 +279,8 @@ setenforce 0
 ```
 
 
-## 测试
-https://nexus.ccbjb.com.cn
+#### 测试
+https://harbor.ccbjb.com.cn
 ```
 502 Bad Gateway
 ```

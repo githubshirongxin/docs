@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【harbor问题： push retrying】 一直retrying
+title: 【harbor问题： push retrying】 一直retrying （已解决）
 ---
 
 ## 背景
