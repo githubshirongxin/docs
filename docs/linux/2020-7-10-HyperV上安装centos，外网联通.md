@@ -1,6 +1,6 @@
 ---
 layout: post
-title: hyperv上安装centos7 外网联通，宿主机共享文件
+title: 【hyperv上安装centos7】外网联通，宿主机共享文件
 ---
 
 
