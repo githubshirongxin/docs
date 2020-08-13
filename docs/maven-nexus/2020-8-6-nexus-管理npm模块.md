@@ -227,6 +227,17 @@ npm notice
 ```
 可见，完全不必配置.npmrc，以及package.json.
 
+### Q: npm login之后才可以npm install吗？
+A: 不行
+
+```bash
+$ npm install vuepress
+npm ERR! code E401
+npm ERR! Unable to authenticate, need: BASIC realm="Sonatype Nexus Repository Manager"
+```
+解决办法：要么npm login nexus.ccbjb.com.cn, 要么在.npmrc中加入认证信息。
+
+
 ### Q: npm adduser 或 npm login 之后才可以npm publish吗
 A:
 ```bash
@@ -396,9 +407,10 @@ Logged in as mengxt on http://192.168.3.124:8081/repository/npm-internal/.
 .npmrc目录：C:\Users\用户名\.npmrc
 vi C:\Users\用户名\.npmrc
 
-windows:
+windows: 
+certutil是windows自带的命令。
 in.txt:`admin:admin123`
-`c:\certutil /encode in.txt out.txt`
+`certutil /encode in.txt out.txt`
 
 同上，略。
 
