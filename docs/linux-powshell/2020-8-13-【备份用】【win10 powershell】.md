@@ -5,9 +5,13 @@ title: 【win10 powershell】【linux定期执行】
 
 写powershell，定期执行。放到3.102win10上。
 
-### 
-linux服务器
+### 准备
+##### linux服务器
 mount -t cifs -o username=用户,password=密码 //192.168.100.11/shi/restore /data_cjb
+
+##### 3.102
+下载SSH-Sessions放到C:\Program Files\WindowsPowerShell\Modules
+![](/docs/images/2020-08-13-18-22-37.png)
 
 ### 电脑右键管理→新建基本任务→选择bat文件
 执行时间可以随时修改。
