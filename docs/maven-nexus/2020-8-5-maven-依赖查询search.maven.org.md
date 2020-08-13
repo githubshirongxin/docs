@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【maven】 查找某个jar在中央库中是否存在 search.maven.org
+title: 【maven基础】 查找某个jar在中央库中是否存在 search.maven.org
 ---
 
 https://search.maven.org/

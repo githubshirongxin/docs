@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【nexus-docker】nexus作为docker镜像的私服 http方式。
+title: 【nexus-docker仓库配置使用】nexus作为docker镜像的私服 http方式。
 ---
 
 ## 一，ssl方式参考这篇文章

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: centos7安装docker私有镜像库（有了Harbor就不用它了）
+title: 【registry安装】centos7安装docker私有镜像库（有了Harbor就不用它了）
 ---
 
 主机名角色

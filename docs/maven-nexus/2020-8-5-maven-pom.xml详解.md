@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【maven】 pom.xml详解
+title: 【maven基础】 pom.xml详解
 ---
 
 

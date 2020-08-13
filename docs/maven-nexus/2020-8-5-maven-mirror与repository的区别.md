@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【maven】 setting中mirror与repository的区别
+title: 【maven基础】 setting中mirror与repository的区别
 ---
 
 mirror表示的是两个Repository之间的关系。

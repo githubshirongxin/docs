@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【nexus-mvn】管理maven依赖
+title: 【nexus-maven仓库配置使用】
 ---
 
 ## 新建一个maven工程

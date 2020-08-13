@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【maven】pom中 repositories，pluginrepositories 和setting中profile：repositoreis,pluginrepositories以及mirror的关系。
+title: 【maven基础】pom中 repositories，pluginrepositories 和setting中profile：repositoreis,pluginrepositories以及mirror的关系。
 ---
 pom中 `<repositories> <pluginrepositories>` 和
 setting中profile `<repositoreis> <pluginrepositories>`以及`<mirror>`的关系。

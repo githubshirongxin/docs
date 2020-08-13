@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【docker】Centos7安装最新版本docker
+title: 【docker安装】Centos7安装最新版本docker
 ---
 
 **使用YUM安装 Docker CE**

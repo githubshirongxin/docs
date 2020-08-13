@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【registry】 
+title: 【registry资料】 
 ---
 
 https://linuxacademy.com/cp/courses/lesson/course/4420/lesson/7/module/347

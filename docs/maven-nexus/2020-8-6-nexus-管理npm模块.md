@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【nexus-npm】npm管理
+title: 【nexus-npm仓库配置使用】
 ---
 
 

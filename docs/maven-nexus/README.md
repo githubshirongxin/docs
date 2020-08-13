@@ -1,6 +1,6 @@
 ---
 layout: post
-title: maven基础
+title: 【maven基础】
 ---
 
 ## 资源：
