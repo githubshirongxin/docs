@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab-runner + nexus】加速docker下载 （二）nginx代理docker库ssl
+title: 【gitlab-runner + nexus】加速docker和npm下载 （二）nginx代理docker库ssl
 ---
 
 **本文主要将gitlab-runner的配置的修改（因为使用了docker私有仓库）**
