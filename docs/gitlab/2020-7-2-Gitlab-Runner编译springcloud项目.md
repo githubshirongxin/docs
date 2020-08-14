@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab】gitlab runner
+title: 【gitlab runner】编译springcloud项目
 ---
 
 ## Gitlab Runner 

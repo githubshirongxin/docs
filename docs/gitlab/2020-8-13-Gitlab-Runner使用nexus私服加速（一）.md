@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab-ci-runner 、nexus】加速编译
+title: 【gitlab-ci-runner + nexus】加速docker下载 （一）IP
 ---
 
 ## 先让runner从私服上下载吧。

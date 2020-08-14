@@ -1,7 +1,12 @@
 ---
 layout: post
-title: 【nexus-maven仓库配置使用】
+title: 【nexus-maven仓库配置使用 http方式】没有使用nginx代理
 ---
+
+::: warnning
+注意：使用nginx代理的方式比较好。域名比较容易记，仅此而已。
+参考“【nexus】私有仓库使用手顺（最终版）！！”
+:::
 
 ## 新建一个maven工程
 https://maven.apache.org/guides/getting-started/index.html#How_do_I_make_my_first_Maven_project

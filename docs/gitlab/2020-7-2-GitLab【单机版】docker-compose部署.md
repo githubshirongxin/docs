@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【GitLab】Docker和docker-compose部署GitLab（第一天）
+title: 【GitLab安装】Docker和docker-compose部署GitLab（第一天）
 ---
 
 一个是docker部署gitlab，另一个是docker-compose部署gitlab

@@ -1,3 +1,8 @@
+---
+layout: post
+title: 【gitlab工作流】
+---
+
 ## 在团队中使用GitLab中的Merge Request工作模式 转
 
 转载：https://my.oschina.net/u/4000302/blog/3032762?tdsourcetag=s_pctim_aiomsg

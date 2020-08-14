@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【GitLab】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）
+title: 【GitLab安装】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）
 ---
 单机版。写个shell每天备份该机器/srv目录到公司的raid盘。先公司内部凑合用。
 存储高可用的，我现在还不知道怎么做。

@@ -1,8 +1,12 @@
 ---
 layout: post
-title: 【nexus-npm仓库配置使用】
+title: 【nexus-npm仓库配置使用】http方式没有使用nginx代理
 ---
 
+::: warnning
+注意：使用nginx代理的方式比较好。域名比较容易记，仅此而已。
+参考“【nexus】私有仓库使用手顺（最终版）！！”
+:::
 
 ## 1. 在192.168.3.124的nexue上定义三个npm库。
 参考官方文档：https://help.sonatype.com/repomanager2/node-packaged-modules-and-npm-registries
@@ -38,7 +42,7 @@ npx -v
 ```
 
 ## 3 . 在192.168.3.122上配置npm
-### 3.1 首先设置一下拉取用的库为代理库或group库
+#### 3.1 首先设置一下拉取用的库为代理库或group库
 ```bash
 进入安装时用户的主目录：
 cd /root/
@@ -51,7 +55,6 @@ registry = http://192.168.3.124:8081/repository/npm-group/
 ::: warning
 .npmrc 的修改不是必须的，仅仅是为了方便。
 因为完全可以在命令行指定registry。
-npm install xxx 之前应为了解现在用的是什么库，因为
 :::
 
 ::: danger
@@ -59,22 +62,56 @@ npm install xxx 之前应为了解现在用的是什么库，因为
 所以拉取之前请确认库包括proxy库
 :::
 
+#### 3.2 认证处理。因为拉取和publish都需要登陆。
+- .npmrc配置登陆信息：
+或者
+- 手动npm login nexus.ccbjb.com.cn
+这里选择把登陆信息写到配置文件，方便一些。
 
-### 3.2 测试拉取
-#### 测试拉取 1】 ： 在192.168.3.122上 npm install
+##### 首先，加密用户名密码对
+Linux：
+`echo -n 'admin:admin123' | openssl base64`
 
-// 这样的设置会覆盖.npmrc设置
+得到结果
+```
+-----BEGIN CERTIFICATE-----
+YWRtaW46YWRtaW4xMjM=
+-----END CERTIFICATE----- 
+```
+###### added to the .npmrc file:
+vim /root/.npmrc
+
+::: danger
+ registry 后的url必须以/结束，否则会截掉最后的npm-group
+:::
+
+```bash
+registry=http://192.168.3.124:8081/repository/npm-group/
+init.author.name=shirx
+init.author.email=shirx@ccbjb.com.cn
+init.author.url=https://shirongxin.gitlab.io/docs
+email=shirx@ccbjb.com.cn
+always-auth=true
+_auth="YWRtaW46YWRtaW4xMjM="
+```
+
+
+
+## 4 测试拉取
+#### 测试拉取1 ： 在192.168.3.122上 npm install
+
+// 这样的设置会覆盖.npmrc设置，当然，配置了.npmrc之后这就不用写了。
 `npm config set registry http://192.168.3.124:8081/repository/npm-group/`
 
 //不确定的话可以执行get看看
 `npm config get registry`
 
-npm install vue ,成功安装到122.并且repository上也有了（安装之前是空的）。
 ```bash
 [root@centos122 npm]# npm install vue
 npm notice created a lockfile as package-lock.json. You should commit this file. + vue@2.6.11
 added 1 package from 1 contributor in 15.962s
 ```
+成功安装到122.并且nexus上的repository上也有了（安装之前是空的）。
 ![](/docs/images/2020-08-06-13-19-13.png)
 
 
@@ -96,9 +133,9 @@ npm info ok
 
 ---
 
-## 4.  Publishing npm Packages 
+## 5.  Publishing npm Packages 
 
-### 4.1 两种发布方法
+### 5.1 两种发布方法
 方案1：命令行指定发布位置为“npm内部库”！
 `npm publish --registry http://192.168.3.124:8081/repository/npm-internal/`
 
@@ -109,6 +146,11 @@ npm info ok
 "publishConfig" : {
     "registry" : "http://192.168.3.124:8081/repository/npm-internal/"
 },
+这里选择第二种，比较方便。
+
+#### 我觉得最佳实践就是
+- .npmrc 配置的库时下载用的库（使用频率高）
+- package.json里配置的库时publish用的库。（使用频率低）
 
 ##### 创建一个测试项目
 ```
@@ -130,40 +172,9 @@ npm init
   },
 ```
 
-
-### 4.2 需要配置认证信息
-
-#### 首先，加密用户名密码对
-Linux：
-`echo -n 'admin:admin123' | openssl base64`
-
-得到结果
-```
------BEGIN CERTIFICATE-----
-YWRtaW46YWRtaW4xMjM=
------END CERTIFICATE----- 
-```
-##### added to the .npmrc file:
-vim /root/.npmrc
-
-::: danger
- registry 后的url必须以/结束，否则会截掉最后的npm-internal
-:::
-
-```bash
-registry=http://192.168.3.124:8081/repository/npm-internal/
-//192.168.3.124:8081/repository/:_authToken=NpmToken.0f6396e0-605e-3820-8656-2f62e1c4526b
-//192.168.3.124:8081/repository/npm-group/:_authToken=NpmToken.0f6396e0-605e-3820-8656-2f62e1c4526b
-init.author.name=shirx
-init.author.email=shirx@ccbjb.com.cn
-init.author.url=https://shirongxin.gitlab.io/docs
-email=shirx@ccbjb.com.cn
-always-auth=true
-_auth="YWRtaW46YWRtaW4xMjM="
-```
 ##### publish
 
-// 后面 registry指定与否并不重要
+// 后面registry指定与否并不重要
 `npm publish --registry http://192.168.3.124:8081/repository/npm-internal/`
 
 npm --registry的使用方法。
@@ -171,7 +182,7 @@ npm --registry的使用方法。
 
 
 ::: tip
-`npm publish` 就可以，因为在~/.npmrc中已经指定了registery
+`npm publish` 就可以，因为在package.json中已经指定了registery
 :::
 
 //报错
@@ -239,7 +250,7 @@ npm ERR! Unable to authenticate, need: BASIC realm="Sonatype Nexus Repository Ma
 
 
 ### Q: npm adduser 或 npm login 之后才可以npm publish吗
-A:
+A:是的。除非.npmrc中配置了认证信息。
 ```bash
 [root@centos122 z-tool]# npm login
 Username: admin
@@ -290,7 +301,7 @@ npm ERR!     /root/.npm/_logs/2020-08-07T03_34_23_369Z-debug.log
 
 
 ### Q：不使用npm login，把认证信息写到.npmrc，可以npm publish吗？
-A:
+A:.npmrc有认证信息就无需login，可以publish
 ```bash
 [root@centos122 npm]# cat /root/.npmrc
 registry = http://192.168.3.124:8081/repository/npm-internal/
@@ -329,6 +340,7 @@ npm notice
 
 
 ### Q：npm login的邮件地址可以随便写吗？
+可以。
 ```
 [root@centos122 z-tool]# npm login
 Username: mengxt

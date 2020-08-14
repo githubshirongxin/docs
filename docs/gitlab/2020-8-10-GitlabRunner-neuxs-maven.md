@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab】gitlab-runner nexus maven
+title: 【how-to-use-gitlab-ci-with-nexus maven】
 ---
 
 

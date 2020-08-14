@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab】gitlab runner 能够成功编译vuepress项目了，但是gitlab pages不会开启
+title: 【gitlab vuepress】 能够成功编译vuepress项目了
 ---
 
 ## 修改gitlab配置，本地gitlab部署gitlab pages服务

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  【gitlab】gitlab pages 设置域名
+title:  【gitlab pages】 设置域名
 ---
 
 参考两篇文章：

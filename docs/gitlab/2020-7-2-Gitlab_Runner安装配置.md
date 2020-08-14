@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Gitlab】Runner安装配置
+title: 【GitlabRunner安装配置】
 ---
 
 192.168.3.112
