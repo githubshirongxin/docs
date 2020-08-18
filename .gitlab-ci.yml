@@ -2,7 +2,7 @@ image: docker.ccbjb.com.cn/node:latest
 #image: node:latest
 pages:
   cache:
-    key: buildkey
+    key: "$CI_JOB_STAGE/$CI_COMMIT_REF_NAME"
     paths:
     - node_modules/
 
