@@ -16,7 +16,7 @@ echo "git push origin gitlab.ccbjb.com.cn\n"
 git push origin 
 
 echo "\n git push origin gitlab.com\n"
-git push originRemote
+git push -f originRemote
 
 echo "\n git push origin github.com\n"
 git push originGithub
