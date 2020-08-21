@@ -1,7 +1,7 @@
 ---
 layout: post
 title: K8s相关
-autoNext: 2020-7-1-【k8sLearn17hours】-00非高可用k8s安装
+autoNext: 2020-08-21-【CKA】-02安装配置
 ---
 
 ![](/docs/images/2020-08-21-10-21-50.png)
