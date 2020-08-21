@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【GitLab安装】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验） | 共享</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="java,cobol,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.27bfdfe7.css" as="style"><link rel="preload" href="/docs/assets/js/app.6e55b747.js" as="script"><link rel="preload" href="/docs/assets/js/5.379e7eff.js" as="script"><link rel="preload" href="/docs/assets/js/2.28087ae7.js" as="script"><link rel="preload" href="/docs/assets/js/42.56dbce72.js" as="script"><link rel="preload" href="/docs/assets/js/3.32492e15.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.a8c07073.js"><link rel="prefetch" href="/docs/assets/js/100.f691b998.js"><link rel="prefetch" href="/docs/assets/js/101.95504fdb.js"><link rel="prefetch" href="/docs/assets/js/102.40abdd12.js"><link rel="prefetch" href="/docs/assets/js/103.6718ba31.js"><link rel="prefetch" href="/docs/assets/js/104.11bda7cb.js"><link rel="prefetch" href="/docs/assets/js/105.1a6c292b.js"><link rel="prefetch" href="/docs/assets/js/106.fa53759d.js"><link rel="prefetch" href="/docs/assets/js/107.3b64ec12.js"><link rel="prefetch" href="/docs/assets/js/108.4f8cc558.js"><link rel="prefetch" href="/docs/assets/js/109.8af9d095.js"><link rel="prefetch" href="/docs/assets/js/11.a1fe48fc.js"><link rel="prefetch" href="/docs/assets/js/110.c0b7140e.js"><link rel="prefetch" href="/docs/assets/js/111.2324c77d.js"><link rel="prefetch" href="/docs/assets/js/112.dc2637ea.js"><link rel="prefetch" href="/docs/assets/js/113.8b9b71c9.js"><link rel="prefetch" href="/docs/assets/js/114.6a9ceeff.js"><link rel="prefetch" href="/docs/assets/js/115.8fe89cff.js"><link rel="prefetch" href="/docs/assets/js/116.f342e4a1.js"><link rel="prefetch" href="/docs/assets/js/117.4620477a.js"><link rel="prefetch" href="/docs/assets/js/118.7981b3f5.js"><link rel="prefetch" href="/docs/assets/js/119.2ca384f1.js"><link rel="prefetch" href="/docs/assets/js/12.cd4e8d90.js"><link rel="prefetch" href="/docs/assets/js/120.540d1f9b.js"><link rel="prefetch" href="/docs/assets/js/121.b5c5d382.js"><link rel="prefetch" href="/docs/assets/js/122.150bd431.js"><link rel="prefetch" href="/docs/assets/js/123.6e43e320.js"><link rel="prefetch" href="/docs/assets/js/124.fdf50321.js"><link rel="prefetch" href="/docs/assets/js/125.c448ac7e.js"><link rel="prefetch" href="/docs/assets/js/126.8a9f6a47.js"><link rel="prefetch" href="/docs/assets/js/127.a865ae13.js"><link rel="prefetch" href="/docs/assets/js/128.04fcb4f2.js"><link rel="prefetch" href="/docs/assets/js/129.45ffba0e.js"><link rel="prefetch" href="/docs/assets/js/13.4b9ad952.js"><link rel="prefetch" href="/docs/assets/js/130.579326b1.js"><link rel="prefetch" href="/docs/assets/js/131.ed79563d.js"><link rel="prefetch" href="/docs/assets/js/14.7e60c2ed.js"><link rel="prefetch" href="/docs/assets/js/15.367ac9f7.js"><link rel="prefetch" href="/docs/assets/js/16.06233627.js"><link rel="prefetch" href="/docs/assets/js/17.d1bf7fd6.js"><link rel="prefetch" href="/docs/assets/js/18.d93731a4.js"><link rel="prefetch" href="/docs/assets/js/19.01badb85.js"><link rel="prefetch" href="/docs/assets/js/20.64ff113b.js"><link rel="prefetch" href="/docs/assets/js/21.06653c04.js"><link rel="prefetch" href="/docs/assets/js/22.bf6cb808.js"><link rel="prefetch" href="/docs/assets/js/23.a9bcc779.js"><link rel="prefetch" href="/docs/assets/js/24.2740b2d2.js"><link rel="prefetch" href="/docs/assets/js/25.ccde2628.js"><link rel="prefetch" href="/docs/assets/js/26.748a202c.js"><link rel="prefetch" href="/docs/assets/js/27.30ae861c.js"><link rel="prefetch" href="/docs/assets/js/28.1fd6ea1f.js"><link rel="prefetch" href="/docs/assets/js/29.4af5443c.js"><link rel="prefetch" href="/docs/assets/js/30.fcf8467e.js"><link rel="prefetch" href="/docs/assets/js/31.7ac5aaa5.js"><link rel="prefetch" href="/docs/assets/js/32.e6ce87f2.js"><link rel="prefetch" href="/docs/assets/js/33.c132c1a9.js"><link rel="prefetch" href="/docs/assets/js/34.60dc99c0.js"><link rel="prefetch" href="/docs/assets/js/35.c971ca86.js"><link rel="prefetch" href="/docs/assets/js/36.b666a590.js"><link rel="prefetch" href="/docs/assets/js/37.47f1df6a.js"><link rel="prefetch" href="/docs/assets/js/38.9cc8507d.js"><link rel="prefetch" href="/docs/assets/js/39.0af0b115.js"><link rel="prefetch" href="/docs/assets/js/4.19274861.js"><link rel="prefetch" href="/docs/assets/js/40.f2dcfd11.js"><link rel="prefetch" href="/docs/assets/js/41.49ede3e2.js"><link rel="prefetch" href="/docs/assets/js/43.ffa70e8d.js"><link rel="prefetch" href="/docs/assets/js/44.6a546718.js"><link rel="prefetch" href="/docs/assets/js/45.ac09bf10.js"><link rel="prefetch" href="/docs/assets/js/46.758ee881.js"><link rel="prefetch" href="/docs/assets/js/47.e2e35ac5.js"><link rel="prefetch" href="/docs/assets/js/48.b5c84a0a.js"><link rel="prefetch" href="/docs/assets/js/49.a235999a.js"><link rel="prefetch" href="/docs/assets/js/50.300c683b.js"><link rel="prefetch" href="/docs/assets/js/51.76819f93.js"><link rel="prefetch" href="/docs/assets/js/52.3ad409ec.js"><link rel="prefetch" href="/docs/assets/js/53.7c3a1c31.js"><link rel="prefetch" href="/docs/assets/js/54.bc9bcd5e.js"><link rel="prefetch" href="/docs/assets/js/55.3bc6e3af.js"><link rel="prefetch" href="/docs/assets/js/56.9b082ef4.js"><link rel="prefetch" href="/docs/assets/js/57.5ed9bd17.js"><link rel="prefetch" href="/docs/assets/js/58.ade6fb92.js"><link rel="prefetch" href="/docs/assets/js/59.23455a7b.js"><link rel="prefetch" href="/docs/assets/js/6.d4972abb.js"><link rel="prefetch" href="/docs/assets/js/60.4484b3e7.js"><link rel="prefetch" href="/docs/assets/js/61.f608a58c.js"><link rel="prefetch" href="/docs/assets/js/62.0251cff2.js"><link rel="prefetch" href="/docs/assets/js/63.5886cbca.js"><link rel="prefetch" href="/docs/assets/js/64.06d3cb7c.js"><link rel="prefetch" href="/docs/assets/js/65.e7c31045.js"><link rel="prefetch" href="/docs/assets/js/66.f3405a17.js"><link rel="prefetch" href="/docs/assets/js/67.f8032304.js"><link rel="prefetch" href="/docs/assets/js/68.8d124d81.js"><link rel="prefetch" href="/docs/assets/js/69.a2e0530c.js"><link rel="prefetch" href="/docs/assets/js/7.9affb0fc.js"><link rel="prefetch" href="/docs/assets/js/70.6d501178.js"><link rel="prefetch" href="/docs/assets/js/71.8d32deb5.js"><link rel="prefetch" href="/docs/assets/js/72.b24f7dd9.js"><link rel="prefetch" href="/docs/assets/js/73.715d8f9e.js"><link rel="prefetch" href="/docs/assets/js/74.19c2aa3e.js"><link rel="prefetch" href="/docs/assets/js/75.d8b9b1a0.js"><link rel="prefetch" href="/docs/assets/js/76.4b895d60.js"><link rel="prefetch" href="/docs/assets/js/77.7c1850d1.js"><link rel="prefetch" href="/docs/assets/js/78.ccc1066a.js"><link rel="prefetch" href="/docs/assets/js/79.efc920cf.js"><link rel="prefetch" href="/docs/assets/js/8.2d653edf.js"><link rel="prefetch" href="/docs/assets/js/80.1faebb0f.js"><link rel="prefetch" href="/docs/assets/js/81.03b8bc03.js"><link rel="prefetch" href="/docs/assets/js/82.b6022252.js"><link rel="prefetch" href="/docs/assets/js/83.92c1422f.js"><link rel="prefetch" href="/docs/assets/js/84.569da873.js"><link rel="prefetch" href="/docs/assets/js/85.13ea5733.js"><link rel="prefetch" href="/docs/assets/js/86.11f3ac49.js"><link rel="prefetch" href="/docs/assets/js/87.8b1ce2e7.js"><link rel="prefetch" href="/docs/assets/js/88.f0a2995c.js"><link rel="prefetch" href="/docs/assets/js/89.54fe35f8.js"><link rel="prefetch" href="/docs/assets/js/9.2dd78087.js"><link rel="prefetch" href="/docs/assets/js/90.d78f6a18.js"><link rel="prefetch" href="/docs/assets/js/91.aa1cf114.js"><link rel="prefetch" href="/docs/assets/js/92.4a218073.js"><link rel="prefetch" href="/docs/assets/js/93.990f6166.js"><link rel="prefetch" href="/docs/assets/js/94.c32b4e33.js"><link rel="prefetch" href="/docs/assets/js/95.3d42890a.js"><link rel="prefetch" href="/docs/assets/js/96.b431e07a.js"><link rel="prefetch" href="/docs/assets/js/97.b205777f.js"><link rel="prefetch" href="/docs/assets/js/98.ad6f5a44.js"><link rel="prefetch" href="/docs/assets/js/99.69f02348.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.27bfdfe7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="共享" class="logo"> <span class="site-name can-hide">共享</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux-powshell" class="dropdown-title"><span class="title">linux-powshell</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven-nexus" class="dropdown-title"><span class="title">maven-nexus</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux-powshell" class="dropdown-title"><span class="title">linux-powshell</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="maven-nexus" class="dropdown-title"><span class="title">maven-nexus</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vuepress" class="dropdown-title"><span class="title">vuepress</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vuepress/" class="nav-link">
+  vuepress
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="docker" class="dropdown-title"><span class="title">docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/docker/" class="nav-link">
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="gitlab" class="dropdown-title"><span class="title">gitlab</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/gitlab/" class="nav-link router-link-active">
+  gitlab
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vscode" class="dropdown-title"><span class="title">vscode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/vscode/" class="nav-link">
+  vscode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="高可用系统" class="dropdown-title"><span class="title">高可用系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/高可用系统/" class="nav-link">
+  高可用系统
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="NFS" class="dropdown-title"><span class="title">NFS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/NFS/" class="nav-link">
+  NFS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="git" class="dropdown-title"><span class="title">git</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/git/" class="nav-link">
+  git
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="k8s" class="dropdown-title"><span class="title">k8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/k8s/" class="nav-link">
+  k8s
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>gitlab</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html" class="sidebar-link">【GitLab安装】Docker和docker-compose部署GitLab（第一天）</a></li><li><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html" class="active sidebar-link">【GitLab安装】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html#版本二的docker-compose-xml，基本可用" class="sidebar-link">版本二的docker-compose.xml，基本可用</a></li><li class="sidebar-sub-header"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html#_4-然后，启动docker-compose" class="sidebar-link">4.然后，启动docker-compose</a></li><li class="sidebar-sub-header"><a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html#_5-验证gitlab运行状态" class="sidebar-link">5. 验证gitlab运行状态</a></li></ul></li><li><a href="/docs/gitlab/2020-7-2-Gitlab-Pages-Domain.html" class="sidebar-link">【gitlab pages】 设置域名</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab-Pages-Runner.html" class="sidebar-link">【gitlab vuepress】 能够成功编译vuepress项目了</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab-Runner编译springcloud项目.html" class="sidebar-link">【gitlab runner】编译springcloud项目</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab-SharedRunner-GroupRunner.html" class="sidebar-link">【Gitlab Runner】 本地Gitlab服务器的shared runner 和 Group Runner的配置方法</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab-团队使用Gitlab的流程.html" class="sidebar-link">【gitlab工作流】</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab_Runner安装配置.html" class="sidebar-link">【GitlabRunner安装配置】</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab使用自签名证书开启https.html" class="sidebar-link">【Gitlab配置】使用自签名证书开启Https</a></li><li><a href="/docs/gitlab/2020-7-2-Gitlab协同开发.html" class="sidebar-link">【gitlab协同开发】</a></li><li><a href="/docs/gitlab/2020-7-3-gitlabTroubleShooting.html" class="sidebar-link">【GitLab trouble shootting】（持续更新中）</a></li><li><a href="/docs/gitlab/2020-8-10-GitlabRunner-neuxs-maven.html" class="sidebar-link">【how-to-use-gitlab-ci-with-nexus maven】</a></li><li><a href="/docs/gitlab/2020-8-13-Gitlab-Runner使用nexus私服加速（一）.html" class="sidebar-link">【gitlab-ci-runner + nexus】加速docker下载 （一）IP</a></li><li><a href="/docs/gitlab/2020-8-13-Gitlab-Runner使用nexus私服加速（二）.html" class="sidebar-link">【gitlab-runner + nexus】加速docker和npm下载 （二）nginx代理docker库ssl</a></li><li><a href="/docs/gitlab/2020-8-13-gitlab日常维护.html" class="sidebar-link">【gitlab日常维护】</a></li><li><a href="/docs/gitlab/2020-8-4-GitlabPages公司方案思考.html" class="sidebar-link">【gitlab pages】公司方案思考</a></li><li><a href="/docs/gitlab/" aria-current="page" class="sidebar-link">gitlab EE 与 CE 的区别</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>单机版。写个shell每天备份该机器/srv目录到公司的raid盘。先公司内部凑合用。
+存储高可用的，我现在还不知道怎么做。</p> <p>完全基于<a href="https://juejin.im/post/5b55bf1c6fb9a04fac0d13b3" target="_blank" rel="noopener noreferrer">[Docker折腾记: (3)Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用]<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>成功部署在192.168.3.111上，验证好用。</p> <h1 id="gitlab-docker-compose-install"><a href="#gitlab-docker-compose-install" class="header-anchor">#</a> gitlab docker-compose install</h1> <p>这才是我想要的gitlab docker-compose部署的方式
+配置写得非常好</p> <h2 id="版本二的docker-compose-xml，基本可用"><a href="#版本二的docker-compose-xml，基本可用" class="header-anchor">#</a> 版本二的docker-compose.xml，基本可用</h2> <p>唯独一点：2222:22 → 22:22 .否则<code>git clone git@gitlab.ccbjb.com.cn:shirongxin/edusite.git</code> 永远提示输入密码，输入什么也不对。具体做法下面有。</p> <h3 id="修改docker-compose-yml"><a href="#修改docker-compose-yml" class="header-anchor">#</a> 修改docker-compose.yml</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>version: '3.6'
+services:
+  gitlab:
+    container_name: gitlab
+    privileged: true
+    image: gitlab/gitlab-ce:latest
+    restart: always
+    hostname: 'gitlab.ccbjb.com.cn'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.ccbjb.com.cn'
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = &quot;（邮件服务器IP）.100.5&quot;
+        gitlab_rails['smtp_port'] = 25
+        gitlab_rails['smtp_user_name'] = &quot;shirx@ccbjb.com.cn&quot;
+        gitlab_rails['smtp_password'] = &quot;密码&quot;
+        gitlab_rails['smtp_domain'] = &quot;ccbjb.com.cn&quot;
+        gitlab_rails['smtp_authentication'] = &quot;login&quot;
+        gitlab_rails['smtp_enable_starttls_auto'] = true
+        gitlab_rails['smtp_tls'] = false
+        gitlab_rails['gitlab_email_from'] = 'shirx@ccbjb.com.cn'
+        gitlab_rails['gitlab_email_reply_to'] = 'shirx@ccbjb.com.cn'
+        nginx['enable'] = true
+        nginx['client_max_body_size'] = '250m'
+        nginx['redirect_http_to_https'] = true
+        nginx['ssl_certificate'] = &quot;/etc/gitlab/ssl/gitlab.ccbjb.com.cn_chain.crt&quot;
+        nginx['ssl_certificate_key'] = &quot;/etc/gitlab/ssl/gitlab.ccbjb.com.cn_key.key&quot;
+        nginx['ssl_ciphers'] = &quot;ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256&quot;
+        nginx['ssl_prefer_server_ciphers'] = &quot;on&quot;
+        nginx['ssl_protocols'] = &quot;TLSv1.1 TLSv1.2&quot;
+        nginx['ssl_session_cache'] = &quot;builtin:1000  shared:SSL:10m&quot;
+        nginx['listen_addresses'] = [&quot;0.0.0.0&quot;]
+        nginx['http2_enabled'] = true
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><h3 id="_1-重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。"><a href="#_1-重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。" class="header-anchor">#</a> 1. 重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。</h3> <p><code>tar cvf srv.tar /srv</code></p> <p>如果需要在别的机器安装，或者本3.111机器因为某种原因重新安装虚拟机了，
+需要把srv.tar备份到某处，千万不要放到一台机器上，太危险。
+另外，也需要至少每天备份一次。</p> <p>先这么手动备份把，之后我准备把gitlab安装成主从备份模式。
+成功之后我准备安装到k8s上，多节点，数据也是多节点。这样就不怕单点失败了。</p> <h3 id="_2-运行docker-compose之前，免费证书申请"><a href="#_2-运行docker-compose之前，免费证书申请" class="header-anchor">#</a> 2. 运行docker-compose之前，免费证书申请</h3> <p>https://freessl.org/apply?domains=gitlab.ccbjb.com.cn&amp;product=buypass01&amp;from=</p> <p><img src="/images/2020-07-03-16-27-18.png" alt=""> <img src="/images/2020-07-03-16-27-33.png" alt=""> <img src="/images/2020-07-03-16-28-18.png" alt=""></p> <ul><li><p>KeyManage 选择导出的时候选择<strong>ngix方式</strong>，因为gitlab的证书是配置在nginx里的。</p></li> <li><p>并用DNS验证的方式验证。下载下来压缩包解压后是两个文件，
+gitlab.ccbjb.com.cn_chain.crt
+gitlab.ccbjb.com.cn_key.key</p></li> <li><p>拷贝到/etc/gitlab/ssl/(容器内视角)
+或拷贝到宿主机srv/gitlab/config/ssl（宿主机视角）</p></li> <li><p>修改docker-compose.yml对应的证书的部分。</p></li></ul> <h3 id="_3-把宿主机3-111的ssh端口22空出来。供容器映射用，必须这么做。很重要！！！！"><a href="#_3-把宿主机3-111的ssh端口22空出来。供容器映射用，必须这么做。很重要！！！！" class="header-anchor">#</a> 3. 把宿主机3.111的ssh端口22空出来。供容器映射用，必须这么做。很重要！！！！</h3> <p>参考： <a href="https://blog.csdn.net/ZanShichun/article/details/78029561?utm_source=blogxgwz5" target="_blank" rel="noopener noreferrer">Centos7如何修改ssh默认端口<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h4 id="_3-1-停掉firewall，停掉selinux"><a href="#_3-1-停掉firewall，停掉selinux" class="header-anchor">#</a> 3.1 停掉firewall，停掉selinux</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>systemctl stop firewalld
+systemctl disable firewalld
+sed -i 's/enforcing/disabled/' /etc/selinux/config
+setenforce 0
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h4 id="_3-2-增加2020为ssh端口"><a href="#_3-2-增加2020为ssh端口" class="header-anchor">#</a> 3.2 增加2020为ssh端口</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ vi /etc/ssh/sshd_config
+ Port 22  
+ Port 2020
+
+//重启sshd服务
+systemctl restart sshd.service
+
+//验证2020为ssh
+$ ssh -p 2020 root@192.168.3.111 //成功
+
+//删除Port 22 这一行，只留下我们的Port 2020
+vim /etc/ssh/sshd_config
+
+//然后重启ssh服务
+systemctl restart sshd.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h4 id="_3-3-必须重新启动docker服务。否则执行docker-compose会报如下错误：-因为停掉firewall"><a href="#_3-3-必须重新启动docker服务。否则执行docker-compose会报如下错误：-因为停掉firewall" class="header-anchor">#</a> 3.3 必须重新启动docker服务。否则执行docker-compose会报如下错误：(因为停掉firewall)</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>Error response from daemon: driver failed programming external connectivity
+ on endpoint jenkins (a8ea15bf9b3dbed599d059d638f79f9dd5e875556c39bfb41e6563d3feedb81b):
+  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 50000 -j DNAT
+ --to-destination 172.18.0.6:50000 ! -i br-031aa3930383: iptables: No chain/target/match
+ by that name.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>光看这个报错: iptables: No chain/target/match by that name，就能够看出是跟iptables有关,如果再启动docker service的时候网关是关闭的，那么docker管理网络的时候就不会操作网管的配置（chain docker），然后网关重新启动了，导致docker network无法对新container进行网络配置，也就是没有网管的操作权限，做重启处理.</p> <h4 id="_3-4【处理】-必须重启docker服务，这步必须做！！"><a href="#_3-4【处理】-必须重启docker服务，这步必须做！！" class="header-anchor">#</a> 3.4【处理】: 必须重启docker服务，这步必须做！！</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>service docker restart
+或
+systemctl restart  docker
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="_4-然后，启动docker-compose"><a href="#_4-然后，启动docker-compose" class="header-anchor">#</a> 4.然后，启动docker-compose</h2> <p><code>docker-compose up -d</code>
+即可。</p> <h2 id="_5-验证gitlab运行状态"><a href="#_5-验证gitlab运行状态" class="header-anchor">#</a> 5. 验证gitlab运行状态</h2> <h4 id="_5-1-docker-logs-看容器启动日志"><a href="#_5-1-docker-logs-看容器启动日志" class="header-anchor">#</a> 5.1 docker logs 看容器启动日志</h4> <p><img src="/images/2020-07-03-20-08-21.png" alt=""> <code>docker logs -f 32de52f7ae22</code> 查看容器日志，看到gitlab启动情况</p> <p>现在能看到,别的都正常！</p> <p>【残留课题】：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>ERROR: Failed to load config stat /etc/gitlab-runner/config.toml: no such file or directory  builds=0
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="_5-2-画面正常启动，原来的内容都保留着。"><a href="#_5-2-画面正常启动，原来的内容都保留着。" class="header-anchor">#</a> 5.2 画面正常启动，原来的内容都保留着。</h4> <p><img src="/images/2020-07-03-20-20-38.png" alt=""></p> <h4 id="_5-3-git-clone-ssh看看是否正常"><a href="#_5-3-git-clone-ssh看看是否正常" class="header-anchor">#</a> 5.3 git clone ssh看看是否正常</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>srx@DESKTOP-UQ03MQF MINGW64 /c/work/gitlab.ccbjb.com.cn
+$ git clone git@gitlab.ccbjb.com.cn:shirongxin/edusite.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><blockquote><p>Cloning into 'edusite'...
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:wsq50fWrV3xiqsKGem5DUWqGCglzR/WP1F3FhfBVH2A.
+Please contact your system administrator.
+Add correct host key in /c/Users/srx/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /c/Users/srx/.ssh/known_hosts:12
+ECDSA host key for gitlab.ccbjb.com.cn has changed and you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights
+and the repository exists.</p></blockquote> <p>处理：把自己用户c:/users/srx/.ssh/know_hosts里删掉
+gitlab.ccbjb.com.cn这一行</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>srx@DESKTOP-UQ03MQF MINGW64 /c/work/gitlab.ccbjb.com.cn
+$ git clone git@gitlab.ccbjb.com.cn:shirongxin/edusite.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><blockquote><p>Cloning into 'edusite'...
+The authenticity of host 'gitlab.ccbjb.com.cn (192.168.3.111)' can't be established.
+ECDSA key fingerprint is SHA256:wsq50fWrV3xiqsKGem5DUWqGCglzR/WP1F3FhfBVH2A.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'gitlab.ccbjb.com.cn' (ECDSA) to the list of known hosts.
+Warning: the ECDSA host key for 'gitlab.ccbjb.com.cn' differs from the key for the IP address '192.168.3.111'
+Offending key for IP in /c/Users/srx/.ssh/known_hosts:11
+Are you sure you want to continue connecting (yes/no)? yes
+remote: Enumerating objects: 38, done.
+remote: Counting objects: 100% (38/38), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 38 (delta 4), reused 38 (delta 4), pack-reused 0
+Receiving objects: 100% (38/38), 4.67 KiB | 239.00 KiB/s, done.
+Resolving deltas: 100% (4/4), done.</p></blockquote> <p>ssh方式clone OK了</p> <p>能够免密了。（公钥已经放到了gitlab的SSH-KEY）中了。</p> <h4 id="_5-4-git-clone-https-验证"><a href="#_5-4-git-clone-https-验证" class="header-anchor">#</a> 5.4 git clone https 验证</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ git clone https://gitlab.ccbjb.com.cn/shirongxin/edusite.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><blockquote><p>Cloning into 'edusite'...
+remote: Enumerating objects: 38, done.
+remote: Counting objects: 100% (38/38), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 38 (delta 4), reused 38 (delta 4), pack-reused 0
+Unpacking objects: 100% (38/38), done.</p></blockquote> <p>成功！
+至此，就差防止gitlab单点故障问题了。</p> <h3 id="_6-todo："><a href="#_6-todo：" class="header-anchor">#</a> 6.TODO：</h3> <ul><li>方案1： 主从gitlab实时备份</li> <li>方案2： k8s运行gitlab多节点共享数据，共享数据多点同步</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">8/14/2020, 10:43:50 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html" class="prev">
+        【GitLab安装】Docker和docker-compose部署GitLab（第一天）
+      </a></span> <span class="next"><a href="/docs/gitlab/2020-7-2-Gitlab-Pages-Domain.html">
+        【gitlab pages】 设置域名
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.6e55b747.js" defer></script><script src="/docs/assets/js/5.379e7eff.js" defer></script><script src="/docs/assets/js/2.28087ae7.js" defer></script><script src="/docs/assets/js/42.56dbce72.js" defer></script><script src="/docs/assets/js/3.32492e15.js" defer></script>
+  </body>
+</html>
