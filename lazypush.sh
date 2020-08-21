@@ -15,9 +15,13 @@ git commit -m"I update my blog .md again"
 echo "git push origin gitlab.ccbjb.com.cn"
 git push origin 
 
-# echo "\n git push origin gitlab.com\n"
-# git push originRemote
+echo " "
+echo " "
+ echo "\n git push origin gitlab.com\n"
+ git push originRemote
 
-# echo "\n git push origin github.com\n"
-# git push originGithub
+echo " "
+echo " "
+ echo "\n git push origin github.com\n"
+ git push originGithub
 
