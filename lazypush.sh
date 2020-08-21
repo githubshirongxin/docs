@@ -13,7 +13,7 @@ echo "git commit "
 git commit -m"I update my blog .md again"
 
 echo "git push origin gitlab.ccbjb.com.cn\n"
-git push origin 
+git push -f origin 
 
 echo "\n git push origin gitlab.com\n"
 git push -f originRemote
