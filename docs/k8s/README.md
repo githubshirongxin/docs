@@ -14,3 +14,4 @@ autoNext: 2020-08-21-【CKA】-02安装配置
 kubectl version
 或者
 kubectl get pods ,最后一个字段是version
+srx
