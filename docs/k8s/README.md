@@ -10,7 +10,7 @@ autoNext: 2020-08-21-【CKA】-02安装配置
 
 [K8s binaray](https://github.com/kubernetes/kubernetes/releases/tag/v1.18.8)
 
-查看kubenets版本
+查看kubenets版本(srx)
 
 kubectl version
 或者
