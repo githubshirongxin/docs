@@ -5,7 +5,7 @@ const nav = require("./nav");
 
 module.exports = {
   base: "/docs/",
-  title: '共享',
+  title: '积累',
   dest: "public",
   description: '共享库',
   head: headConf,

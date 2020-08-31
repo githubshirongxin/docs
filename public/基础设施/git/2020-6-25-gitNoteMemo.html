@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【git】git大部分操作的memo（视频学习笔记） | 积累</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.27bfdfe7.css" as="style"><link rel="preload" href="/docs/assets/js/app.c67a774d.js" as="script"><link rel="preload" href="/docs/assets/js/5.379e7eff.js" as="script"><link rel="preload" href="/docs/assets/js/2.28087ae7.js" as="script"><link rel="preload" href="/docs/assets/js/34.33b19dc9.js" as="script"><link rel="preload" href="/docs/assets/js/3.32492e15.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.768ffbd2.js"><link rel="prefetch" href="/docs/assets/js/100.ba5827ee.js"><link rel="prefetch" href="/docs/assets/js/101.841ed629.js"><link rel="prefetch" href="/docs/assets/js/102.cf6fe747.js"><link rel="prefetch" href="/docs/assets/js/103.23319069.js"><link rel="prefetch" href="/docs/assets/js/104.427ebd4a.js"><link rel="prefetch" href="/docs/assets/js/105.2fa43fa2.js"><link rel="prefetch" href="/docs/assets/js/106.7b6ea763.js"><link rel="prefetch" href="/docs/assets/js/107.ce07d21f.js"><link rel="prefetch" href="/docs/assets/js/108.f1c67751.js"><link rel="prefetch" href="/docs/assets/js/109.238fccbb.js"><link rel="prefetch" href="/docs/assets/js/11.a00e54f4.js"><link rel="prefetch" href="/docs/assets/js/110.87545e41.js"><link rel="prefetch" href="/docs/assets/js/111.1861b2b0.js"><link rel="prefetch" href="/docs/assets/js/112.f55a046e.js"><link rel="prefetch" href="/docs/assets/js/113.9e265889.js"><link rel="prefetch" href="/docs/assets/js/114.b2519859.js"><link rel="prefetch" href="/docs/assets/js/115.b252f218.js"><link rel="prefetch" href="/docs/assets/js/116.14612330.js"><link rel="prefetch" href="/docs/assets/js/117.d95cd9e7.js"><link rel="prefetch" href="/docs/assets/js/118.4689a364.js"><link rel="prefetch" href="/docs/assets/js/119.ee0cec84.js"><link rel="prefetch" href="/docs/assets/js/12.3d935dc0.js"><link rel="prefetch" href="/docs/assets/js/120.4fef09af.js"><link rel="prefetch" href="/docs/assets/js/121.f781f76a.js"><link rel="prefetch" href="/docs/assets/js/122.2e537095.js"><link rel="prefetch" href="/docs/assets/js/123.e546ba1c.js"><link rel="prefetch" href="/docs/assets/js/124.c3b0d3dd.js"><link rel="prefetch" href="/docs/assets/js/125.57a93e6a.js"><link rel="prefetch" href="/docs/assets/js/126.d1c50eb5.js"><link rel="prefetch" href="/docs/assets/js/127.76b202c4.js"><link rel="prefetch" href="/docs/assets/js/128.72ef1956.js"><link rel="prefetch" href="/docs/assets/js/129.ca593f36.js"><link rel="prefetch" href="/docs/assets/js/13.e2747e2c.js"><link rel="prefetch" href="/docs/assets/js/130.0a1a0941.js"><link rel="prefetch" href="/docs/assets/js/131.ea4cc6d1.js"><link rel="prefetch" href="/docs/assets/js/132.843daa9f.js"><link rel="prefetch" href="/docs/assets/js/133.55dd0cbd.js"><link rel="prefetch" href="/docs/assets/js/134.ac746c08.js"><link rel="prefetch" href="/docs/assets/js/135.fdd36a78.js"><link rel="prefetch" href="/docs/assets/js/136.951f5b7a.js"><link rel="prefetch" href="/docs/assets/js/137.58707c1c.js"><link rel="prefetch" href="/docs/assets/js/138.3ba19cfe.js"><link rel="prefetch" href="/docs/assets/js/139.dd908ce1.js"><link rel="prefetch" href="/docs/assets/js/14.413eca15.js"><link rel="prefetch" href="/docs/assets/js/140.b848e693.js"><link rel="prefetch" href="/docs/assets/js/141.490d863d.js"><link rel="prefetch" href="/docs/assets/js/142.624b93b4.js"><link rel="prefetch" href="/docs/assets/js/143.0965180d.js"><link rel="prefetch" href="/docs/assets/js/144.52d16e97.js"><link rel="prefetch" href="/docs/assets/js/145.17425c8c.js"><link rel="prefetch" href="/docs/assets/js/146.981d904a.js"><link rel="prefetch" href="/docs/assets/js/147.e5c385f9.js"><link rel="prefetch" href="/docs/assets/js/15.bfeceb31.js"><link rel="prefetch" href="/docs/assets/js/16.80c9da8f.js"><link rel="prefetch" href="/docs/assets/js/17.74e7b659.js"><link rel="prefetch" href="/docs/assets/js/18.b8cee1b5.js"><link rel="prefetch" href="/docs/assets/js/19.77ac5e03.js"><link rel="prefetch" href="/docs/assets/js/20.40da282d.js"><link rel="prefetch" href="/docs/assets/js/21.70541890.js"><link rel="prefetch" href="/docs/assets/js/22.8698bd3e.js"><link rel="prefetch" href="/docs/assets/js/23.7e94d70d.js"><link rel="prefetch" href="/docs/assets/js/24.459c751e.js"><link rel="prefetch" href="/docs/assets/js/25.cbdab197.js"><link rel="prefetch" href="/docs/assets/js/26.a0d51738.js"><link rel="prefetch" href="/docs/assets/js/27.976e6782.js"><link rel="prefetch" href="/docs/assets/js/28.5e3264ac.js"><link rel="prefetch" href="/docs/assets/js/29.5a663d09.js"><link rel="prefetch" href="/docs/assets/js/30.d7d83767.js"><link rel="prefetch" href="/docs/assets/js/31.0b999369.js"><link rel="prefetch" href="/docs/assets/js/32.45ea1c91.js"><link rel="prefetch" href="/docs/assets/js/33.9a0346f3.js"><link rel="prefetch" href="/docs/assets/js/35.df213d53.js"><link rel="prefetch" href="/docs/assets/js/36.bac89d8c.js"><link rel="prefetch" href="/docs/assets/js/37.e7e7563d.js"><link rel="prefetch" href="/docs/assets/js/38.d75aa7c7.js"><link rel="prefetch" href="/docs/assets/js/39.ec612453.js"><link rel="prefetch" href="/docs/assets/js/4.f392c922.js"><link rel="prefetch" href="/docs/assets/js/40.ff6b9dc3.js"><link rel="prefetch" href="/docs/assets/js/41.732caf13.js"><link rel="prefetch" href="/docs/assets/js/42.27efcd48.js"><link rel="prefetch" href="/docs/assets/js/43.7858af8b.js"><link rel="prefetch" href="/docs/assets/js/44.5b48c21c.js"><link rel="prefetch" href="/docs/assets/js/45.bad24b7f.js"><link rel="prefetch" href="/docs/assets/js/46.f0a7a549.js"><link rel="prefetch" href="/docs/assets/js/47.e06ebb94.js"><link rel="prefetch" href="/docs/assets/js/48.ee541bd2.js"><link rel="prefetch" href="/docs/assets/js/49.0e72ea07.js"><link rel="prefetch" href="/docs/assets/js/50.f60bc27b.js"><link rel="prefetch" href="/docs/assets/js/51.4e65a771.js"><link rel="prefetch" href="/docs/assets/js/52.c194da69.js"><link rel="prefetch" href="/docs/assets/js/53.e8edb998.js"><link rel="prefetch" href="/docs/assets/js/54.85f255ad.js"><link rel="prefetch" href="/docs/assets/js/55.fe0a2f00.js"><link rel="prefetch" href="/docs/assets/js/56.ecf74514.js"><link rel="prefetch" href="/docs/assets/js/57.4e05aeaa.js"><link rel="prefetch" href="/docs/assets/js/58.5bd4e34c.js"><link rel="prefetch" href="/docs/assets/js/59.61061156.js"><link rel="prefetch" href="/docs/assets/js/6.d4972abb.js"><link rel="prefetch" href="/docs/assets/js/60.5033ec76.js"><link rel="prefetch" href="/docs/assets/js/61.c1688a90.js"><link rel="prefetch" href="/docs/assets/js/62.8e434489.js"><link rel="prefetch" href="/docs/assets/js/63.709ac74a.js"><link rel="prefetch" href="/docs/assets/js/64.9bf4f730.js"><link rel="prefetch" href="/docs/assets/js/65.a21b8046.js"><link rel="prefetch" href="/docs/assets/js/66.30cc0b5b.js"><link rel="prefetch" href="/docs/assets/js/67.77b96b17.js"><link rel="prefetch" href="/docs/assets/js/68.fb8eac98.js"><link rel="prefetch" href="/docs/assets/js/69.cb82242b.js"><link rel="prefetch" href="/docs/assets/js/7.6b204d57.js"><link rel="prefetch" href="/docs/assets/js/70.4c54d2c4.js"><link rel="prefetch" href="/docs/assets/js/71.f2facc7a.js"><link rel="prefetch" href="/docs/assets/js/72.3b3223a1.js"><link rel="prefetch" href="/docs/assets/js/73.a774e55b.js"><link rel="prefetch" href="/docs/assets/js/74.8117ed68.js"><link rel="prefetch" href="/docs/assets/js/75.f03cd9a0.js"><link rel="prefetch" href="/docs/assets/js/76.ddea3a34.js"><link rel="prefetch" href="/docs/assets/js/77.45a375be.js"><link rel="prefetch" href="/docs/assets/js/78.227c84d0.js"><link rel="prefetch" href="/docs/assets/js/79.f118a0ba.js"><link rel="prefetch" href="/docs/assets/js/8.d738730d.js"><link rel="prefetch" href="/docs/assets/js/80.32aa8431.js"><link rel="prefetch" href="/docs/assets/js/81.3f4f4d9b.js"><link rel="prefetch" href="/docs/assets/js/82.62ba7af2.js"><link rel="prefetch" href="/docs/assets/js/83.71542cff.js"><link rel="prefetch" href="/docs/assets/js/84.b27f3eb0.js"><link rel="prefetch" href="/docs/assets/js/85.9859a932.js"><link rel="prefetch" href="/docs/assets/js/86.1a2f54ba.js"><link rel="prefetch" href="/docs/assets/js/87.e971b5d6.js"><link rel="prefetch" href="/docs/assets/js/88.dbbb634d.js"><link rel="prefetch" href="/docs/assets/js/89.f7932e1c.js"><link rel="prefetch" href="/docs/assets/js/9.67669394.js"><link rel="prefetch" href="/docs/assets/js/90.888f317a.js"><link rel="prefetch" href="/docs/assets/js/91.21880d66.js"><link rel="prefetch" href="/docs/assets/js/92.b749e326.js"><link rel="prefetch" href="/docs/assets/js/93.009e23b7.js"><link rel="prefetch" href="/docs/assets/js/94.9d60dc22.js"><link rel="prefetch" href="/docs/assets/js/95.9bdf316a.js"><link rel="prefetch" href="/docs/assets/js/96.f8c87a56.js"><link rel="prefetch" href="/docs/assets/js/97.c509fa41.js"><link rel="prefetch" href="/docs/assets/js/98.e54b2a32.js"><link rel="prefetch" href="/docs/assets/js/99.ec880287.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.27bfdfe7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>git</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/基础设施/git/2020-6-25-gitNoteMemo.html" class="active sidebar-link">【git】git大部分操作的memo（视频学习笔记）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/基础设施/git/2020-6-25-gitNoteMemo.html#一，裸仓库（都是本地-git-操作，还没有push）" class="sidebar-link">一，裸仓库（都是本地.git/操作，还没有push）</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/git/2020-6-25-gitNoteMemo.html#二，-到远端开始工作。本地-远端-团队操作" class="sidebar-link">二， 到远端开始工作。本地+远端+团队操作</a></li></ul></li><li><a href="/docs/基础设施/git/2020-6-25-gitTroubleShooting.html" class="sidebar-link">【git】Git Trouble Shooting（持续更新）</a></li><li><a href="/docs/基础设施/git/2020-6-25-githubblogByVscode.html" class="sidebar-link">【git】vscode写md发布到github上的blog（我当前的blog方式）</a></li><li><a href="/docs/基础设施/git/2020-6-25-gitpush_multi_remote.html" class="sidebar-link">【git】git push到多个远程分支</a></li><li><a href="/docs/基础设施/git/2020-6-25-git分支管理开发规范工作流.html" class="sidebar-link">【git】开发规范，工作流</a></li><li><a href="/docs/基础设施/git/2020-6-25-youAreNotAllowToPushCode.html" class="sidebar-link">You are not allowed to push code to this project.</a></li><li><a href="/docs/基础设施/git/2020-6-25-把现有工程加入到gitlab.html" class="sidebar-link">【git】【gitlab】把本地工程加入到gitlab</a></li><li><a href="/docs/基础设施/git/2020-7-2-Git使用流程规范.html" class="sidebar-link">【git 使用流程规范】（merge-request)</a></li><li><a href="/docs/基础设施/git/2020-8-11-Git命令输出中文乱码.html" class="sidebar-link">【git中文乱码】</a></li><li><a href="/docs/基础设施/git/2020-8-15-git clone太慢的解决.html" class="sidebar-link">【git clone 慢】的解决</a></li><li><a href="/docs/基础设施/git/2020-8-28-【git基础】git clone指定分支.html" class="sidebar-link">【git clone分支】</a></li><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/git/" aria-current="page" class="sidebar-link">git相关</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>bilibili上git视频学习的学习笔记。挺好的</p> <ul><li><a href="#%E4%B8%80%E8%A3%B8%E4%BB%93%E5%BA%93%E9%83%BD%E6%98%AF%E6%9C%AC%E5%9C%B0git%E6%93%8D%E4%BD%9C%E8%BF%98%E6%B2%A1%E6%9C%89push">一，裸仓库（都是本地.git/操作，还没有push）</a> <ul><li><a href="#12%E8%8A%82">1,2节</a></li> <li><a href="#3%E8%8A%82%E6%8A%8A%E5%B7%B2%E6%9C%89%E7%9A%84%E4%BB%A3%E7%A0%81%E7%BA%B3%E5%85%A5git%E7%AE%A1%E7%90%86">3节,把已有的代码纳入git管理</a></li> <li><a href="#04%E8%8A%82-%E7%BB%93%E8%AE%BA">04节， 结论</a></li> <li><a href="#05-%E8%8A%82%E8%AE%A4%E8%AF%86%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA">05 节.认识工作区和暂存区</a></li> <li><a href="#git-add--a%E5%92%8Cgit-add--git-add--u%E5%9C%A8%E5%8A%9F%E8%83%BD%E4%B8%8A%E7%9C%8B%E4%BC%BC%E5%BE%88%E7%9B%B8%E8%BF%91%E4%BD%86%E8%BF%98%E6%98%AF%E5%AD%98%E5%9C%A8%E4%B8%80%E7%82%B9%E5%B7%AE%E5%88%AB">git add -A和 git add .   git add -u在功能上看似很相近，但还是存在一点差别</a></li> <li><a href="#06%E8%8A%82">06节.</a> <ul><li><a href="#1%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D">1,文件重命名</a></li></ul></li> <li><a href="#07git-log-%E7%9A%84%E8%BF%87%E6%BB%A4%E6%96%B9%E6%B3%95">07.git log 的过滤方法</a></li> <li><a href="#08-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2">08. 图形界面的方式来看版本历史</a></li> <li><a href="#09-git%E6%9C%89%E6%9C%80%E4%BC%98%E7%9A%84%E5%AD%98%E5%82%A8%E8%83%BD%E5%8A%9B%E4%B8%8D%E7%94%A8%E8%BF%9C%E7%AB%AF%E5%B0%B1%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%9A%84%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95">09. git有最优的存储能力.不用远端,就用本地的管理方法</a> <ul><li><a href="#91-githead">9.1 .git/HEAD</a></li> <li><a href="#92-gitconfig">9.2 .git/config</a></li> <li><a href="#93-gitrefs">9.3 .git/refs</a></li> <li><a href="#94-gitobjects">9.4 .git/objects</a></li></ul></li> <li><a href="#10-%E4%B8%89%E7%A7%8D%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%85%B3%E7%B3%BBcommitblobtree">10. 三种对象类型的关系:commit\blob\tree</a> <ul><li><a href="#101-%E5%A5%BD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6%E4%BF%9D%E8%AF%81%E5%B0%8F%E5%B7%A7%E4%B8%8D%E4%BC%9A%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%A7%E6%80%A7%E8%83%BD%E7%9A%84%E5%85%B3%E9%94%AE">10.1 好的文件存储机制,保证小巧(不会越来越大),性能的关键!</a></li> <li><a href="#102-%E7%9C%8B%E5%90%84%E7%B1%BB%E5%9E%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E5%AD%A6%E4%B9%A0%E4%B8%89%E7%A7%8D%E6%96%87%E4%BB%B6%E5%85%B3%E7%B3%BB">10.2 看各类型文件内容学习三种文件关系</a></li></ul></li> <li><a href="#11%E6%95%B0%E6%95%B0tree%E7%9A%84%E4%B8%AA%E6%95%B0">11.数数Tree的个数</a></li> <li><a href="#12%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88">12.分离头指针</a> <ul><li><a href="#121-%E9%97%AE%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E5%91%A2">12.1 问:什么时候用分离头指针呢?</a></li></ul></li> <li><a href="#13-%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%90%86%E8%A7%A3head%E5%92%8Cbranch">13. 进一步理解HEAD和branch</a></li> <li><a href="#14%E8%8A%82-%E4%B8%80%E4%B8%8D%E5%B0%8F%E5%BF%83%E6%90%9E%E9%94%99%E4%BA%86%E4%B9%8B%E5%90%8E%E6%80%8E%E4%B9%88%E6%B8%85%E9%99%A4%E5%88%86%E6%94%AF">14节. 一不小心搞错了之后，怎么清除分支？</a></li> <li><a href="#15%E8%8A%82-%E6%B3%A8%E9%87%8A%E5%86%99%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E4%BF%AE%E6%94%B9%E5%B7%B2%E7%BB%8Fcommit%E4%BA%86%E7%9A%84message%E5%86%85%E5%AE%B9%E8%80%8C%E4%B8%94%E6%98%AF%E6%9C%80%E8%BF%91%E4%B8%80%E6%AC%A1commit%E7%9A%84message">15节. 注释写错了，怎么修改已经commit了的message内容。而且是最近一次commit的message</a></li> <li><a href="#16%E8%8A%82-%E4%BB%A5%E5%89%8D%E6%8F%90%E4%BA%A4%E7%9A%84%E6%B3%A8%E9%87%8A%E5%86%99%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E">16节 以前提交的注释写错了怎么办？</a></li> <li><a href="#17%E8%8A%82-%E6%8A%8A%E8%BF%87%E5%8E%BB%E7%9A%84%E5%87%A0%E4%B8%AA%E8%BF%9E%E7%BB%AD%E7%9A%84commit%E5%8E%8B%E7%BC%A9%E6%88%90%E4%B8%80%E4%B8%AAcommit%E9%83%BD%E8%BF%98%E6%B2%A1%E6%9C%89push%E5%93%88push%E8%BF%87%E7%9A%84%E5%B0%B1%E5%88%AB%E5%8A%A8%E4%BA%86">17节 把过去的几个(连续的)commit压缩成一个commit，都还没有push哈！！！push过的就别动了！！</a></li> <li><a href="#18%E8%8A%82-%E5%8E%86%E5%8F%B2%E4%B8%AD%E5%87%A0%E4%B8%AAcommit%E6%98%AF%E4%B8%8D%E8%BF%9E%E7%BB%AD%E7%9A%84%E4%B9%9F%E8%A6%81%E6%8B%BC%E5%90%88%E5%9C%A8%E4%B8%80%E8%B5%B7%E6%9C%AC%E5%9C%B0%E5%93%88%E8%BF%98%E6%B2%A1push">18节  历史中几个commit是不连续的，也要拼合在一起。本地哈。还没push</a></li> <li><a href="#19%E8%8A%82-%E5%AE%9E%E9%99%85commit%E4%B9%8B%E5%89%8D%E7%9A%84%E5%A5%BD%E4%B9%A0%E6%83%AF--%E6%A3%80%E6%9F%A5-%E6%9A%82%E5%AD%98%E5%8C%BAadd%E4%B9%8B%E5%90%8E%E7%9A%84%E5%92%8Chead%E6%AF%94%E8%BE%83-diff">19节 实际commit之前的好习惯-  检查 。暂存区(add之后的)和HEAD比较 diff</a></li> <li><a href="#20%E8%8A%82-%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%AF%94%E8%BE%83">20节 工作区和暂存区的比较</a></li> <li><a href="#21%E8%8A%82-%E5%BE%80%E6%9A%82%E5%AD%98%E5%8C%BA%E9%87%8Cadd%E7%9A%84%E5%8F%98%E6%9B%B4%E8%A7%89%E5%BE%97%E6%B2%A1%E6%9C%89%E6%84%8F%E4%B9%89%E6%88%96%E6%9C%89%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%96%B9%E6%B3%95%E4%BA%86-%E6%9A%82%E5%AD%98%E5%8C%BA%E4%B8%8D%E6%89%93%E7%AE%97commit%E6%83%B3%E6%B8%85%E9%99%A4%E6%9A%82%E5%AD%98%E5%8C%BA%E6%9A%82%E5%AD%98%E5%8C%BA%E4%B8%8Ehead%E4%B8%80%E8%87%B4---reset">21节 往暂存区里add的变更觉得没有意义或有更好的方法了。 暂存区不打算commit，想清除暂存区(暂存区与HEAD一致) --》reset</a></li> <li><a href="#22%E8%8A%82-%E5%8F%98%E6%9B%B4%E8%BF%9B%E6%9A%82%E5%AD%98%E5%8C%BA%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%BB%A7%E7%BB%AD%E5%8F%98%E5%90%8E%E6%9D%A5%E4%B8%80%E7%9C%8B%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E4%B8%8D%E5%8F%8A%E6%9A%82%E5%AD%98%E5%8C%BA%E5%A5%BD%E6%83%B3%E6%8A%8A%E8%AF%A5%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E4%BF%AE%E6%94%B9%E8%BF%94%E5%9B%9E%E6%88%90%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E5%86%85%E5%AE%B9%E5%8F%98%E6%9B%B4%E5%B7%A5%E4%BD%9C%E5%8C%BA-checkout">22节 变更进暂存区，工作区继续变。后来一看工作区的不及暂存区好。想把该文件的工作区的修改返回成暂存区的内容。变更工作区！！！！-》checkout</a></li> <li><a href="#23%E8%8A%82-%E6%9A%82%E5%AD%98%E5%8C%BA%E5%8F%AA%E6%9C%89%E9%83%A8%E5%88%86%E6%96%87%E4%BB%B6%E6%83%B3%E6%81%A2%E5%A4%8D%E6%88%90head%E4%B8%80%E6%A0%B7">23节 暂存区只有部分文件想恢复成HEAD一样。</a></li> <li><a href="#24%E8%8A%82-%E6%83%B3%E8%AE%A9%E6%9F%90%E4%BA%9Bcommit%E4%BB%8Egit%E4%BB%93%E5%BA%93%E6%B6%88%E5%A4%B1%E5%8F%AA%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%87%A0%E6%AC%A1commit%E5%90%A7-reset---hard">24节 想让某些commit从git仓库消失。（只能是最后的连续几次commit吧）-》reset --hard</a></li> <li><a href="#25%E8%8A%82-%E4%B8%A4%E4%B8%AA%E5%88%86%E6%94%AF%E7%9A%84%E4%B8%8D%E5%90%8C-temp-vs-master-%E4%BB%8D%E6%97%A7%E5%9C%A8git%E6%9C%AC%E5%9C%B0">25节 两个分支的不同 temp vs master （仍旧在.git本地）</a></li> <li><a href="#26%E8%8A%82-%E5%88%A0%E9%99%A4commit%E7%9A%84%E6%96%87%E4%BB%B6">26节 删除commit的文件</a></li> <li><a href="#27%E8%8A%82-%E4%BF%9D%E5%AD%98%E5%B7%A5%E4%BD%9C%E4%B8%8A%E4%B8%8B%E6%96%87-git-stash%E6%AD%A3%E5%9C%A8%E4%BF%AE%E6%94%B9%E4%B8%80%E9%83%A8%E5%88%86%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9C%A8%E6%94%B9%E4%B8%80%E9%83%A8%E5%88%86add%E4%B8%80%E9%83%A8%E5%88%86commit%E6%8E%A5%E5%88%B0%E6%96%B0%E7%9A%84%E4%BB%BB%E5%8A%A1%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84%E4%B9%9F%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E6%80%8E%E4%B9%88%E5%8A%9E">27节 保存工作上下文-git stash。正在修改（一部分工作区在改，一部分add，一部分commit），接到新的任务。要修改的也是同一个文件。怎么办？</a></li> <li><a href="#28%E8%8A%82-gitignore%E4%B8%8D%E7%BA%B3%E5%85%A5%E5%88%B0git%E7%AE%A1%E7%90%86%E7%89%88%E6%9C%AC">28节 .gitignore不纳入到git管理版本。</a></li> <li><a href="#29%E8%8A%82-git%E6%9C%AC%E5%9C%B0%E5%A4%87%E4%BB%BD">29节 git本地备份</a></li></ul></li> <li><a href="#%E4%BA%8C-%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%BC%80%E5%A7%8B%E5%B7%A5%E4%BD%9C%E6%9C%AC%E5%9C%B0%E8%BF%9C%E7%AB%AF%E5%9B%A2%E9%98%9F%E6%93%8D%E4%BD%9C">二， 到远端开始工作。本地+远端+团队操作</a> <ul><li><a href="#30%E8%8A%82-github%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA">30节 Github账户创建</a></li> <li><a href="#31%E8%8A%82-%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5">31节 配置公钥私钥</a></li> <li><a href="#32%E8%8A%82-%E5%88%9B%E5%BB%BAgithub%E5%BA%93-">32节 创建Github库  （※）</a></li> <li><a href="#33%E8%8A%82-%E4%B8%8D%E5%90%8C%E4%BA%BA%E4%BF%AE%E6%94%B9%E4%BA%86%E4%B8%8D%E5%90%8C%E6%96%87%E4%BB%B6%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86">33节 不同人修改了不同文件，怎么处理？</a> <ul><li><a href="#step1a%E6%A1%91-%E4%BF%AE%E6%94%B9reamde">STEP1，A桑 修改reamde</a></li> <li><a href="#step2b%E6%A1%91-%E4%BF%AE%E6%94%B9indexhtml">STEP2，B桑 修改index.html</a></li> <li><a href="#step3--a%E6%A1%91-%E4%BF%AE%E6%94%B9readme">STEP3 , A桑， 修改readme</a></li> <li><a href="#step4--b%E6%A1%91-push-%E5%A4%B1%E8%B4%A5">STEP4 , B桑 ，push 失败</a></li></ul></li> <li><a href="#34%E8%8A%82%E4%B8%A4%E4%B8%AA%E4%BA%BA%E4%BF%AE%E6%94%B9%E7%9B%B8%E5%90%8C%E5%88%86%E6%94%AF%E7%9B%B8%E5%90%8C%E6%96%87%E4%BB%B6%E4%B8%8D%E5%90%8C%E5%8C%BA%E5%9F%9Fgit%E8%BF%98%E6%9C%89%E5%8A%9E%E6%B3%95">34节，两个人修改相同分支相同文件，！！！不同区域！！，git还有办法！！</a> <ul><li><a href="#step1--a%E6%A1%91git2019">STEP1 , A桑（git2019）</a></li> <li><a href="#step2-b%E6%A1%91suling">STEP2, B桑（suling）</a></li> <li><a href="#step3a%E6%A1%91%E4%B9%9F%E4%BF%AE%E6%94%B9readme">STEP3,A桑也修改readme</a></li></ul></li> <li><a href="#35%E8%8A%82-%E4%B8%A4%E4%B8%AA%E4%BA%BA%E4%BF%AE%E6%94%B9%E5%90%8C%E4%B8%80%E6%96%87%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%90%8C%E5%8C%BA%E5%9F%9F%E8%BF%99%E5%B0%B1%E6%AF%94%E8%BE%83%E9%BA%BB%E7%83%A6%E4%BA%86%E5%86%B2%E7%AA%81">35节 两个人修改同一文件的相同区域，这就比较麻烦了。冲突</a> <ul><li><a href="#step1-a%E6%A1%91b%E6%A1%91-%E9%83%BDpull%E6%88%90%E8%BF%9C%E7%AB%AF%E4%B8%80%E6%A0%B7%E7%9A%84">STEP1 A桑，B桑 都pull成远端一样的。</a></li> <li><a href="#step2-a%E6%A1%91">STEP2 A桑，</a></li> <li><a href="#step3-b%E6%A1%91">STEP3 B桑</a></li> <li><a href="#step4-a%E6%A1%91">STEP4 A桑</a></li></ul></li> <li><a href="#36%E8%8A%82-a%E6%A1%91%E6%96%87%E4%BB%B6%E5%90%8D%E5%8F%98%E6%9B%B4b%E6%A1%91%E5%9C%A8%E5%8E%9F%E6%96%87%E4%BB%B6%E5%90%8D%E5%8F%98%E6%9B%B4b%E6%80%8E%E4%B9%88%E6%8F%90%E4%BA%A4">36节 A桑文件名变更，B桑在原文件名变更。B怎么提交？</a> <ul><li><a href="#sete1-a%E6%A1%91">SETE1 A桑</a></li> <li><a href="#step2-b%E6%A1%91%E4%BF%AE%E6%94%B9indexhtml">STEP2 B桑修改index.html</a></li> <li><a href="#step3-a%E6%A1%91push">STEP3, A桑push</a></li></ul></li> <li><a href="#step4-b%E6%A1%91push">STEP4, B桑push</a></li> <li><a href="#37%E8%8A%82%E5%A4%9A%E4%BA%BA%E4%BF%AE%E6%94%B9%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Da%E6%A1%91pushb%E6%80%8E%E4%B9%88push">37节，多人修改同一个文件的文件名。A桑push，B怎么push</a> <ul><li><a href="#a%E6%A1%91-%E6%94%B9indexhtm-index1html">A桑 改index.htm index1.html</a></li> <li><a href="#b%E6%A1%91%E6%94%B9indexhtm--index2html">B桑，改index.htm -&gt;index2.html</a></li> <li><a href="#a%E6%A1%91push">A桑，push</a></li></ul></li> <li><a href="#39%E8%8A%82-%E7%A6%81%E6%AD%A2%E5%90%91%E9%9B%86%E6%88%90%E5%88%86%E6%94%AF%E6%89%A7%E8%A1%8Cpush--f-%E6%93%8D%E4%BD%9C">39节 禁止向集成分支执行push -f 操作</a></li> <li><a href="#40%E8%8A%82-%E7%A6%81%E6%AD%A2%E5%90%91%E9%9B%86%E6%88%90%E5%88%86%E6%94%AF%E5%81%9Arebase">40节 禁止向集成分支做rebase</a></li> <li><a href="#41%E8%8A%82-github%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E7%81%AB-20082020%E5%B9%B4-3%E5%8D%83%E4%B8%87%E7%94%A8%E6%88%B71%E4%BA%BF%E5%BA%93">41节 Github为什么这么火 2008~2020年 ，3千万用户，1亿库</a></li> <li><a href="#42%E8%8A%82-github%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">42节 Github有哪些核心功能？</a></li> <li><a href="#43%E8%8A%82-%E6%80%8E%E4%B9%88%E6%90%9C%E7%B4%A2github%E4%B8%8A%E7%9A%84%E9%A1%B9%E7%9B%AE">43节 怎么搜索Github上的项目</a> <ul><li><a href="#1-%E6%A0%B9%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BF%A1%E6%81%AF%E6%90%9C%E7%B4%A2">1， 根据库的信息搜索</a></li> <li><a href="#2%E6%A0%B9%E6%8D%AEcode%E6%90%9C%E7%B4%A2">2，根据Code搜索</a></li></ul></li> <li><a href="#44%E8%8A%82-github%E4%B8%8A%E5%BB%BAblog">44节 Github上建blog</a></li> <li><a href="#45%E8%8A%82-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A8%E9%87%8F">45节 如何保证开源项目质量</a></li> <li><a href="#46%E8%8A%82github%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9D%A5%E7%AE%A1%E7%90%86">46节，Github为什么需要组织来管理</a></li> <li><a href="#47%E8%8A%82%E5%88%9B%E5%BB%BA%E7%BB%84%E7%BB%87%E7%9A%84%E4%BB%93%E5%BA%93">47节，创建组织的仓库</a></li> <li><a href="#48%E8%8A%82%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81">48节，如何选择自己的工作流</a></li> <li><a href="#49%E8%8A%82%E5%87%A0%E4%B8%AA%E5%88%86%E6%94%AF%E5%81%9A%E9%9B%86%E6%88%90%E7%9A%84%E7%AD%96%E7%95%A5">49节，几个分支做集成的策略</a></li> <li><a href="#50%E8%8A%82-github%E7%9A%84issue">50节 Github的issue</a></li> <li><a href="#51%E8%8A%82-github%E7%9A%84project%E7%9C%8B%E6%9D%BF%E7%AE%A1%E7%90%86issue">51节 Github的project看板，管理issue</a></li> <li><a href="#52%E8%8A%82-github-codereview">52节， Github codereview</a></li> <li><a href="#53%E8%8A%82%E4%BF%9D%E8%AF%81%E9%9B%86%E6%88%90%E8%B4%A8%E9%87%8Fci">53节，保证集成质量CI</a></li> <li><a href="#54%E8%8A%82release%E5%8A%9F%E8%83%BD%E6%94%BEwar%E5%8C%85%E7%9A%84%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">54节，release功能（放war包的共享文件系统）</a></li> <li><a href="#55%E8%8A%82%E6%80%8E%E4%B9%88%E5%86%99%E6%96%87%E6%A1%A3-github%E7%9A%84wiki%E5%B0%B1%E6%98%AFmd%E6%96%87%E4%BB%B6">55节，怎么写文档 Github的Wiki就是md文件</a></li> <li><a href="#56%E8%8A%82%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BA%92%E8%81%94%E7%BD%91%E5%96%9C%E6%AC%A2gitlab%E8%80%8C%E4%B8%8D%E6%98%AFgithub">56节，为什么互联网喜欢gitlab而不是github</a></li> <li><a href="#57%E8%8A%82gitlab%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">57节，Gitlab的核心功能</a></li> <li><a href="#58%E8%8A%82gitlab%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86">58节，Gitlab项目管理</a></li> <li><a href="#59%E8%8A%82gitlab%E4%B8%8Acodereview">59节，Gitlab上Codereview</a></li> <li><a href="#60%E8%8A%82gitlab%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E6%88%90%E8%B4%A8%E9%87%8F">60节，Gitlab如何保证集成质量？</a></li> <li><a href="#61%E8%8A%82gitlab%E5%B7%A5%E7%A8%8B%E5%8F%91%E5%B8%83%E5%88%B0aws%E4%B8%8A">61节，Gitlab工程发布到aws上</a></li></ul></li></ul> <h2 id="一，裸仓库（都是本地-git-操作，还没有push）"><a href="#一，裸仓库（都是本地-git-操作，还没有push）" class="header-anchor">#</a> 一，裸仓库（都是本地.git/操作，还没有push）</h2> <h3 id="_1-2节"><a href="#_1-2节" class="header-anchor">#</a> 1,2节</h3> <p>略</p> <hr> <h3 id="_3节-把已有的代码纳入git管理"><a href="#_3节-把已有的代码纳入git管理" class="header-anchor">#</a> 3节,把已有的代码纳入git管理</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ cd 项目代码所在文件夹
+$ git init
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>// 看看是不是设置成功了<br> <code>$ git config --global --list</code><br>
+filter.lfs.required=true
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+user.name=shirongxin
+user.email=shirx@ccbjb.com.cn
+credential.helper=store</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ git config --local user.name 'tuoyekang'
+$ git config --local user.email 'tuoyekang@126.com'
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>// 看看是不是设置成功了</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>//注意这里是local不是global
+$ git config --local --list
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+user.name=tuoyekang
+user.email=tuoyekang@126.com</p> <p>//【课题】local和global设置的用户名不一样。push到底用哪个？</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cp ../f1/README.md .
+$ git commit -m &quot;add readme.&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>On branch master
+Initial commit
+Untracked files:    //错误：该文件还没有被git管控，所以用git commit是不生效的。
+README.md
+nothing added to commit but untracked files present</p> <p><code>$ git add README.md</code></p> <p>warning: LF will be replaced by CRLF in README.md.
+The file will have its original line endings in your working directory.</p> <p><code>$ git status</code><br>
+On branch master
+No commits yet
+Changes to be committed:
+(use &quot;git rm --cached <file>...&quot; to unstage)
+new file:   README.md</file></p> <p><code>git commit -m &quot;add README.md&quot;</code><br>
+[master (root-commit) b43a16a] add README.md
+1 file changed, 1 insertion(+)
+create mode 100644 README.md</p> <p><code>git log</code><br>
+//真的创建了 。<strong>注意：作者是loca user不是global user！</strong><br>
+commit b43a16a5d2e9e2079558e1211f45cf218dc73cc7 (HEAD -&gt; master)<br>
+Author: tuoyekang <a href="mailto:tuoyekang@126.com">tuoyekang@126.com</a><br>
+Date:   Fri Jun 19 16:14:19 2020 +0800<br>
+add README.md</p> <p><code>$ git config --global user.name</code><br>
+shirongxin</p> <p><code>$ git config --local user.name</code><br>
+tuoyekang</p> <h3 id="_04节，-结论"><a href="#_04节，-结论" class="header-anchor">#</a> 04节， 结论</h3> <ul><li>global 和 local都设置好之后，local优先级更高。</li> <li>git init 之后马上commit是不行的，得先git add。</li></ul> <hr> <h3 id="_05-节-认识工作区和暂存区"><a href="#_05-节-认识工作区和暂存区" class="header-anchor">#</a> 05 节.认识工作区和暂存区</h3> <p><img src="/docs/images/2020-06-19-16-26-02.png" alt="暂存区和工作区的理解">
+工作区：add前
+暂存区：add后 commit前
+版本历史：commit之后</p> <p>/c/markdownRpo/git/git_learning</p> <p><code>git add index.html images</code></p> <p><code>git status</code></p> <p><code>mkdir styles</code></p> <p><code>cp ../f1/styles.css ./styles/styles.css</code></p> <p><code>git add styles/styles.css</code></p> <p><code>git status</code></p> <p><code>git commit -m&quot;add style&quot;</code></p> <p><code>git log</code></p> <p>//增加一点动画<br> <code>cp -f ../f1/js/scrips.js .</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git add js
+git commit -m'add js'
+git log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>//增加参考项目,修改header.html怎加页脚，并编辑css改变页脚风格<br> <code>git status</code><br>
+提示两个文件修改了<br> <code>git add -u</code> //一起add不必写所有文件名<br> <code>git commit -m'Add refering prj'</code> //一起提交<br> <code>git log</code></p> <p><font color="red">#### git好习惯总结:  </font></p> <p><em>为了做某件事情,把改增加或修改的文件,放到git add进来,然后等都修改好了之后,测试功能实现了,再一次性git commit.</em></p> <hr> <h3 id="git-add-a和-git-add-git-add-u在功能上看似很相近，但还是存在一点差别"><a href="#git-add-a和-git-add-git-add-u在功能上看似很相近，但还是存在一点差别" class="header-anchor">#</a> git add -A和 git add .   git add -u在功能上看似很相近，但还是存在一点差别</h3> <p>**git add . **：他会监控工作区的状态树，使用它会把工作时的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件。</p> <p>**git add -u **：他仅监控已经被add的文件（即tracked file），他会将被修改的文件提交到暂存区。add -u 不会提交新文件（untracked file）。（git add --update的缩写）</p> <p>**git add -A **：是上面两个功能的合集（git add --all的缩写）</p> <hr> <h3 id="_06节"><a href="#_06节" class="header-anchor">#</a> 06节.</h3> <h4 id="_1-文件重命名"><a href="#_1-文件重命名" class="header-anchor">#</a> 1,文件重命名</h4> <p><code>mv README.md readme.md</code><br> <code>git status</code><br>
+//显示你把README.md删掉了,同时你又新增了一个readme.md</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git add readme.md
+git rm README.md
+git status
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>//显示renamed : README.md -&gt; readme.md</p> <p><code>git reset --hard</code>  //暂存区所有的变更都被清除掉.
+<code>git status</code>
+并没有破坏git的历史,就是暂存区是干净的</p> <p><strong>其实git mv 命令就可以改名字,一步=两步</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git mv README.md readme.md
+git status
+git commit -m'Move README to readme'
+git log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><hr> <h3 id="_07-git-log-的过滤方法"><a href="#_07-git-log-的过滤方法" class="header-anchor">#</a> 07.git log 的过滤方法</h3> <p><code>git log --oneline</code> //非常简洁地一次commit一行地格式输入历史</p> <p><code>git log -n4 --oneline</code> //只需要最近的4次commit注释</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -v  //查看当前分支  
+
+//创建一个分支基于某版本ID叫temp分支,并切换到该分支
+git checkout -b temp  版本ID(每次commit会产生一个)的前部分即可不用写全  
+
+vi readme.md //稍作修改
+git commit -m&quot;add test&quot;
+git commit -am'add test' //强制创建到历史版本库
+git branch -av //查看分支(的最后一次提交的版本)
+git log //只看当前分支的历史(现在是HEAD-&gt;temp)
+git log all //所有分支的历史(temp,master)
+//查看分支指向了哪个commit
+
+git log --all --graph //图形化地查看分支
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>总结:(这个命令就等于生产力)</strong>
+// 简化版,最近4个commit,所有分支,图形界面看commit历史
+<code>git log --oneline --all -n4 --graph</code></p> <hr> <h3 id="_08-图形界面的方式来看版本历史"><a href="#_08-图形界面的方式来看版本历史" class="header-anchor">#</a> 08. 图形界面的方式来看版本历史</h3> <p><code>gitk</code> //弹出图形化
+<img src="/docs/images/2020-06-19-18-19-34.png" alt=""></p> <blockquote><p>切换成tree之后,显示的是文件目录的所有内容.Patch应该是变化的内容</p> <blockquote><p>作者:A桑,提交人:B桑 .这种情况:B从A的某个提交作为分支,作者保留为A桑.</p></blockquote> <blockquote><p>A提交是有Child的.Child指:以A为基础的一次提交B.B就是A的Child.就像子子孙孙传承串,子永远是新的提交.</p></blockquote> <blockquote><p>Branche:和这次提交产生关联的分支.可能一个也可能多个.</p></blockquote></blockquote> <p>gitk 可以定制查看版本历史的内容
+<img src="/docs/images/2020-06-19-18-26-43.png" alt="view"></p> <ol><li>new view</li> <li>all refs //查看所有branch信息
+<img src="/docs/images/2020-06-19-18-27-54.png" alt=""></li> <li>还可以在上图上右键,有很多功能,例如tag.
+<img src="/docs/images/2020-06-19-18-28-43.png" alt=""></li></ol> <p>以后会打开这个gitk,看看现在变更成什么样子了.</p> <hr> <h3 id="_09-git有最优的存储能力-不用远端-就用本地的管理方法"><a href="#_09-git有最优的存储能力-不用远端-就用本地的管理方法" class="header-anchor">#</a> 09. git有最优的存储能力.不用远端,就用本地的管理方法</h3> <h4 id="_9-1-git-head"><a href="#_9-1-git-head" class="header-anchor">#</a> 9.1 .git/HEAD</h4> <p><code>git init</code> // 生成git的文件夹.
+<code>cd .git</code> // 其中HEAD
+<img src="/docs/images/2020-06-19-18-30-26.png" alt=""> <code>cat HEAD</code> // 查看当前分支
+ref:refs/heads/temp</p> <p>//[lab]切换分支,看看HEAD内容会不会变</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd ..
+git checkout master
+cat ./git/HEAD
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>ref:refs/heads/master</p> <h4 id="_9-2-git-config"><a href="#_9-2-git-config" class="header-anchor">#</a> 9.2 .git/config</h4> <p><code>cat .git/config</code><br>
+//输出<strong>local</strong> config</p> <p><code>修改config文件,把名字改为shirongxin</code></p> <p><code>git config --local --list</code> <code>git config --local user.name</code>
+输出shirongxin</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git config --local user.name 'tuoyekang'
+cat .git/config
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>输出tuoyekang</p> <p><strong>结论:.git/config就是记录local config的地方,命令改的就是这,所以可以直接该文件.git/config来修改local user.name local user.email</strong></p> <h4 id="_9-3-git-refs"><a href="#_9-3-git-refs" class="header-anchor">#</a> 9.3 .git/refs</h4> <p>进入看看里面的文件内容.</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd refs //显示heads,tags两个目录
+cd heads 
+ls -al //显示master,temp两个文件
+cat master // 是一个长字符串(commit的hash值)
+git cat-file -t 把上个命令的长字符串的前一部分贴到这 // 看文件类型.结果是:commit
+git branch -av // 查看所有分支
+//master 指向了上面那个长字符串(截取前面一部分7个字符)
+cat temp // 同上,一个长字符B,是temp分支的commit文件.
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p><strong>结论:.git/refs下面就是所有分支的指针指向的commit.还有tags指向的commit</strong></p> <h4 id="_9-4-git-objects"><a href="#_9-4-git-objects" class="header-anchor">#</a> 9.4 .git/objects</h4> <p>进入后,有两个字符的目录 , info , pack</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd e8
+ls -al //显示一串,例如abc...z(40位)
+git cat-file -t e8abc...z //把e8 放在长串前面. 结果:tree
+git cat-file -p e8abc...z //看这tree的文件内容. 结果:文件的size,blog,文件的hash值,文件名
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>结论:三种文件类型 commit,tree ,blob,</strong></p> <hr> <h3 id="_10-三种对象类型的关系-commit-blob-tree"><a href="#_10-三种对象类型的关系-commit-blob-tree" class="header-anchor">#</a> 10. 三种对象类型的关系:commit\blob\tree</h3> <h4 id="_10-1-好的文件存储机制-保证小巧-不会越来越大-性能的关键"><a href="#_10-1-好的文件存储机制-保证小巧-不会越来越大-性能的关键" class="header-anchor">#</a> 10.1 好的文件存储机制,保证小巧(不会越来越大),性能的关键!</h4> <p>先看看图,一会再执行具体命令.
+<img src="/docs/images/2020-06-19-19-10-44.png" alt=""></p> <ul><li>tree就是文件夹 ,例如images ,例如styles</li> <li>blog就是具体某个文件,例如index.html , readme.md
+<font color="red" size="3"><em>只要文件内容相同,git就认为是一份blob,大大节约存储空间</em></font></li> <li>commit就是一次提交</li></ul> <h4 id="_10-2-看各类型文件内容学习三种文件关系"><a href="#_10-2-看各类型文件内容学习三种文件关系" class="header-anchor">#</a> 10.2 看各类型文件内容学习三种文件关系</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -v
+// show current branch
+git log
+// show commit hash
+git cat-file -p [commit's hash]
+// tree hash
+git cat-file -p [tree's hash]
+// show blob hash
+git cat-file -p [blob's hash]
+// show file content
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><hr> <h3 id="_11-数数tree的个数"><a href="#_11-数数tree的个数" class="header-anchor">#</a> 11.数数Tree的个数</h3> <p><img src="/docs/images/2020-06-19-19-19-35.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git init watch_git_objects
+cd watch_git_objects
+mkdir doc
+cd doc
+echo &quot;hello world&quot; &gt; readme
+git status
+
+find .git/objects -type f
+//没有新东西
+
+//1,add
+git add doc
+find .git/objects -type f
+//有新东西 hashcode
+
+git cat-file -t hashcode
+git cat-file -p hashcode
+
+//2,commit
+git commit -m'add readme'
+find .git/objects -type f
+//竟然生成4个文件,依次看看文件类型和内容
+git cat-file -t hashcode
+git cat-file -p hashcode
+//前两个分别是doc目录和readme文件. 
+//第三个文件也是tree,也是doc文件夹.
+//最后一个文件是commit
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p><strong>结论:两个tree(watch_git_objects目录,doc目录),一个blog,一个commit</strong></p> <hr> <h3 id="_12-分离头指针"><a href="#_12-分离头指针" class="header-anchor">#</a> 12.分离头指针</h3> <p>很有用</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git log
+git checkout commitHash // in detached HEAD 
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>你可以继续开发,没有对应任何分支.
+<strong>假设每天你接到fix任务需要切换到某个branche,那么这个分离头指针的所有变更都将被清除</strong></p> <h4 id="_12-1-问-什么时候用分离头指针呢"><a href="#_12-1-问-什么时候用分离头指针呢" class="header-anchor">#</a> 12.1 问:什么时候用分离头指针呢?</h4> <p>答:原本就是不想提交的尝试性修改.</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>ls -al
+vi ./style/style.css //修改一下颜色
+git status //又提示我们HEAD detached at 红字
+git commit -am'不用add直接commit' // 没经过add,直接能commit
+git log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>HEAD的位置一般显示master或分支名.这里直接显示HEAD(而不是任何分支名),这就是分离头指针
+<img src="/docs/images/2020-06-19-19-47-00.png" alt="分离头指针"></p> <p>假设,有人让我fixbug,我得切换到别的分支</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av
+git checkout master
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><font color="red" size="3">有个重要提示:you are leaving 1commit behind,
+not connect to any of your branches.If you want to keyy it by
+creating a new branch ,<strong>git branch new-branch-name hash</strong></font>看到这个马上qu去创建一个branch保存这次修改，然后再去切换到别的分支。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch new-branch-name hash //本该做这个，如果不做，下面的操作会让这些commit消失
+git checkout master
+gitk -all //查看不到在分离头指针上的任何修改！！！切记！！
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><hr> <h3 id="_13-进一步理解head和branch"><a href="#_13-进一步理解head和branch" class="header-anchor">#</a> 13. 进一步理解HEAD和branch</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av
+git log  //HEAD 不仅可以指向具体分支，还可以指向具体commit（ 指向具体非branch的时候，就处于分离头指针的状态了!!）
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><img src="/docs/images/2020-06-19-20-04-00.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git checkout -b fix_readme hash(可以commit或分支的hash)//创建分支（新建分支）并切换、
+git log
+gitk --all
+cat ./git/HEAD // 指向fix_readme分支
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><img src="/docs/images/2020-06-19-20-03-11.png" alt=""></p> <p><strong>总结：</strong></p> <ul><li>HEAD可以某个commit或分支或tag。</li> <li>HEAD指向非分支的commit的时候，是分离头指针状态</li> <li>当切换分支的时候HEAD也就指向了该分支</li> <li>分支是什么？分支最后也落脚到某个具体的commit。</li></ul> <blockquote><p>cat ./git/refs/heads/fix_readme //得到hash
+git cat-file -t 该hash //得到commit类型</p></blockquote> <p><code>git diff 具体两个commit //查看两个commit不同</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>//三条命令效果一样，比较HEAD与HEAD的父亲
+git diff HEAD HEAD~1
+git diff HEAD HEAD^1
+git diff HEAD HEAD^
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>//比较HEAD和HEAD的爷爷
+git diff HEAD HEAD^^
+git diff HEAD HEAD~2
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_14节-一不小心搞错了之后，怎么清除分支？"><a href="#_14节-一不小心搞错了之后，怎么清除分支？" class="header-anchor">#</a> 14节. 一不小心搞错了之后，怎么清除分支？</h3> <p><code>git branch -av</code>
+创建了没什么意义的分支，怎么删除？
+先看看分支的树结构,想删除<strong>fix_readme,9c68</strong> <code>gitk --all</code> <img src="/docs/images/2020-06-19-20-39-35.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -d 9c68xxx // 分支名。
+//删不掉用 -D
+git branch -D 9c68xxx
+
+gitk --all // 9c68xxx不见了
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><img src="/docs/images/2020-06-19-20-41-51.png" alt=""></p> <p>接着删除fix_readme分支</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -D fix_readme
+git branch -av //就剩下两个
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>总结：</strong>
+&amp;ensp 删分支：git branch -D 9c68xxx（分支hash）</p> <h3 id="_15节-注释写错了，怎么修改已经commit了的message内容。而且是最近一次commit的message"><a href="#_15节-注释写错了，怎么修改已经commit了的message内容。而且是最近一次commit的message" class="header-anchor">#</a> 15节. 注释写错了，怎么修改已经commit了的message内容。而且是最近一次commit的message</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git log -1
+git commit --amend //进入修正界面，像vi一样修改
+git log -1 //比对一下message。真的变了
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>注意：是最近一次commit的提交才行</p> <h3 id="_16节-以前提交的注释写错了怎么办？"><a href="#_16节-以前提交的注释写错了怎么办？" class="header-anchor">#</a> 16节 以前提交的注释写错了怎么办？</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git log -3
+/**
+message是commit对象的属性。但是改的不是commit本身而是指定了他的父亲。
+进去之后是交互式（vi）修改
+**/
+git rebase -i commit的父亲的Hash  
+// 1，显示 pick xxx
+// 修改处理策略 pick 修改成reword或r 。然后：x -》又弹出另外一个交互
+// 2，编辑message，退出来
+
+git log -3 //确认一下是否修改
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><strong>总结：变基git rebase commit的父亲hash  //修改以前的注释</strong></p> <p><strong><font size="4" color="red">注意：目前为止都没有分享给别人，都是自己本地操作！！！！都是自己本地操作！！！！</font></strong></p> <hr> <h3 id="_17节-把过去的几个-连续的-commit压缩成一个commit，都还没有push哈！！！push过的就别动了！！"><a href="#_17节-把过去的几个-连续的-commit压缩成一个commit，都还没有push哈！！！push过的就别动了！！" class="header-anchor">#</a> 17节 把过去的几个(连续的)commit压缩成一个commit，都还没有push哈！！！push过的就别动了！！</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av
+git log 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>从倒数第二个commit到正数第二个commit合并成一个commit。
+都还没有push，所以可以整理一下
+<img src="/docs/images/2020-06-22-09-15-25.png" alt=""></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> rebase -i
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-09-15-51.png" alt=""> <strong>修改</strong>：第一个pick，剩下的squash，最后第一个pick 。 保存
+<img src="/docs/images/2020-06-22-09-17-48.png" alt=""> <img src="/docs/images/2020-06-22-09-18-14.png" alt="">
+这样就改完了，再看看</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> log --graph
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>合并后的commit是一个新的commit。它的子节点也变了。但是内容没变。
+<img src="/docs/images/2020-06-22-09-18-56.png" alt=""></p> <hr> <h3 id="_18节-历史中几个commit是不连续的，也要拼合在一起。本地哈。还没push"><a href="#_18节-历史中几个commit是不连续的，也要拼合在一起。本地哈。还没push" class="header-anchor">#</a> 18节  历史中几个commit是不连续的，也要拼合在一起。本地哈。还没push</h3> <p><img src="/docs/images/2020-06-22-09-21-06.png" alt="把第一个和第三个commit合并"></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> rebase -i f09122cf
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-09-27-56.png" alt="">
+增加一行：pick f019122c
+修改： s 5cc5aa3 （意思是和第一行f019122c合并）
+不动：pick 34e735
+删除；pick 5cc5aa3 (多余，因为上面已经把它的内容合并到f019122c里了)</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> log --graph
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-09-31-15.png" alt=""></p> <p>这样版本上就干干净净的了，因为coomit ID变了，所以就有了两个树！！
+<img src="/docs/images/2020-06-22-09-33-15.png" alt="">
+上面的是需要保留的。下面的就没有用了。
+<img src="/docs/images/2020-06-22-09-33-47.png" alt=""></p> <hr> <h3 id="_19节-实际commit之前的好习惯-检查-。暂存区-add之后的-和head比较-diff"><a href="#_19节-实际commit之前的好习惯-检查-。暂存区-add之后的-和head比较-diff" class="header-anchor">#</a> 19节 实际commit之前的好习惯-  检查 。暂存区(add之后的)和HEAD比较 diff</h3> <p>先做一个文件内容变更</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> <span class="token function">add</span> index.html
+<span class="token function">git</span> status
+<span class="token function">git</span> <span class="token function">diff</span> --cached // cache表示暂存区和HEAD的比较，文件名不用写！！
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>再变一下</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git add index.html
+git diff --cached // 暂存区 vs HEAD
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>再commit一下</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git commit -m'add the first git command with config'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_20节-工作区和暂存区的比较"><a href="#_20节-工作区和暂存区的比较" class="header-anchor">#</a> 20节 工作区和暂存区的比较</h3> <p>先修改一下index.html还没有add到暂存区
+工作区（没add之前=真正的本地）,和暂存区差异</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git diff // 工作区 vs 暂存区
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>再修改一下readme.md</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git diff  // 工作区 vs 暂存区
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>查看具体文件(可多个)的差别</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git diff -- readme.md index.html // 工作区 vs 暂存区
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_21节-往暂存区里add的变更觉得没有意义或有更好的方法了。-暂存区不打算commit，想清除暂存区-暂存区与head一致-》reset"><a href="#_21节-往暂存区里add的变更觉得没有意义或有更好的方法了。-暂存区不打算commit，想清除暂存区-暂存区与head一致-》reset" class="header-anchor">#</a> 21节 往暂存区里add的变更觉得没有意义或有更好的方法了。 暂存区不打算commit，想清除暂存区(暂存区与HEAD一致) --》reset</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git status
+git reset HEAD //恢复暂存区与head一致
+git status
+git diff --cached 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_22节-变更进暂存区，工作区继续变。后来一看工作区的不及暂存区好。想把该文件的工作区的修改返回成暂存区的内容。变更工作区！！！！-》checkout"><a href="#_22节-变更进暂存区，工作区继续变。后来一看工作区的不及暂存区好。想把该文件的工作区的修改返回成暂存区的内容。变更工作区！！！！-》checkout" class="header-anchor">#</a> 22节 变更进暂存区，工作区继续变。后来一看工作区的不及暂存区好。想把该文件的工作区的修改返回成暂存区的内容。变更工作区！！！！-》checkout</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git checkout  -- index.html // 暂存区-&gt;工作区
+git diff   // 工作区 vs 暂存区
+cat index.html //已经恢复成暂存区了。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_23节-暂存区只有部分文件想恢复成head一样。"><a href="#_23节-暂存区只有部分文件想恢复成head一样。" class="header-anchor">#</a> 23节 暂存区只有部分文件想恢复成HEAD一样。</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git reset HEAD --style/style.css //恢复暂存区成HEAD
+git diff --cached // 暂存区 vs HEAD
+git status 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>//把另外两个文件也变成和HEAD一样。从暂存区中撤销出来，就没有commit的必要了</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git reset HEAD -- index.html readme.md // 暂存区两个文件恢复成HEAD
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_24节-想让某些commit从git仓库消失。（只能是最后的连续几次commit吧）-》reset-hard"><a href="#_24节-想让某些commit从git仓库消失。（只能是最后的连续几次commit吧）-》reset-hard" class="header-anchor">#</a> 24节 想让某些commit从git仓库消失。（只能是最后的连续几次commit吧）-》reset --hard</h3> <p>例如temp分支，最后的remove all
+倒数第二个“Rename git-log to git-log2”这两个commit我不想要了。
+<img src="/docs/images/2020-06-22-10-08-12.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>当前分支确实在temp下。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git log
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>想保留到该commit，这个commit之后的变更都丢弃
+<img src="/docs/images/2020-06-22-10-10-05.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git reset --hard 5bf3fd1900 // commit的内容抛弃后面几个commit
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-10-10-52.png" alt=""></p> <h3 id="_25节-两个分支的不同-temp-vs-master-（仍旧在-git本地）"><a href="#_25节-两个分支的不同-temp-vs-master-（仍旧在-git本地）" class="header-anchor">#</a> 25节 两个分支的不同 temp vs master （仍旧在.git本地）</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code> git diff temp master // temp分支 vs master支
+ git diff temp master index.html // 某个具体文件在两个分支的差异 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>还可以用某个具体的commit来比较。temp上的commit与master的commit的hash不同</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av //显示所有branche的当前commithash
+git diff tempCommitHash masterCommitHash // 比较两个分支的两个commitHash
+git diff tempHash masterHash index.html // 与上面的git diff temp master index.html 结果一样。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_26节-删除commit的文件"><a href="#_26节-删除commit的文件" class="header-anchor">#</a> 26节 删除commit的文件</h3> <p>例如readme.md不想要了。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>rm readme.md
+git rm readme.md // 删除暂存区的readme.md文件
+git status
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>git reset --hard HEAD //恢复暂存区成HEAD
+git status
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>git rm readme.md // 工作区和暂存区和commit区都删除了。工作目录就不需要珊瑚了。
+git status 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_27节-保存工作上下文-git-stash。正在修改（一部分工作区在改，一部分add，一部分commit），接到新的任务。要修改的也是同一个文件。怎么办？"><a href="#_27节-保存工作上下文-git-stash。正在修改（一部分工作区在改，一部分add，一部分commit），接到新的任务。要修改的也是同一个文件。怎么办？" class="header-anchor">#</a> 27节 保存工作上下文-git stash。正在修改（一部分工作区在改，一部分add，一部分commit），接到新的任务。要修改的也是同一个文件。怎么办？</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>git stash // 先保存某个地方
+git stash list // 保存堆栈的信息
+git status // 工作区是干净的。
+//紧急修复bug，commit之后，恢复之前的工作
+git stash apply //这就恢复了之前的状况
+git status
+git stash list //还是那么多
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>把工作上下文调用出来。pop有所不同</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git reset --hard HEAD //让工作区干净
+git stash pop // stash删掉一个，工作区恢复成原样
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_28节-gitignore不纳入到git管理版本。"><a href="#_28节-gitignore不纳入到git管理版本。" class="header-anchor">#</a> 28节 .gitignore不纳入到git管理版本。</h3> <p>学会写.gitignore文件（到github上查看现成的.gitignore文件）,
+<strong>必须叫这个文件名</strong>
+写法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>*.log
+*.class
+*.war
+*.DSYM/  这个目录的所有文件都不放进来版本管理
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li><p>doc目录需要git管理，而doc下面文件不需要
+//来具体操作一下
+.gitignore
+<code>doc/</code>指的是doc/下的所有文件不纳入git。但是doc目录本身是纳入git管理的。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>mkdir doc
+git status
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>可以看到doc仍提示需要add！</p></li> <li><p>如果doc也不需要git管理
+.gitignore
+<code>doc</code>
+这样doc和doc下的文件都不需要git管理了</p></li></ul> <p>查看github上的各个语言的.gitignore</p> <h3 id="_29节-git本地备份"><a href="#_29节-git本地备份" class="header-anchor">#</a> 29节 git本地备份</h3> <p>哑协议 慢，不可见进度条，所以，推荐只能协议。
+http需要用户名密码
+ssh需要公钥私钥
+<img src="/docs/images/2020-06-22-11-17-18.png" alt=""></p> <p>还可以多点备份（fetch）
+<img src="/docs/images/2020-06-22-11-19-06.png" alt=""></p> <p>//备份的先
+<img src="/docs/images/2020-06-22-11-50-51.png" alt=""></p> <p>//备份的元
+<img src="/docs/images/2020-06-22-11-52-26.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>//--bare不带工作区 ，进入到备份先
+cd /User/suling/666-backup
+//哑协议clone 把备份元的.git 拷贝到备份先目录ya.git
+git clone --bare /User/suling/101-GitRunner/git_learning/.git ya.git
+//智能协议clone 
+git clone --bare file:///User/suling/101-GitRunner/git_learning/.git zhineng.git  //这就备份完了
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>在备份元上因为是我们的主要工作空间，大部分时间都在备份元上工作。所以备份袁尚会有新的分支，新的文件。备份元就叫本地。这时我们需要把本地的变更同步到远端去（同步到备份先去）
+现在演示：本地（101-GitRunner/git_learning）push到远端备份先（666-backup）</p> <p>1，本地增加一个备份先信息</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /User/suling/101-GitRunner/git_learning //工作在本地仓库
+git remote -v
+git remote add zhineng file:////User/suling/666-backup/zhineng.git //新建一个远端仓库信息，名字叫智能，地址是后面的智能协议地址,以后本地就往这里同步备份
+git branch -av
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>2，显示远端的分支：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /User/suling/666-backup/zhineng.git  //远端备份先
+git branch -av
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>3，本地新增一个分支，并push到备份先</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /User/suling/101-GitRunner/git_learning //工作在本地仓库
+git checkout suling //增加一个分支
+git push --set-upstream zhineng suling //分支push到远端
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>4，查看远端备份先应该也有新的分支了</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /User/suling/666-backup/zhineng.git  //远端备份先
+git branch -av
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><hr> <h2 id="二，-到远端开始工作。本地-远端-团队操作"><a href="#二，-到远端开始工作。本地-远端-团队操作" class="header-anchor">#</a> 二， 到远端开始工作。本地+远端+团队操作</h2> <h3 id="_30节-github账户创建"><a href="#_30节-github账户创建" class="header-anchor">#</a> 30节 Github账户创建</h3> <p>developer 每月7$有无限的私有库。
+free 私有库有限制</p> <h3 id="_31节-配置公钥私钥"><a href="#_31节-配置公钥私钥" class="header-anchor">#</a> 31节 配置公钥私钥</h3> <p>有了之后，本地git库才能往github上push
+gothub help，搜索ssh，找到“Connecting to Github with ssh”
+这就是代表你个人的身份。可以配置到多个git服务器。</p> <p>https://help.github.com/en/github/authenticating-to-github</p> <p>https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd ~/.ssh/
+ssh-kegen -t rsa -b 4096  -C &quot;shirx@ccbjb.com.cn&quot;
+一路回车
+cd ~/.ssh/
+ls -al
+cat id_rsa.pub //这是要放到web上的。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>进入GIthub-&gt;setting-&gt;ssh and GPG keys -&gt; add new SSH key.
+把id_rsa.pub内容拷贝进来。</p> <p>这样，push就不需要用户名密码了。</p> <p>我的github用户，shirx@ccbjb.com.cn已经把公钥放上去了。</p> <h3 id="_32节-创建github库-（※）"><a href="#_32节-创建github库-（※）" class="header-anchor">#</a> 32节 创建Github库  （※）</h3> <p>owner：可以个人，可以组织
+私有仓库，owner授权你才能看见
+共有仓库，谁都能看见，commit需要授权
+readme对github高效搜索的时候非常有用。因为需要到readme搜索关键字</p> <p>MIT License：愿意分享出来</p> <blockquote><p>创建github仓库
+【Q】本地仓库的文件和github仓库的文件不一样，怎么处理？</p> <blockquote></blockquote></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /User/suling/666-backup/zhineng.git //本地备份仓库
+git remote -v
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>github上git201901/git_learning库-&gt;clone ssh拷贝ssh的url</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>666-backup
+//【Q】这个命令在哪执行有区别吗？
+git remote add github git@github.com:git201901/git_learning.git // 用github代替这串ssh地址，在本地新增一个远端站点
+git remote-v //能看到github的远端地址了。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>git push github --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><em><strong>发现suling分支push成功，temp分支push成功。但是master分支拒绝了。提示因为master分支github有你本地没有的内容。应该先fetch</strong></em> <img src="/docs/images/2020-06-22-13-33-40.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>gitk --all //看看本地分支的样子
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-13-35-59.png" alt="">
+将github的拉到本地</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// git pull = git fetch + 本地分支和远端分支merge
+git fetch github master //把github的master分支拉下来
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>三克独立的树。最上面的remote/github/master里的内容是“License文件”
+“没有基于github远端做变更，所以不让push”-既non-fastforward。
+<img src="/docs/images/2020-06-22-13-38-17.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -va 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="/docs/images/2020-06-22-13-41-05.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git checkout master
+//把当前分支(master分支)与github/master做合并
+git merge github/master  //报错：refusing to merge unrelated histories
+git merge -h //找找帮助
+git merge --allow-unrelated-histories github/merge //弹出
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>新生成的节点有两个父亲。而rebase有一个父亲。
+<img src="/docs/images/2020-06-22-13-52-15.png" alt=""></p> <blockquote><p>{Q}本地master和github/master的关系是不是fast forward。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>//本地push可以了
+git push github master // 
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>push带来的影响。g
+<img src="/docs/images/2020-06-22-13-56-20.png" alt=""></p> <p>github上也不是1个commit了，而是5个commit了。</p> <h3 id="_33节-不同人修改了不同文件，怎么处理？"><a href="#_33节-不同人修改了不同文件，怎么处理？" class="header-anchor">#</a> 33节 不同人修改了不同文件，怎么处理？</h3> <p>模拟两个人，同一个分支当中，两个人修改了不同的文件。
+github上master基出上创建分支feature/add_git_command
+一个人修改一个readme
+另一个人</p> <p>suling@163.com 管理者</p> <h4 id="step1，a桑-修改reamde"><a href="#step1，a桑-修改reamde" class="header-anchor">#</a> STEP1，A桑 修改reamde</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd  新目录 
+git clone  git@github.com:git201901/git_learning.git git_learning_02
+cd git_learning_02
+// 模拟成另一个人的工作环境
+git config --add --local user.name 'git2019' //这仅仅对本库有用
+git config --local --list //针对本仓库，用户名是否已经调整
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>总结：git config --add --local user.name 'xxx'仅仅对本库有用。对其它库（其它.git目录没有影响），对git config --global也没有任何影响</strong>
+然后再变变这个库的邮件地址</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> config --local --add user.email <span class="token string">'git@163.com'</span>
+或者直接修改.git/config文件里的user ！！！ 也可以！！！
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>两个人都checkout出github上的分支</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> git_learning_02
+<span class="token function">git</span> checkout -b feature/add_git_commands origin/feature/add_git_commands
+<span class="token function">git</span> branch -av 
+// 修改 readme <span class="token function">vi</span> readme
+<span class="token function">add</span> readme
+<span class="token function">git</span> commit -m&quot;edit readme ' //本地变更完
+// 分享到github变更
+<span class="token function">git</span> push //缺省的remote就是feature/add_git_command .创建分支时指定了远端分支，git就记住了
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>到github上刷新一下，已经readme已经改了。</p> <h4 id="step2，b桑-修改index-html"><a href="#step2，b桑-修改index-html" class="header-anchor">#</a> STEP2，B桑 修改index.html</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> git_running //进入另外一个库
+<span class="token function">git</span> config --local -l
+<span class="token function">git</span> fetch github //把github上所有分支下载下来
+<span class="token function">git</span> branch -v //本地分支
+<span class="token function">git</span> branch -av //远端分支
+<span class="token function">git</span> checkout -b feature/add_git_commands github/feature/add_git_commands //创建本地分支
+<span class="token function">vi</span> index.html
+<span class="token function">git</span> <span class="token function">add</span> -u 
+<span class="token function">git</span> commit -m <span class="token string">'Add git command in index.html'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="step3-a桑，-修改readme"><a href="#step3-a桑，-修改readme" class="header-anchor">#</a> STEP3 , A桑， 修改readme</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> readme
+<span class="token function">git</span> commit -am<span class="token string">''</span>
+<span class="token function">git</span> push
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="step4-b桑-，push-失败"><a href="#step4-b桑-，push-失败" class="header-anchor">#</a> STEP4 , B桑 ，push 失败</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> push //远端和本地“不是fastfoward”（远端更加新）.必须解决。
+<span class="token function">git</span> fetch github
+<span class="token function">git</span> branch -av 
+//<span class="token punctuation">[</span>ahead <span class="token number">1</span>,behind <span class="token number">1</span><span class="token punctuation">]</span> 本地有个文件比远端新。本地还有一个文件比远端旧。
+<span class="token function">git</span> github/feature/add_git_commands //缺点：不线性。git很容易完成，因为没有相同的文件被多人修改。
+<span class="token function">cat</span> readme //A桑的修改，已经反映进来了。
+<span class="token function">git</span> push github  //很顺利。因为是fastforward了。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="_34节，两个人修改相同分支相同文件，！！！不同区域！！，git还有办法！！"><a href="#_34节，两个人修改相同分支相同文件，！！！不同区域！！，git还有办法！！" class="header-anchor">#</a> 34节，两个人修改相同分支相同文件，！！！不同区域！！，git还有办法！！</h3> <h4 id="step1-a桑（git2019）"><a href="#step1-a桑（git2019）" class="header-anchor">#</a> STEP1 , A桑（git2019）</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> branche -av
+<span class="token punctuation">[</span>behid <span class="token number">2</span><span class="token punctuation">]</span> //本地有两个文件比远端旧
+<span class="token function">git</span> pull //用远端更新本地
+<span class="token function">git</span> branch -av 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="step2-b桑（suling）"><a href="#step2-b桑（suling）" class="header-anchor">#</a> STEP2, B桑（suling）</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> readme
+<span class="token function">git</span> commit 
+<span class="token function">git</span> push
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="step3-a桑也修改readme"><a href="#step3-a桑也修改readme" class="header-anchor">#</a> STEP3,A桑也修改readme</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> reame
+<span class="token function">git</span> commit
+<span class="token function">git</span> push // 会失败。因为B桑已经提交了，而A没有在B的基础上修改。有冲突Not Fastforward
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>解决：pull 或  先fetch在merge
+采用第二种方法</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git fetch 
+git merge origin/feature/add_git_commands
+la -al
+cat index.html // B桑的修改已经反映进来了。
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><img src="/docs/images/2020-06-22-14-49-24.png" alt=""></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> branch -av //<span class="token punctuation">[</span>ahead <span class="token number">2</span><span class="token punctuation">]</span>,没有behind只有ahead，提交肯定没问题
+<span class="token function">git</span> push
+<span class="token function">git</span> branch -av //没有ahead或behind
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>Github上看看，已经提交上去了。</p> <h3 id="_35节-两个人修改同一文件的相同区域，这就比较麻烦了。冲突"><a href="#_35节-两个人修改同一文件的相同区域，这就比较麻烦了。冲突" class="header-anchor">#</a> 35节 两个人修改同一文件的相同区域，这就比较麻烦了。冲突</h3> <h4 id="step1-a桑，b桑-都pull成远端一样的。"><a href="#step1-a桑，b桑-都pull成远端一样的。" class="header-anchor">#</a> STEP1 A桑，B桑 都pull成远端一样的。</h4> <h4 id="step2-a桑，"><a href="#step2-a桑，" class="header-anchor">#</a> STEP2 A桑，</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> index.html
+<span class="token function">git</span> commit -m<span class="token string">'add by A桑'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="step3-b桑"><a href="#step3-b桑" class="header-anchor">#</a> STEP3 B桑</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> index.html
+<span class="token function">git</span> commit -m<span class="token string">'add by B桑'</span>
+<span class="token function">git</span> push
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="step4-a桑"><a href="#step4-a桑" class="header-anchor">#</a> STEP4 A桑</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> push // 失败. 
+<span class="token function">git</span> merge github/feature/add_git_commands //already up to <span class="token function">date</span>
+<span class="token function">git</span> pull // 跟本地分支做merge。Merge confilict <span class="token keyword">in</span> index.html
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>有命令行的，和图形话的解决方案</p> <p>1，命令行方式人工解决本地冲突
+git不能帮助解决了，需要人工，编辑index.html文本.留下人工合并好的内容。保存。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> status // 还有Unmerged path
+<span class="token function">git</span> commit -am<span class="token string">'Resolved conflict by hand with 4 git commands'</span>
+<span class="token function">git</span> status
+gitk --all 
+<span class="token function">git</span> push //本地解决了冲突之后放到远端
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>总结：解决同一文件冲突</strong></p> <h3 id="_36节-a桑文件名变更，b桑在原文件名变更。b怎么提交？"><a href="#_36节-a桑文件名变更，b桑在原文件名变更。b怎么提交？" class="header-anchor">#</a> 36节 A桑文件名变更，B桑在原文件名变更。B怎么提交？</h3> <p>先两个环境.git都git pull更新最新的内容到本地</p> <h4 id="sete1-a桑"><a href="#sete1-a桑" class="header-anchor">#</a> SETE1 A桑</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>git mv index.html index.htm
+git commit -am'mv index.html to index.htm'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="step2-b桑修改index-html"><a href="#step2-b桑修改index-html" class="header-anchor">#</a> STEP2 B桑修改index.html</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>vi index.html
+git commit -am'modify index.html'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="step3-a桑push"><a href="#step3-a桑push" class="header-anchor">#</a> STEP3, A桑push</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> push
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="step4-b桑push"><a href="#step4-b桑push" class="header-anchor">#</a> STEP4, B桑push</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">git</span> push // 失败
+//git能够感受到文件名的变更，直接pull，B桑对index.html的修改就会反映到index.htm中。
+<span class="token function">git</span> pull //ok
+<span class="token function">ls</span> -al //只有index.htm了！！！ 太智能了
+<span class="token function">cat</span> index.htm // B桑的修改也保留了 ！！，太智能了
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>总结：pull就可以了</strong></p> <h3 id="_37节，多人修改同一个文件的文件名。a桑push，b怎么push"><a href="#_37节，多人修改同一个文件的文件名。a桑push，b怎么push" class="header-anchor">#</a> 37节，多人修改同一个文件的文件名。A桑push，B怎么push</h3> <h4 id="a桑-改index-htm-index1-html"><a href="#a桑-改index-htm-index1-html" class="header-anchor">#</a> A桑 改index.htm index1.html</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>git mv 
+git commit
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="b桑，改index-htm-index2-html"><a href="#b桑，改index-htm-index2-html" class="header-anchor">#</a> B桑，改index.htm -&gt;index2.html</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>git mv 
+git commit
+git push github //ok
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="a桑，push"><a href="#a桑，push" class="header-anchor">#</a> A桑，push</h4> <p><code>git push</code> // NG
+解决：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git pull // 报冲突了
+ls -al //出现了index1.html , index2.html
+git status //both deleted , add by us:index1.html , add by them :index2.html // 这就得认为协商了，到底删掉哪个，决定好了之后，叫index1.html
+git rm index.html
+git add index1.html
+git status
+git rm index2.html
+git status // ALL conflict fixed out .
+ls -all
+git commit -m'Decide to mv index to index1'
+git status
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><img src="/docs/images/2020-06-22-15-17-11.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git branch -av
+git push 
+gitk --all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_39节-禁止向集成分支执行push-f-操作"><a href="#_39节-禁止向集成分支执行push-f-操作" class="header-anchor">#</a> 39节 禁止向集成分支执行push -f 操作</h3> <p><strong>git push -f 的危害</strong>
+会让别人的变更commit统统消失！！！</p> <p>git reset --hard hashcode
+git push -f origin feature/add_git_commands //强制更新</p> <p>github上已经提交的都消失了。</p> <p><strong>有没有什么机制，让gitlab或github不允许push -f ？</strong>
+有</p> <h3 id="_40节-禁止向集成分支做rebase"><a href="#_40节-禁止向集成分支做rebase" class="header-anchor">#</a> 40节 禁止向集成分支做rebase</h3> <p><strong>注意：公共的分支不是能做rebase做变基的</strong></p> <p><img src="/docs/images/2020-06-22-15-54-14.png" alt=""> <font color="red">test_rebase_inter分支是基于temp的，原本没做rebase的话，temp之后的两次commit能够顺利提交。但是现在rebase之后test_rebase_inter分支已经离开了temp分支了。这就not fastforward了。最上的黄点就push不了了。所以不能团队合作时rebase分支(仅仅改commit message也不行)。只能不断向前。</font> <img src="/docs/images/2020-06-22-15-57-16.png" alt=""></p> <h3 id="_41节-github为什么这么火-2008-2020年-，3千万用户，1亿库"><a href="#_41节-github为什么这么火-2008-2020年-，3千万用户，1亿库" class="header-anchor">#</a> 41节 Github为什么这么火 2008~2020年 ，3千万用户，1亿库</h3> <p><strong>它的价值：</strong></p> <ul><li>程序员的协作，更好的版本控制系统</li> <li>SVN需要等待授权fork分支花费时间非常长</li> <li>帮助开发人员寻找开源项目</li> <li>不断解决软件开发人员的痛点：代码集成、集成环境、部署</li></ul> <h3 id="_42节-github有哪些核心功能？"><a href="#_42节-github有哪些核心功能？" class="header-anchor">#</a> 42节 Github有哪些核心功能？</h3> <p>Features</p> <ul><li>Code review //无缝的，在评论处就可以审评</li> <li>project manager //产品-&gt;开发-&gt;测试-&gt;运维 ，有看板，进度，issure（需求，bug），对isuue打标签。简洁yi'yong</li> <li>Integration</li> <li>team manager</li> <li>social coding</li> <li>Document</li> <li>Code hosting //放代码</li></ul> <h3 id="_43节-怎么搜索github上的项目"><a href="#_43节-怎么搜索github上的项目" class="header-anchor">#</a> 43节 怎么搜索Github上的项目</h3> <h4 id="_1，-根据库的信息搜索"><a href="#_1，-根据库的信息搜索" class="header-anchor">#</a> 1， 根据库的信息搜索</h4> <p>可以看github的<a href="https://help.github.com/en/github/searching-for-information-on-github" target="_blank" rel="noopener noreferrer">help<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <ul><li>created:&lt;2018-12-24</li> <li><a href="https://github.com/search/advanced?q=created%3A%3C2018-12-09&amp;type=Repositories" target="_blank" rel="noopener noreferrer">高级搜索<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 可以更直观。</li> <li>星数越多越好</li> <li>搜索栏查的是：搜索→repository的名称和描述。</li> <li>搜索栏[xxx in:readme] : 搜索→readme
+<ul><li>git 最好 学习 资料 in:readme</li></ul></li> <li>搜索栏[ starts:&gt;1000]</li> <li>language:javascript</li> <li>forks:&gt;1000</li> <li>blog easily start in:readme starts:&gt;5000</li></ul> <h4 id="_2，根据code搜索"><a href="#_2，根据code搜索" class="header-anchor">#</a> 2，根据Code搜索</h4> <ul><li>根据代码内容来搜索
+<ul><li>'fater_script:'+'stage:deploy' filename:gitlab-ci
+但是这样只能搜索出代码</li> <li></li></ul></li></ul> <p><strong>总结：</strong>
+目前库和代码的搜索无法结合。</p> <h3 id="_44节-github上建blog"><a href="#_44节-github上建blog" class="header-anchor">#</a> 44节 Github上建blog</h3> <ol><li>blog easily start in:readme stars:&gt;5000</li> <li>jekyll-now</li> <li>fork</li> <li>修改config.yml</li> <li>增加md code→_post→2020-06-20-xxx.md</li> <li>setting→GitHub Pages→点域名。</li></ol> <p>_post/下面可以创建目录。目录里面建md，但是文件名字只能是yyyy-mm-dd-title.md
+他能自动遍历子目录找到md，显示在主页上</p> <p>project/images存放所有文件。md引用这些文件的时候使用&quot;images/图片名&quot;
+<a href="https://githubshirongxin.github.io/githubblogByVscode/" target="_blank" rel="noopener noreferrer">GitHub blog+ VScode(past image+markdown preview enhanced)<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h3 id="_45节-如何保证开源项目质量"><a href="#_45节-如何保证开源项目质量" class="header-anchor">#</a> 45节 如何保证开源项目质量</h3> <p>code review
+checks CircleCI 自动化检查机制 dockerfile-lint , bold ,eslint ,test-integration , test-app, test-unit, ...</p> <p><strong>没说具体怎么做</strong></p> <h3 id="_46节，github为什么需要组织来管理"><a href="#_46节，github为什么需要组织来管理" class="header-anchor">#</a> 46节，Github为什么需要组织来管理</h3> <p>Personal Setting → Organization→邀请member加入
+组织下面有仓库
+Teams对仓库精细化管控：Team对仓库，Team类似角色有权限的。
+Gitlab的仓库对没有权限的用户不可见，而GitHub对没权限的用户开发看的权限,能看到库的信息。</p> <ol><li>创建组织</li> <li>邀请成员</li> <li>创建仓库</li> <li>创建Team，管理仓库</li> <li>成员申请仓库</li> <li>管理员审批申请</li></ol> <h3 id="_47节，创建组织的仓库"><a href="#_47节，创建组织的仓库" class="header-anchor">#</a> 47节，创建组织的仓库</h3> <p>owner 选组织（个人的话选个人）</p> <p>最后的marketplace apps 访问该仓库。
+Travis CI 服务
+Codecov 服务。</p> <p>作者以前用的，所以现在有。用不用都行。</p> <p>仓库→setting→选择团队并赋予团队权限。
+这就搭建完基础环境了。</p> <h3 id="_48节，如何选择自己的工作流"><a href="#_48节，如何选择自己的工作流" class="header-anchor">#</a> 48节，如何选择自己的工作流</h3> <ol><li>主干开发：就在master上开发
+还是不常见的。除非成员能力强，人员少。任务小。
+<img src="/docs/images/2020-06-25-23-57-44.png" alt=""></li></ol> <p>2，官方的git flow
+研发周期比较长，质量要求比较高，又不具备主干开发能力的。
+特性分支开发。
+互联网采用这种模型的也不多
+3，Github flow</p> <p><img src="/docs/images/2020-06-26-00-02-03.png" alt="">
+4. Gitlab flow
+<img src="/docs/images/2020-06-26-00-02-46.png" alt="">
+无法准确控制发布时间</p> <p><img src="/docs/images/2020-06-26-00-03-25.png" alt=""></p> <p>同一时间点会有多个版本存在
+<img src="/docs/images/2020-06-26-00-03-57.png" alt=""></p> <p>不要局限有一种工作流。</p> <h3 id="_49节，几个分支做集成的策略"><a href="#_49节，几个分支做集成的策略" class="header-anchor">#</a> 49节，几个分支做集成的策略</h3> <p>Insights-network 版本树的延津
+<img src="/docs/images/2020-06-26-00-09-53.png" alt="">
+北京，上海都要合并到master</p> <p><strong>merge button三个选项:</strong>
+[] + allow merge commit
+[] + squash and merging
+[] + rebase and merging
+pull reques →base:master , compare:beijing.
+→create pull request</p> <ol><li>create a merge commit →comfirm merge→紫色成功，删除特性分支（不急着删过几个月删掉）
+<img src="/docs/images/2020-06-26-11-05-55.png" alt="">
+为了实验，取消刚刚的merge，实际工作中不要做
+git branch -av
+git push -f origin master
+<img src="/docs/images/2020-06-26-11-07-49.png" alt=""></li> <li>new pull request→ Squash and merge → 组合成一个commit然后放到master→insights→network
+<code>没动北京。对北京的三个commit合并成一个commit，放到竹噶上来。</code>
+主干和1几乎一样。但是进化树上看不出来是从哪个branch来的了。主干来说形成线性的。又对branch做了个整理。
+但北京的三个commit如果分别是多个功能。就不适合这个了。
+<img src="/docs/images/2020-06-26-11-09-40.png" alt=""></li> <li>new pull request→  rebase and merging→
+<img src="/docs/images/2020-06-26-11-13-25.png" alt=""> <img src="/docs/images/2020-06-26-11-14-24.png" alt=""> <code>北京的三个commit一个个地应用到master的head上</code></li></ol> <p><strong>规律</strong>
+1，merge ：把几十个分支一起做合并
+2，squash，rebase 让主干保持线性</p> <hr> <h3 id="_50节-github的issue"><a href="#_50节-github的issue" class="header-anchor">#</a> 50节 Github的issue</h3> <ul><li><p>可以打标签
+label ：颜色标签标在issure后面。就是分类。
+milestone：版本，关闭时间</p></li> <li><p>可以有标准和自定义模板
+启用issue任何人都可以提。setting里面有模板（md文件）。
+模板最终也放到git仓库了。
+参考：vue/.github/有几个md的模板。</p></li> <li><p>可以@某人</p></li></ul> <h3 id="_51节-github的project看板，管理issue"><a href="#_51节-github的project看板，管理issue" class="header-anchor">#</a> 51节 Github的project看板，管理issue</h3> <ul><li><p>project →create new project →选template
+例如，bug看板，有几个优先级。</p></li> <li><p>issue选择对应的看板。进入project，就能看到这个issue。一般开会前，各自把各自的issue放入看板。然后开会即可。</p></li></ul> <h3 id="_52节，-github-codereview"><a href="#_52节，-github-codereview" class="header-anchor">#</a> 52节， Github codereview</h3> <ul><li>setting→Branch protection rule→选分支：master，protect matching branch：设置必须review</li></ul> <h3 id="_53节，保证集成质量ci"><a href="#_53节，保证集成质量ci" class="header-anchor">#</a> 53节，保证集成质量CI</h3> <p><img src="/docs/images/2020-06-26-11-43-46.png" alt=""> <img src="/docs/images/2020-06-26-11-44-15.png" alt=""></p> <p>mvn cobertura:coertura  这是测试覆盖率</p> <ul><li><p>setting→integration&amp;services →</p></li> <li><p>Branch protection rule→master→Require status checks to pass before merging。选CI服务产品打勾
+→还可限制谁可以merge master
+Include administrator 选上，即使是管理远也必须严格遵守这个规则。</p></li> <li><p>这些服务，从marketplace 找。 Travis CI
+※</p></li> <li><p>jenkins ：setting→Instaled Github Apps→有限
+developer setting→Oauth Apps
+developer setting→自己开发一款</p></li></ul> <h3 id="_54节，release功能（放war包的共享文件系统）"><a href="#_54节，release功能（放war包的共享文件系统）" class="header-anchor">#</a> 54节，release功能（放war包的共享文件系统）</h3> <ul><li>github自动打包放到release上</li> <li>切换到分支，找到CI.yml ,
+<img src="/docs/images/2020-06-26-11-54-35.png" alt=""> <img src="/docs/images/2020-06-26-11-54-46.png" alt="">
+api-key:
+最后的branch：改为master
+<ul><li>个人setting→GithubApp→create token标识自己身份的。用于api</li> <li>commit Ci.yml ，并merge到master分支</li></ul></li> <li>查看Trave.CI服务，看结果。再看release个数为1.</li> <li>查看release的内容，就是war包和源代码都生成了。</li> <li></li></ul> <h3 id="_55节，怎么写文档-github的wiki就是md文件"><a href="#_55节，怎么写文档-github的wiki就是md文件" class="header-anchor">#</a> 55节，怎么写文档 Github的Wiki就是md文件</h3> <p>把wiki写的好的库下载下来（fork），然后把.wiki文件自己来编辑（mk形式）。</p> <p>git push second master</p> <p>在自己的仓库中，在线编辑md，就很容易看出人家怎么写的markdown，放到github的Wiki的。</p> <h3 id="_56节，为什么互联网喜欢gitlab而不是github"><a href="#_56节，为什么互联网喜欢gitlab而不是github" class="header-anchor">#</a> 56节，为什么互联网喜欢gitlab而不是github</h3> <p>阿里系</p> <ul><li><p>能让公司自己搭建自己的gitlab（RubyOnRails）</p></li> <li><p>还可以做二次开发</p></li> <li><p>帮gitlab维护的人员世界上很多人</p></li> <li><p>gitlab版本更新和迭代非常快，功能出的非常多</p></li> <li><p>界面布局条理化，分割的比较细，易用
+<img src="/docs/images/2020-06-26-12-12-15.png" alt="">
+公司内部代码库自己维护站67%！！</p></li> <li><p>Gitlab CI发展最快并是业界领导者。
+<img src="/docs/images/2020-06-26-12-14-07.png" alt="">
+都快赶上jenkins了，jenkins也是java开源。</p></li> <li><p>已经超过了github了。</p></li> <li><p>提供了整个DevOps的完整解决方案。</p></li></ul> <h3 id="_57节，gitlab的核心功能"><a href="#_57节，gitlab的核心功能" class="header-anchor">#</a> 57节，Gitlab的核心功能</h3> <p><img src="/docs/images/2020-06-26-12-15-53.png" alt="">
+比jenkins，github，aws codestar 内容都广。
+DevOps生命周期</p> <ul><li>manage ：宏观统计</li> <li>plan：issue</li> <li>create：git分支管理代码</li> <li>verify：merge request，质量保证，代码review，各种技术保障</li> <li>package：Registry支持docker</li> <li>Release：CICD，pipline面向很多服务器部署</li> <li>configure：setting基础设施做配置</li> <li>monitor：运维对app和infra的监控</li> <li>secure：安全</li></ul> <h3 id="_58节，gitlab项目管理"><a href="#_58节，gitlab项目管理" class="header-anchor">#</a> 58节，Gitlab项目管理</h3> <ul><li>issues</li> <li>企业版也能看，gitlab用企业版做定制而不是维护。</li> <li>Gitlab EE里的需求。&gt;issue的过滤器很强。※</li> <li>issue Borad 看板，特别好。可以很方便地引用&amp;XXX（？），#XXX（issue） ，@XX（发通知）</li> <li>labels：为issue打上不同的label</li></ul> <h3 id="_59节，gitlab上codereview"><a href="#_59节，gitlab上codereview" class="header-anchor">#</a> 59节，Gitlab上Codereview</h3> <p>强制要求codereview→把分支设成保护。
+devops-create等待codereview</p> <p>checklist（自检）
+pipeline（自动检查）
+Gitlab bot（自动检查）
+codreview（人工）指定给谁，截止日期
+<strong>链接做得真好</strong></p> <p>MergeRequest→开始codereview</p> <h3 id="_60节，gitlab如何保证集成质量？"><a href="#_60节，gitlab如何保证集成质量？" class="header-anchor">#</a> 60节，Gitlab如何保证集成质量？</h3> <ul><li>Gitlab的ci,gitlab-ci.yml</li> <li>看看Gitlab EE的CICD如何管理的。</li> <li>还得配置runner
+<ul><li>setting→Runner→ Specific Runner</li> <li><div class="language- extra-class"><pre><code>          → Shared Runner
+</code></pre></div></li></ul></li></ul> <h3 id="_61节，gitlab工程发布到aws上"><a href="#_61节，gitlab工程发布到aws上" class="header-anchor">#</a> 61节，Gitlab工程发布到aws上</h3> <ul><li>master设置成保护分支</li> <li>改.gitlab-ci.yml
+<ul><li>deploy: only : -master</li> <li><img src="/docs/images/2020-06-26-13-01-46.png" alt=""></li></ul></li> <li>配置Running</li> <li>deploy有自己的脚本，访问aws
++   <img src="/docs/images/2020-06-26-13-02-36.png" alt="">
++   脚本里的变量放到CICD setting→Variable
++   updateAndRestart.sh
++    <img src="/docs/images/2020-06-26-13-04-27.png" alt=""></li> <li>Commits 看看是不是没通过测试。Unit测试</li> <li>Commit通过之后发MergeRequest，向本仓库master
++ gitlab只有一个merge按钮
++ fast forward merge
++ merge commit
++ with semi-linear history
++ 自己试试吧。
++ 绿色merge按钮表示检查过了。
++ pipeline自动启动了。
++  <img src="/docs/images/2020-06-26-13-13-13.png" alt="">
++  可以点进去看看log</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/docs/基础设施/git/2020-6-25-gitTroubleShooting.html">
+        【git】Git Trouble Shooting（持续更新）
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.c67a774d.js" defer></script><script src="/docs/assets/js/5.379e7eff.js" defer></script><script src="/docs/assets/js/2.28087ae7.js" defer></script><script src="/docs/assets/js/34.33b19dc9.js" defer></script><script src="/docs/assets/js/3.32492e15.js" defer></script>
+  </body>
+</html>

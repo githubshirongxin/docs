@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【docker-compose开发】docker-compose 打包部署各种语言开发环境（持续更新中） | 积累</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.27bfdfe7.css" as="style"><link rel="preload" href="/docs/assets/js/app.c67a774d.js" as="script"><link rel="preload" href="/docs/assets/js/5.379e7eff.js" as="script"><link rel="preload" href="/docs/assets/js/2.28087ae7.js" as="script"><link rel="preload" href="/docs/assets/js/26.a0d51738.js" as="script"><link rel="preload" href="/docs/assets/js/3.32492e15.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.768ffbd2.js"><link rel="prefetch" href="/docs/assets/js/100.ba5827ee.js"><link rel="prefetch" href="/docs/assets/js/101.841ed629.js"><link rel="prefetch" href="/docs/assets/js/102.cf6fe747.js"><link rel="prefetch" href="/docs/assets/js/103.23319069.js"><link rel="prefetch" href="/docs/assets/js/104.427ebd4a.js"><link rel="prefetch" href="/docs/assets/js/105.2fa43fa2.js"><link rel="prefetch" href="/docs/assets/js/106.7b6ea763.js"><link rel="prefetch" href="/docs/assets/js/107.ce07d21f.js"><link rel="prefetch" href="/docs/assets/js/108.f1c67751.js"><link rel="prefetch" href="/docs/assets/js/109.238fccbb.js"><link rel="prefetch" href="/docs/assets/js/11.a00e54f4.js"><link rel="prefetch" href="/docs/assets/js/110.87545e41.js"><link rel="prefetch" href="/docs/assets/js/111.1861b2b0.js"><link rel="prefetch" href="/docs/assets/js/112.f55a046e.js"><link rel="prefetch" href="/docs/assets/js/113.9e265889.js"><link rel="prefetch" href="/docs/assets/js/114.b2519859.js"><link rel="prefetch" href="/docs/assets/js/115.b252f218.js"><link rel="prefetch" href="/docs/assets/js/116.14612330.js"><link rel="prefetch" href="/docs/assets/js/117.d95cd9e7.js"><link rel="prefetch" href="/docs/assets/js/118.4689a364.js"><link rel="prefetch" href="/docs/assets/js/119.ee0cec84.js"><link rel="prefetch" href="/docs/assets/js/12.3d935dc0.js"><link rel="prefetch" href="/docs/assets/js/120.4fef09af.js"><link rel="prefetch" href="/docs/assets/js/121.f781f76a.js"><link rel="prefetch" href="/docs/assets/js/122.2e537095.js"><link rel="prefetch" href="/docs/assets/js/123.e546ba1c.js"><link rel="prefetch" href="/docs/assets/js/124.c3b0d3dd.js"><link rel="prefetch" href="/docs/assets/js/125.57a93e6a.js"><link rel="prefetch" href="/docs/assets/js/126.d1c50eb5.js"><link rel="prefetch" href="/docs/assets/js/127.76b202c4.js"><link rel="prefetch" href="/docs/assets/js/128.72ef1956.js"><link rel="prefetch" href="/docs/assets/js/129.ca593f36.js"><link rel="prefetch" href="/docs/assets/js/13.e2747e2c.js"><link rel="prefetch" href="/docs/assets/js/130.0a1a0941.js"><link rel="prefetch" href="/docs/assets/js/131.ea4cc6d1.js"><link rel="prefetch" href="/docs/assets/js/132.843daa9f.js"><link rel="prefetch" href="/docs/assets/js/133.55dd0cbd.js"><link rel="prefetch" href="/docs/assets/js/134.ac746c08.js"><link rel="prefetch" href="/docs/assets/js/135.fdd36a78.js"><link rel="prefetch" href="/docs/assets/js/136.951f5b7a.js"><link rel="prefetch" href="/docs/assets/js/137.58707c1c.js"><link rel="prefetch" href="/docs/assets/js/138.3ba19cfe.js"><link rel="prefetch" href="/docs/assets/js/139.dd908ce1.js"><link rel="prefetch" href="/docs/assets/js/14.413eca15.js"><link rel="prefetch" href="/docs/assets/js/140.b848e693.js"><link rel="prefetch" href="/docs/assets/js/141.490d863d.js"><link rel="prefetch" href="/docs/assets/js/142.624b93b4.js"><link rel="prefetch" href="/docs/assets/js/143.0965180d.js"><link rel="prefetch" href="/docs/assets/js/144.52d16e97.js"><link rel="prefetch" href="/docs/assets/js/145.17425c8c.js"><link rel="prefetch" href="/docs/assets/js/146.981d904a.js"><link rel="prefetch" href="/docs/assets/js/147.e5c385f9.js"><link rel="prefetch" href="/docs/assets/js/15.bfeceb31.js"><link rel="prefetch" href="/docs/assets/js/16.80c9da8f.js"><link rel="prefetch" href="/docs/assets/js/17.74e7b659.js"><link rel="prefetch" href="/docs/assets/js/18.b8cee1b5.js"><link rel="prefetch" href="/docs/assets/js/19.77ac5e03.js"><link rel="prefetch" href="/docs/assets/js/20.40da282d.js"><link rel="prefetch" href="/docs/assets/js/21.70541890.js"><link rel="prefetch" href="/docs/assets/js/22.8698bd3e.js"><link rel="prefetch" href="/docs/assets/js/23.7e94d70d.js"><link rel="prefetch" href="/docs/assets/js/24.459c751e.js"><link rel="prefetch" href="/docs/assets/js/25.cbdab197.js"><link rel="prefetch" href="/docs/assets/js/27.976e6782.js"><link rel="prefetch" href="/docs/assets/js/28.5e3264ac.js"><link rel="prefetch" href="/docs/assets/js/29.5a663d09.js"><link rel="prefetch" href="/docs/assets/js/30.d7d83767.js"><link rel="prefetch" href="/docs/assets/js/31.0b999369.js"><link rel="prefetch" href="/docs/assets/js/32.45ea1c91.js"><link rel="prefetch" href="/docs/assets/js/33.9a0346f3.js"><link rel="prefetch" href="/docs/assets/js/34.33b19dc9.js"><link rel="prefetch" href="/docs/assets/js/35.df213d53.js"><link rel="prefetch" href="/docs/assets/js/36.bac89d8c.js"><link rel="prefetch" href="/docs/assets/js/37.e7e7563d.js"><link rel="prefetch" href="/docs/assets/js/38.d75aa7c7.js"><link rel="prefetch" href="/docs/assets/js/39.ec612453.js"><link rel="prefetch" href="/docs/assets/js/4.f392c922.js"><link rel="prefetch" href="/docs/assets/js/40.ff6b9dc3.js"><link rel="prefetch" href="/docs/assets/js/41.732caf13.js"><link rel="prefetch" href="/docs/assets/js/42.27efcd48.js"><link rel="prefetch" href="/docs/assets/js/43.7858af8b.js"><link rel="prefetch" href="/docs/assets/js/44.5b48c21c.js"><link rel="prefetch" href="/docs/assets/js/45.bad24b7f.js"><link rel="prefetch" href="/docs/assets/js/46.f0a7a549.js"><link rel="prefetch" href="/docs/assets/js/47.e06ebb94.js"><link rel="prefetch" href="/docs/assets/js/48.ee541bd2.js"><link rel="prefetch" href="/docs/assets/js/49.0e72ea07.js"><link rel="prefetch" href="/docs/assets/js/50.f60bc27b.js"><link rel="prefetch" href="/docs/assets/js/51.4e65a771.js"><link rel="prefetch" href="/docs/assets/js/52.c194da69.js"><link rel="prefetch" href="/docs/assets/js/53.e8edb998.js"><link rel="prefetch" href="/docs/assets/js/54.85f255ad.js"><link rel="prefetch" href="/docs/assets/js/55.fe0a2f00.js"><link rel="prefetch" href="/docs/assets/js/56.ecf74514.js"><link rel="prefetch" href="/docs/assets/js/57.4e05aeaa.js"><link rel="prefetch" href="/docs/assets/js/58.5bd4e34c.js"><link rel="prefetch" href="/docs/assets/js/59.61061156.js"><link rel="prefetch" href="/docs/assets/js/6.d4972abb.js"><link rel="prefetch" href="/docs/assets/js/60.5033ec76.js"><link rel="prefetch" href="/docs/assets/js/61.c1688a90.js"><link rel="prefetch" href="/docs/assets/js/62.8e434489.js"><link rel="prefetch" href="/docs/assets/js/63.709ac74a.js"><link rel="prefetch" href="/docs/assets/js/64.9bf4f730.js"><link rel="prefetch" href="/docs/assets/js/65.a21b8046.js"><link rel="prefetch" href="/docs/assets/js/66.30cc0b5b.js"><link rel="prefetch" href="/docs/assets/js/67.77b96b17.js"><link rel="prefetch" href="/docs/assets/js/68.fb8eac98.js"><link rel="prefetch" href="/docs/assets/js/69.cb82242b.js"><link rel="prefetch" href="/docs/assets/js/7.6b204d57.js"><link rel="prefetch" href="/docs/assets/js/70.4c54d2c4.js"><link rel="prefetch" href="/docs/assets/js/71.f2facc7a.js"><link rel="prefetch" href="/docs/assets/js/72.3b3223a1.js"><link rel="prefetch" href="/docs/assets/js/73.a774e55b.js"><link rel="prefetch" href="/docs/assets/js/74.8117ed68.js"><link rel="prefetch" href="/docs/assets/js/75.f03cd9a0.js"><link rel="prefetch" href="/docs/assets/js/76.ddea3a34.js"><link rel="prefetch" href="/docs/assets/js/77.45a375be.js"><link rel="prefetch" href="/docs/assets/js/78.227c84d0.js"><link rel="prefetch" href="/docs/assets/js/79.f118a0ba.js"><link rel="prefetch" href="/docs/assets/js/8.d738730d.js"><link rel="prefetch" href="/docs/assets/js/80.32aa8431.js"><link rel="prefetch" href="/docs/assets/js/81.3f4f4d9b.js"><link rel="prefetch" href="/docs/assets/js/82.62ba7af2.js"><link rel="prefetch" href="/docs/assets/js/83.71542cff.js"><link rel="prefetch" href="/docs/assets/js/84.b27f3eb0.js"><link rel="prefetch" href="/docs/assets/js/85.9859a932.js"><link rel="prefetch" href="/docs/assets/js/86.1a2f54ba.js"><link rel="prefetch" href="/docs/assets/js/87.e971b5d6.js"><link rel="prefetch" href="/docs/assets/js/88.dbbb634d.js"><link rel="prefetch" href="/docs/assets/js/89.f7932e1c.js"><link rel="prefetch" href="/docs/assets/js/9.67669394.js"><link rel="prefetch" href="/docs/assets/js/90.888f317a.js"><link rel="prefetch" href="/docs/assets/js/91.21880d66.js"><link rel="prefetch" href="/docs/assets/js/92.b749e326.js"><link rel="prefetch" href="/docs/assets/js/93.009e23b7.js"><link rel="prefetch" href="/docs/assets/js/94.9d60dc22.js"><link rel="prefetch" href="/docs/assets/js/95.9bdf316a.js"><link rel="prefetch" href="/docs/assets/js/96.f8c87a56.js"><link rel="prefetch" href="/docs/assets/js/97.c509fa41.js"><link rel="prefetch" href="/docs/assets/js/98.e54b2a32.js"><link rel="prefetch" href="/docs/assets/js/99.ec880287.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.27bfdfe7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="elasticSearch" class="dropdown-title"><span class="title">elasticSearch</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>docker</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/基础设施/docker/02020-8-13-【手顺】harbor使用手顺（最终版）！.html" class="sidebar-link">【手顺】harbor使用手顺（最终版20200813）</a></li><li><a href="/docs/基础设施/docker/2020-7-4-docker化mysql.html" class="sidebar-link">【docker】 启动mysql容器</a></li><li><a href="/docs/基础设施/docker/2020-7-4-docker常用命令.html" class="sidebar-link">【docker】最常用几个命令</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【安装】docker+centos7.html" class="sidebar-link">【docker安装】Centos7安装最新版本docker</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【安装】docker+win10.html" class="sidebar-link">【安装】docker+win10</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【安装】docker-compose+centos7.html" class="sidebar-link">【docker-compose安装】centos7 安装docker-compose</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【安装】docker私有镜像库registry.html" class="sidebar-link">【registry安装】centos7安装docker私有镜像库（有了Harbor就不用它了）</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【开发】docker-compose开发项目.html" class="active sidebar-link">【docker-compose开发】docker-compose 打包部署各种语言开发环境（持续更新中）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/基础设施/docker/2020-7-4-【开发】docker-compose开发项目.html#首先docker-compose部署vue前端应用" class="sidebar-link">首先docker-compose部署vue前端应用</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/docker/2020-7-4-【开发】docker-compose开发项目.html#vscode开发vue" class="sidebar-link">Vscode开发vue</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/docker/2020-7-4-【开发】docker-compose开发项目.html#docker-发布vue应用" class="sidebar-link">Docker 发布vue应用</a></li></ul></li><li><a href="/docs/基础设施/docker/2020-7-4-【开发】docker开发项目.html" class="sidebar-link">【docker开发】快速搭建开发环境</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【部署】harbor分布式部署.html" class="sidebar-link">【harbor分布式部署】nginx反向代理harbor两节点共享NFS存储、DB，弱可用Harobor部署（后续改善）</a></li><li><a href="/docs/基础设施/docker/2020-7-4-【部署】harbor单机部署.html" class="sidebar-link">【harbor单机部署】harbor 单机https安装（成功安装）</a></li><li><a href="/docs/基础设施/docker/2020-8-11-registry资料.html" class="sidebar-link">【registry资料】</a></li><li><a href="/docs/基础设施/docker/2020-8-12-harbor问题：push retrying.html" class="sidebar-link">【harbor问题： push retrying】 一直retrying （已解决）</a></li><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/docker/" aria-current="page" class="sidebar-link">【docker相关】 Develop your app with docker.</a></li><li><a href="/docs/基础设施/docker/docker【课题】.html" class="sidebar-link">【docker课题】</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>运维组用docker-compose为开源应用提供部署的脚本。
+开发组可以一毽部署开发调试环境或测试环境。
+这对开发组是不是很大的贡献呢。</p> <h2 id="首先docker-compose部署vue前端应用"><a href="#首先docker-compose部署vue前端应用" class="header-anchor">#</a> 首先docker-compose部署vue前端应用</h2> <p>先介绍介绍vue开发吧。</p> <h2 id="vscode开发vue"><a href="#vscode开发vue" class="header-anchor">#</a> Vscode开发vue</h2> <p>这个blog文章很好，我实际操作一下
+https://juejin.im/post/5e9c38856fb9a03c917fe509</p> <p>我的该笔记的工作目录。surface：C:\work\prj\vue\firstVue</p> <ol><li>nodejs安装：<code>Download the Windows Installer directly from the nodejs.org web site.</code></li> <li>安装cnpm: <code>npm install -g cnpm --registry=http://registry.npm.taobao.org</code></li> <li>安装vue-cil：<code>npm install -g vue-cli</code></li> <li>创建一个空项目：<code>vue init webpack firstVue</code></li> <li>要安装依赖包，
+<ul><li><code>首先cd到项目文件夹（firstVue文件夹）</code></li> <li>然后运行命令 <code>cnpm install</code> ，等待安装。</li> <li>会在我们的项目目录firstVue文件夹中多出一个node_modules文件夹，这里边就是我们项目需要的依赖包资源</li></ul></li> <li>运行项目 <code>npm run dev</code> ,运行的就是package.json中scrips:{&quot;dev&quot;:&quot;node build/dev-server.js&quot;}的简写</li> <li>localhost:8080</li> <li>vscode 安装</li> <li>增加element UI
+<ul><li><code>首先cd到项目文件夹（firstVue文件夹）</code></li> <li><code>cnpm i element-ui -S</code></li></ul></li> <li>开发main.js</li> <li>cnpm install</li> <li>npm run dev</li> <li>修改 App.vue</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>    &lt;router-view&gt;的下一行追加
+    &lt;el-button type=&quot;primary&quot;&gt;主要按钮&lt;/el-button&gt;
+    &lt;script&gt; export default {
+      name:'app',
+      data() {
+         reurn {
+           num1:1
+         };
+      },
+      methods: {
+        handleChange(value) {
+           console.log(value);
+        }
+      }
+    }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><ol start="14"><li>访问 http://localhost:8080不用刷新能看到效果。</li> <li>用Dockerfile打包镜像</li></ol> <p>C:\work\prj\vue\firstVue</p> <h2 id="docker-发布vue应用"><a href="#docker-发布vue应用" class="header-anchor">#</a> Docker 发布vue应用</h2> <p><a href="https://blog.csdn.net/tornyLin/article/details/81479511?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener noreferrer">Docker部署Vue.js应用<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>思路：nginx 发布vue  .https://github.com/rzhaolin/Docker-Vuejs</p> <ol><li>工程根目录下，先<code>node build/build.js</code> 生成 <code>/dist</code></li> <li>工程根目录下，创建Dockefile，创建nginx.conf
+<img src="/docs/images/2020-07-07-11-31-09.png" alt=""></li> <li>工程根目录下，Dockefile 仅仅拷贝了nginx.conf和/dist到镜像里</li> <li>工程根目录下，<code>docker build .</code> 生成镜像</li> <li>方便管理，给镜像打tag，<code>docker tag ffdf55e238d4 vuejs-demo:v1.0.0</code></li> <li>生成容器：<code>docker run --name=helloword -p 8080:1233 -d vuejs-demo:1.0.0</code></li> <li>发布完成，访问 http://localhost:8080</li></ol> <p>在上面研究的过程中，有一些不理解的地方，都做了记录。
+以后查询起来方便些。</p> <h3 id="fqa"><a href="#fqa" class="header-anchor">#</a> FQA</h3> <ul><li>【Q1】【DOckerfile系列】Dockerfile多From 指令存在的意义</li> <li>【A】
+<ol><li>https://blog.csdn.net/Michaelwubo/article/details/91872076</li> <li>共享层，节约空间，以最后的FROM为准，前面的FROM会被抛弃。</li> <li>多阶构建（多FROM）的意义，就是最后一个FROM能从前面的FROM拷贝来中间结果直接用。</li> <li>使用场景：编译环境和运行环境分离。因为带有编译的环境非常大，镜像就很大。
+而运行不需要这么大的基础镜像。只需要有个运行时环境就行。（Go运行时都不需要运行时）</li></ol></li></ul> <hr> <ul><li>【Q2】【DOckerfile系列】Dockerfile中 COPY --from的含义，与ADD的不同</li> <li>【A】
+https://www.cnblogs.com/sparkdev/p/9573248.html
+<ol><li>用于多阶构建时，从前面拷贝 --from=0 ，或者 --from=前面镜像的命名abc（前面： FROM XXX as abc）</li> <li>还可以直接从已经存在的镜像中直接拷贝！（不用非得前置阶段中拷贝）
+<code>COPY --from=quay.io/coreos/etcd:v3.3.9 /usr/local/bin/etcd /usr/local/bin/</code></li></ol></li></ul> <hr> <ul><li>【Q3】【Dockefile发布】发布vue应用，使用什么镜像当作基础镜像？</li> <li>【A】
+<ol><li>https://juejin.im/post/5ddcfae85188256eac43e707</li> <li>多阶发布，编译和运行分离。既然是发布，那么编译就是中间产物。</li> <li>一个Dockerfile，先FROM node:latest 编译好，再FROM nginx 把前置阶段的中间产物拷贝进来（COPY --from=build /app/dist /app）</li> <li><img src="/docs/images/2020-07-07-13-39-18.png" alt=""></li></ol></li></ul> <hr> <ul><li>【Q4】【Dockefile发布】如何发布springboot的应用呢？</li> <li>【A】
+<ol><li>编译在本地Docker外，编译出.jar文件</li> <li>Dockerfile 镜像 FROM java:8
+2.1 /tmp(springboot默认是内嵌tomcat的工作目录，里面有jar)将jar拷贝到镜像
+2.2 指定入口，运行java <code>ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</code></li> <li>docker build -t  .</li> <li>docker run -d -p 80:80 hellworld
+Dockerfile:<div class="language- line-numbers-mode"><pre class="language-text"><code># 基础镜像使用java ,也可以使用openjdk:8
+FROM java:8
+# 作者
+MAINTAINER eangulee &lt;eangulee@gmail.com&gt;
+# VOLUME 指定了临时文件目录为/tmp。
+# 其效果是在主机 /var/lib/docker 目录下创建了一个临时文件，并链接到容器的/tmp
+VOLUME /tmp 
+# 将jar包添加到容器中并更名为app.jar
+ADD demo-0.0.1-SNAPSHOT.jar app.jar 
+# 运行jar包,touch 就是为了更新app.jar的时间戳，有时静态文本需要更新时间才显示
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></li></ol> <blockquote><p>[残课题]：数据库和redis怎么办？</p></blockquote></li></ul> <hr> <ul><li>【Q5】 【Dockefile发布】springboot+mysql用docker部署</li> <li>【A】</li> <li><strong>方案1：两个独立的容器（个人认为不好）</strong> <ol><li>springboot程序里配置文件写url:jdbc:mysql://localhost:3306?eriz?useUnicode</li> <li>mysql作为一个容器启动<div class="language- line-numbers-mode"><pre class="language-text"><code>docker volume create mysql_data 创建数据挂载点
+docker run --name mysql -p 3306:3306 -v mysql_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+docker exec -it mysql bash  进入容器 /bin/bash
+mysql -uroot -p123456
+mysql授权：GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+刷新：FLUSH PRIVILEGES;
+接下来使用navicat连接docker容器中的mysql,导入项目数据
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div></li> <li>springboot本地编译出jar，然后用java:8启动容器</li> <li><code>docker run -it --net=host --name erizboot -p 8181:8181 erizboot</code></li></ol></li></ul> <hr> <ul><li><strong>方案2</strong>：（<strong>--link，将两个容器相连</strong>）（个人人比较好）
+https://zhuanlan.zhihu.com/p/102802904
+1. spring 项目yml文件：
+<code>server: port: 8080 spring: datasource: # MySQL 配置 driver-class-name: com.mysql.cj.jdbc.Driver url: jdbc:mysql://127.0.0.1:3306/db?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai username: root password: 11111</code>
+注意：mysql的ip是127.0.0.1. 一会得该成mysql容器名。
+1. 运行mysql容器。略。同方案1
+2. 运行springboot ，<code>docker run -d --name yourproject --link mysql:mysql -p 8080:8080 yourproject</code>
+3. 修改springboot的，配置文件<code>url: jdbc:mysql://mysql:3306/db?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai</code>
+4. 打包镜像springboot，运行springboot镜像。<strong>打包方式参考Q4</strong></li></ul> <hr> <ul><li>【Q6】 【shell系列】<code>sh -c &quot;touch /app.jar&quot;</code> 这是什么意思？</li> <li>【A】
+<ol><li>就是执行引号里的字符串当作sh命令来执行</li></ol></li></ul> <hr> <ul><li>【Q7】【docker-compose系列】 <strong>docker-compose</strong> 部署vue+springboot+mysql</li> <li>【A】
+<strong>blog</strong>：https://www.cnblogs.com/zhengqing/p/11865364.html
+<strong>源代码</strong>：https://github.com/zhengqingya/xiao-xiao-su
+用docker-compose至少更专业，更方便些。
+很多技巧和使用Dockerfile是一样的。
+思路：
+<ol><li>springboot和web分别有各自的Dockefile，可以不叫Dockerfile，在docker-compose.yml中指定该文件即可。</li> <li>前端一个目录。后端一个目录。docker配置文件一个目录。</li> <li>前端Dockerfile，多阶构建 node + nginx</li> <li>后端springboot, 单阶构建 java:8</li> <li>docker-compose中前后端为两个service，前端依赖于后端</li> <li>后端映射volume，以便查看后端日志。</li> <li>后端运行启动spring <code>mvn clean spring-boot:run -Dspring-boot.run.profiles=dev '-Dmaven.test.skip=true'</code></li> <li>通过docker-compose分别启动了前端和后端容器之后呢？
+【残留课题】：mysql没有说明如何启动！半拉柯基！！！！！！</li></ol></li></ul> <hr> <ul><li>【Q8】 springboot项目启动后为什么是后端接口：http://www.zhengqing520.com:9101/swagger-ui.html#？</li> <li>【A】</li></ul> <hr> <ul><li>【Q9】 【docker-compose系列】docker-compose springboot mysql redis web应用部署</li> <li>【A】</li></ul> <hr> <ul><li>【Q10】 docker-compose只能在本机发布，不能发不成多服务器。所以，docker-compose多用来开发测试比较多吧。</li> <li>【A】（单台服务器，多个docker服务）用来快速验证原型！
+<ul><li>运维组：针对springboot开发和测试。生成工程库。</li> <li>开发组：使用脚本一键部署（在本地），不用安装多种环境。尽量裸机（至少有java，node）开发，裸机测试。</li> <li>开发组：开发一段时间代码后，给运维组</li> <li>运维组：把docker-compose以及jar拷贝到测试服务器。运行docker-compose。在单服务器部署</li> <li>测试组：针对单服务器环境测试</li></ul></li></ul> <hr> <ul><li><p>【Q11】 docker-compose能够单机发布多个副本。</p></li> <li><p>【A】
+https://www.cnblogs.com/JulianHuang/p/12568814.html
+利用docker-compose 启动nginx监听宿主80，转发给8080，然后利用docker内嵌dns
+nginx会转发给三个web应用</p> <p>总之，<font color="red">docker-compose用于简单的单机验证，单机开发，从gitlab下载代码后快速在本机单机运行，模仿出多个服务器。总之，单机运行。</font></p></li></ul> <hr> <ul><li>【Q12】 用ceph搭建Harbor</li> <li>未着手</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/基础设施/docker/2020-7-4-【安装】docker私有镜像库registry.html" class="prev">
+        【registry安装】centos7安装docker私有镜像库（有了Harbor就不用它了）
+      </a></span> <span class="next"><a href="/docs/基础设施/docker/2020-7-4-【开发】docker开发项目.html">
+        【docker开发】快速搭建开发环境
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.c67a774d.js" defer></script><script src="/docs/assets/js/5.379e7eff.js" defer></script><script src="/docs/assets/js/2.28087ae7.js" defer></script><script src="/docs/assets/js/26.a0d51738.js" defer></script><script src="/docs/assets/js/3.32492e15.js" defer></script>
+  </body>
+</html>
