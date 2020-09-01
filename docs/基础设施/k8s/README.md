@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ■ K8s相关=========================
-autoNext: 2020-08-21-【CKA】-02安装配置
+autoNext: 2020-08-21-【CKA】-00k8s管理员
 ---
 
 ![](/docs/images/2020-08-21-10-21-50.png)
