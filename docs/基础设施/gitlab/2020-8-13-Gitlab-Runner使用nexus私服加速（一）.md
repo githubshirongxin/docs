@@ -3,7 +3,11 @@ layout: post
 title: 【gitlab-ci-runner + nexus】加速docker下载 （一）IP
 ---
 
-## 先让runner从私服上下载吧。
+## 这是没有使用docker.ccbjb.com.cn（ssl）的使用方式。还不成熟。
+成熟的方案，请参考【gitlab-runner + nexus】加速docker和npm下载 （二）nginx代理docker库ssl
+
+### 先让runner从私服上下载吧。
+```bash
 [root@centos3 ~]# cat /etc/docker/daemon.json
 {
  "insecure-registries": ["harbor.ccbjb.com.cn","192.168.3.124:8082","192.168.3.124:8083"]
@@ -18,10 +22,12 @@ Login Succeeded
 Username: admin
 Password:
 Login Succeeded
+```
 
+### 项目中gitlab-ci.yml修改配置从私有仓库中下载
 //gitlab-ci.yml
 
-```xml
+```yaml
 image: 192.168.3.124:8082/node:latest
 
 pages:
@@ -40,8 +46,8 @@ pages:
   - master
 ```
 ![](/docs/images/2020-08-08-09-20-47.png)
-```xml
 
+```bash
 Running with gitlab-runner 13.2.1 (efa30e33)
    on shared runner form 3.112 Unz4U-uF
 Preparing the "docker" executor
@@ -51,82 +57,19 @@ Preparing the "docker" executor
  ERROR: Preparation failed: Error response from daemon: Get http://192.168.3.124:8082/v2/node/manifests/latest: no basic auth credentials (docker.go:131:0s)
  ```
 
- 3.112 
- vi docker-compose.yml
+3.112 
+```bash
+vi docker-compose.yml
 增加 -v /etc/docker/daemon.json:/etc/docker/daemon.json
 
-```bash
 docker-compose down
 docker-compose up -d
 ```
 
-3.102
-git push
-
-3.112 error the same.
-
 ---
 参考:https://blog.csdn.net/renguiriyue/article/details/102769884
 
-
-课题：为什么runner里没安装docker，却能使用docker regiser？
-
-课题：runner调用docker时使用了什么机制？
-
-课题：runner和gitlab-ci使用什么机制通讯，日志和状态是怎么传递给gitlab-ci的？
-
-```bash
-# 生成镜像
- docker build -t srximg . 
- docker images
-# 运行容器
- docker run -d --name srxcontainer srximg:latest && docker exec -it srxcontainer /bin/bash
- docker stop srxcontainer && docker rm srxcontainer && docker rmi srximg
-
-#清除坏的<none>:<none>镜像
-docker rmi $(docker images -f "dangling=true" -q)
-
-#删除所有停止的容器
-sudo docker container prune
-```
-
-
-```bash
-[root@centos112 enviroment]# docker build -t srximg .
-Sending build context to Docker daemon  471.2MB
-Step 1/8 : FROM gitlab/gitlab-runner:latest
- ---> a0153b77b0da
-Step 2/8 : MAINTAINER shirongxin <shirx@ccbjb.com.cn>
- ---> Using cache
- ---> 362be8f59e24
-Step 3/8 : RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse' > /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse' >> /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse' >> /etc/apt/sources.list &&     echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list &&     apt-get update -y &&     apt-get clean
- ---> Using cache
- ---> d0b29c3c05ee
-Step 4/8 : RUN mkdir -p /usr/local/java
- ---> Running in f6f79795f236
-Removing intermediate container f6f79795f236
- ---> e76dcfbdeba9
-Step 5/8 : WORKDIR /usr/local/java
- ---> Running in f6263cebe3a2
-Removing intermediate container f6263cebe3a2
- ---> 2dce5a8195d3
-Step 6/8 : COPY openjdk-8u41-b04-linux-x64-14_jan_2020.tar.gz /usr/local/java
- ---> b62304fa0fa3
-Step 7/8 : ENV JAVA_HOME /usr/java/jdk1.8.0_261-amd64/bin/java
- ---> Running in fa0376ce9194
-Removing intermediate container fa0376ce9194
- ---> acd17be40649
-Step 8/8 : WORKDIR /
- ---> Running in c250388054b2
-Removing intermediate container c250388054b2
- ---> 70a3aa0cad5e
-Successfully built 70a3aa0cad5e
-Successfully tagged srximg:latest
-[root@centos112 enviroment]#
-```
-
-
-GitLab Runner Docker images (based on Ubuntu or Alpine Linux)，安装docker时候出错。
+## 【问题现象】GitLab Runner Docker images (based on Ubuntu or Alpine Linux)，安装docker时候出错。
 ```bash
 Creating config file /etc/apt/apt.conf.d/50unattended-upgrades with new version
 Setting up python3-software-properties (0.96.20.9) ...
@@ -140,8 +83,13 @@ The command '/bin/sh -c dpkg --configure -a &&     apt-get install -y apt-transp
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" &&     apt-get update -y &&     apt-get install -y docker-ce' returned a non-zero code: 255
 [root@centos112 enviroment]#
 ```
+### 解决：
 
+### 识别操作系统的方法：
+https://blog.csdn.net/Dafei4/article/details/79589369/
 
+### 识别操作系统的操作
+```bash
 root@def6fbc9a09a:/# cd /etc
 root@def6fbc9a09a:/etc# ls red*
 ls: cannot access 'red*': No such file or directory
@@ -150,14 +98,10 @@ issue
 root@def6fbc9a09a:/etc# cat issue
 Ubuntu 18.04.4 LTS \n \l
 
-识别操作系统的方法：
-https://blog.csdn.net/Dafei4/article/details/79589369/
-
-
-gitlab Runner的系统名字
+// gitlab Runner的系统名字
 lsb_release -cs = **bionic**
+
 https://download.docker.com/linux/ubuntu 
-```
 Index of linux/ubuntu/dists/
 ../
 artful/
@@ -171,8 +115,12 @@ xenial/
 yakkety/
 zesty/
 ```
-所以使用库的时候，必须指定bionic
+
+::: warning 所以使用库的时候，必须指定bionic
 原来博文中的史xenial，而我下载的gitlabrunner使用的史bionic
+:::
+
+### 修改软件源
 ```bash
 # 修改软件源
 RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse' > /etc/apt/sources.list && \
@@ -241,12 +189,12 @@ ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 WORKDIR /
 ```
 
-
+```bash
 docker-compose up -d
 docker exec -it gitlab_runner /bin/bash
+```
 
-
-Runner error:
+### Runner error:
 ```
 Preparing the "docker" executor
  Using Docker executor with image 192.168.3.124:8082/node:latest ...
@@ -254,11 +202,10 @@ Preparing the "docker" executor
  ERROR: Preparation failed: Error response from daemon: Get http://192.168.3.124:8082/v2/node/manifests/latest: no basic auth credentials (docker.go:131:0s)
 ```
 
-难道Runner里需要先docker login 192.158.3.124:8082 ?
-
+Runner里需要先docker login 192.158.3.124:8082
 试试
-
 果然，更新vuepress，自动编译了。好用了
+
 ```bash
 Running with gitlab-runner 13.2.1 (efa30e33)
    on shared runner form 3.112 Unz4U-uF
@@ -280,7 +227,7 @@ Getting source from Git repository
  Skipping Git submodules setup
  ```
 
- 试试把nexus上的node删掉，看看nexus是否能自动下载
+试试把nexus上的node删掉，看看nexus是否能自动下载
 
  NEXUS上node镜像下来了。编译时间1m3s
 
@@ -347,7 +294,6 @@ root@centos125:~# docker pull 192.168.3.124:8082/node
 分析：daemon.json里配置的registry-mirrors对“docker pull 不加私服ip”这样的命令不起作用。
 结论：想让`docker pull 不加私服ip` 这样的命令主动去私服下载，别指望daemon.json.
 
-### 
 
 
 

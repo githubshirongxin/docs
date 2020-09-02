@@ -45,7 +45,11 @@ Enter SAMBA\shirx's password:
 
 $ mkdir -p /data_videos
 
-$ mount -t cifs -o username=user,password=passwd //sambaServerIP/shareFolder /data_videos
+// 给视频录入人员使用
+$ mount -t cifs -o username=user_RW,password=passwd //sambaServerIP/shareFolder /data_videos
+
+// 给程序使用
+$ mount -t cifs -o username=user_R,password=passwd //sambaServerIP/shareFolder /data_videos
 ```
 
 重新启动后自动挂载目录
