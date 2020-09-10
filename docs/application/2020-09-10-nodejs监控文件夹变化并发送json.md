@@ -3,7 +3,7 @@ layout: post
 title: nodejs监控文件夹变化并发送json
 ---
 
-```
+```bash
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
