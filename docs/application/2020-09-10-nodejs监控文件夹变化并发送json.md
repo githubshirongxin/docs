@@ -3,6 +3,7 @@ layout: post
 title: nodejs监控文件夹变化并发送json
 ---
 
+# 启动服务端程序，监听3000
 jsonserver.js
 ``` js
 var express = require('express');
@@ -41,6 +42,7 @@ app.listen(3000, function () {
 })
 ```
 
+# 客户端使用的工具List
 ./tools/ArrayList.js
 ``` js
 exports.ArrayList = function() {
@@ -87,7 +89,7 @@ exports.ArrayList = function() {
 };
 ```
 
-
+# 客户端监听文件夹变化信息发送Json给服务端
 test.js
 ``` js
 const chokidar = require('chokidar');
