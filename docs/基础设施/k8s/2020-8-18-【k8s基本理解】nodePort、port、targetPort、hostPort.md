@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【k8s理解】nodePort、port、target Port、hostPort
+title: 【k8s基本理解】nodePort、port、target Port、hostPort
 ---
 
 ## 1. nodePort（外部用）

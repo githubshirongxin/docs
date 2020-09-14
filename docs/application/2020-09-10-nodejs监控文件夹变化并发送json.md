@@ -3,6 +3,9 @@ layout: post
 title: nodejs监控文件夹变化并发送json
 ---
 
+否则出错。
+ `node --unhandled-rejections=none test.js`
+
 # 启动服务端程序，监听3000
 jsonserver.js
 ``` js
