@@ -115,7 +115,7 @@ Cluster IP只能结合Service Port组成一个具体的通信端口，单独的C
 ![](/docs/images/2020-09-14-09-38-21.png)
 
 
-## 2. NetworkPolicies
+## 2. NetworkPolicies (难点)
 从安全角度来看，通常最好在基础结构的不同部分之间的任何通信上设置网络级限制。NetworkPolicies允许您限制和控制进出Pod的网络流量。在本课程中，我们将讨论NetworkPolicies，并演示如何创建一个简单的策略来限制对pod的访问。
 
 ### 相关文件
@@ -213,4 +213,5 @@ spec:
 kubectl get networkpolicies
 kubectl describe networkpolicy my-network-policy
 ```
-
+![](/docs/images/2020-09-14-14-10-43.png)
+![](/docs/images/2020-09-14-14-12-39.png)
