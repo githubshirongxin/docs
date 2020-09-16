@@ -13,7 +13,11 @@ https://docs.docker.com/compose/install/
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
 ```
-[root@centos108 ~]# sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-comp ose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.3.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+[root@centos108 ~]# sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   638  100   638    0     0    301      0  0:00:02  0:00:02 --:--:--   301
