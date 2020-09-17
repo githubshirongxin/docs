@@ -3,6 +3,12 @@ layout: post
 title: 【gitlab runner】编译springcloud项目
 ---
 
+
+::: danger 局限：
+
+发布服务器上面必须安装gitlab-Runner！这很不好。
+:::
+
 ## Gitlab Runner 
 
 宿主机： gitlab，nexus，register，springcloud（Runner）
