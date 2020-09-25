@@ -249,6 +249,7 @@ export SERVER_SSH_KEY="$SSH_PRIVATE_KEY"
 docker.ccbjb.com.cn/docker:19.03.12也可以。
 ::: danger 验证：
 据说docker:19.03.12从私有仓库下载会出现异常！需要验证。
+答：验证了。没问题。参考：该issue。[docker执行器如果指定为私库docker.ccbjb.cm.cn/docker:19.03.12会出错吗？](https://gitlab.ccbjb.com.cn/shirongxin/gitlabci-springboot/-/issues/16)
 :::
 3.121上
 /usr/local/docker/runner/config/config.toml
