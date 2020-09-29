@@ -65,6 +65,19 @@ services:
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
 ```
+
+::: warning
+注意安装docker-compose up -d如果提示错误：
+- Unsupported config option for services service: 'gitlab'
+请安装1.25或1.27版本的docker-compose
+:::
+
+```
+curl -L https://github.com/docker/compose/releases/download/1.27.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+
 ### 1. 重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。
 `tar cvf srv.tar /srv`
 
