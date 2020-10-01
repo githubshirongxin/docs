@@ -12,3 +12,10 @@ git bash
 - https://shirongxin.gitlab.io/docs/
 - https://githubshirongxin.github.io/docs/
 
+----
+
+npm run build
+npm run dev
+
+## 生成新目录的方法
+删除nav.js且注释config.js ,npm run build, 放开注释config.js,再npm run build
