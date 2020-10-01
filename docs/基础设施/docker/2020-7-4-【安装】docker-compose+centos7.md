@@ -9,12 +9,11 @@ centos7上安装docker-compose，很简单。做个memo，其他不做也无所�
 ## 官方文档：慢
 https://docs.docker.com/compose/install/
 
-一共就这么三步。大概三分钟
+一共就这么三步。大概三分钟.注意一下版本。1.26.1，可以换成最新版本。自己替换一下。
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
 ```
-
-curl -L https://get.daocloud.io/docker/compose/releases/download/1.3.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.26.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 [root@centos108 ~]# sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
