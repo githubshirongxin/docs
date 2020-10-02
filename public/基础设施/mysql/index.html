@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【mysqldocker部署，性能调优】 | 积累</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.1611a0cf.css" as="style"><link rel="preload" href="/docs/assets/js/app.1edde234.js" as="script"><link rel="preload" href="/docs/assets/js/7.3b9b13f5.js" as="script"><link rel="preload" href="/docs/assets/js/2.d3d21cd8.js" as="script"><link rel="preload" href="/docs/assets/js/165.c00d7bba.js" as="script"><link rel="preload" href="/docs/assets/js/3.1c3a4647.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.f3eceae1.js"><link rel="prefetch" href="/docs/assets/js/100.d6076454.js"><link rel="prefetch" href="/docs/assets/js/101.2617b2a6.js"><link rel="prefetch" href="/docs/assets/js/102.79aab0bd.js"><link rel="prefetch" href="/docs/assets/js/103.5982d1c5.js"><link rel="prefetch" href="/docs/assets/js/104.d6728f36.js"><link rel="prefetch" href="/docs/assets/js/105.22386084.js"><link rel="prefetch" href="/docs/assets/js/106.7f462b54.js"><link rel="prefetch" href="/docs/assets/js/107.fdaf5117.js"><link rel="prefetch" href="/docs/assets/js/108.08de9279.js"><link rel="prefetch" href="/docs/assets/js/109.5cfa021c.js"><link rel="prefetch" href="/docs/assets/js/11.ff2f374e.js"><link rel="prefetch" href="/docs/assets/js/110.cfb24027.js"><link rel="prefetch" href="/docs/assets/js/111.d4397ec5.js"><link rel="prefetch" href="/docs/assets/js/112.d7fb1b18.js"><link rel="prefetch" href="/docs/assets/js/113.46f63261.js"><link rel="prefetch" href="/docs/assets/js/114.63a2c68f.js"><link rel="prefetch" href="/docs/assets/js/115.14154c3b.js"><link rel="prefetch" href="/docs/assets/js/116.64a6d9ff.js"><link rel="prefetch" href="/docs/assets/js/117.8e7cad9f.js"><link rel="prefetch" href="/docs/assets/js/118.c56f6e35.js"><link rel="prefetch" href="/docs/assets/js/119.05678916.js"><link rel="prefetch" href="/docs/assets/js/12.0f1eb63f.js"><link rel="prefetch" href="/docs/assets/js/120.43660080.js"><link rel="prefetch" href="/docs/assets/js/121.b3c25cba.js"><link rel="prefetch" href="/docs/assets/js/122.1447dda2.js"><link rel="prefetch" href="/docs/assets/js/123.472f27a1.js"><link rel="prefetch" href="/docs/assets/js/124.081924df.js"><link rel="prefetch" href="/docs/assets/js/125.dd0bd459.js"><link rel="prefetch" href="/docs/assets/js/126.3054c6fa.js"><link rel="prefetch" href="/docs/assets/js/127.d2acb6e7.js"><link rel="prefetch" href="/docs/assets/js/128.aa0abbdb.js"><link rel="prefetch" href="/docs/assets/js/129.05b023d2.js"><link rel="prefetch" href="/docs/assets/js/13.d2e94251.js"><link rel="prefetch" href="/docs/assets/js/130.b7065eec.js"><link rel="prefetch" href="/docs/assets/js/131.d3cc1360.js"><link rel="prefetch" href="/docs/assets/js/132.1adb4444.js"><link rel="prefetch" href="/docs/assets/js/133.90ee9b0a.js"><link rel="prefetch" href="/docs/assets/js/134.1fc64851.js"><link rel="prefetch" href="/docs/assets/js/135.0209b705.js"><link rel="prefetch" href="/docs/assets/js/136.a7290c28.js"><link rel="prefetch" href="/docs/assets/js/137.5ccabe26.js"><link rel="prefetch" href="/docs/assets/js/138.00def5dc.js"><link rel="prefetch" href="/docs/assets/js/139.281d43d5.js"><link rel="prefetch" href="/docs/assets/js/14.e736b2ed.js"><link rel="prefetch" href="/docs/assets/js/140.c34be4cd.js"><link rel="prefetch" href="/docs/assets/js/141.4d5597af.js"><link rel="prefetch" href="/docs/assets/js/142.e95fdd04.js"><link rel="prefetch" href="/docs/assets/js/143.2d576414.js"><link rel="prefetch" href="/docs/assets/js/144.4b325501.js"><link rel="prefetch" href="/docs/assets/js/145.371d7add.js"><link rel="prefetch" href="/docs/assets/js/146.3e8e06b5.js"><link rel="prefetch" href="/docs/assets/js/147.428d0f01.js"><link rel="prefetch" href="/docs/assets/js/148.618b6765.js"><link rel="prefetch" href="/docs/assets/js/149.e24daaaf.js"><link rel="prefetch" href="/docs/assets/js/15.8288f0b9.js"><link rel="prefetch" href="/docs/assets/js/150.edae6b37.js"><link rel="prefetch" href="/docs/assets/js/151.667408c8.js"><link rel="prefetch" href="/docs/assets/js/152.c953e391.js"><link rel="prefetch" href="/docs/assets/js/153.f00f5c11.js"><link rel="prefetch" href="/docs/assets/js/154.140c2114.js"><link rel="prefetch" href="/docs/assets/js/155.a31166d4.js"><link rel="prefetch" href="/docs/assets/js/156.15b5cf3e.js"><link rel="prefetch" href="/docs/assets/js/157.7423bd23.js"><link rel="prefetch" href="/docs/assets/js/158.a1c374d5.js"><link rel="prefetch" href="/docs/assets/js/159.c315493e.js"><link rel="prefetch" href="/docs/assets/js/16.2b15d2a2.js"><link rel="prefetch" href="/docs/assets/js/160.fc813d7f.js"><link rel="prefetch" href="/docs/assets/js/161.2a061502.js"><link rel="prefetch" href="/docs/assets/js/162.8e4ecf66.js"><link rel="prefetch" href="/docs/assets/js/163.e08c02cc.js"><link rel="prefetch" href="/docs/assets/js/164.cf403b34.js"><link rel="prefetch" href="/docs/assets/js/166.da661a38.js"><link rel="prefetch" href="/docs/assets/js/167.4d4c4c2a.js"><link rel="prefetch" href="/docs/assets/js/168.e96e78eb.js"><link rel="prefetch" href="/docs/assets/js/169.89dc8893.js"><link rel="prefetch" href="/docs/assets/js/17.95f70925.js"><link rel="prefetch" href="/docs/assets/js/170.76b90e2f.js"><link rel="prefetch" href="/docs/assets/js/171.32ba085f.js"><link rel="prefetch" href="/docs/assets/js/172.04d8e56a.js"><link rel="prefetch" href="/docs/assets/js/173.988a245e.js"><link rel="prefetch" href="/docs/assets/js/174.4d4b45db.js"><link rel="prefetch" href="/docs/assets/js/175.4677b7cd.js"><link rel="prefetch" href="/docs/assets/js/176.7d030b95.js"><link rel="prefetch" href="/docs/assets/js/177.e17aaad6.js"><link rel="prefetch" href="/docs/assets/js/178.139180aa.js"><link rel="prefetch" href="/docs/assets/js/179.bff6ef20.js"><link rel="prefetch" href="/docs/assets/js/18.27c704d0.js"><link rel="prefetch" href="/docs/assets/js/180.9d5ef0a8.js"><link rel="prefetch" href="/docs/assets/js/181.8991d3e7.js"><link rel="prefetch" href="/docs/assets/js/182.09bae297.js"><link rel="prefetch" href="/docs/assets/js/183.2f4ede74.js"><link rel="prefetch" href="/docs/assets/js/184.f9fb3ff3.js"><link rel="prefetch" href="/docs/assets/js/185.665af8a2.js"><link rel="prefetch" href="/docs/assets/js/186.8185ceab.js"><link rel="prefetch" href="/docs/assets/js/187.7f03c48e.js"><link rel="prefetch" href="/docs/assets/js/188.482114c5.js"><link rel="prefetch" href="/docs/assets/js/189.a06a7a07.js"><link rel="prefetch" href="/docs/assets/js/19.6aa258d9.js"><link rel="prefetch" href="/docs/assets/js/190.4ce7424d.js"><link rel="prefetch" href="/docs/assets/js/191.23b16876.js"><link rel="prefetch" href="/docs/assets/js/192.d2be7cb1.js"><link rel="prefetch" href="/docs/assets/js/193.a1d7f1a8.js"><link rel="prefetch" href="/docs/assets/js/194.43f25ee1.js"><link rel="prefetch" href="/docs/assets/js/195.8f8d8df4.js"><link rel="prefetch" href="/docs/assets/js/196.7be631bc.js"><link rel="prefetch" href="/docs/assets/js/197.f6b929ff.js"><link rel="prefetch" href="/docs/assets/js/198.37ec8530.js"><link rel="prefetch" href="/docs/assets/js/199.270c393c.js"><link rel="prefetch" href="/docs/assets/js/20.60f7ac61.js"><link rel="prefetch" href="/docs/assets/js/200.152bff8f.js"><link rel="prefetch" href="/docs/assets/js/201.6b43a4a1.js"><link rel="prefetch" href="/docs/assets/js/202.fc50191b.js"><link rel="prefetch" href="/docs/assets/js/203.55761468.js"><link rel="prefetch" href="/docs/assets/js/204.65f08845.js"><link rel="prefetch" href="/docs/assets/js/205.dc956a94.js"><link rel="prefetch" href="/docs/assets/js/206.49448b0e.js"><link rel="prefetch" href="/docs/assets/js/207.2af13466.js"><link rel="prefetch" href="/docs/assets/js/208.14559e81.js"><link rel="prefetch" href="/docs/assets/js/209.7210ac71.js"><link rel="prefetch" href="/docs/assets/js/21.8d17e406.js"><link rel="prefetch" href="/docs/assets/js/210.8b44bd8d.js"><link rel="prefetch" href="/docs/assets/js/211.4b1b4834.js"><link rel="prefetch" href="/docs/assets/js/212.c693612a.js"><link rel="prefetch" href="/docs/assets/js/213.9d50f00e.js"><link rel="prefetch" href="/docs/assets/js/214.0adba7d8.js"><link rel="prefetch" href="/docs/assets/js/215.ba3de3db.js"><link rel="prefetch" href="/docs/assets/js/22.812be385.js"><link rel="prefetch" href="/docs/assets/js/23.1013c6bc.js"><link rel="prefetch" href="/docs/assets/js/24.3cfa97b2.js"><link rel="prefetch" href="/docs/assets/js/25.7b5ecb72.js"><link rel="prefetch" href="/docs/assets/js/26.78aae0b9.js"><link rel="prefetch" href="/docs/assets/js/27.8fdbb379.js"><link rel="prefetch" href="/docs/assets/js/28.0b480134.js"><link rel="prefetch" href="/docs/assets/js/29.3986875f.js"><link rel="prefetch" href="/docs/assets/js/30.665a0602.js"><link rel="prefetch" href="/docs/assets/js/31.707777ba.js"><link rel="prefetch" href="/docs/assets/js/32.b4308a94.js"><link rel="prefetch" href="/docs/assets/js/33.f568b95a.js"><link rel="prefetch" href="/docs/assets/js/34.8c7fc34e.js"><link rel="prefetch" href="/docs/assets/js/35.3a167adc.js"><link rel="prefetch" href="/docs/assets/js/36.505e9428.js"><link rel="prefetch" href="/docs/assets/js/37.10e8b4b8.js"><link rel="prefetch" href="/docs/assets/js/38.7de26718.js"><link rel="prefetch" href="/docs/assets/js/39.f43c11bc.js"><link rel="prefetch" href="/docs/assets/js/4.37d5a313.js"><link rel="prefetch" href="/docs/assets/js/40.17d9bd03.js"><link rel="prefetch" href="/docs/assets/js/41.52523484.js"><link rel="prefetch" href="/docs/assets/js/42.cb423ac7.js"><link rel="prefetch" href="/docs/assets/js/43.5364bc54.js"><link rel="prefetch" href="/docs/assets/js/44.5790b532.js"><link rel="prefetch" href="/docs/assets/js/45.7d154ae1.js"><link rel="prefetch" href="/docs/assets/js/46.2b523d82.js"><link rel="prefetch" href="/docs/assets/js/47.d1d96cf5.js"><link rel="prefetch" href="/docs/assets/js/48.e21a8e9e.js"><link rel="prefetch" href="/docs/assets/js/49.13c8319a.js"><link rel="prefetch" href="/docs/assets/js/5.5f1480f1.js"><link rel="prefetch" href="/docs/assets/js/50.03bb7951.js"><link rel="prefetch" href="/docs/assets/js/51.3e7643e6.js"><link rel="prefetch" href="/docs/assets/js/52.bb72d2b6.js"><link rel="prefetch" href="/docs/assets/js/53.feb7d5f4.js"><link rel="prefetch" href="/docs/assets/js/54.3cd0cbc1.js"><link rel="prefetch" href="/docs/assets/js/55.17d04d48.js"><link rel="prefetch" href="/docs/assets/js/56.350d803d.js"><link rel="prefetch" href="/docs/assets/js/57.02af9628.js"><link rel="prefetch" href="/docs/assets/js/58.b02e87e9.js"><link rel="prefetch" href="/docs/assets/js/59.d7292490.js"><link rel="prefetch" href="/docs/assets/js/6.bd05d07c.js"><link rel="prefetch" href="/docs/assets/js/60.b71d3ffd.js"><link rel="prefetch" href="/docs/assets/js/61.3568bd7b.js"><link rel="prefetch" href="/docs/assets/js/62.9b59cdb6.js"><link rel="prefetch" href="/docs/assets/js/63.6c781fc6.js"><link rel="prefetch" href="/docs/assets/js/64.37686344.js"><link rel="prefetch" href="/docs/assets/js/65.062ea34c.js"><link rel="prefetch" href="/docs/assets/js/66.947e4af7.js"><link rel="prefetch" href="/docs/assets/js/67.5682d742.js"><link rel="prefetch" href="/docs/assets/js/68.724ee646.js"><link rel="prefetch" href="/docs/assets/js/69.0e985f62.js"><link rel="prefetch" href="/docs/assets/js/70.c88ee5b2.js"><link rel="prefetch" href="/docs/assets/js/71.4e55b570.js"><link rel="prefetch" href="/docs/assets/js/72.3810612d.js"><link rel="prefetch" href="/docs/assets/js/73.1bd39e94.js"><link rel="prefetch" href="/docs/assets/js/74.e78ab8e7.js"><link rel="prefetch" href="/docs/assets/js/75.c1ca21bf.js"><link rel="prefetch" href="/docs/assets/js/76.8f9f2c2d.js"><link rel="prefetch" href="/docs/assets/js/77.2b4a2a46.js"><link rel="prefetch" href="/docs/assets/js/78.2ab6b361.js"><link rel="prefetch" href="/docs/assets/js/79.4f0ff195.js"><link rel="prefetch" href="/docs/assets/js/8.d9e51ed9.js"><link rel="prefetch" href="/docs/assets/js/80.f64d8492.js"><link rel="prefetch" href="/docs/assets/js/81.29c9a397.js"><link rel="prefetch" href="/docs/assets/js/82.8c327ebe.js"><link rel="prefetch" href="/docs/assets/js/83.c34dc8c6.js"><link rel="prefetch" href="/docs/assets/js/84.b0be81bf.js"><link rel="prefetch" href="/docs/assets/js/85.7f1894f0.js"><link rel="prefetch" href="/docs/assets/js/86.a9b95887.js"><link rel="prefetch" href="/docs/assets/js/87.e82dc1c4.js"><link rel="prefetch" href="/docs/assets/js/88.37d807c0.js"><link rel="prefetch" href="/docs/assets/js/89.cf5ac175.js"><link rel="prefetch" href="/docs/assets/js/9.57213041.js"><link rel="prefetch" href="/docs/assets/js/90.04fb7fe7.js"><link rel="prefetch" href="/docs/assets/js/91.7367f3f8.js"><link rel="prefetch" href="/docs/assets/js/92.37c99022.js"><link rel="prefetch" href="/docs/assets/js/93.435070cf.js"><link rel="prefetch" href="/docs/assets/js/94.5fbd45d8.js"><link rel="prefetch" href="/docs/assets/js/95.b592eef1.js"><link rel="prefetch" href="/docs/assets/js/96.d3a63f21.js"><link rel="prefetch" href="/docs/assets/js/97.e856d53f.js"><link rel="prefetch" href="/docs/assets/js/98.9b11011d.js"><link rel="prefetch" href="/docs/assets/js/99.29f5b3d7.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.1611a0cf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础设施" class="mobile-dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow down"></span></button> <button type="button" aria-label="移动端" class="mobile-dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端" class="mobile-dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow down"></span></button> <button type="button" aria-label="底层研究" class="mobile-dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow down"></span></button> <button type="button" aria-label="媒体" class="mobile-dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow down"></span></button> <button type="button" aria-label="application" class="mobile-dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow down"></span></button> <button type="button" aria-label="偏硬件5G" class="mobile-dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="微信相关" class="mobile-dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础设施" class="mobile-dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow down"></span></button> <button type="button" aria-label="移动端" class="mobile-dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端" class="mobile-dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow down"></span></button> <button type="button" aria-label="底层研究" class="mobile-dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow down"></span></button> <button type="button" aria-label="媒体" class="mobile-dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow down"></span></button> <button type="button" aria-label="application" class="mobile-dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow down"></span></button> <button type="button" aria-label="偏硬件5G" class="mobile-dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="微信相关" class="mobile-dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>mysql</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/mysql/" aria-current="page" class="active sidebar-link">【mysqldocker部署，性能调优】</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="仅安装mysql客户端"><a href="#仅安装mysql客户端" class="header-anchor">#</a> 仅安装MySQL客户端</h1> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 添加rpm源</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm</span>
+<span class="token punctuation">[</span>root@test1 ~<span class="token punctuation">]</span><span class="token comment">#</span>
+<span class="token comment"># 通过yum搜索</span>
+<span class="token punctuation">[</span>root@test1 ~<span class="token punctuation">]</span><span class="token comment"># yum search mysql-community</span>
+<span class="token punctuation">[</span>root@test1 ~<span class="token punctuation">]</span><span class="token comment">#</span>
+<span class="token comment"># 安装x64位的 mysql客户端</span>
+<span class="token punctuation">[</span>root@test1 ~<span class="token punctuation">]</span><span class="token comment"># yum install mysql-community-client.x86_64 -y</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h1 id="mysql无法远程访问"><a href="#mysql无法远程访问" class="header-anchor">#</a> mysql无法远程访问</h1> <p>需要手动增加可以远程访问数据库的用户。</p> <h3 id="方法一-不推荐-、本地登入mysql-更改-mysql-数据库里的-user-表里的-host-项-将-localhost-改为"><a href="#方法一-不推荐-、本地登入mysql-更改-mysql-数据库里的-user-表里的-host-项-将-localhost-改为" class="header-anchor">#</a> 方法一(不推荐)、本地登入mysql，更改 &quot;mysql&quot; 数据库里的 &quot;user&quot; 表里的 &quot;host&quot; 项，将&quot;localhost&quot;改为&quot;%&quot;</h3> <div class="custom-block warning"><p class="custom-block-title">不推荐</p></div> <div class="language- line-numbers-mode"><pre class="language-text"><code>#mysql -u root -proot
+mysql&gt;use mysql;
+mysql&gt;update user set host = '%' where user = 'root';
+mysql&gt;select host, user from user;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="方法二、直接授权-推荐"><a href="#方法二、直接授权-推荐" class="header-anchor">#</a> 方法二、直接授权(推荐)</h3> <div class="custom-block tip"><p class="custom-block-title">推荐</p></div> <p>从任何主机上使用root用户，密码：youpassword（你的root密码）连接到mysql服务器：（首先登陆Linux服务器，填写下面代码即可）</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@localhost software]# mysql -u root -proot 
+mysql&gt;GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+
+mysql&gt;FLUSH PRIVILEGES;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>操作完后切记执行以下命令刷新权限</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>FLUSH PRIVILEGES;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="方法三-终极方法"><a href="#方法三-终极方法" class="header-anchor">#</a> 方法三：终极方法</h3> <p>注释bind-address = 127.0.0.1
+找到mysql.cnf</p> <p>把bind-address = 127.0.0.1 前面加上 #</p> <p>即  #bind-address = 127.0.0.1</p></div> <footer class="page-edit"><!----> <!----></footer> <!---->  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.1edde234.js" defer></script><script src="/docs/assets/js/7.3b9b13f5.js" defer></script><script src="/docs/assets/js/2.d3d21cd8.js" defer></script><script src="/docs/assets/js/165.c00d7bba.js" defer></script><script src="/docs/assets/js/3.1c3a4647.js" defer></script>
+  </body>
+</html>
