@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.png
 actionText:  →
-actionLink: /vuepress/
+actionLink: /基础设施/vuepress/
 features:
 - title: 持久化思想
   details: 不论内容多么庞杂只要你肯持久化下来，就会积累下来。
