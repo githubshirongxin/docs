@@ -1,5 +1,4 @@
 image: ${LOCAL_REGISTRY}/node:latest
-
 pages:
   cache:
     key: "$CI_JOB_STAGE"
