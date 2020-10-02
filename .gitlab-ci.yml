@@ -1,0 +1,16 @@
+image: node:latest
+pages:
+  cache:
+    key: "$CI_JOB_STAGE"
+    paths:
+    - node_modules/
+
+  script:
+   - yarn install
+   - yarn run build 
+ 
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
