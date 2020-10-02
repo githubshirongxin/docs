@@ -314,12 +314,13 @@ DOCKER_USER, 你自己的。CJB公司的用户名就是你的邮件@前面的字
 DOCKER_PASSWORD
 
 ## 手动执行
-在3.121上手动执行
+在3.121（Runner）上手动执行
 
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "shirx@ccbjb.com.cn"  ，不输入密码（一路回车）
+`ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "shirx@ccbjb.com.cn"`  ，不输入密码（一路回车）
 3.121上的私钥id_rsa 设置成gitlabUI的变量SSH_PRIVATE_KEY
 
-ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.3.123
+`ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.3.123`
+// 192.168.3.123 为发布的目标服务器
 
 ## 提交代码触发Pipeline
 
