@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - "10"
 install:
-  #- npm ci # npm ci
-  - npm install -g vuepress
+  - npm ci # npm ci
+  #- npm install -g vuepress
 script:
   - npm run build # npm run docs:build
 deploy:
