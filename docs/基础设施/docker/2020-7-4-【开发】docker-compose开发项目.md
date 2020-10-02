@@ -247,7 +247,7 @@ docker实践之docker-compose部署mysql
 
 在linux下面只需简单的一个命令：
 
-```undefined
+```
 yum install docker
 ```
 
