@@ -1,4 +1,4 @@
-image: $LOCAL_REGISTRYnode:latest
+image: ${LOCAL_REGISTRY}node:latest
 
 pages:
   cache:
