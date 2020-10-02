@@ -1,5 +1,5 @@
 image: $LOCAL_REGISTRYnode:latest
-#image: node:latest
+
 pages:
   cache:
     key: "$CI_JOB_STAGE"
