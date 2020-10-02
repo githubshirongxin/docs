@@ -276,7 +276,7 @@ services:
 
 这里稍微解释一下，其中，network\_mode为容器的网络模式，一般自己测试用host模式就可以了。MYSQL\_ROOT\_PASSWORD为数据库的密码，也就是root用户的密码。MYSQL\_USER和MYSQL\_PASS另外一个用户名和密码。image为你拉取镜像的地址和版本，当然也可以换成自己的镜像仓库，这里使用官方的。volumes里面的参数为映射本地和docker容器里面的文件夹和目录。./db 用来存放了数据库表文件，./conf/my.cnf存放自定义的配置文件，./init存放初始化的脚本。ports 为映射主机和容器的端口。写好docker-compose.yml后把相应的文件夹建好，当然也可以换成你自己的。下面的是博主的文件夹结构。
 
-```kotlin
+```
 root@localhost mysql # tree
 .
 ├── conf
@@ -289,7 +289,7 @@ root@localhost mysql # tree
 
 ## 3、编写配置文件和初始化文件
 
-```csharp
+```
 root@localhost conf # cat my.cnf 
 [mysqld]
 user=mysql
@@ -303,7 +303,7 @@ default-character-set=utf8
 
 这里的配置文件只是一个简单的举例，大家需要根据自己的配置来更改。
 
-```csharp
+```
 root@localhost init # cat init.sql 
 use mysql;
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
@@ -325,7 +325,7 @@ ALTER USER 'root'\@'\%' IDENTIFIED WITH mysql\_native\_password BY 'yourpassword
 
 ## 4、启动数据库
 
-```ruby
+```
 root@localhost mysql # docker-compose pull
 
 .......下载镜像过程
@@ -340,7 +340,7 @@ root@localhost mysql #
 
 ## 5、检查初始化的数据
 
-```ruby
+```
 root@localhost mysql # docker ps
 CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS               NAMES
 cffe8d56f222        docker.io/mysql:latest   "docker-entrypoint..."   21 minutes ago      Up 21 minutes                           mysql_mysql_1_234be9b015e4

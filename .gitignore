@@ -1,6 +1,6 @@
 node_modules/
-.gitignore
-#/public
+#.gitignore
+/public/*
 .cache/
 docs/.vuepress/dist
 
