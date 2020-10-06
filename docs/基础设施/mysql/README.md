@@ -50,3 +50,47 @@ FLUSH PRIVILEGES;
 把bind-address = 127.0.0.1 前面加上 #
 
 即  #bind-address = 127.0.0.1
+
+
+
+# 远程怎么也连接不上mysql
+centos7 Failed to start iptables.service: Unit not found 防火墙
+
+处理：
+`firewall-cmd --zone=public --add-port=3306/tcp --permanent `
+
+
+参考：下面文章
+
+在CentOS 7或RHEL 7或Fedora中防火墙由firewalld来管理
+
+添加（--permanent永久生效，没有此参数重启后失效）
+firewall-cmd --zone=public --add-port=80/tcp --permanent 
+
+ 
+firewall-cmd --zone=public --add-port=1000-2000/tcp --permanent
+重新载入
+
+1
+firewall-cmd --reload
+查看
+
+1
+firewall-cmd --zone=public --query-port=80/tcp
+删除
+
+1
+firewall-cmd --zone=public --remove-port=80/tcp --permanent
+开启防火墙
+
+1
+systemctl start firewalld.service
+关闭防火墙
+
+1
+systemctl stop firewalld.service
+查看运行状态
+
+1
+firewall-cmd --state //running 表示运行
+
