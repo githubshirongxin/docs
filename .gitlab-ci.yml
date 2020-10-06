@@ -1,6 +1,6 @@
 # local registry define the LOCAL_REGISTRY=docker.ccbjb.com.cn/
 # in gitlab.com , dont define LOCAL_REGISTRY , or DEFINE LOCAL_REGISTRY with some public registry site.
-image: ${LOCAL_REGISTRY}node:latest
+image: docker/ccbjb.com.cn/node:latest
 pages:
   cache:
     key: "$CI_JOB_STAGE"
