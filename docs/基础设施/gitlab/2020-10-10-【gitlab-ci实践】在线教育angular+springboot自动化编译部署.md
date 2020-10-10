@@ -5,7 +5,7 @@ title: 2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化�
 
 参考：基础知识：[【gitla-ci发布实践】SpringBoot的编译部署（基础篇）](./2020-09-15-【gitlab-ci实践】springboot的编译部署.md)
 
-## 项目简介
+**项目简介**
 在线教育是前后端分离的项目，
 - 前端angular，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateweb
 - 后端springboot，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateapp
@@ -13,7 +13,7 @@ title: 2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化�
 - 视频服务器：nginx提供了视频链接。
 - 视频录入机器：视频链接实时更新功能的客户端。https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/js
 
-### 公司内部的简单项目。所以服务器地址：
+- 公司内部的简单项目。所以服务器地址：
 |       | runner | dev分支  | master分支 |
 |-------|--------|--------|----------|
 | web   | 3\.121 | 3\.123 | 3\.138   |
@@ -26,15 +26,14 @@ title: 2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化�
  App只允许3.104或3.139作为视频操作机。
 :::
 
-## 分支：
+分支：
 - dev分支：平时在dev分支上开发。既是开发环境又是测试环境。
 - master分支：保护分支。平时不在上面开发。只允许dev分支merge到master。是生产环境。
 
 
-### 1.dev分支
-#### 1.1 dev分支-前端工程：
+## 1.1 dev分支-前端工程：
 
-angular.json 在build和serve下增加“dev”的描述
+### angular.json 在build和serve下增加“dev”的描述
 ```json{60-66,99-102}
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
@@ -197,7 +196,8 @@ angular.json 在build和serve下增加“dev”的描述
 }
 ```
 
-gitlab-ci.yml 注意build使用了`ng build --configuration=${CI_COMMIT_REF_NAME}`
+### gitlab-ci.yml 
+注意build使用了`ng build --configuration=${CI_COMMIT_REF_NAME}`
 当dev分支的时候，就是`ng build --configuration=dev`
 ```yml{43,66}
 variables:
@@ -286,7 +286,7 @@ deploy:
 
 ```
 
-Dockerfile
+### Dockerfile
 ```dockerfile
 FROM trion/nginx-angular
 COPY dist/cjb-educate/ /usr/share/nginx/html/
@@ -294,7 +294,7 @@ COPY dist/cjb-educate/ /usr/share/nginx/html/
 #CMD ["nginx", "-g", "daemon off;"]
 ```
 
-.dev.env 承接gitlab环境变量的值。
+### .dev.env 承接gitlab环境变量的值。
 ```properties
 export SPRING_ACTIVE_PROFILE='dev'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateweb:dev1.1'
@@ -311,22 +311,21 @@ export SERVER_SSH_KEY="$SSH_PRIVATE_KEY"
 - 不行就得写死固定值。
 :::
 
-##### environments/
-###### 创建environment.dev.ts，用作测试环境
+### environments/ 创建environment.dev.ts，用作测试环境
 ```ts
 export const environment = {
   baseUrl:'http://192.168.3.123:8080',
   production: true
 };
 ```
-###### 创建environment.prod.ts，用作生产环境
+### 创建environment.prod.ts，用作生产环境
 ```ts
 export const environment = {
   baseUrl:'http://192.168.3.138:8080',
   production: true
 };
 ```
-###### 既存environment.ts ,用来本地测试
+### 既存environment.ts ,用来本地测试
 ```ts
 export const environment = {
   baseUrl:'http://localhost:8080',
@@ -334,7 +333,7 @@ export const environment = {
 };
 ```
 
-todo.service.ts中使用了环境变量
+### todo.service.ts中使用了环境变量
 ```ts
 import { environment } from 'src/environments/environment'
 
@@ -347,7 +346,7 @@ export class TodoService {
   todos: Todo[] = []; // 任务列表
 ```
 
-#### 1.2 dev分支 giltab web前端
+## 1.2 dev分支 giltab web前端
 ![](/docs/images/2020-10-10-17-34-58.png)
 
 ![](/docs/images/2020-10-10-17-35-23.png)
@@ -357,9 +356,9 @@ gitlab pipeline
 ![](/docs/images/2020-10-10-17-36-04.png)
 
 
-#### 1.3 dev后端工程
+## 1.3 dev后端工程
 
-.dev.env
+### .dev.env
 ```properties
 export SPRING_ACTIVE_PROFILE='dev'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateapp:dev1.1'
@@ -373,7 +372,7 @@ export DB_USER="$DEV_DB_USER"
 export DB_PASSWORD="$DEV_DB_PASSWORD"
 ```
 
-Dockerfile
+### Dockerfile
 ```dockerfile
 #FROM docker.ccbjb.com.cn/maven:3.6.3-jdk-11-slim AS MAVEN_BUILD
 FROM docker.ccbjb.com.cn/maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
@@ -393,7 +392,7 @@ COPY --from=MAVEN_BUILD /build/target/*-exec.jar /app/educateapp.jar
 ENTRYPOINT ["java", "-jar", "educateapp.jar"]
 ```
 
-.gitlab-ci.yml
+### .gitlab-ci.yml
 ```yml
 stages:
   - build
@@ -443,8 +442,7 @@ deploy:
     - "133"
 ```
 
-##### src/resource/配置环境变量
-###### application-dev.properties
+### src/resource/配置环境变量 application-dev.properties
 ```properties
 server.port=8080
 
@@ -486,7 +484,7 @@ logging.pattern.file= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15
 logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n  
 ```
 
-###### application-prod.properties 和 dev一样。
+### application-prod.properties 和 dev一样。
 ```properties
 server.port=8080
 
@@ -528,7 +526,7 @@ logging.pattern.file= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15
 logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n  
 ```
 
-###### application.properties 开发用。可以写死。
+### application.properties 开发用。可以写死。
 ```properties
 server.port=8080
 
@@ -570,7 +568,7 @@ logging.pattern.file= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15
 logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n  
 ```
 
-pom.xml
+### pom.xml
 ```xml{25-40}
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -785,7 +783,7 @@ pom.xml
 ```
 
 
-.m2/settings.xml
+### .m2/settings.xml
 ```xml
 <settings>
 	<servers>
@@ -851,7 +849,7 @@ pom.xml
 </settings>
 ```
 
-#### 1.4 gitlab 后端app设置
+## 1.4 gitlab 后端app设置
 
 ![](/docs/images/2020-10-10-17-46-57.png)
 ` on 133 docker excutor docker:19.03.12 for educateApp 7dKFGzti`
@@ -865,12 +863,12 @@ pom.xml
 ![](/docs/images/2020-10-10-17-49-56.png)
 
 
-### 2. master分支
+# 2. master分支
 
-#### 2.1 master前端
+## 2.1 master前端
 src/environments/environment.prod.ts与dev分支的完全相同
 
-.master.env
+### .master.env
 ```properties
 export SPRING_ACTIVE_PROFILE='prod'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateweb:1.0'
@@ -880,7 +878,7 @@ export SERVER_IP="$PROD_WEB_SERVER_IP"
 export SERVER_SSH_KEY="$SSH_PRIVATE_KEY"
 ```
 
-Dockfile 与dev分支完全相同
+### Dockfile 与dev分支完全相同
 ```dockerfile
 FROM trion/nginx-angular
 COPY dist/cjb-educate/ /usr/share/nginx/html/
@@ -889,7 +887,7 @@ COPY dist/cjb-educate/ /usr/share/nginx/html/
 ```
 
 
-.gitlab-ci.yml
+### .gitlab-ci.yml 这句不同 ng build --prod --configuration=production
 ```yml{43}
 variables:
   CLI_VERSION: 10.1.3
@@ -976,7 +974,7 @@ deploy:
 
 ```
 
-angular.json与dev保持一致吧。
+### angular.json与dev保持一致吧。
 
 ::: error 注意：
 - yarn.lock ，pakcage-lock.json删掉之后，npm install之后，再ng build会出错。
@@ -984,11 +982,11 @@ angular.json与dev保持一致吧。
 - 本地运行需要`ng serve --configuration production`
 :::
 
-##### 2.2 master 前端gitlab配置
+## 2.2 master 前端gitlab配置
 gitlab上的配置与分支无关，所有分支都是相同的配置。
 
-##### 2.3 master分支 后端
-- .master.env
+## 2.3 master分支 后端
+### .master.env
 ```properties
 export SPRING_ACTIVE_PROFILE='prod'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateapp:1.0'
@@ -1008,12 +1006,12 @@ export DB_PASSWORD="$DEV_DB_PASSWORD"
 - .gitlab-ci.yml也与dev分支相同
 - src/resources/appliation.properties也与dev分支相同
 
-##### 2.4 master 后端gitlab配置
+## 2.4 master 后端gitlab配置
 gitlab上的配置与分支无关，所有分支都是相同的配置。
 
 
-### 3. mysql配置
-docker-compose.yml
+## 3. mysql配置
+### docker-compose.yml
 ```yml
 version: '3'
 services:
@@ -1034,7 +1032,7 @@ services:
       - 3306:3306
 ```
 
-conf/my.cnf
+### conf/my.cnf
 ```properties
 [mysqld]
 user=root
@@ -1052,7 +1050,7 @@ default-character-set=utf8mb4
 default-character-set=utf8mb4
 ```
 
-source/educatebak.sql
+### source/educatebak.sql
 ```sql
 /*
 SQLyog Community v13.1.6 (64 bit)
