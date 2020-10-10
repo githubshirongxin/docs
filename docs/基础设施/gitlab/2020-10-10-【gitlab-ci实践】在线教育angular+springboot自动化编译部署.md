@@ -1,11 +1,13 @@
 ---
 layout: post
-title: 2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署
+title: 【gitlab-ci实践】在线教育angular+springboot自动化编译部署,merge操作。
 ---
 
-参考：基础知识：[【gitla-ci发布实践】SpringBoot的编译部署（基础篇）](./2020-09-15-【gitlab-ci实践】springboot的编译部署.md)
+# 【gitlab-ci实践】在线教育angular+springboot自动化编译部署,merge操作。
 
-**项目简介**
+#### 参考：基础知识：[【gitla-ci发布实践】SpringBoot的编译部署（基础篇）](./2020-09-15-【gitlab-ci实践】springboot的编译部署.md)
+
+### **项目简介**
 在线教育是前后端分离的项目，
 - 前端angular，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateweb
 - 后端springboot，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateapp
@@ -243,7 +245,7 @@ build:
    # - npm install
     - npm ci
    # - ng build
-    - ng build --configuration=${CI_COMMIT_REF_NAME}
+    - ng build --configuration=${CONFIG}
   artifacts:
     paths:
       - educate-system/dist/
@@ -298,6 +300,7 @@ COPY dist/cjb-educate/ /usr/share/nginx/html/
 ### .dev.env 承接gitlab环境变量的值。
 ```properties
 export SPRING_ACTIVE_PROFILE='dev'
+export CONFIG='dev'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateweb:dev1.1'
 export APP_NAME='educateweb_dev'
 export PORT='80'
@@ -872,6 +875,7 @@ src/environments/environment.prod.ts与dev分支的完全相同
 ### .master.env
 ```properties
 export SPRING_ACTIVE_PROFILE='prod'
+export CONFIG='production'
 export DOCKER_REPO='docker.ccbjb.com.cn/library/educateweb:1.0'
 export APP_NAME='educateweb_prod'
 export PORT='80'
@@ -932,7 +936,7 @@ build:
    # - npm install
     - npm ci
    # - ng build
-    - ng build --prod --configuration=production
+    - ng build --prod --configuration=${CONFIG}
   artifacts:
     paths:
       - educate-system/dist/
@@ -995,10 +999,10 @@ export APP_NAME='educateapp_prod'
 export PORT='8080'
 export SERVER_IP="$PROD_APP_SERVER_IP"
 export SERVER_SSH_KEY="$SSH_PRIVATE_KEY"
-export DB_SERVER_IP="$DEV_DB_SERVER_IP"
-export DB_SERVER_POINT="$DEV_DB_SERVER_POINT"
-export DB_USER="$DEV_DB_USER"
-export DB_PASSWORD="$DEV_DB_PASSWORD"
+export DB_SERVER_IP="$PROD_DB_SERVER_IP"
+export DB_SERVER_POINT="$PROD_DB_SERVER_POINT"
+export DB_USER="$PROD_DB_USER"
+export DB_PASSWORD="$PROD_DB_PASSWORD"
 ```
 
 - Dockerfile与dev分支相同
@@ -1170,3 +1174,37 @@ CREATE TABLE `video` (
 ### 4.2 实时监控
 启动前改改option.js里的服务器ip配置。
 在3.104（视频操作机)上启动`node --unhandled-rejections=none Cjb_video_monitor.js` 
+
+
+## 5 合并分支
+
+### **Step 1.** Fetch and check out the branch for this merge request
+```
+git fetch origin
+git checkout -b "dev" "origin/dev"
+```
+### **Step 2.** Review the changes locally
+
+### **Step 3.** Merge the branch and fix any conflicts that come up
+```
+git fetch origin
+git checkout "master"
+git merge --no-ff "dev"
+```
+### **Step 4.** Push the result of the merge to GitLab
+```
+git add .
+git commit -m "xxx"
+git push origin "master"
+```
+**Tip:** You can also checkout merge requests locally by [following these guidelines](/help/user/project/merge_requests/reviewing_and_managing_merge_requests.md#checkout-merge-requests-locally).
+
+### **Step5.** 然后再切回到本地dev继续工作(不要在master上修改提交)
+```
+git checkout dev
+```
+
+### 如果你愿意，随时切换到master分支来。
+```
+git checkout master
+```
