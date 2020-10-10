@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署 | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.de58b64c.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/72.05df9426.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.0ac69010.js"><link rel="prefetch" href="/docs/assets/js/100.1b81359f.js"><link rel="prefetch" href="/docs/assets/js/101.8eab467e.js"><link rel="prefetch" href="/docs/assets/js/102.4720e751.js"><link rel="prefetch" href="/docs/assets/js/103.f8fc94c4.js"><link rel="prefetch" href="/docs/assets/js/104.4b20dc12.js"><link rel="prefetch" href="/docs/assets/js/105.5af21f19.js"><link rel="prefetch" href="/docs/assets/js/106.0b960ab2.js"><link rel="prefetch" href="/docs/assets/js/107.9a4d0037.js"><link rel="prefetch" href="/docs/assets/js/108.06e8bc41.js"><link rel="prefetch" href="/docs/assets/js/109.922eaf46.js"><link rel="prefetch" href="/docs/assets/js/11.2c73bf10.js"><link rel="prefetch" href="/docs/assets/js/110.2c99e517.js"><link rel="prefetch" href="/docs/assets/js/111.f40854ed.js"><link rel="prefetch" href="/docs/assets/js/112.d43ecdf2.js"><link rel="prefetch" href="/docs/assets/js/113.32129ae4.js"><link rel="prefetch" href="/docs/assets/js/114.4784d656.js"><link rel="prefetch" href="/docs/assets/js/115.ec82a1f5.js"><link rel="prefetch" href="/docs/assets/js/116.aba5a657.js"><link rel="prefetch" href="/docs/assets/js/117.0d4b6849.js"><link rel="prefetch" href="/docs/assets/js/118.63b9d35f.js"><link rel="prefetch" href="/docs/assets/js/119.5890d398.js"><link rel="prefetch" href="/docs/assets/js/12.9f6c2075.js"><link rel="prefetch" href="/docs/assets/js/120.2fda8493.js"><link rel="prefetch" href="/docs/assets/js/121.372fd680.js"><link rel="prefetch" href="/docs/assets/js/122.033f50ae.js"><link rel="prefetch" href="/docs/assets/js/123.6d571cfc.js"><link rel="prefetch" href="/docs/assets/js/124.e5cb95f8.js"><link rel="prefetch" href="/docs/assets/js/125.d1c16143.js"><link rel="prefetch" href="/docs/assets/js/126.1c0009b5.js"><link rel="prefetch" href="/docs/assets/js/127.796652f3.js"><link rel="prefetch" href="/docs/assets/js/128.abe9126d.js"><link rel="prefetch" href="/docs/assets/js/129.e1bf4fc1.js"><link rel="prefetch" href="/docs/assets/js/13.bea02ec3.js"><link rel="prefetch" href="/docs/assets/js/130.e7217c9c.js"><link rel="prefetch" href="/docs/assets/js/131.e704cc8e.js"><link rel="prefetch" href="/docs/assets/js/132.e8a27f38.js"><link rel="prefetch" href="/docs/assets/js/133.f0f7a46e.js"><link rel="prefetch" href="/docs/assets/js/134.0b057338.js"><link rel="prefetch" href="/docs/assets/js/135.12878f7b.js"><link rel="prefetch" href="/docs/assets/js/136.f4b08faa.js"><link rel="prefetch" href="/docs/assets/js/137.0b25b9f9.js"><link rel="prefetch" href="/docs/assets/js/138.b08b83ac.js"><link rel="prefetch" href="/docs/assets/js/139.9061a330.js"><link rel="prefetch" href="/docs/assets/js/14.0e31d9c7.js"><link rel="prefetch" href="/docs/assets/js/140.34c6fcb6.js"><link rel="prefetch" href="/docs/assets/js/141.643fb021.js"><link rel="prefetch" href="/docs/assets/js/142.e24e64c9.js"><link rel="prefetch" href="/docs/assets/js/143.1a75664c.js"><link rel="prefetch" href="/docs/assets/js/144.ab98a847.js"><link rel="prefetch" href="/docs/assets/js/145.44659f80.js"><link rel="prefetch" href="/docs/assets/js/146.6cc4cec8.js"><link rel="prefetch" href="/docs/assets/js/147.f3bc07ef.js"><link rel="prefetch" href="/docs/assets/js/148.8aaa64bf.js"><link rel="prefetch" href="/docs/assets/js/149.75529aec.js"><link rel="prefetch" href="/docs/assets/js/15.28699f86.js"><link rel="prefetch" href="/docs/assets/js/150.b43fc96b.js"><link rel="prefetch" href="/docs/assets/js/151.ac6b17e7.js"><link rel="prefetch" href="/docs/assets/js/152.b8c0edb6.js"><link rel="prefetch" href="/docs/assets/js/153.ecd5628e.js"><link rel="prefetch" href="/docs/assets/js/154.1de875df.js"><link rel="prefetch" href="/docs/assets/js/155.0d8187a6.js"><link rel="prefetch" href="/docs/assets/js/156.506a2d11.js"><link rel="prefetch" href="/docs/assets/js/157.02fccf4f.js"><link rel="prefetch" href="/docs/assets/js/158.2140f058.js"><link rel="prefetch" href="/docs/assets/js/159.96019f8d.js"><link rel="prefetch" href="/docs/assets/js/16.80c683fc.js"><link rel="prefetch" href="/docs/assets/js/160.cafd4feb.js"><link rel="prefetch" href="/docs/assets/js/161.b2264b03.js"><link rel="prefetch" href="/docs/assets/js/162.911028de.js"><link rel="prefetch" href="/docs/assets/js/163.256822f0.js"><link rel="prefetch" href="/docs/assets/js/164.fcdf8d85.js"><link rel="prefetch" href="/docs/assets/js/165.f68180fd.js"><link rel="prefetch" href="/docs/assets/js/166.e6815395.js"><link rel="prefetch" href="/docs/assets/js/167.29f3f441.js"><link rel="prefetch" href="/docs/assets/js/168.27cdc18c.js"><link rel="prefetch" href="/docs/assets/js/169.35526920.js"><link rel="prefetch" href="/docs/assets/js/17.a3ec4fa1.js"><link rel="prefetch" href="/docs/assets/js/170.46a86c59.js"><link rel="prefetch" href="/docs/assets/js/171.8ef03113.js"><link rel="prefetch" href="/docs/assets/js/172.d3e37b67.js"><link rel="prefetch" href="/docs/assets/js/173.8fbfc909.js"><link rel="prefetch" href="/docs/assets/js/174.d988f90c.js"><link rel="prefetch" href="/docs/assets/js/175.d150af26.js"><link rel="prefetch" href="/docs/assets/js/176.7a0dbb40.js"><link rel="prefetch" href="/docs/assets/js/177.80d00bde.js"><link rel="prefetch" href="/docs/assets/js/178.e204ea5e.js"><link rel="prefetch" href="/docs/assets/js/179.d40c8530.js"><link rel="prefetch" href="/docs/assets/js/18.309eef6d.js"><link rel="prefetch" href="/docs/assets/js/180.580174fd.js"><link rel="prefetch" href="/docs/assets/js/181.20cb91e0.js"><link rel="prefetch" href="/docs/assets/js/182.27034c14.js"><link rel="prefetch" href="/docs/assets/js/183.9b03ff8c.js"><link rel="prefetch" href="/docs/assets/js/184.f77db79a.js"><link rel="prefetch" href="/docs/assets/js/185.117a3b02.js"><link rel="prefetch" href="/docs/assets/js/186.ce024817.js"><link rel="prefetch" href="/docs/assets/js/187.67bc48a0.js"><link rel="prefetch" href="/docs/assets/js/188.b5867268.js"><link rel="prefetch" href="/docs/assets/js/189.832366c0.js"><link rel="prefetch" href="/docs/assets/js/19.5e7b7752.js"><link rel="prefetch" href="/docs/assets/js/190.1b62596c.js"><link rel="prefetch" href="/docs/assets/js/191.4f1fd957.js"><link rel="prefetch" href="/docs/assets/js/192.7bb54e94.js"><link rel="prefetch" href="/docs/assets/js/193.418976b2.js"><link rel="prefetch" href="/docs/assets/js/194.be02d6b1.js"><link rel="prefetch" href="/docs/assets/js/195.b9d8b016.js"><link rel="prefetch" href="/docs/assets/js/196.659f5ff8.js"><link rel="prefetch" href="/docs/assets/js/197.47a216e8.js"><link rel="prefetch" href="/docs/assets/js/198.74d4b38d.js"><link rel="prefetch" href="/docs/assets/js/199.16aa13c4.js"><link rel="prefetch" href="/docs/assets/js/20.76e3e7d8.js"><link rel="prefetch" href="/docs/assets/js/200.8dd074a5.js"><link rel="prefetch" href="/docs/assets/js/201.69c40566.js"><link rel="prefetch" href="/docs/assets/js/202.cc831915.js"><link rel="prefetch" href="/docs/assets/js/203.c52523f0.js"><link rel="prefetch" href="/docs/assets/js/204.fc72d425.js"><link rel="prefetch" href="/docs/assets/js/205.69efa48c.js"><link rel="prefetch" href="/docs/assets/js/206.41b2a5eb.js"><link rel="prefetch" href="/docs/assets/js/207.788a6fe1.js"><link rel="prefetch" href="/docs/assets/js/208.032d4dfe.js"><link rel="prefetch" href="/docs/assets/js/209.488ed879.js"><link rel="prefetch" href="/docs/assets/js/21.4fd03221.js"><link rel="prefetch" href="/docs/assets/js/210.aa4aa7ce.js"><link rel="prefetch" href="/docs/assets/js/211.d91203ee.js"><link rel="prefetch" href="/docs/assets/js/212.281faa43.js"><link rel="prefetch" href="/docs/assets/js/213.f0789214.js"><link rel="prefetch" href="/docs/assets/js/214.985a9716.js"><link rel="prefetch" href="/docs/assets/js/215.bc7060a8.js"><link rel="prefetch" href="/docs/assets/js/216.93db6a72.js"><link rel="prefetch" href="/docs/assets/js/217.338ed951.js"><link rel="prefetch" href="/docs/assets/js/22.995874a8.js"><link rel="prefetch" href="/docs/assets/js/23.555dd10a.js"><link rel="prefetch" href="/docs/assets/js/24.57d61700.js"><link rel="prefetch" href="/docs/assets/js/25.c16dfa78.js"><link rel="prefetch" href="/docs/assets/js/26.23baaa77.js"><link rel="prefetch" href="/docs/assets/js/27.db4254d4.js"><link rel="prefetch" href="/docs/assets/js/28.9d3989d4.js"><link rel="prefetch" href="/docs/assets/js/29.77f8c257.js"><link rel="prefetch" href="/docs/assets/js/30.f229df53.js"><link rel="prefetch" href="/docs/assets/js/31.8b7b20bb.js"><link rel="prefetch" href="/docs/assets/js/32.d662fa8b.js"><link rel="prefetch" href="/docs/assets/js/33.9308b376.js"><link rel="prefetch" href="/docs/assets/js/34.590b85c8.js"><link rel="prefetch" href="/docs/assets/js/35.ee0cb22e.js"><link rel="prefetch" href="/docs/assets/js/36.05aac00e.js"><link rel="prefetch" href="/docs/assets/js/37.2e400a68.js"><link rel="prefetch" href="/docs/assets/js/38.674af2b6.js"><link rel="prefetch" href="/docs/assets/js/39.54fe898a.js"><link rel="prefetch" href="/docs/assets/js/4.e1c3458e.js"><link rel="prefetch" href="/docs/assets/js/40.262a244e.js"><link rel="prefetch" href="/docs/assets/js/41.65ac41b3.js"><link rel="prefetch" href="/docs/assets/js/42.69f8b8fa.js"><link rel="prefetch" href="/docs/assets/js/43.79304cb1.js"><link rel="prefetch" href="/docs/assets/js/44.15f9681d.js"><link rel="prefetch" href="/docs/assets/js/45.0753789f.js"><link rel="prefetch" href="/docs/assets/js/46.cc30379a.js"><link rel="prefetch" href="/docs/assets/js/47.eaa975d2.js"><link rel="prefetch" href="/docs/assets/js/48.6aeef2ea.js"><link rel="prefetch" href="/docs/assets/js/49.b1b78044.js"><link rel="prefetch" href="/docs/assets/js/50.499062a3.js"><link rel="prefetch" href="/docs/assets/js/51.c3e015ee.js"><link rel="prefetch" href="/docs/assets/js/52.7fe3f9ca.js"><link rel="prefetch" href="/docs/assets/js/53.2f9b1910.js"><link rel="prefetch" href="/docs/assets/js/54.dcd7012b.js"><link rel="prefetch" href="/docs/assets/js/55.4c876727.js"><link rel="prefetch" href="/docs/assets/js/56.1a056d6a.js"><link rel="prefetch" href="/docs/assets/js/57.d5f30dbb.js"><link rel="prefetch" href="/docs/assets/js/58.fbd961a5.js"><link rel="prefetch" href="/docs/assets/js/59.6859f4d5.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.49ca807b.js"><link rel="prefetch" href="/docs/assets/js/61.6ce1eb16.js"><link rel="prefetch" href="/docs/assets/js/62.e6bfdcb3.js"><link rel="prefetch" href="/docs/assets/js/63.f0ff8c98.js"><link rel="prefetch" href="/docs/assets/js/64.747f26a2.js"><link rel="prefetch" href="/docs/assets/js/65.b6cc0444.js"><link rel="prefetch" href="/docs/assets/js/66.1f2bd0a8.js"><link rel="prefetch" href="/docs/assets/js/67.a4cc496c.js"><link rel="prefetch" href="/docs/assets/js/68.498cb6cc.js"><link rel="prefetch" href="/docs/assets/js/69.14dcb3ae.js"><link rel="prefetch" href="/docs/assets/js/7.75604009.js"><link rel="prefetch" href="/docs/assets/js/70.fbb59a1f.js"><link rel="prefetch" href="/docs/assets/js/71.905b879f.js"><link rel="prefetch" href="/docs/assets/js/73.647e9be2.js"><link rel="prefetch" href="/docs/assets/js/74.dd048e75.js"><link rel="prefetch" href="/docs/assets/js/75.baed0beb.js"><link rel="prefetch" href="/docs/assets/js/76.4f1db7a4.js"><link rel="prefetch" href="/docs/assets/js/77.d2e12ba2.js"><link rel="prefetch" href="/docs/assets/js/78.34651bd5.js"><link rel="prefetch" href="/docs/assets/js/79.50f22b31.js"><link rel="prefetch" href="/docs/assets/js/8.e456fa8a.js"><link rel="prefetch" href="/docs/assets/js/80.1de1ca11.js"><link rel="prefetch" href="/docs/assets/js/81.d0f74936.js"><link rel="prefetch" href="/docs/assets/js/82.f0331f64.js"><link rel="prefetch" href="/docs/assets/js/83.51b13da5.js"><link rel="prefetch" href="/docs/assets/js/84.d71fd80d.js"><link rel="prefetch" href="/docs/assets/js/85.bbe449fe.js"><link rel="prefetch" href="/docs/assets/js/86.c004442a.js"><link rel="prefetch" href="/docs/assets/js/87.c54b90fa.js"><link rel="prefetch" href="/docs/assets/js/88.324eaca6.js"><link rel="prefetch" href="/docs/assets/js/89.114167ff.js"><link rel="prefetch" href="/docs/assets/js/9.32f8a7da.js"><link rel="prefetch" href="/docs/assets/js/90.ef457707.js"><link rel="prefetch" href="/docs/assets/js/91.e363b670.js"><link rel="prefetch" href="/docs/assets/js/92.83aa1194.js"><link rel="prefetch" href="/docs/assets/js/93.4457858b.js"><link rel="prefetch" href="/docs/assets/js/94.117684d3.js"><link rel="prefetch" href="/docs/assets/js/95.9fdffbb0.js"><link rel="prefetch" href="/docs/assets/js/96.42832926.js"><link rel="prefetch" href="/docs/assets/js/97.2ad4149e.js"><link rel="prefetch" href="/docs/assets/js/98.b5e10443.js"><link rel="prefetch" href="/docs/assets/js/99.595c4eef.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>gitlab</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/基础设施/gitlab/0000-00-00-Gitlab日记.html" class="sidebar-link">【gitlab日记】</a></li><li><a href="/docs/基础设施/gitlab/2020-09-15-【gitlab-ci实践】springboot的编译部署.html" class="sidebar-link">【gitla-ci发布实践】SpringBoot的编译部署</a></li><li><a href="/docs/基础设施/gitlab/2020-09-25-【gitlab-ci编译部署】springboot知识点.html" class="sidebar-link">【springboot】gitlab-ci编译部署知识点</a></li><li><a href="/docs/基础设施/gitlab/2020-09-28-Gitlab-ci-Angular.html" class="sidebar-link">【gitlab-ci】【Angular】</a></li><li><a href="/docs/基础设施/gitlab/2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署.html" class="active sidebar-link">2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/基础设施/gitlab/2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署.html#项目简介" class="sidebar-link">项目简介</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/gitlab/2020-10-10-【gitlab-ci实践】在线教育angular+springboot自动化编译部署.html#分支：" class="sidebar-link">分支：</a></li></ul></li><li><a href="/docs/基础设施/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html" class="sidebar-link">【GitLab安装】Docker和docker-compose部署GitLab（第一天）</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-GitLab【单机版】docker-compose部署第二天.html" class="sidebar-link">【GitLab安装】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab-Pages-Domain.html" class="sidebar-link">【gitlab pages】 设置域名</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab-Pages-Runner.html" class="sidebar-link">【gitlab vuepress】 能够成功编译vuepress项目了</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab-SharedRunner-GroupRunner.html" class="sidebar-link">【Gitlab Runner】 本地Gitlab服务器的shared runner 和 Group Runner的配置方法</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab-团队使用Gitlab的流程.html" class="sidebar-link">【gitlab工作流】</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab_Runner安装配置.html" class="sidebar-link">【GitlabRunner安装配置】</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab使用自签名证书开启https.html" class="sidebar-link">【Gitlab配置】使用自签名证书开启Https</a></li><li><a href="/docs/基础设施/gitlab/2020-7-2-Gitlab协同开发.html" class="sidebar-link">【gitlab协同开发】</a></li><li><a href="/docs/基础设施/gitlab/2020-7-3-gitlabTroubleShooting.html" class="sidebar-link">【GitLab trouble shootting】（持续更新中）</a></li><li><a href="/docs/基础设施/gitlab/2020-8-10-GitlabRunner-neuxs-maven.html" class="sidebar-link">【how-to-use-gitlab-ci-with-nexus maven】</a></li><li><a href="/docs/基础设施/gitlab/2020-8-13-Gitlab-Runner使用nexus私服加速（一）.html" class="sidebar-link">【gitlab-ci-runner + nexus】加速docker下载 （一）IP</a></li><li><a href="/docs/基础设施/gitlab/2020-8-13-Gitlab-Runner使用nexus私服加速（二）.html" class="sidebar-link">【gitlab-runner + nexus】加速docker和npm下载 （二）nginx代理docker库ssl</a></li><li><a href="/docs/基础设施/gitlab/2020-8-13-gitlab日常维护.html" class="sidebar-link">【gitlab日常维护】</a></li><li><a href="/docs/基础设施/gitlab/2020-8-4-GitlabPages公司方案思考.html" class="sidebar-link">【gitlab pages】公司方案思考</a></li><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/gitlab/" aria-current="page" class="sidebar-link">gitlab EE 与 CE 的区别</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>参考：基础知识：<a href="/docs/基础设施/gitlab/2020-09-15-【gitlab-ci实践】springboot的编译部署.html">【gitla-ci发布实践】SpringBoot的编译部署（基础篇）</a></p> <h2 id="项目简介"><a href="#项目简介" class="header-anchor">#</a> 项目简介</h2> <p>在线教育是前后端分离的项目，</p> <ul><li>前端angular，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateweb</li> <li>后端springboot，https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/educateapp</li> <li>DB为mysql。https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/mysql</li> <li>视频服务器：nginx提供了视频链接。</li> <li>视频录入机器：视频链接实时更新功能的客户端。https://gitlab.ccbjb.com.cn/ec7mongrp/trainsubgrp/js</li></ul> <h3 id="公司内部的简单项目。所以服务器地址："><a href="#公司内部的简单项目。所以服务器地址：" class="header-anchor">#</a> 公司内部的简单项目。所以服务器地址：</h3> <table><thead><tr><th></th> <th>runner</th> <th>dev分支</th> <th>master分支</th></tr></thead> <tbody><tr><td>web</td> <td>3.121</td> <td>3.123</td> <td>3.138</td></tr> <tr><td>app</td> <td>3.133</td> <td>3.123</td> <td>3.138</td></tr> <tr><td>DB</td> <td>-</td> <td>3.123</td> <td>3.138</td></tr> <tr><td>视频服务器</td> <td>-</td> <td>3.139</td> <td>3.139</td></tr> <tr><td>视频操作机</td> <td>-</td> <td>3.139</td> <td>3.104</td></tr></tbody></table> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>App只允许3.104或3.139作为视频操作机。</p></div> <h2 id="分支："><a href="#分支：" class="header-anchor">#</a> 分支：</h2> <ul><li>dev分支：平时在dev分支上开发。既是开发环境又是测试环境。</li> <li>master分支：保护分支。平时不在上面开发。只允许dev分支merge到master。是生产环境。</li></ul> <h3 id="_1-dev分支"><a href="#_1-dev分支" class="header-anchor">#</a> 1.dev分支</h3> <h4 id="_1-1-dev分支-前端："><a href="#_1-1-dev分支-前端：" class="header-anchor">#</a> 1.1 dev分支-前端：</h4> <p>angular.json 在build和serve下增加“dev”的描述</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;$schema&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./node_modules/@angular/cli/lib/config/schema.json&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;newProjectRoot&quot;</span><span class="token operator">:</span> <span class="token string">&quot;projects&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;projects&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;cjb-educate&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;projectType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;application&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;schematics&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;root&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;sourceRoot&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;app&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;architect&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:browser&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;outputPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dist/cjb-educate&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;index&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/index.html&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/main.ts&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;polyfills&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/polyfills.ts&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;tsConfig&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tsconfig.app.json&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;aot&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;assets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;src/favicon.ico&quot;</span><span class="token punctuation">,</span>
+              <span class="token string">&quot;src/assets&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;styles&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;src/styles.css&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;production&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;fileReplacements&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;replace&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/environments/environment.ts&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;with&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/environments/environment.prod.ts&quot;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">]</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;optimization&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;outputHashing&quot;</span><span class="token operator">:</span> <span class="token string">&quot;all&quot;</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;sourceMap&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;extractCss&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;namedChunks&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;extractLicenses&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;vendorChunk&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;buildOptimizer&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;budgets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;initial&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumWarning&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2mb&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumError&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5mb&quot;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;anyComponentStyle&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumWarning&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6kb&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumError&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10kb&quot;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;fileReplacements&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;replace&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/environments/environment.ts&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;with&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/environments/environment.dev.ts&quot;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">]</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;optimization&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;outputHashing&quot;</span><span class="token operator">:</span> <span class="token string">&quot;all&quot;</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;sourceMap&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;extractCss&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;namedChunks&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;extractLicenses&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;vendorChunk&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;buildOptimizer&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;budgets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;initial&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumWarning&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2mb&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumError&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5mb&quot;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span>
+                  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;anyComponentStyle&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumWarning&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6kb&quot;</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;maximumError&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10kb&quot;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:dev-server&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;browserTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:build&quot;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;production&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;browserTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:build:production&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;browserTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:build:dev&quot;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;extract-i18n&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:extract-i18n&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;browserTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:build&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:karma&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/test.ts&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;polyfills&quot;</span><span class="token operator">:</span> <span class="token string">&quot;src/polyfills.ts&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;tsConfig&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tsconfig.spec.json&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;karmaConfig&quot;</span><span class="token operator">:</span> <span class="token string">&quot;karma.conf.js&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;assets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;src/favicon.ico&quot;</span><span class="token punctuation">,</span>
+              <span class="token string">&quot;src/assets&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;styles&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;src/styles.css&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;lint&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:tslint&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;tsConfig&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;tsconfig.app.json&quot;</span><span class="token punctuation">,</span>
+              <span class="token string">&quot;tsconfig.spec.json&quot;</span><span class="token punctuation">,</span>
+              <span class="token string">&quot;e2e/tsconfig.json&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;exclude&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;**/node_modules/**&quot;</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;e2e&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;builder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@angular-devkit/build-angular:protractor&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;protractorConfig&quot;</span><span class="token operator">:</span> <span class="token string">&quot;e2e/protractor.conf.js&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;devServerTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:serve&quot;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;production&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;devServerTarget&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate:serve:production&quot;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;defaultProject&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cjb-educate&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;cli&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;analytics&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br></div></div><p>gitlab-ci.yml</p> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">variables</span><span class="token punctuation">:</span>
+  <span class="token key atrule">CLI_VERSION</span><span class="token punctuation">:</span> 10.1.3
+
+<span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> cd ./educate<span class="token punctuation">-</span>system
+  <span class="token punctuation">-</span> source .$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>.env
+
+<span class="token comment"># this is testing for git ignore file cicd</span>
+
+<span class="token comment">#image: sonarsource/sonar-scanner-cli:latest</span>
+
+<span class="token key atrule">stages</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> build
+  <span class="token punctuation">-</span> build<span class="token punctuation">-</span>docker
+  <span class="token punctuation">-</span> test
+  <span class="token punctuation">-</span> deploy
+
+<span class="token comment">#sonarqube-check:</span>
+<span class="token comment"># stage: test</span>
+<span class="token comment">#</span>
+<span class="token comment"># when: manual</span>
+<span class="token comment">#</span>
+<span class="token comment"># script:</span>
+<span class="token comment">#   - chmod 755 sonar.sh</span>
+<span class="token comment">#</span>
+<span class="token comment">#   - ./sonar.sh</span>
+<span class="token comment">#</span>
+<span class="token comment"># allow_failure: false</span>
+<span class="token comment">#</span>
+<span class="token comment"># only:</span>
+<span class="token comment">#   - master</span>
+
+<span class="token key atrule">build</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.ccbjb.com.cn/trion/ng<span class="token punctuation">-</span>cli
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token comment"># when: manual</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+   <span class="token comment"># - npm install node-sass --unsafe-perms</span>
+   <span class="token comment"># - npm install copy-webpack-plugin@4.5.2 --save-dev</span>
+   <span class="token comment"># - npm install</span>
+    <span class="token punctuation">-</span> npm ci
+   <span class="token comment"># - ng build</span>
+    <span class="token punctuation">-</span> ng build <span class="token punctuation">-</span><span class="token punctuation">-</span>configuration=$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> educate<span class="token punctuation">-</span>system/dist/
+
+<span class="token key atrule">build-docker</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.ccbjb.com.cn/docker<span class="token punctuation">:</span>19.03.12
+  <span class="token key atrule">services</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> docker<span class="token punctuation">:</span>19.03.12<span class="token punctuation">-</span>dind
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;--insecure-registry=docker.ccbjb.com.cn&quot;</span><span class="token punctuation">]</span>
+    <span class="token comment">#- name: docker.ccbjb.com.cn/mysql</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build<span class="token punctuation">-</span>docker
+  <span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> pwd
+    <span class="token punctuation">-</span> ls <span class="token punctuation">-</span>a
+    <span class="token punctuation">-</span> cd ./educate<span class="token punctuation">-</span>system
+    <span class="token punctuation">-</span> echo &quot;$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>&quot;
+    <span class="token punctuation">-</span> cat .$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>.env
+    <span class="token punctuation">-</span> source .$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>.env
+    <span class="token punctuation">-</span> echo &quot;$SERVER_IP&quot;
+    <span class="token punctuation">-</span> echo $DOCKER_PASSWORD
+    <span class="token punctuation">-</span> echo $DOCKER_USER
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> docker info
+    <span class="token punctuation">-</span> echo $DOCKER_PASSWORD <span class="token punctuation">|</span> docker login <span class="token punctuation">-</span>u$DOCKER_USER docker.ccbjb.com.cn  <span class="token punctuation">-</span><span class="token punctuation">-</span>password<span class="token punctuation">-</span>stdin
+    <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span><span class="token punctuation">-</span>build<span class="token punctuation">-</span>arg SPRING_ACTIVE_PROFILE=$SPRING_ACTIVE_PROFILE <span class="token punctuation">-</span>t $DOCKER_REPO .
+    <span class="token punctuation">-</span> docker push $DOCKER_REPO
+
+<span class="token comment"># login into another server docker pull and run image to Container.</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.ccbjb.com.cn/ubuntu<span class="token punctuation">:</span>latest
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cd ./educate<span class="token punctuation">-</span>system
+    <span class="token punctuation">-</span> <span class="token string">'which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y )'</span>
+    <span class="token punctuation">-</span> eval $(ssh<span class="token punctuation">-</span>agent <span class="token punctuation">-</span>s)
+    <span class="token punctuation">-</span> ssh<span class="token punctuation">-</span>add &lt;(echo &quot;$SSH_PRIVATE_KEY&quot;)
+    <span class="token punctuation">-</span> mkdir <span class="token punctuation">-</span>p ~/.ssh
+    <span class="token punctuation">-</span> chmod 700 ~/.ssh
+    <span class="token punctuation">-</span> echo <span class="token punctuation">-</span>e &quot;Host <span class="token important">*\n\tStrictHostKeyChecking</span> no\n\n&quot; <span class="token punctuation">&gt;</span> ~/.ssh/config
+    <span class="token punctuation">-</span> source .$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>.env
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ssh root@$SERVER_IP &quot;docker login <span class="token punctuation">-</span>u $DOCKER_USER <span class="token punctuation">-</span>p $DOCKER_PASSWORD docker.ccbjb.com.cn; docker stop $APP_NAME; docker system prune <span class="token punctuation">-</span>a <span class="token punctuation">-</span>f; docker pull $DOCKER_REPO; docker container run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>name $APP_NAME <span class="token punctuation">-</span>p $PORT<span class="token punctuation">:</span>8080 <span class="token punctuation">-</span>e SPRING_PROFILES_ACTIVE=$SPRING_ACTIVE_PROFILE $DOCKER_REPO; docker logout&quot;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br></div></div><p>Dockerfile</p> <div class="language-dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token keyword">FROM</span> trion/nginx<span class="token punctuation">-</span>angular
+<span class="token keyword">COPY</span> dist/cjb<span class="token punctuation">-</span>educate/ /usr/share/nginx/html/
+<span class="token comment">#EXPOSE 80</span>
+<span class="token comment">#CMD [</span><span class="token string">&quot;nginx&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-g&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;daemon off;&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>.dev.env</p> <div class="language-properties line-numbers-mode"><pre class="language-properties"><code><span class="token attr-name">export</span> <span class="token attr-value">SPRING_ACTIVE_PROFILE='dev'</span>
+<span class="token attr-name">export</span> <span class="token attr-value">DOCKER_REPO='docker.ccbjb.com.cn/library/educateweb:dev1.1'</span>
+<span class="token attr-name">export</span> <span class="token attr-value">APP_NAME='educateweb_dev'</span>
+<span class="token attr-name">export</span> <span class="token attr-value">PORT='80'</span>
+<span class="token attr-name">export</span> <span class="token attr-value">SERVER_IP=&quot;$DEV_WEB_SERVER_IP&quot;</span>
+<span class="token attr-name">export</span> <span class="token attr-value">SERVER_SSH_KEY=&quot;$SSH_PRIVATE_KEY&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><img src="/docs/images/2020-10-10-16-19-24.png" alt=""></p> <p>environments/
+创建environment.dev.ts</p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">export</span> <span class="token keyword">const</span> environment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  baseUrl<span class="token operator">:</span><span class="token string">'http://192.168.3.123:8080'</span><span class="token punctuation">,</span>
+  production<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>创建environment.prod.ts</p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">export</span> <span class="token keyword">const</span> environment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  baseUrl<span class="token operator">:</span><span class="token string">'http://$PROD_APP_SERVER_IP:8080'</span><span class="token punctuation">,</span>
+  production<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>既存environment.ts</p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">export</span> <span class="token keyword">const</span> environment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  baseUrl<span class="token operator">:</span><span class="token string">'http://localhost:8080'</span><span class="token punctuation">,</span>
+  production<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/基础设施/gitlab/2020-09-28-Gitlab-ci-Angular.html" class="prev">
+        【gitlab-ci】【Angular】
+      </a></span> <span class="next"><a href="/docs/基础设施/gitlab/2020-7-2-GitLab【单机版】docker-compose部署.html">
+        【GitLab安装】Docker和docker-compose部署GitLab（第一天）
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.de58b64c.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/72.05df9426.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>

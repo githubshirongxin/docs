@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【k8s笔记】【视频教程70P】(二. harbor安装后k8s节点配置) | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.de58b64c.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/111.f40854ed.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.0ac69010.js"><link rel="prefetch" href="/docs/assets/js/100.1b81359f.js"><link rel="prefetch" href="/docs/assets/js/101.8eab467e.js"><link rel="prefetch" href="/docs/assets/js/102.4720e751.js"><link rel="prefetch" href="/docs/assets/js/103.f8fc94c4.js"><link rel="prefetch" href="/docs/assets/js/104.4b20dc12.js"><link rel="prefetch" href="/docs/assets/js/105.5af21f19.js"><link rel="prefetch" href="/docs/assets/js/106.0b960ab2.js"><link rel="prefetch" href="/docs/assets/js/107.9a4d0037.js"><link rel="prefetch" href="/docs/assets/js/108.06e8bc41.js"><link rel="prefetch" href="/docs/assets/js/109.922eaf46.js"><link rel="prefetch" href="/docs/assets/js/11.2c73bf10.js"><link rel="prefetch" href="/docs/assets/js/110.2c99e517.js"><link rel="prefetch" href="/docs/assets/js/112.d43ecdf2.js"><link rel="prefetch" href="/docs/assets/js/113.32129ae4.js"><link rel="prefetch" href="/docs/assets/js/114.4784d656.js"><link rel="prefetch" href="/docs/assets/js/115.ec82a1f5.js"><link rel="prefetch" href="/docs/assets/js/116.aba5a657.js"><link rel="prefetch" href="/docs/assets/js/117.0d4b6849.js"><link rel="prefetch" href="/docs/assets/js/118.63b9d35f.js"><link rel="prefetch" href="/docs/assets/js/119.5890d398.js"><link rel="prefetch" href="/docs/assets/js/12.9f6c2075.js"><link rel="prefetch" href="/docs/assets/js/120.2fda8493.js"><link rel="prefetch" href="/docs/assets/js/121.372fd680.js"><link rel="prefetch" href="/docs/assets/js/122.033f50ae.js"><link rel="prefetch" href="/docs/assets/js/123.6d571cfc.js"><link rel="prefetch" href="/docs/assets/js/124.e5cb95f8.js"><link rel="prefetch" href="/docs/assets/js/125.d1c16143.js"><link rel="prefetch" href="/docs/assets/js/126.1c0009b5.js"><link rel="prefetch" href="/docs/assets/js/127.796652f3.js"><link rel="prefetch" href="/docs/assets/js/128.abe9126d.js"><link rel="prefetch" href="/docs/assets/js/129.e1bf4fc1.js"><link rel="prefetch" href="/docs/assets/js/13.bea02ec3.js"><link rel="prefetch" href="/docs/assets/js/130.e7217c9c.js"><link rel="prefetch" href="/docs/assets/js/131.e704cc8e.js"><link rel="prefetch" href="/docs/assets/js/132.e8a27f38.js"><link rel="prefetch" href="/docs/assets/js/133.f0f7a46e.js"><link rel="prefetch" href="/docs/assets/js/134.0b057338.js"><link rel="prefetch" href="/docs/assets/js/135.12878f7b.js"><link rel="prefetch" href="/docs/assets/js/136.f4b08faa.js"><link rel="prefetch" href="/docs/assets/js/137.0b25b9f9.js"><link rel="prefetch" href="/docs/assets/js/138.b08b83ac.js"><link rel="prefetch" href="/docs/assets/js/139.9061a330.js"><link rel="prefetch" href="/docs/assets/js/14.0e31d9c7.js"><link rel="prefetch" href="/docs/assets/js/140.34c6fcb6.js"><link rel="prefetch" href="/docs/assets/js/141.643fb021.js"><link rel="prefetch" href="/docs/assets/js/142.e24e64c9.js"><link rel="prefetch" href="/docs/assets/js/143.1a75664c.js"><link rel="prefetch" href="/docs/assets/js/144.ab98a847.js"><link rel="prefetch" href="/docs/assets/js/145.44659f80.js"><link rel="prefetch" href="/docs/assets/js/146.6cc4cec8.js"><link rel="prefetch" href="/docs/assets/js/147.f3bc07ef.js"><link rel="prefetch" href="/docs/assets/js/148.8aaa64bf.js"><link rel="prefetch" href="/docs/assets/js/149.75529aec.js"><link rel="prefetch" href="/docs/assets/js/15.28699f86.js"><link rel="prefetch" href="/docs/assets/js/150.b43fc96b.js"><link rel="prefetch" href="/docs/assets/js/151.ac6b17e7.js"><link rel="prefetch" href="/docs/assets/js/152.b8c0edb6.js"><link rel="prefetch" href="/docs/assets/js/153.ecd5628e.js"><link rel="prefetch" href="/docs/assets/js/154.1de875df.js"><link rel="prefetch" href="/docs/assets/js/155.0d8187a6.js"><link rel="prefetch" href="/docs/assets/js/156.506a2d11.js"><link rel="prefetch" href="/docs/assets/js/157.02fccf4f.js"><link rel="prefetch" href="/docs/assets/js/158.2140f058.js"><link rel="prefetch" href="/docs/assets/js/159.96019f8d.js"><link rel="prefetch" href="/docs/assets/js/16.80c683fc.js"><link rel="prefetch" href="/docs/assets/js/160.cafd4feb.js"><link rel="prefetch" href="/docs/assets/js/161.b2264b03.js"><link rel="prefetch" href="/docs/assets/js/162.911028de.js"><link rel="prefetch" href="/docs/assets/js/163.256822f0.js"><link rel="prefetch" href="/docs/assets/js/164.fcdf8d85.js"><link rel="prefetch" href="/docs/assets/js/165.f68180fd.js"><link rel="prefetch" href="/docs/assets/js/166.e6815395.js"><link rel="prefetch" href="/docs/assets/js/167.29f3f441.js"><link rel="prefetch" href="/docs/assets/js/168.27cdc18c.js"><link rel="prefetch" href="/docs/assets/js/169.35526920.js"><link rel="prefetch" href="/docs/assets/js/17.a3ec4fa1.js"><link rel="prefetch" href="/docs/assets/js/170.46a86c59.js"><link rel="prefetch" href="/docs/assets/js/171.8ef03113.js"><link rel="prefetch" href="/docs/assets/js/172.d3e37b67.js"><link rel="prefetch" href="/docs/assets/js/173.8fbfc909.js"><link rel="prefetch" href="/docs/assets/js/174.d988f90c.js"><link rel="prefetch" href="/docs/assets/js/175.d150af26.js"><link rel="prefetch" href="/docs/assets/js/176.7a0dbb40.js"><link rel="prefetch" href="/docs/assets/js/177.80d00bde.js"><link rel="prefetch" href="/docs/assets/js/178.e204ea5e.js"><link rel="prefetch" href="/docs/assets/js/179.d40c8530.js"><link rel="prefetch" href="/docs/assets/js/18.309eef6d.js"><link rel="prefetch" href="/docs/assets/js/180.580174fd.js"><link rel="prefetch" href="/docs/assets/js/181.20cb91e0.js"><link rel="prefetch" href="/docs/assets/js/182.27034c14.js"><link rel="prefetch" href="/docs/assets/js/183.9b03ff8c.js"><link rel="prefetch" href="/docs/assets/js/184.f77db79a.js"><link rel="prefetch" href="/docs/assets/js/185.117a3b02.js"><link rel="prefetch" href="/docs/assets/js/186.ce024817.js"><link rel="prefetch" href="/docs/assets/js/187.67bc48a0.js"><link rel="prefetch" href="/docs/assets/js/188.b5867268.js"><link rel="prefetch" href="/docs/assets/js/189.832366c0.js"><link rel="prefetch" href="/docs/assets/js/19.5e7b7752.js"><link rel="prefetch" href="/docs/assets/js/190.1b62596c.js"><link rel="prefetch" href="/docs/assets/js/191.4f1fd957.js"><link rel="prefetch" href="/docs/assets/js/192.7bb54e94.js"><link rel="prefetch" href="/docs/assets/js/193.418976b2.js"><link rel="prefetch" href="/docs/assets/js/194.be02d6b1.js"><link rel="prefetch" href="/docs/assets/js/195.b9d8b016.js"><link rel="prefetch" href="/docs/assets/js/196.659f5ff8.js"><link rel="prefetch" href="/docs/assets/js/197.47a216e8.js"><link rel="prefetch" href="/docs/assets/js/198.74d4b38d.js"><link rel="prefetch" href="/docs/assets/js/199.16aa13c4.js"><link rel="prefetch" href="/docs/assets/js/20.76e3e7d8.js"><link rel="prefetch" href="/docs/assets/js/200.8dd074a5.js"><link rel="prefetch" href="/docs/assets/js/201.69c40566.js"><link rel="prefetch" href="/docs/assets/js/202.cc831915.js"><link rel="prefetch" href="/docs/assets/js/203.c52523f0.js"><link rel="prefetch" href="/docs/assets/js/204.fc72d425.js"><link rel="prefetch" href="/docs/assets/js/205.69efa48c.js"><link rel="prefetch" href="/docs/assets/js/206.41b2a5eb.js"><link rel="prefetch" href="/docs/assets/js/207.788a6fe1.js"><link rel="prefetch" href="/docs/assets/js/208.032d4dfe.js"><link rel="prefetch" href="/docs/assets/js/209.488ed879.js"><link rel="prefetch" href="/docs/assets/js/21.4fd03221.js"><link rel="prefetch" href="/docs/assets/js/210.aa4aa7ce.js"><link rel="prefetch" href="/docs/assets/js/211.d91203ee.js"><link rel="prefetch" href="/docs/assets/js/212.281faa43.js"><link rel="prefetch" href="/docs/assets/js/213.f0789214.js"><link rel="prefetch" href="/docs/assets/js/214.985a9716.js"><link rel="prefetch" href="/docs/assets/js/215.bc7060a8.js"><link rel="prefetch" href="/docs/assets/js/216.93db6a72.js"><link rel="prefetch" href="/docs/assets/js/217.338ed951.js"><link rel="prefetch" href="/docs/assets/js/22.995874a8.js"><link rel="prefetch" href="/docs/assets/js/23.555dd10a.js"><link rel="prefetch" href="/docs/assets/js/24.57d61700.js"><link rel="prefetch" href="/docs/assets/js/25.c16dfa78.js"><link rel="prefetch" href="/docs/assets/js/26.23baaa77.js"><link rel="prefetch" href="/docs/assets/js/27.db4254d4.js"><link rel="prefetch" href="/docs/assets/js/28.9d3989d4.js"><link rel="prefetch" href="/docs/assets/js/29.77f8c257.js"><link rel="prefetch" href="/docs/assets/js/30.f229df53.js"><link rel="prefetch" href="/docs/assets/js/31.8b7b20bb.js"><link rel="prefetch" href="/docs/assets/js/32.d662fa8b.js"><link rel="prefetch" href="/docs/assets/js/33.9308b376.js"><link rel="prefetch" href="/docs/assets/js/34.590b85c8.js"><link rel="prefetch" href="/docs/assets/js/35.ee0cb22e.js"><link rel="prefetch" href="/docs/assets/js/36.05aac00e.js"><link rel="prefetch" href="/docs/assets/js/37.2e400a68.js"><link rel="prefetch" href="/docs/assets/js/38.674af2b6.js"><link rel="prefetch" href="/docs/assets/js/39.54fe898a.js"><link rel="prefetch" href="/docs/assets/js/4.e1c3458e.js"><link rel="prefetch" href="/docs/assets/js/40.262a244e.js"><link rel="prefetch" href="/docs/assets/js/41.65ac41b3.js"><link rel="prefetch" href="/docs/assets/js/42.69f8b8fa.js"><link rel="prefetch" href="/docs/assets/js/43.79304cb1.js"><link rel="prefetch" href="/docs/assets/js/44.15f9681d.js"><link rel="prefetch" href="/docs/assets/js/45.0753789f.js"><link rel="prefetch" href="/docs/assets/js/46.cc30379a.js"><link rel="prefetch" href="/docs/assets/js/47.eaa975d2.js"><link rel="prefetch" href="/docs/assets/js/48.6aeef2ea.js"><link rel="prefetch" href="/docs/assets/js/49.b1b78044.js"><link rel="prefetch" href="/docs/assets/js/50.499062a3.js"><link rel="prefetch" href="/docs/assets/js/51.c3e015ee.js"><link rel="prefetch" href="/docs/assets/js/52.7fe3f9ca.js"><link rel="prefetch" href="/docs/assets/js/53.2f9b1910.js"><link rel="prefetch" href="/docs/assets/js/54.dcd7012b.js"><link rel="prefetch" href="/docs/assets/js/55.4c876727.js"><link rel="prefetch" href="/docs/assets/js/56.1a056d6a.js"><link rel="prefetch" href="/docs/assets/js/57.d5f30dbb.js"><link rel="prefetch" href="/docs/assets/js/58.fbd961a5.js"><link rel="prefetch" href="/docs/assets/js/59.6859f4d5.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.49ca807b.js"><link rel="prefetch" href="/docs/assets/js/61.6ce1eb16.js"><link rel="prefetch" href="/docs/assets/js/62.e6bfdcb3.js"><link rel="prefetch" href="/docs/assets/js/63.f0ff8c98.js"><link rel="prefetch" href="/docs/assets/js/64.747f26a2.js"><link rel="prefetch" href="/docs/assets/js/65.b6cc0444.js"><link rel="prefetch" href="/docs/assets/js/66.1f2bd0a8.js"><link rel="prefetch" href="/docs/assets/js/67.a4cc496c.js"><link rel="prefetch" href="/docs/assets/js/68.498cb6cc.js"><link rel="prefetch" href="/docs/assets/js/69.14dcb3ae.js"><link rel="prefetch" href="/docs/assets/js/7.75604009.js"><link rel="prefetch" href="/docs/assets/js/70.fbb59a1f.js"><link rel="prefetch" href="/docs/assets/js/71.905b879f.js"><link rel="prefetch" href="/docs/assets/js/72.05df9426.js"><link rel="prefetch" href="/docs/assets/js/73.647e9be2.js"><link rel="prefetch" href="/docs/assets/js/74.dd048e75.js"><link rel="prefetch" href="/docs/assets/js/75.baed0beb.js"><link rel="prefetch" href="/docs/assets/js/76.4f1db7a4.js"><link rel="prefetch" href="/docs/assets/js/77.d2e12ba2.js"><link rel="prefetch" href="/docs/assets/js/78.34651bd5.js"><link rel="prefetch" href="/docs/assets/js/79.50f22b31.js"><link rel="prefetch" href="/docs/assets/js/8.e456fa8a.js"><link rel="prefetch" href="/docs/assets/js/80.1de1ca11.js"><link rel="prefetch" href="/docs/assets/js/81.d0f74936.js"><link rel="prefetch" href="/docs/assets/js/82.f0331f64.js"><link rel="prefetch" href="/docs/assets/js/83.51b13da5.js"><link rel="prefetch" href="/docs/assets/js/84.d71fd80d.js"><link rel="prefetch" href="/docs/assets/js/85.bbe449fe.js"><link rel="prefetch" href="/docs/assets/js/86.c004442a.js"><link rel="prefetch" href="/docs/assets/js/87.c54b90fa.js"><link rel="prefetch" href="/docs/assets/js/88.324eaca6.js"><link rel="prefetch" href="/docs/assets/js/89.114167ff.js"><link rel="prefetch" href="/docs/assets/js/9.32f8a7da.js"><link rel="prefetch" href="/docs/assets/js/90.ef457707.js"><link rel="prefetch" href="/docs/assets/js/91.e363b670.js"><link rel="prefetch" href="/docs/assets/js/92.83aa1194.js"><link rel="prefetch" href="/docs/assets/js/93.4457858b.js"><link rel="prefetch" href="/docs/assets/js/94.117684d3.js"><link rel="prefetch" href="/docs/assets/js/95.9fdffbb0.js"><link rel="prefetch" href="/docs/assets/js/96.42832926.js"><link rel="prefetch" href="/docs/assets/js/97.2ad4149e.js"><link rel="prefetch" href="/docs/assets/js/98.b5e10443.js"><link rel="prefetch" href="/docs/assets/js/99.595c4eef.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>k8s</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/k8s/" aria-current="page" class="sidebar-link">■ K8s相关=========================</a></li><li><a href="/docs/基础设施/k8s/2020-08-21-【CKA】-00k8s管理员.html" class="sidebar-link">===■ CKA.k8s管理员===</a></li><li><a href="/docs/基础设施/k8s/2020-08-21-【CKA】-02安装配置.html" class="sidebar-link">【CKA】02-安装、配置、验证</a></li><li><a href="/docs/基础设施/k8s/2020-08-22-【CKA】-03管理集群.html" class="sidebar-link">【CKA】03-管理集群</a></li><li><a href="/docs/基础设施/k8s/2020-08-24-【CKA】-04网络.html" class="sidebar-link">【CKA】04-网络</a></li><li><a href="/docs/基础设施/k8s/2020-08-24-【CKA】-05Scheduling.html" class="sidebar-link">【CKA】05-Scheduling</a></li><li><a href="/docs/基础设施/k8s/2020-08-24-【CKA】-06应用的生命周期.html" class="sidebar-link">【CKA】06-应用的生命周期</a></li><li><a href="/docs/基础设施/k8s/2020-08-24-【CKA】-07在kubernetes集群中管理数据.html" class="sidebar-link">【CKA】07-在Kubernetes集群中管理数据</a></li><li><a href="/docs/基础设施/k8s/2020-08-25-【CKA】-08保护k8s集群.html" class="sidebar-link">【CKA】08-保护k8s集群</a></li><li><a href="/docs/基础设施/k8s/2020-08-31-【CKA】-09监视集群组件.html" class="sidebar-link">【CKA】09-监视k8s集群</a></li><li><a href="/docs/基础设施/k8s/2020-08-31-【CKA】-10识别集群故障.html" class="sidebar-link">【CKA】10-识别集群中常见故障</a></li><li><a href="/docs/基础设施/k8s/2020-09-01-【CKAD】-00k8s认证的应用程序开发人员.html" class="sidebar-link">===■ CKAD.k8s开发者===</a></li><li><a href="/docs/基础设施/k8s/2020-09-01-【CKAD】-01核心概念.html" class="sidebar-link">【CKAD】01.核心概念</a></li><li><a href="/docs/基础设施/k8s/2020-09-01-【CKAD】-02配置.html" class="sidebar-link">【CKAD】02.配置</a></li><li><a href="/docs/基础设施/k8s/2020-09-03-【CKAD】-03多容器pod.html" class="sidebar-link">【CKAD】03.多容器pod</a></li><li><a href="/docs/基础设施/k8s/2020-09-10-【CKAD】-04可观察.html" class="sidebar-link">【CKAD】04.可观察性</a></li><li><a href="/docs/基础设施/k8s/2020-09-10-【CKAD】-05Pod设计.html" class="sidebar-link">【CKAD】05.Pod设计</a></li><li><a href="/docs/基础设施/k8s/2020-09-10-【CKAD】-06 Services and Networking.html" class="sidebar-link">【CKAD】06.Service and Networking</a></li><li><a href="/docs/基础设施/k8s/2020-09-10-【CKAD】-07 持久性.html" class="sidebar-link">【CKAD】07.卷</a></li><li><a href="/docs/基础设施/k8s/2020-09-14-【k8s基本概念】.html" class="sidebar-link">【K8s基本理解】service转发后端服务的四种类型</a></li><li><a href="/docs/基础设施/k8s/2020-6-29-k8sInstall.html" class="sidebar-link">【k8s安装】 centos7 k8s v1.15.3（3.105安装方法，验证好用）</a></li><li><a href="/docs/基础设施/k8s/2020-6-30-【k8s笔记】Other.html" class="sidebar-link">【k8s某机构视频学习笔记】（讲得还行）</a></li><li><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-00非高可用k8s安装.html" class="sidebar-link">【k8s笔记】【视频教程70P】（一，非高可用k8s安装）</a></li><li><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html" class="active sidebar-link">【k8s笔记】【视频教程70P】(二. harbor安装后k8s节点配置)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#harbor安装" class="sidebar-link">harbor安装</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#修改harbor以及k8s各个节点的daemon-json" class="sidebar-link">修改harbor以及k8s各个节点的daemon.json</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#然后重新启动docker" class="sidebar-link">然后重新启动docker</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#验证docker-push-到harbor-ok吗？" class="sidebar-link">验证docker push 到Harbor ok吗？</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#测试k8s与harbor连接" class="sidebar-link">测试k8s与harbor连接</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-01harbor与k8s.html#方便容灾和扩容" class="sidebar-link">方便容灾和扩容</a></li></ul></li><li><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-02K8s定义资源清单方式创建服务.html" class="sidebar-link">【k8s笔记】【视频教程70P】(三. K8s资源清单yaml文件讲解)</a></li><li><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-99高可用k8s安装.html" class="sidebar-link">【k8s笔记】【视频教程70P】（最后，高可用k8s安装）待续...</a></li><li><a href="/docs/基础设施/k8s/2020-7-1-【k8sThoubleShooting】.html" class="sidebar-link">【k8s trouble shootting】【持续更新中】</a></li><li><a href="/docs/基础设施/k8s/2020-8-13-【k8s应用】部署mysql集群.html" class="sidebar-link">【k8s应用】【部署mysql集群】</a></li><li><a href="/docs/基础设施/k8s/2020-8-15-【k8s应用】官网最基本练习.html" class="sidebar-link">【k8s应用】【官网最基本练习】</a></li><li><a href="/docs/基础设施/k8s/2020-8-17-【k8s常用命令】.html" class="sidebar-link">【k8s常用命令】</a></li><li><a href="/docs/基础设施/k8s/2020-8-18-【k8s基本理解】nodePort、LoadBalance、ExtennalName.html" class="sidebar-link">【k8s基本理解】nodePort、LoadBalance、ExternalName（未完）</a></li><li><a href="/docs/基础设施/k8s/2020-8-18-【k8s基本理解】nodePort、port、targetPort、hostPort.html" class="sidebar-link">【k8s基本理解】nodePort、port、target Port、hostPort</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="harbor安装"><a href="#harbor安装" class="header-anchor">#</a> harbor安装</h2> <p>略，参考前两篇文章。
+<a href="https://githubshirongxin.github.io/DockerHarborInstall/" target="_blank" rel="noopener noreferrer">【docker】harbor 单机https安装（成功安装）<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://githubshirongxin.github.io/DockerHarborInstall2/" target="_blank" rel="noopener noreferrer">【docker】nginx反向代理harbor两节点共享NFS存储、DB，弱可用Harobor部署（后续改善）<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="修改harbor以及k8s各个节点的daemon-json"><a href="#修改harbor以及k8s各个节点的daemon-json" class="header-anchor">#</a> 修改harbor以及k8s各个节点的daemon.json</h2> <p>都加上一句话</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vi</span> /etc/docker/daemon.json
+<span class="token string">&quot;insecure-registries&quot;</span>:<span class="token punctuation">[</span><span class="token string">&quot;https://harbor.ccbjb.com.cn&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>这url是你的harbor的域名。
+我这个域名已经加入到公司的域名服务器里了，所以不用修改每天机器的hosts。</p> <p>因为是自签证书，所以每个客户端dockers配置文件都需要加入此配置
+强制承认该URL是安全的。</p> <p><font color="red">注意，前面如果有内容，别忘了在上一行后面加逗号！，否则docker启动失败</font></p> <h2 id="然后重新启动docker"><a href="#然后重新启动docker" class="header-anchor">#</a> 然后重新启动docker</h2> <p><code>systemctl daemon-reload &amp;&amp; systemctl restart docker.service</code></p> <h2 id="验证docker-push-到harbor-ok吗？"><a href="#验证docker-push-到harbor-ok吗？" class="header-anchor">#</a> 验证docker push 到Harbor ok吗？</h2> <p>k8s的各个节点用docker命令能否push镜像到harbor
+然后在harbor网页上看镜像是否已经传上来了。
+具体参考，前面的文章。</p> <h2 id="测试k8s与harbor连接"><a href="#测试k8s与harbor连接" class="header-anchor">#</a> 测试k8s与harbor连接</h2> <p>k8s从harbor得到镜像并运行pod（减轻了外网压力、方便了共享。）</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>kubectl --help
+kubectl run nginx-deployment --image=harbor.ccbjb.com.cn/library/myapp:v1 -port=80 --replicas=1 
+kubectl get deployment
+kubectl get rs
+kubectl get pod
+kubectl get pod -o wide
+curl 上一个命令的私有IP
+curl 私有IP/hostname.html //获取pod容器的hostname
+
+到运行节点
+docker ps -a 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>到harbor上，看该镜像的下载次数+=1</p> <h2 id="方便容灾和扩容"><a href="#方便容灾和扩容" class="header-anchor">#</a> 方便容灾和扩容</h2> <h3 id="容灾测试"><a href="#容灾测试" class="header-anchor">#</a> 容灾测试</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>kubectl delete pod 刚刚的get pod获得的pod <span class="token function">id</span>
+kubectl get pod //会发现又生成了一个pod，并且id不同
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="扩容测试"><a href="#扩容测试" class="header-anchor">#</a> 扩容测试</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>kubectl get deployment //获得deployment name
+kubectl scale --replicas<span class="token operator">=</span><span class="token number">3</span> deployment/deployment的name
+kubectl get pod //能看到3个pod
+kubectl get pod -o wide //能看到3个pod运行在不同的节点上
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="再验证容灾"><a href="#再验证容灾" class="header-anchor">#</a> 再验证容灾</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>kubectl get pod
+kubectl delete pod &quot;刚刚的get pod获得的pod id&quot;
+kubectl get pod //还是三个pod，会发现又生成了一个pod, id不同
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="怎么访问这三台pod？"><a href="#怎么访问这三台pod？" class="header-anchor">#</a> 怎么访问这三台pod？</h3> <h4 id="只能内部能访问的方式：类型clusterip"><a href="#只能内部能访问的方式：类型clusterip" class="header-anchor">#</a> 只能内部能访问的方式：类型ClusterIP</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>kubectl expose --help
+
+// 访问服务的80端口，实际上访问呢的就是容器的8000
+kubectl expose deployment nginx-deployment --port<span class="token operator">=</span><span class="token number">30000</span> --target-port<span class="token operator">=</span><span class="token number">80</span> //deployment名字自己查查
+
+kubectl get svc
+
+<span class="token function">curl</span> 【该service对应的clusterIP】:【30000】  // OK
+//每次curl都是从不同的pod上传回来的。轮询三个不同的pod。负载均衡。
+
+// 这个地址是内部地址，外部访问不了
+http://【该service对应的clusterIP】:【30000】  // NG
+
+kubectl get svc 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p><img src="/docs/images/2020-07-17-15-21-11.png" alt=""></p> <h4 id="修改成让外部也能访问：类型nodeport"><a href="#修改成让外部也能访问：类型nodeport" class="header-anchor">#</a> 修改成让外部也能访问：类型NodePort</h4> <p>修改svc的type：ClusterIp→NodePort</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>kubectl edit svc nginx-deployment
+
+修改：
+Type：ClusterIp 为 Type：NodePort 
+
+kubectl get svc
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>这样，<strong>所有节点</strong>都暴漏了该端口。</p> <p><img src="/docs/images/2020-07-17-15-23-25.png" alt=""></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>
+<span class="token function">netstat</span> -anpt<span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">31859</span>
+//有了
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>外部访问：
+http://192.168.3.105:31859 OK了
+http://192.168.3.106:31859 OK了
+http://192.168.3.107:31859 OK了</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">8/31/2020, 10:10:19 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-00非高可用k8s安装.html" class="prev">
+        【k8s笔记】【视频教程70P】（一，非高可用k8s安装）
+      </a></span> <span class="next"><a href="/docs/基础设施/k8s/2020-7-1-【k8sLearn17hours】-02K8s定义资源清单方式创建服务.html">
+        【k8s笔记】【视频教程70P】(三. K8s资源清单yaml文件讲解)
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.de58b64c.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/111.f40854ed.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>
