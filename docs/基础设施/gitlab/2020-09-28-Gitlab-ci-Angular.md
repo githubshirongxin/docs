@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【gitlab-ci】【Angular】
+title: 【gitlab-ci】【Angular】基础例子
 ---
 
 https://javascript-conference.com/blog/build-test-deployment-angular-gitlab-ci/
