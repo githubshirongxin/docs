@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【搭建邮件服务器】centos7用postfix+dovecot搭建邮件服务器。 | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.a2b34a1e.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/130.edf69257.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.c6a3eb63.js"><link rel="prefetch" href="/docs/assets/js/100.24cf86b3.js"><link rel="prefetch" href="/docs/assets/js/101.4b0b93fe.js"><link rel="prefetch" href="/docs/assets/js/102.e495953d.js"><link rel="prefetch" href="/docs/assets/js/103.e91ccf02.js"><link rel="prefetch" href="/docs/assets/js/104.15c680e4.js"><link rel="prefetch" href="/docs/assets/js/105.c55b4056.js"><link rel="prefetch" href="/docs/assets/js/106.e3aecd4b.js"><link rel="prefetch" href="/docs/assets/js/107.d2351b89.js"><link rel="prefetch" href="/docs/assets/js/108.183b8ace.js"><link rel="prefetch" href="/docs/assets/js/109.7909a0b4.js"><link rel="prefetch" href="/docs/assets/js/11.5ba8aa41.js"><link rel="prefetch" href="/docs/assets/js/110.379b66d9.js"><link rel="prefetch" href="/docs/assets/js/111.c910046d.js"><link rel="prefetch" href="/docs/assets/js/112.9c75b865.js"><link rel="prefetch" href="/docs/assets/js/113.96b22d87.js"><link rel="prefetch" href="/docs/assets/js/114.7aa1422b.js"><link rel="prefetch" href="/docs/assets/js/115.d3ed95a6.js"><link rel="prefetch" href="/docs/assets/js/116.44f8678a.js"><link rel="prefetch" href="/docs/assets/js/117.4b088eee.js"><link rel="prefetch" href="/docs/assets/js/118.7f86b98b.js"><link rel="prefetch" href="/docs/assets/js/119.2a852d64.js"><link rel="prefetch" href="/docs/assets/js/12.8e59ab9e.js"><link rel="prefetch" href="/docs/assets/js/120.10edfcd9.js"><link rel="prefetch" href="/docs/assets/js/121.1eb36b47.js"><link rel="prefetch" href="/docs/assets/js/122.70585e09.js"><link rel="prefetch" href="/docs/assets/js/123.5e1d5443.js"><link rel="prefetch" href="/docs/assets/js/124.e3a37d98.js"><link rel="prefetch" href="/docs/assets/js/125.adbeb2de.js"><link rel="prefetch" href="/docs/assets/js/126.32d1f408.js"><link rel="prefetch" href="/docs/assets/js/127.3e4f6bf8.js"><link rel="prefetch" href="/docs/assets/js/128.6aa8be59.js"><link rel="prefetch" href="/docs/assets/js/129.e119c8b1.js"><link rel="prefetch" href="/docs/assets/js/13.bcf5e02d.js"><link rel="prefetch" href="/docs/assets/js/131.cf46b307.js"><link rel="prefetch" href="/docs/assets/js/132.bbed1e92.js"><link rel="prefetch" href="/docs/assets/js/133.00f86354.js"><link rel="prefetch" href="/docs/assets/js/134.84a4fcb5.js"><link rel="prefetch" href="/docs/assets/js/135.b5f28c07.js"><link rel="prefetch" href="/docs/assets/js/136.07a11547.js"><link rel="prefetch" href="/docs/assets/js/137.873d69b1.js"><link rel="prefetch" href="/docs/assets/js/138.dff4759c.js"><link rel="prefetch" href="/docs/assets/js/139.3a9826c1.js"><link rel="prefetch" href="/docs/assets/js/14.4d657bad.js"><link rel="prefetch" href="/docs/assets/js/140.d95ef1cc.js"><link rel="prefetch" href="/docs/assets/js/141.ab87f28a.js"><link rel="prefetch" href="/docs/assets/js/142.f1b915c4.js"><link rel="prefetch" href="/docs/assets/js/143.22255551.js"><link rel="prefetch" href="/docs/assets/js/144.808dbd79.js"><link rel="prefetch" href="/docs/assets/js/145.7c976649.js"><link rel="prefetch" href="/docs/assets/js/146.a2991ebd.js"><link rel="prefetch" href="/docs/assets/js/147.e03e4e04.js"><link rel="prefetch" href="/docs/assets/js/148.b15dc725.js"><link rel="prefetch" href="/docs/assets/js/149.504c5ea1.js"><link rel="prefetch" href="/docs/assets/js/15.28699f86.js"><link rel="prefetch" href="/docs/assets/js/150.d85100d8.js"><link rel="prefetch" href="/docs/assets/js/151.b062f9f7.js"><link rel="prefetch" href="/docs/assets/js/152.a37f28a1.js"><link rel="prefetch" href="/docs/assets/js/153.eb9dfc48.js"><link rel="prefetch" href="/docs/assets/js/154.a643293b.js"><link rel="prefetch" href="/docs/assets/js/155.aa5c7267.js"><link rel="prefetch" href="/docs/assets/js/156.b3d8b2d4.js"><link rel="prefetch" href="/docs/assets/js/157.c3c2bde5.js"><link rel="prefetch" href="/docs/assets/js/158.df7db0f3.js"><link rel="prefetch" href="/docs/assets/js/159.604722d1.js"><link rel="prefetch" href="/docs/assets/js/16.80c683fc.js"><link rel="prefetch" href="/docs/assets/js/160.7ab6fc9a.js"><link rel="prefetch" href="/docs/assets/js/161.ce275d5e.js"><link rel="prefetch" href="/docs/assets/js/162.d933b1cd.js"><link rel="prefetch" href="/docs/assets/js/163.3f7ee949.js"><link rel="prefetch" href="/docs/assets/js/164.d8f86b4b.js"><link rel="prefetch" href="/docs/assets/js/165.a7747942.js"><link rel="prefetch" href="/docs/assets/js/166.d8f4998b.js"><link rel="prefetch" href="/docs/assets/js/167.3d0ba60b.js"><link rel="prefetch" href="/docs/assets/js/168.ecd50379.js"><link rel="prefetch" href="/docs/assets/js/169.992e79ed.js"><link rel="prefetch" href="/docs/assets/js/17.9b0391cd.js"><link rel="prefetch" href="/docs/assets/js/170.c2a42c6c.js"><link rel="prefetch" href="/docs/assets/js/171.1bcbb9a2.js"><link rel="prefetch" href="/docs/assets/js/172.d1edf10a.js"><link rel="prefetch" href="/docs/assets/js/173.8d509895.js"><link rel="prefetch" href="/docs/assets/js/174.108b1168.js"><link rel="prefetch" href="/docs/assets/js/175.62239241.js"><link rel="prefetch" href="/docs/assets/js/176.a16fb04a.js"><link rel="prefetch" href="/docs/assets/js/177.1eb142cc.js"><link rel="prefetch" href="/docs/assets/js/178.4c62d92b.js"><link rel="prefetch" href="/docs/assets/js/179.2b23f226.js"><link rel="prefetch" href="/docs/assets/js/18.07929522.js"><link rel="prefetch" href="/docs/assets/js/180.7f8b7bc6.js"><link rel="prefetch" href="/docs/assets/js/181.04ba5011.js"><link rel="prefetch" href="/docs/assets/js/182.2242f0b8.js"><link rel="prefetch" href="/docs/assets/js/183.bd184f81.js"><link rel="prefetch" href="/docs/assets/js/184.b560cd77.js"><link rel="prefetch" href="/docs/assets/js/185.b6e0f6a0.js"><link rel="prefetch" href="/docs/assets/js/186.46fffe3a.js"><link rel="prefetch" href="/docs/assets/js/187.83bcaec1.js"><link rel="prefetch" href="/docs/assets/js/188.7a41247b.js"><link rel="prefetch" href="/docs/assets/js/189.5c098319.js"><link rel="prefetch" href="/docs/assets/js/19.986c326a.js"><link rel="prefetch" href="/docs/assets/js/190.b7122114.js"><link rel="prefetch" href="/docs/assets/js/191.29d78fc6.js"><link rel="prefetch" href="/docs/assets/js/192.50d2f90d.js"><link rel="prefetch" href="/docs/assets/js/193.f2c47c01.js"><link rel="prefetch" href="/docs/assets/js/194.7f53d366.js"><link rel="prefetch" href="/docs/assets/js/195.4d3bc07f.js"><link rel="prefetch" href="/docs/assets/js/196.5e2c3b8a.js"><link rel="prefetch" href="/docs/assets/js/197.1517cb6e.js"><link rel="prefetch" href="/docs/assets/js/198.bf75d92e.js"><link rel="prefetch" href="/docs/assets/js/199.7f7c7f7b.js"><link rel="prefetch" href="/docs/assets/js/20.6e0212e3.js"><link rel="prefetch" href="/docs/assets/js/200.796c12d5.js"><link rel="prefetch" href="/docs/assets/js/201.393e0f49.js"><link rel="prefetch" href="/docs/assets/js/202.a0258b3d.js"><link rel="prefetch" href="/docs/assets/js/203.6b1c9d93.js"><link rel="prefetch" href="/docs/assets/js/204.0ec2bdda.js"><link rel="prefetch" href="/docs/assets/js/205.fd3ff497.js"><link rel="prefetch" href="/docs/assets/js/206.2981a8de.js"><link rel="prefetch" href="/docs/assets/js/207.fe67f0fc.js"><link rel="prefetch" href="/docs/assets/js/208.a4edd0f8.js"><link rel="prefetch" href="/docs/assets/js/209.b39a0c35.js"><link rel="prefetch" href="/docs/assets/js/21.b30dd970.js"><link rel="prefetch" href="/docs/assets/js/210.d22fef27.js"><link rel="prefetch" href="/docs/assets/js/211.ee321577.js"><link rel="prefetch" href="/docs/assets/js/212.1c7cc37c.js"><link rel="prefetch" href="/docs/assets/js/213.f108a223.js"><link rel="prefetch" href="/docs/assets/js/214.3750efa8.js"><link rel="prefetch" href="/docs/assets/js/215.4850c20b.js"><link rel="prefetch" href="/docs/assets/js/216.fe0669ec.js"><link rel="prefetch" href="/docs/assets/js/217.1b7daef6.js"><link rel="prefetch" href="/docs/assets/js/218.ba0bdc79.js"><link rel="prefetch" href="/docs/assets/js/219.fcf2b098.js"><link rel="prefetch" href="/docs/assets/js/22.afdbfdb9.js"><link rel="prefetch" href="/docs/assets/js/220.eafbd082.js"><link rel="prefetch" href="/docs/assets/js/23.97b0ea9f.js"><link rel="prefetch" href="/docs/assets/js/24.c4c9b0ee.js"><link rel="prefetch" href="/docs/assets/js/25.c16dfa78.js"><link rel="prefetch" href="/docs/assets/js/26.23baaa77.js"><link rel="prefetch" href="/docs/assets/js/27.425b5aee.js"><link rel="prefetch" href="/docs/assets/js/28.e160d269.js"><link rel="prefetch" href="/docs/assets/js/29.97d380a5.js"><link rel="prefetch" href="/docs/assets/js/30.c77b35b9.js"><link rel="prefetch" href="/docs/assets/js/31.8b7b20bb.js"><link rel="prefetch" href="/docs/assets/js/32.d662fa8b.js"><link rel="prefetch" href="/docs/assets/js/33.9308b376.js"><link rel="prefetch" href="/docs/assets/js/34.590b85c8.js"><link rel="prefetch" href="/docs/assets/js/35.ee0cb22e.js"><link rel="prefetch" href="/docs/assets/js/36.05aac00e.js"><link rel="prefetch" href="/docs/assets/js/37.2e400a68.js"><link rel="prefetch" href="/docs/assets/js/38.674af2b6.js"><link rel="prefetch" href="/docs/assets/js/39.54fe898a.js"><link rel="prefetch" href="/docs/assets/js/4.8d988e84.js"><link rel="prefetch" href="/docs/assets/js/40.14042402.js"><link rel="prefetch" href="/docs/assets/js/41.ab879432.js"><link rel="prefetch" href="/docs/assets/js/42.69f8b8fa.js"><link rel="prefetch" href="/docs/assets/js/43.79304cb1.js"><link rel="prefetch" href="/docs/assets/js/44.15f9681d.js"><link rel="prefetch" href="/docs/assets/js/45.0753789f.js"><link rel="prefetch" href="/docs/assets/js/46.cc30379a.js"><link rel="prefetch" href="/docs/assets/js/47.eaa975d2.js"><link rel="prefetch" href="/docs/assets/js/48.6aeef2ea.js"><link rel="prefetch" href="/docs/assets/js/49.b1b78044.js"><link rel="prefetch" href="/docs/assets/js/50.499062a3.js"><link rel="prefetch" href="/docs/assets/js/51.c3e015ee.js"><link rel="prefetch" href="/docs/assets/js/52.7fe3f9ca.js"><link rel="prefetch" href="/docs/assets/js/53.2f9b1910.js"><link rel="prefetch" href="/docs/assets/js/54.dcd7012b.js"><link rel="prefetch" href="/docs/assets/js/55.4c876727.js"><link rel="prefetch" href="/docs/assets/js/56.1a056d6a.js"><link rel="prefetch" href="/docs/assets/js/57.42f1ae99.js"><link rel="prefetch" href="/docs/assets/js/58.2fba367a.js"><link rel="prefetch" href="/docs/assets/js/59.6859f4d5.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.49ca807b.js"><link rel="prefetch" href="/docs/assets/js/61.6ce1eb16.js"><link rel="prefetch" href="/docs/assets/js/62.e6bfdcb3.js"><link rel="prefetch" href="/docs/assets/js/63.f0ff8c98.js"><link rel="prefetch" href="/docs/assets/js/64.747f26a2.js"><link rel="prefetch" href="/docs/assets/js/65.b6cc0444.js"><link rel="prefetch" href="/docs/assets/js/66.1f2bd0a8.js"><link rel="prefetch" href="/docs/assets/js/67.a4cc496c.js"><link rel="prefetch" href="/docs/assets/js/68.498cb6cc.js"><link rel="prefetch" href="/docs/assets/js/69.14dcb3ae.js"><link rel="prefetch" href="/docs/assets/js/7.75604009.js"><link rel="prefetch" href="/docs/assets/js/70.9b3c6979.js"><link rel="prefetch" href="/docs/assets/js/71.4c2f200f.js"><link rel="prefetch" href="/docs/assets/js/72.a5be4899.js"><link rel="prefetch" href="/docs/assets/js/73.275fe47a.js"><link rel="prefetch" href="/docs/assets/js/74.753edcac.js"><link rel="prefetch" href="/docs/assets/js/75.5ff73d3d.js"><link rel="prefetch" href="/docs/assets/js/76.99ce2a81.js"><link rel="prefetch" href="/docs/assets/js/77.507424d0.js"><link rel="prefetch" href="/docs/assets/js/78.40d258be.js"><link rel="prefetch" href="/docs/assets/js/79.fdc7a820.js"><link rel="prefetch" href="/docs/assets/js/8.a64b961b.js"><link rel="prefetch" href="/docs/assets/js/80.14baf9e4.js"><link rel="prefetch" href="/docs/assets/js/81.f1049c9d.js"><link rel="prefetch" href="/docs/assets/js/82.c630121a.js"><link rel="prefetch" href="/docs/assets/js/83.aea36c8e.js"><link rel="prefetch" href="/docs/assets/js/84.974b75fd.js"><link rel="prefetch" href="/docs/assets/js/85.c7cdd6e9.js"><link rel="prefetch" href="/docs/assets/js/86.58a95d4b.js"><link rel="prefetch" href="/docs/assets/js/87.02c66ed8.js"><link rel="prefetch" href="/docs/assets/js/88.2e10ec9d.js"><link rel="prefetch" href="/docs/assets/js/89.0e3569d8.js"><link rel="prefetch" href="/docs/assets/js/9.32f8a7da.js"><link rel="prefetch" href="/docs/assets/js/90.6579bad9.js"><link rel="prefetch" href="/docs/assets/js/91.166a542c.js"><link rel="prefetch" href="/docs/assets/js/92.75541e6a.js"><link rel="prefetch" href="/docs/assets/js/93.addfd75b.js"><link rel="prefetch" href="/docs/assets/js/94.e6c8f511.js"><link rel="prefetch" href="/docs/assets/js/95.7c65be46.js"><link rel="prefetch" href="/docs/assets/js/96.33980b2c.js"><link rel="prefetch" href="/docs/assets/js/97.8b33e39a.js"><link rel="prefetch" href="/docs/assets/js/98.b56a13d8.js"><link rel="prefetch" href="/docs/assets/js/99.d29df11b.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>linux-powshell</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/基础设施/linux-powshell/2020-09-02-ESXi安装虚拟机注意点.html" class="sidebar-link">【ESXi安装虚拟机注意点】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-03-安装v2ray在ubuntu19上.html" class="sidebar-link">【安装v2ray 在ubuntu19上】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-03-解决gitlabgithubclone下载慢.html" class="sidebar-link">【解决】gitlab github clone慢 下载慢</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-04-centos7安装npm.html" class="sidebar-link">【linux安装npm】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-21-linux内核.html" class="sidebar-link">【linux内核】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-24-修改centos命令行样式.html" class="sidebar-link">【修改centos命令行样式】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-04-umount目标忙.html" class="sidebar-link">umount目标忙error</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-09-HyperV上安装centos7.html" class="sidebar-link">HyperV上安装Centos7</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html" class="active sidebar-link">【搭建邮件服务器】centos7用postfix+dovecot搭建邮件服务器。</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#域名如何解析" class="sidebar-link">域名如何解析</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#我们开始来安装postfix3" class="sidebar-link">我们开始来安装postfix3</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#配置-postfix3" class="sidebar-link">配置 postfix3:</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#开启postfix3服务并添加到系统自启" class="sidebar-link">开启postfix3服务并添加到系统自启</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#安装dovecot2" class="sidebar-link">安装dovecot2</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#安装dovect2" class="sidebar-link">安装dovect2:</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#配置dovect" class="sidebar-link">配置dovect</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#创建用户并设置密码" class="sidebar-link">创建用户并设置密码</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#outlook连接" class="sidebar-link">outlook连接</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#批量创建用户，批量改密码" class="sidebar-link">批量创建用户，批量改密码</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#批量改密码" class="sidebar-link">批量改密码</a></li><li class="sidebar-sub-header"><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html#批量删除用户" class="sidebar-link">批量删除用户</a></li></ul></li><li><a href="/docs/基础设施/linux-powshell/2020-10-12-yum update与yum upgrade区别.html" class="sidebar-link">yum update 与 yum upgrade区别</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-HyperV上安装centos，外网联通.html" class="sidebar-link">【hyperv上安装centos7】外网联通，宿主机共享文件</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-linux如何查看mount的源路径.html" class="sidebar-link">【linux】如何查看mount的源路径</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-查看某个命令在哪个包yum.html" class="sidebar-link">【linux】【基础】查某个命令属于哪个包然后yum install 这个包</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-查看端口.html" class="sidebar-link">【linux】查看端口，修改SSH端口</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-10-识别操作系统是ubuntu还是centos还是alpine.html" class="sidebar-link">【linux】识别centos还是debain还是ubuntu还是alpine的方法. ubuntu开启ssh</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-11-ubuntu虚拟机.html" class="sidebar-link">【ubuntu】配置ssh，让root能ssh</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-12-nginx学习.html" class="sidebar-link">【nginx】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-hyperV centos7扩容.html" class="sidebar-link">【hyperV-centos扩容】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-targz.html" class="sidebar-link">【linux压缩解压缩】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-查看哪个目录占用的磁盘空间大.html" class="sidebar-link">【哪个文件占用磁盘空间大 du -sh *】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-25-scp带端口号.html" class="sidebar-link">【linux基础】scp带端口号</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-26-【修改虚拟机系统时间】.html" class="sidebar-link">【linux基础】修改centos7系统时间</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-28-JWT.html" class="sidebar-link">什么是 JWT -- JSON WEB TOKEN</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-4-hyperVError无法连接到虚拟机配置存储.html" class="sidebar-link">【hyperV】Error，无法连接虚拟机配置存储</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-4-签发私有SSL证书配置到nginx浏览器安装根证书.html" class="sidebar-link">【私有SSL证书】签发私有SSL证书，给nginx</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-5-泛域名SSL证书.html" class="sidebar-link">【nexus】开启nexus的https服务。制作泛域名证书</a></li><li><a href="/docs/基础设施/linux-powshell/2020-9-25-屏幕上写字的工具.html" class="sidebar-link">屏幕上写字的工具</a></li><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/linux-powshell/" aria-current="page" class="sidebar-link">Linux相关</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>参考：https://blog.51cto.com/12227558/2074095
+参考：https://blog.csdn.net/weixin_42701857/article/details/105285218</p> <h1 id="centos-7-下安装postfix3-dovecot2邮件服务器"><a href="#centos-7-下安装postfix3-dovecot2邮件服务器" class="header-anchor">#</a> CentOS 7 下安装postfix3+dovecot2邮件服务器</h1> <p>最近在搭建邮件服务器时候发现centOS7 自带的postfix +dovecot 版本都很老，google找了大量的文章，终于搭建成功了，废话不多说。</p> <h2 id="域名如何解析"><a href="#域名如何解析" class="header-anchor">#</a> 域名如何解析</h2> <p>邮件服务器是公司内网使用。不允许访问外网。所以在外网环境把该安装的都装上。
+然后挪到内网里配置。
+域名也就没有指定。直接使用/etc/hosts 写死</p> <div class="language-properties line-numbers-mode"><pre class="language-properties"><code><span class="token attr-name">mail.myt.com</span> <span class="token attr-value">192.168.2.233</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>这个域名是在postfix里使用，其他机器不用配置</p> <h2 id="我们开始来安装postfix3"><a href="#我们开始来安装postfix3" class="header-anchor">#</a> 我们开始来安装postfix3</h2> <p>让我们添加yum存储库</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>\[root\@ecs-71c8 \~\]# vim /etc/yum.repos.d/gf.repo  
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="https://img-blog.csdnimg.cn/20200403095201880.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjcwMTg1Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <p><strong>将下面这段代码复制进去，保存并推出</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[gf]
+
+name=Ghettoforge packages that won't overwrite core distro packages.
+
+mirrorlist=http://mirrorlist.ghettoforge.org/el/7/gf/$basearch/mirrorlist
+
+enabled=1
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-gf.el7
+
+failovermethod=priority
+
+[gf-plus]
+
+name=Ghettoforge packages that will overwrite core distro packages.
+
+mirrorlist=http://mirrorlist.ghettoforge.org/el/7/plus/$basearch/mirrorlist
+
+# Please read http://ghettoforge.org/index.php/Usage *before* enabling this repository!
+
+enabled=1
+
+gpgcheck=1
+
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-gf.el7
+
+failovermethod=priority
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p><strong>更新yum缓存</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum clean all</span>
+
+<span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum makecache fast</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>通过搜索postfix3包进行测试：</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum search postfix3</span>
+
+ Loaded plugins: fastestmirror
+
+Loading mirror speeds from cached hostfile
+
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> N/S matched: postfix3 <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
+
+postfix3.x86_64 <span class="token builtin class-name">:</span> Postfix Mail Transport Agent
+
+postfix3-cdb.x86_64 <span class="token builtin class-name">:</span> CDB Database Support <span class="token keyword">for</span> Postfix
+
+postfix3-ldap.x86_64 <span class="token builtin class-name">:</span> LDAP Database Support <span class="token keyword">for</span> Postfix
+
+postfix3-lmdb.x86_64 <span class="token builtin class-name">:</span> LMDBtabase Support <span class="token keyword">for</span> Postfix
+
+postfix3-mysql.x86_64 <span class="token builtin class-name">:</span> MySQL Database Support <span class="token keyword">for</span> Postfix
+
+postfix3-pcre.x86_64 <span class="token builtin class-name">:</span> PCRE Database Support <span class="token keyword">for</span> Postfix
+
+postfix3-perl-scripts.x86_64 <span class="token builtin class-name">:</span> Postfix utilities written <span class="token keyword">in</span> perl
+
+postfix3-pgsql.x86_64 <span class="token builtin class-name">:</span> PostgreSQL Database Support <span class="token keyword">for</span> Postfix
+
+postfix3-sqlite.x86_64 <span class="token builtin class-name">:</span> SQLite Database Support <span class="token keyword">for</span> Postfix
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p><strong>继续在CentOS 7上安装postfix3，添加所需的任何其他软件包：</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum -y install postfix3 postfix3-ldap postfix3-mysql postfix3-mysql</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>注意：如果这一步安装报错，请将vim /etc/yum.repos.d/gf.repo 里面的：gpgcheck=0<br> <strong>检查安装的postfix3版本：</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># rpm -qi postfix3</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="https://img-blog.csdnimg.cn/20200403100835253.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjcwMTg1Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <h2 id="配置-postfix3"><a href="#配置-postfix3" class="header-anchor">#</a> 配置 postfix3:</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/postfix/main.cf</span>
+
+ 修改内容：
+
+<span class="token comment"># : 取消注释，设置hostname </span>
+myhostname <span class="token operator">=</span> mail.abc.com 
+<span class="token comment"># : 取消注释，设置域名 </span>
+mydomain <span class="token operator">=</span> abc.com 
+<span class="token comment"># : 取消注释 </span>
+myorigin <span class="token operator">=</span> <span class="token variable">$mydomain</span> 
+<span class="token comment"># : 默认是localhost，我们需要修改成all</span>
+inet_interfaces <span class="token operator">=</span> all 
+<span class="token comment"># : 推荐ipv4，如果支持ipv6，则可以为all </span>
+inet_protocols <span class="token operator">=</span> ipv4 
+<span class="token comment"># : 添加 </span>
+mydestination <span class="token operator">=</span> <span class="token variable">$myhostname</span>, localhost.<span class="token variable">$mydomain</span>, localhost, <span class="token variable">$mydomain</span> 
+<span class="token comment"># : 取消注释，指定内网和本地的IP地址范围 </span>
+mynetworks <span class="token operator">=</span> <span class="token number">127.0</span>.0.0/8
+<span class="token comment"># : 取消注释，邮件保存目录</span>
+ home_mailbox <span class="token operator">=</span> Maildir/ 
+<span class="token comment"># : 添加 </span>
+smtpd_banner <span class="token operator">=</span> <span class="token variable">$myhostname</span> ESMTP 
+<span class="token comment"># 添加到最后 </span>
+<span class="token comment"># 规定邮件最大尺寸为10M </span>
+message_size_limit <span class="token operator">=</span> <span class="token number">10485760</span> 
+<span class="token comment"># 规定收件箱最大容量为1G </span>
+mailbox_size_limit <span class="token operator">=</span> <span class="token number">1073741824</span> 
+<span class="token comment"># SMTP认证 </span>
+smtpd_sasl_type <span class="token operator">=</span> dovecot 
+smtpd_sasl_path <span class="token operator">=</span> private/auth 
+smtpd_sasl_auth_enable <span class="token operator">=</span> <span class="token function">yes</span>
+smtpd_sasl_security_options <span class="token operator">=</span> noanonymous 
+smtpd_sasl_local_domain <span class="token operator">=</span> <span class="token variable">$myhostname</span> 
+smtpd_recipient_restrictions <span class="token operator">=</span> permit_mynetworks,permit_auth_destination,permit_sasl_authenticated,reject 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><h2 id="开启postfix3服务并添加到系统自启"><a href="#开启postfix3服务并添加到系统自启" class="header-anchor">#</a> 开启postfix3服务并添加到系统自启</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># systemctl  restart  postfix</span>
+<span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># systemctl  enable  postfix</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="安装dovecot2"><a href="#安装dovecot2" class="header-anchor">#</a> 安装dovecot2</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/yum.repos.d/dovecot.repo</span>
+
+添加下面这段代码：
+<span class="token punctuation">[</span>dovecot-2.3-latest<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>Dovecot <span class="token number">2.3</span> CentOS <span class="token variable">$releasever</span> - <span class="token variable">$basearch</span>
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://repo.dovecot.org/ce-2.3-latest/centos/<span class="token variable">$releasever</span>/RPMS/<span class="token variable">$basearch</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>https://repo.dovecot.org/DOVECOT-REPO-GPG
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p><strong>更新一下yum</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum makecache</span>
+<span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum update</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="安装dovect2"><a href="#安装dovect2" class="header-anchor">#</a> 安装dovect2:</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># yum install dovecot</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>如果安装失败，干脆删除/etc/yum.repos.d/dovecot.repo
+直接运行yum install dovecot.
+会安装稍微低一点点的版本，仍旧好用。</p></div> <h2 id="配置dovect"><a href="#配置dovect" class="header-anchor">#</a> 配置dovect</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/dovecot/dovecot.conf </span>
+
+<span class="token comment"># 26行: 如果不使用IPv6，请修改为* </span>
+listen <span class="token operator">=</span> *
+<span class="token comment">#在主配置文件中的，设置允许登录的网段地址，也就是说我们可以在这里限制只有来自于某个网段的用户才能使用电子邮件系统。如果想允许所有人都能使用，则不用修改本参数</span>
+login_trusted_networks <span class="token operator">=</span> <span class="token number">192.168</span>.10.0/24更改内容
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>编辑文件10-auth.conf</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/dovecot/conf.d/10-auth.conf</span>
+<span class="token comment"># : 取消注释并修改 disable_plaintext_auth = no </span>
+<span class="token comment"># : 添加 auth_mechanisms = plain login </span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>编辑文件10-mail.conf</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/dovecot/conf.d/10-mail.conf</span>
+<span class="token comment"># : 取消注释并添加 mail_location = maildir:~/Maildir</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>编辑文件10-master.conf</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/dovecot/conf.d/10-master.conf</span>
+<span class="token comment"># : 取消注释并添加 # Postfix smtp验证 </span>
+unix_listener /var/spool/postfix/private/auth <span class="token punctuation">{</span> 
+mode <span class="token operator">=</span> 0666 
+user <span class="token operator">=</span> postfix
+group <span class="token operator">=</span> postfix
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>注意：如果我们没有使用ssl的话需要进行下面的操作。使用了则不需要。</strong></p> <p><strong>编辑文件10-ssl.conf</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/dovecot/conf.d/10-ssl.conf </span>
+<span class="token comment"># : 将ssl的值修改为 ssl = no</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>启动dovecot并添加到开机自启。</strong></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart dovecot</span>
+<span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable dovecot</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="创建用户并设置密码"><a href="#创建用户并设置密码" class="header-anchor">#</a> 创建用户并设置密码</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># useradd admin</span>
+<span class="token punctuation">[</span>root@ecs-71c8 ~<span class="token punctuation">]</span><span class="token comment"># passwd admin</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>以上邮件服务器就可以使用了。</li> <li>admin用户已经可以用outlook去连接了，就这么简单。</li></ul></div> <h2 id="outlook连接"><a href="#outlook连接" class="header-anchor">#</a> outlook连接</h2> <h3 id="outlook-2016"><a href="#outlook-2016" class="header-anchor">#</a> outlook 2016</h3> <p>文件→账户设置→账户→电子邮件→新建→输入admin→连接→pop3→输入密码（就是centos用户的密码）
+<img src="/docs/images/2020-10-12-17-32-47.png" alt=""> <img src="/docs/images/2020-10-12-17-33-34.png" alt=""></p> <div class="custom-block warning"><p class="custom-block-title">注意！！</p> <ul><li>useradd创建好的用户必须修改密码才能使用。 passwd 用户名!</li> <li>否则连接不上。</li></ul></div> <p>就能连上了。</p> <h3 id="outlook-2013"><a href="#outlook-2013" class="header-anchor">#</a> outlook 2013</h3> <p>文件→账户设置→账户→电子邮件→新建
+用户名：admin
+账号：admin@myt.com
+pop3:192.168.2.233
+smtp:192.168.2.233
+用户：admin
+密码：xxxx（就是centos用户的密码）</p> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>倒数第二个账户不能写邮件地址，否则连不上！！</p></div> <h2 id="批量创建用户，批量改密码"><a href="#批量创建用户，批量改密码" class="header-anchor">#</a> 批量创建用户，批量改密码</h2> <h3 id="batchuser-sh"><a href="#batchuser-sh" class="header-anchor">#</a> batchuser.sh</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment">#this shell is use to bachusers </span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token operator">!=</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;Usage:root/batchusers&quot;</span>
+<span class="token keyword">elif</span> <span class="token punctuation">[</span> -f <span class="token variable">$1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token keyword">for</span> <span class="token for-or-select variable">line</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> $1<span class="token variable">`</span></span>
+        <span class="token keyword">do</span>
+        <span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span> $line <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token builtin class-name">:</span> -f1<span class="token variable">`</span></span>
+        <span class="token function">useradd</span> -s /bin/bash <span class="token variable">$name</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;123&quot;</span> <span class="token operator">|</span> <span class="token function">passwd</span> --stdin <span class="token variable">$name</span>
+        chage -d <span class="token number">0</span> -M <span class="token number">90</span> -W <span class="token number">7</span> -I <span class="token number">2</span> <span class="token variable">$name</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;created user: <span class="token variable">$name</span>&quot;</span>
+        <span class="token keyword">done</span>
+<span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;input file not found&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>批量创建用户，同时为所有用户设置初始密码，并且通过chage命令设置用户密码过期时间为90天。警告时间7天，过期后过期后还能使用时间为2天。</p> <p>使用方法，新建脚本batchuser.sh粘贴shell脚本，保存退出。</p> <h3 id="新建测试文件users"><a href="#新建测试文件users" class="header-anchor">#</a> 新建测试文件users</h3> <p>粘贴以下测试用户。通过命令</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment">#运行脚本即可批量创建用户。</span>
+<span class="token function">sh</span> batchuser.sh <span class="token function">users</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>运行结果：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>Changing password <span class="token keyword">for</span> user Tarah.
+passwd: all authentication tokens updated successfully.
+created user: Tarah
+Changing password <span class="token keyword">for</span> user Jong.
+passwd: all authentication tokens updated successfully.
+created user: Jong
+Changing password <span class="token keyword">for</span> user Emelda.
+passwd: all authentication tokens updated successfully.
+created user: Emelda
+Changing password <span class="token keyword">for</span> user Wilford.
+passwd: all authentication tokens updated successfully.
+created user: Wilford
+Changing password <span class="token keyword">for</span> user Cassy.
+passwd: all authentication tokens updated successfully.
+created user: Cassy
+Changing password <span class="token keyword">for</span> user Trent.
+passwd: all authentication tokens updated successfully.
+created user: Trent
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="批量改密码"><a href="#批量改密码" class="header-anchor">#</a> 批量改密码</h2> <p>以下两种方式均可以</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token builtin class-name">echo</span> user1:centos <span class="token operator">|</span> chpasswd    <span class="token comment">#用户名:密码</span>
+<span class="token function">cat</span> passwd.txt <span class="token operator">|</span> chpasswd    <span class="token comment">#passwd.txt文件中的格式也是：用户名:密码</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="批量删除用户"><a href="#批量删除用户" class="header-anchor">#</a> 批量删除用户</h2> <h3 id="deluser-sh"><a href="#deluser-sh" class="header-anchor">#</a> deluser.sh</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment">#this shell is use to bachusers </span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token operator">!=</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;Usage:root/delusers&quot;</span>
+<span class="token keyword">elif</span> <span class="token punctuation">[</span> -f <span class="token variable">$1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token keyword">for</span> <span class="token for-or-select variable">line</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> $1<span class="token variable">`</span></span>
+        <span class="token keyword">do</span>
+        <span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span> $line <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token builtin class-name">:</span> -f1<span class="token variable">`</span></span>
+        <span class="token function">useradd</span> -s /bin/bash <span class="token variable">$name</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;123&quot;</span> <span class="token operator">|</span> <span class="token function">passwd</span> --stdin <span class="token variable">$name</span>
+        chage -d <span class="token number">0</span> -M <span class="token number">90</span> -W <span class="token number">7</span> -I <span class="token number">2</span> <span class="token variable">$name</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;created user: <span class="token variable">$name</span>&quot;</span>
+        <span class="token keyword">done</span>
+<span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;input file not found&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">sh</span> ./deluser.sh user.txt
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/基础设施/linux-powshell/2020-10-09-HyperV上安装centos7.html" class="prev">
+        HyperV上安装Centos7
+      </a></span> <span class="next"><a href="/docs/基础设施/linux-powshell/2020-10-12-yum update与yum upgrade区别.html">
+        yum update 与 yum upgrade区别
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.a2b34a1e.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/130.edf69257.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>
