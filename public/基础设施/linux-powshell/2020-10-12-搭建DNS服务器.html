@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>【centos7搭建DNS服务器】 | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.93dd6926.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/132.9c744f7b.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.e32c04e9.js"><link rel="prefetch" href="/docs/assets/js/100.00a97cb9.js"><link rel="prefetch" href="/docs/assets/js/101.4b0b93fe.js"><link rel="prefetch" href="/docs/assets/js/102.bebe5e91.js"><link rel="prefetch" href="/docs/assets/js/103.c0ce31b0.js"><link rel="prefetch" href="/docs/assets/js/104.15c680e4.js"><link rel="prefetch" href="/docs/assets/js/105.c55b4056.js"><link rel="prefetch" href="/docs/assets/js/106.98f5f60c.js"><link rel="prefetch" href="/docs/assets/js/107.0fed175f.js"><link rel="prefetch" href="/docs/assets/js/108.823d1a3c.js"><link rel="prefetch" href="/docs/assets/js/109.7909a0b4.js"><link rel="prefetch" href="/docs/assets/js/11.5ba8aa41.js"><link rel="prefetch" href="/docs/assets/js/110.feb734a3.js"><link rel="prefetch" href="/docs/assets/js/111.398e1ed3.js"><link rel="prefetch" href="/docs/assets/js/112.8926a57e.js"><link rel="prefetch" href="/docs/assets/js/113.2a0c13ea.js"><link rel="prefetch" href="/docs/assets/js/114.abb75fd6.js"><link rel="prefetch" href="/docs/assets/js/115.d3ed95a6.js"><link rel="prefetch" href="/docs/assets/js/116.89b53221.js"><link rel="prefetch" href="/docs/assets/js/117.4b088eee.js"><link rel="prefetch" href="/docs/assets/js/118.6807aa3b.js"><link rel="prefetch" href="/docs/assets/js/119.37bb12c1.js"><link rel="prefetch" href="/docs/assets/js/12.fa81cfbb.js"><link rel="prefetch" href="/docs/assets/js/120.87f3c63c.js"><link rel="prefetch" href="/docs/assets/js/121.6815aa41.js"><link rel="prefetch" href="/docs/assets/js/122.de2c96d2.js"><link rel="prefetch" href="/docs/assets/js/123.e02b607a.js"><link rel="prefetch" href="/docs/assets/js/124.e3a37d98.js"><link rel="prefetch" href="/docs/assets/js/125.adbeb2de.js"><link rel="prefetch" href="/docs/assets/js/126.32d1f408.js"><link rel="prefetch" href="/docs/assets/js/127.3e4f6bf8.js"><link rel="prefetch" href="/docs/assets/js/128.419532a0.js"><link rel="prefetch" href="/docs/assets/js/129.5052e785.js"><link rel="prefetch" href="/docs/assets/js/13.bea02ec3.js"><link rel="prefetch" href="/docs/assets/js/130.fcd65d07.js"><link rel="prefetch" href="/docs/assets/js/131.97066144.js"><link rel="prefetch" href="/docs/assets/js/133.17a26c1e.js"><link rel="prefetch" href="/docs/assets/js/134.5b9a9005.js"><link rel="prefetch" href="/docs/assets/js/135.36844b1c.js"><link rel="prefetch" href="/docs/assets/js/136.1858a621.js"><link rel="prefetch" href="/docs/assets/js/137.40598cc7.js"><link rel="prefetch" href="/docs/assets/js/138.dd79a6af.js"><link rel="prefetch" href="/docs/assets/js/139.abdae210.js"><link rel="prefetch" href="/docs/assets/js/14.4d657bad.js"><link rel="prefetch" href="/docs/assets/js/140.f2c712d3.js"><link rel="prefetch" href="/docs/assets/js/141.ed97f899.js"><link rel="prefetch" href="/docs/assets/js/142.e1120f14.js"><link rel="prefetch" href="/docs/assets/js/143.fa252f93.js"><link rel="prefetch" href="/docs/assets/js/144.93ab7be7.js"><link rel="prefetch" href="/docs/assets/js/145.1d1dd479.js"><link rel="prefetch" href="/docs/assets/js/146.3de203bb.js"><link rel="prefetch" href="/docs/assets/js/147.5ab46b32.js"><link rel="prefetch" href="/docs/assets/js/148.1f17fb10.js"><link rel="prefetch" href="/docs/assets/js/149.ddb147ec.js"><link rel="prefetch" href="/docs/assets/js/15.28699f86.js"><link rel="prefetch" href="/docs/assets/js/150.c73a4213.js"><link rel="prefetch" href="/docs/assets/js/151.3856b5c4.js"><link rel="prefetch" href="/docs/assets/js/152.4cce279e.js"><link rel="prefetch" href="/docs/assets/js/153.3d73071c.js"><link rel="prefetch" href="/docs/assets/js/154.3262e893.js"><link rel="prefetch" href="/docs/assets/js/155.ede6dc09.js"><link rel="prefetch" href="/docs/assets/js/156.1c8b2912.js"><link rel="prefetch" href="/docs/assets/js/157.b2f5b396.js"><link rel="prefetch" href="/docs/assets/js/158.b4974bd8.js"><link rel="prefetch" href="/docs/assets/js/159.c9ad1a21.js"><link rel="prefetch" href="/docs/assets/js/16.80c683fc.js"><link rel="prefetch" href="/docs/assets/js/160.4800ada1.js"><link rel="prefetch" href="/docs/assets/js/161.702753a7.js"><link rel="prefetch" href="/docs/assets/js/162.829366da.js"><link rel="prefetch" href="/docs/assets/js/163.a80dd625.js"><link rel="prefetch" href="/docs/assets/js/164.ab7b51ed.js"><link rel="prefetch" href="/docs/assets/js/165.7a50d680.js"><link rel="prefetch" href="/docs/assets/js/166.452408db.js"><link rel="prefetch" href="/docs/assets/js/167.5faaad11.js"><link rel="prefetch" href="/docs/assets/js/168.56348e1f.js"><link rel="prefetch" href="/docs/assets/js/169.188f3c48.js"><link rel="prefetch" href="/docs/assets/js/17.a3ec4fa1.js"><link rel="prefetch" href="/docs/assets/js/170.e5cbef46.js"><link rel="prefetch" href="/docs/assets/js/171.ee542997.js"><link rel="prefetch" href="/docs/assets/js/172.998e600d.js"><link rel="prefetch" href="/docs/assets/js/173.2c74b79d.js"><link rel="prefetch" href="/docs/assets/js/174.d6fbef05.js"><link rel="prefetch" href="/docs/assets/js/175.622448d9.js"><link rel="prefetch" href="/docs/assets/js/176.ce5bdcc5.js"><link rel="prefetch" href="/docs/assets/js/177.c6ff35de.js"><link rel="prefetch" href="/docs/assets/js/178.685415bd.js"><link rel="prefetch" href="/docs/assets/js/179.d5aa3a48.js"><link rel="prefetch" href="/docs/assets/js/18.194d571e.js"><link rel="prefetch" href="/docs/assets/js/180.2639e26d.js"><link rel="prefetch" href="/docs/assets/js/181.20e60ea5.js"><link rel="prefetch" href="/docs/assets/js/182.e27a91e8.js"><link rel="prefetch" href="/docs/assets/js/183.d6fd1864.js"><link rel="prefetch" href="/docs/assets/js/184.a587df8e.js"><link rel="prefetch" href="/docs/assets/js/185.8c1a30cc.js"><link rel="prefetch" href="/docs/assets/js/186.cef87939.js"><link rel="prefetch" href="/docs/assets/js/187.8f41ca12.js"><link rel="prefetch" href="/docs/assets/js/188.13a8a5bd.js"><link rel="prefetch" href="/docs/assets/js/189.3b2c29e0.js"><link rel="prefetch" href="/docs/assets/js/19.33d3de29.js"><link rel="prefetch" href="/docs/assets/js/190.1d2aa3fc.js"><link rel="prefetch" href="/docs/assets/js/191.a9f7e3fc.js"><link rel="prefetch" href="/docs/assets/js/192.ba1fb7f3.js"><link rel="prefetch" href="/docs/assets/js/193.d291f7ff.js"><link rel="prefetch" href="/docs/assets/js/194.381f0484.js"><link rel="prefetch" href="/docs/assets/js/195.f8431321.js"><link rel="prefetch" href="/docs/assets/js/196.550cc461.js"><link rel="prefetch" href="/docs/assets/js/197.5d5d6cac.js"><link rel="prefetch" href="/docs/assets/js/198.d19e0a75.js"><link rel="prefetch" href="/docs/assets/js/199.d6575e04.js"><link rel="prefetch" href="/docs/assets/js/20.01550c73.js"><link rel="prefetch" href="/docs/assets/js/200.48ce46e0.js"><link rel="prefetch" href="/docs/assets/js/201.4acc9fc5.js"><link rel="prefetch" href="/docs/assets/js/202.2167565c.js"><link rel="prefetch" href="/docs/assets/js/203.dcf8b7fe.js"><link rel="prefetch" href="/docs/assets/js/204.9ae72ea2.js"><link rel="prefetch" href="/docs/assets/js/205.b3048529.js"><link rel="prefetch" href="/docs/assets/js/206.1ae08f47.js"><link rel="prefetch" href="/docs/assets/js/207.8924b6b1.js"><link rel="prefetch" href="/docs/assets/js/208.0f626e54.js"><link rel="prefetch" href="/docs/assets/js/209.ef549acb.js"><link rel="prefetch" href="/docs/assets/js/21.4fd03221.js"><link rel="prefetch" href="/docs/assets/js/210.b7d383a9.js"><link rel="prefetch" href="/docs/assets/js/211.712c12f5.js"><link rel="prefetch" href="/docs/assets/js/212.222aa594.js"><link rel="prefetch" href="/docs/assets/js/213.440f85f4.js"><link rel="prefetch" href="/docs/assets/js/214.1569da5c.js"><link rel="prefetch" href="/docs/assets/js/215.4c3748b1.js"><link rel="prefetch" href="/docs/assets/js/216.e9bcea84.js"><link rel="prefetch" href="/docs/assets/js/217.3f634b2e.js"><link rel="prefetch" href="/docs/assets/js/218.5a1c1bcb.js"><link rel="prefetch" href="/docs/assets/js/219.6c13567c.js"><link rel="prefetch" href="/docs/assets/js/22.995874a8.js"><link rel="prefetch" href="/docs/assets/js/220.fba907d1.js"><link rel="prefetch" href="/docs/assets/js/221.bab3e60f.js"><link rel="prefetch" href="/docs/assets/js/23.f7c47801.js"><link rel="prefetch" href="/docs/assets/js/24.e011ab3b.js"><link rel="prefetch" href="/docs/assets/js/25.af442e59.js"><link rel="prefetch" href="/docs/assets/js/26.5536104b.js"><link rel="prefetch" href="/docs/assets/js/27.4be3738e.js"><link rel="prefetch" href="/docs/assets/js/28.25e512be.js"><link rel="prefetch" href="/docs/assets/js/29.77f8c257.js"><link rel="prefetch" href="/docs/assets/js/30.c77b35b9.js"><link rel="prefetch" href="/docs/assets/js/31.8b7b20bb.js"><link rel="prefetch" href="/docs/assets/js/32.8531c006.js"><link rel="prefetch" href="/docs/assets/js/33.ad390fca.js"><link rel="prefetch" href="/docs/assets/js/34.2f01ab18.js"><link rel="prefetch" href="/docs/assets/js/35.4e0f01f6.js"><link rel="prefetch" href="/docs/assets/js/36.05aac00e.js"><link rel="prefetch" href="/docs/assets/js/37.2e400a68.js"><link rel="prefetch" href="/docs/assets/js/38.674af2b6.js"><link rel="prefetch" href="/docs/assets/js/39.54fe898a.js"><link rel="prefetch" href="/docs/assets/js/4.ece5c77b.js"><link rel="prefetch" href="/docs/assets/js/40.14042402.js"><link rel="prefetch" href="/docs/assets/js/41.ab879432.js"><link rel="prefetch" href="/docs/assets/js/42.35643aab.js"><link rel="prefetch" href="/docs/assets/js/43.0c51ae83.js"><link rel="prefetch" href="/docs/assets/js/44.15f9681d.js"><link rel="prefetch" href="/docs/assets/js/45.0f7e466d.js"><link rel="prefetch" href="/docs/assets/js/46.93a70d55.js"><link rel="prefetch" href="/docs/assets/js/47.eaa975d2.js"><link rel="prefetch" href="/docs/assets/js/48.6aeef2ea.js"><link rel="prefetch" href="/docs/assets/js/49.e3082d9d.js"><link rel="prefetch" href="/docs/assets/js/50.bf96ec1d.js"><link rel="prefetch" href="/docs/assets/js/51.c3e015ee.js"><link rel="prefetch" href="/docs/assets/js/52.15e1a1a2.js"><link rel="prefetch" href="/docs/assets/js/53.2f9b1910.js"><link rel="prefetch" href="/docs/assets/js/54.dcd7012b.js"><link rel="prefetch" href="/docs/assets/js/55.4c876727.js"><link rel="prefetch" href="/docs/assets/js/56.1a056d6a.js"><link rel="prefetch" href="/docs/assets/js/57.42f1ae99.js"><link rel="prefetch" href="/docs/assets/js/58.2fba367a.js"><link rel="prefetch" href="/docs/assets/js/59.6859f4d5.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.49ca807b.js"><link rel="prefetch" href="/docs/assets/js/61.6ce1eb16.js"><link rel="prefetch" href="/docs/assets/js/62.e6bfdcb3.js"><link rel="prefetch" href="/docs/assets/js/63.f0ff8c98.js"><link rel="prefetch" href="/docs/assets/js/64.747f26a2.js"><link rel="prefetch" href="/docs/assets/js/65.b6cc0444.js"><link rel="prefetch" href="/docs/assets/js/66.6951ce4e.js"><link rel="prefetch" href="/docs/assets/js/67.62e834e5.js"><link rel="prefetch" href="/docs/assets/js/68.31534533.js"><link rel="prefetch" href="/docs/assets/js/69.c8094757.js"><link rel="prefetch" href="/docs/assets/js/7.75604009.js"><link rel="prefetch" href="/docs/assets/js/70.f63de6b5.js"><link rel="prefetch" href="/docs/assets/js/71.4c2f200f.js"><link rel="prefetch" href="/docs/assets/js/72.a5be4899.js"><link rel="prefetch" href="/docs/assets/js/73.ad184492.js"><link rel="prefetch" href="/docs/assets/js/74.336537e0.js"><link rel="prefetch" href="/docs/assets/js/75.78b9e8be.js"><link rel="prefetch" href="/docs/assets/js/76.bf54e9d8.js"><link rel="prefetch" href="/docs/assets/js/77.507424d0.js"><link rel="prefetch" href="/docs/assets/js/78.40d258be.js"><link rel="prefetch" href="/docs/assets/js/79.fdc7a820.js"><link rel="prefetch" href="/docs/assets/js/8.a64b961b.js"><link rel="prefetch" href="/docs/assets/js/80.14baf9e4.js"><link rel="prefetch" href="/docs/assets/js/81.f1049c9d.js"><link rel="prefetch" href="/docs/assets/js/82.c630121a.js"><link rel="prefetch" href="/docs/assets/js/83.aea36c8e.js"><link rel="prefetch" href="/docs/assets/js/84.974b75fd.js"><link rel="prefetch" href="/docs/assets/js/85.0479348c.js"><link rel="prefetch" href="/docs/assets/js/86.d2c03fb6.js"><link rel="prefetch" href="/docs/assets/js/87.02c66ed8.js"><link rel="prefetch" href="/docs/assets/js/88.eab40d79.js"><link rel="prefetch" href="/docs/assets/js/89.7c4a872a.js"><link rel="prefetch" href="/docs/assets/js/9.de0a3e8e.js"><link rel="prefetch" href="/docs/assets/js/90.4b216e32.js"><link rel="prefetch" href="/docs/assets/js/91.925d67b6.js"><link rel="prefetch" href="/docs/assets/js/92.d4da2637.js"><link rel="prefetch" href="/docs/assets/js/93.d8857da5.js"><link rel="prefetch" href="/docs/assets/js/94.dda614d0.js"><link rel="prefetch" href="/docs/assets/js/95.ffcb237c.js"><link rel="prefetch" href="/docs/assets/js/96.33980b2c.js"><link rel="prefetch" href="/docs/assets/js/97.e81de537.js"><link rel="prefetch" href="/docs/assets/js/98.a54ae97d.js"><link rel="prefetch" href="/docs/assets/js/99.f9d47799.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven-nexus/" class="nav-link">
+  maven-nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>linux-powshell</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/基础设施/linux-powshell/2020-09-02-ESXi安装虚拟机注意点.html" class="sidebar-link">【ESXi安装虚拟机注意点】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-03-安装v2ray在ubuntu19上.html" class="sidebar-link">【安装v2ray 在ubuntu19上】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-03-解决gitlabgithubclone下载慢.html" class="sidebar-link">【解决】gitlab github clone慢 下载慢</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-04-centos7安装npm.html" class="sidebar-link">【linux安装npm】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-21-linux内核.html" class="sidebar-link">【linux内核】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-09-24-修改centos命令行样式.html" class="sidebar-link">【修改centos命令行样式】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-04-umount目标忙.html" class="sidebar-link">umount目标忙error</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-09-HyperV上安装centos7.html" class="sidebar-link">HyperV上安装Centos7</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-12-centos7搭建postfix和dovecot邮件服务器.html" class="sidebar-link">【搭建邮件服务器】centos7用postfix+dovecot搭建邮件服务器。</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-12-yum update与yum upgrade区别.html" class="sidebar-link">yum update 与 yum upgrade区别</a></li><li><a href="/docs/基础设施/linux-powshell/2020-10-12-搭建DNS服务器.html" class="active sidebar-link">【centos7搭建DNS服务器】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-HyperV上安装centos，外网联通.html" class="sidebar-link">【hyperv上安装centos7】外网联通，宿主机共享文件</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-linux如何查看mount的源路径.html" class="sidebar-link">【linux】如何查看mount的源路径</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-查看某个命令在哪个包yum.html" class="sidebar-link">【linux】【基础】查某个命令属于哪个包然后yum install 这个包</a></li><li><a href="/docs/基础设施/linux-powshell/2020-7-10-查看端口.html" class="sidebar-link">【linux】查看端口，修改SSH端口</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-10-识别操作系统是ubuntu还是centos还是alpine.html" class="sidebar-link">【linux】识别centos还是debain还是ubuntu还是alpine的方法. ubuntu开启ssh</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-11-ubuntu虚拟机.html" class="sidebar-link">【ubuntu】配置ssh，让root能ssh</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-12-nginx学习.html" class="sidebar-link">【nginx】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-hyperV centos7扩容.html" class="sidebar-link">【hyperV-centos扩容】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-targz.html" class="sidebar-link">【linux压缩解压缩】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-13-查看哪个目录占用的磁盘空间大.html" class="sidebar-link">【哪个文件占用磁盘空间大 du -sh *】</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-25-scp带端口号.html" class="sidebar-link">【linux基础】scp带端口号</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-26-【修改虚拟机系统时间】.html" class="sidebar-link">【linux基础】修改centos7系统时间</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-28-JWT.html" class="sidebar-link">什么是 JWT -- JSON WEB TOKEN</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-4-hyperVError无法连接到虚拟机配置存储.html" class="sidebar-link">【hyperV】Error，无法连接虚拟机配置存储</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-4-签发私有SSL证书配置到nginx浏览器安装根证书.html" class="sidebar-link">【私有SSL证书】签发私有SSL证书，给nginx</a></li><li><a href="/docs/基础设施/linux-powshell/2020-8-5-泛域名SSL证书.html" class="sidebar-link">【nexus】开启nexus的https服务。制作泛域名证书</a></li><li><a href="/docs/基础设施/linux-powshell/2020-9-25-屏幕上写字的工具.html" class="sidebar-link">屏幕上写字的工具</a></li><li><a href="/docs/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/linux-powshell/" aria-current="page" class="sidebar-link">Linux相关</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>参考：https://blog.51cto.com/12227558/2074095</p> <p><a href="null">原创</a></p> <h1 id="linux运维高级篇-centos-7下postfix邮件服务器搭建"><a href="#linux运维高级篇-centos-7下postfix邮件服务器搭建" class="header-anchor">#</a> Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建</h1> <p><a href="https://blog.51cto.com/12227558" target="_blank" rel="noopener noreferrer"><img src="https://s5.51cto.com//oss/201803/06/873f6728b942db37dd76cc4d20dbb1b3.jpg?x-oss-process=image/resize,m_fixed,h_120,w_120" alt=""><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://blog.51cto.com/12227558" target="_blank" rel="noopener noreferrer">0行云流水0<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="null">28人评论</a> [189356人阅读](javascript:😉 [2018-02-28 23:23:44](javascript:😉</p> <p>第一章 实验环境</p> <ol><li>硬件环境：<br>
+Linux服务器一台，IP地址：192.168.80.10；<br>
+WIN7客户端一台，拥有OUTLOOK2013，测试用，与服务器在同一局域网内。</li> <li>Linux系统环境，如下图：<br> <img src="https://s4.51cto.com/images/blog/201803/02/900da5c8cef4528dc821fb561e3188b8.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+第二章 实验内容<br>
+一：搭建DNS服务器<br>
+二：搭建postfix服务器及普通发信<br>
+三：普通收信<br>
+四：认证收信<br>
+五：squirrelmail收发邮件（搭建网页收发邮件）<br>
+六：邮件群发功能配置<br>
+七：邮件发送容量大小配置<br>
+八：通过配置用户磁盘配额实现限制用户邮箱空间</li></ol> <p>第三章 实验步骤<br>
+准备工作：<br>
+[root@localhost ~]# systemctl stop firewalld //关闭防火墙<br>
+[root@localhost ~]# setenforce 0 //关闭selinux<br>
+第一部分：搭建DNS服务器<br>
+[root@localhost ~]# yum install bind -y //安装DNS服务<br>
+------------以下编辑主配置文件--------------<br>
+[root@localhost ~]# vi /etc/named.conf<br>
+修改如下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/6eee1d96d8bfadfcbb46255528af2f24.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost ~]# named-checkconf //检查语法错误<br>
+注意：如有错误提示，详细解读错误提示，按提示修改配置文件；若没有任何提示，则表示没有语法错误。<br>
+------------以下编辑区域配置文件--------------------<br>
+[root@localhost ~]# vi /etc/named.rfc1912.zones<br>
+文件末尾加入以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/a8af365bebc751d87c15f17f76697bec.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost ~]# named-checkconf //检查语法错误<br>
+---------------以下编辑区域数据配置文件-------------------<br>
+[root@localhost ~]# cd /var/named<br>
+[root@localhost named]# cp -p named.localhost aa.com.zone<br>
+//创建正向区域数据配置文件（注意，由于我是复制另一个样式文件，复制文件时必须加“-P”，表示复制过来的时候文件权限保持不变）<br>
+[root@localhost named]# vi aa.com.zone //编辑正向区域数据配置文件<br> <img src="https://s4.51cto.com/images/blog/201802/28/560a15b023334f7bf4134a4c0e276e8e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+（此处注意语法格式，不要漏掉“.”）<br>
+保存退出<br>
+//创建反向区域数据配置文件<br>
+[root@localhost named]# cp -p named.localhost aa.com.local<br>
+[root@localhost named]# vi aa.com.local //编辑反向区域数据配置文件<br> <img src="https://s4.51cto.com/images/blog/201802/28/f7e7328116d4d6b408b8fe7f5244fc1e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost named]# named-checkconf //检查语法错误<br>
+-------------启动服务，验证--------------<br>
+[root@localhost named]# systemctl start named //启动DNS服务<br>
+[root@localhost named]# systemctl enable named //设置开机启动<br>
+[root@localhost named]# vi /etc/resolv.conf //设置服务器域名<br> <img src="https://s4.51cto.com/images/blog/201802/28/5fccb95a90546496b65cedadd10dac6b.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost named]# nslookup mail.aa.com //解析验证<br>
+成功如下图：<br> <img src="https://s4.51cto.com/images/blog/201802/28/d6b312b9df75d41e6f0b71c9a6dedcd7.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></p> <p>第二部分：搭建postfix并配置基本发信功能<br>
+[root@localhost ~]# postconf –a //验证是否支持cyrus dovecot功能<br> <img src="https://s4.51cto.com/images/blog/201802/28/58574e9f510b1f935efeeba1d1fb25d3.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+（若postfix已安装好，则会支持这两个功能，若不支持，表示postfix未安装好；CentOS 7开始默认系统自带postfix。）<br>
+[root@localhost ~]# systemctl start postfix 启动服务<br>
+------------编辑主配置文件--------------<br>
+[root@localhost ~]# vi /etc/postfix/main.cf<br>
+编辑以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/0ae7845a561eb742630b5061864516c9.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //邮件服务器的主机名<br> <img src="https://s4.51cto.com/images/blog/201802/28/baa8406f021e0f60a40f97e4695f4d03.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //邮件域<br> <img src="https://s4.51cto.com/images/blog/201802/28/0d0eaa3406bedf471dd45040e9209818.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //往外发邮件的邮件域<br> <img src="https://s4.51cto.com/images/blog/201802/28/7dc6c93e222f7f23313e8fce5a585699.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//监听的网卡 （注意，两个地址之间有空格）<br> <img src="https://s4.51cto.com/images/blog/201802/28/fcbd2de118c4299ec6a1c2d19b5d5a56.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//服务的对象<br> <img src="https://s4.51cto.com/images/blog/201802/28/198669a83999f06bfe7498564a5f6b5c.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //邮件存放的目录<br>
+保存退出<br>
+[root@localhost ~]# postfix check //检查语法错误（与named-check用法一样）<br>
+[root@localhost ~]# systemctl restart postfix //重启服务<br>
+[root@localhost ~]# postconf –n //查看postfix的非默认并已生效配置<br>
+-------------增加邮件测试帐号--------------<br>
+[root@localhost ~]# groupadd mailusers //创建组给测试帐号<br>
+[root@localhost ~]# useradd -g mailusers -s /sbin/nologin jack<br>
+//创建jack帐户只属于mailusers组并不能登录系统，用于测试邮件<br>
+[root@localhost ~]# passwd jack //创建jack密码<br>
+[root@localhost ~]# useradd -g mailusers -s /sbin/nologin tom<br>
+[root@localhost ~]# passwd tom<br>
+--------------连接服务器的25端口进行简单发信测试-----------<br>
+[root@localhost ~]# telnet mail.aa.com 25<br>
+//连接成功，开始写信<br>
+helo mail.aa.com //声明本机的主机<br>
+mail from:jack@aa.com //声明发件人地址<br>
+rcpt to:tom@aa.com //声明收件人地址<br>
+data //写正文<br>
+i am jack!!<br>
+. //正文结束标记<br>
+quit // 退出<br>
+如图所示：<br> <img src="https://s4.51cto.com/images/blog/201802/28/299cefba0fd653a15a67b6d4ff030145.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+第三部分：收信验证<br>
+方法一：使用root查看tom用户是否收到测试邮件<br>
+[root@localhost ~]# cat /home/tom/Maildir/new/1515968168.Vfd00I306d0f0M475089.localhost.localdomain<br>
+成功显示：<br> <img src="https://s4.51cto.com/images/blog/201802/28/be6fde936b41cfacc612c97bc6e6b618.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></p> <p>方法二：搭建dovecot提供收信服务<br>
+--------------安装dovecot软件----------------<br>
+[root@localhost ~]# yum install -y dovecot<br>
+---------------编辑配置文件--------------<br>
+[root@localhost ~]# vi /etc/dovecot/dovecot.conf<br>
+修改以下三行：<br> <img src="https://s4.51cto.com/images/blog/201802/28/0f4f5e64dfcc5ca0a250f4f5ee032d74.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/9e3dd2f40e957f045d56a42456c34207.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/ac4dd6ba09f5e6bcc118bb31de2ac619.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+添加以下三行：<br> <img src="https://s4.51cto.com/images/blog/201802/28/04b36d67d99057064aa4c38550abc314.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/c7af7ea3b2149def22d5ad4d67c82994.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/5c9885823c8a51059fec1b7fbe93bf91.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+----------------启动服务--------------<br>
+[root@localhost ~]# systemctl start dovecot<br>
+[root@localhost ~]# netstat -anpt | grep dovecot<br>
+//110，143端口需要监听<br> <img src="https://s4.51cto.com/images/blog/201802/28/adb15258e86dd85a1684da9a9e48eb23.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+---------------收信验证---------------<br>
+[root@localhost ~]# telnet mail.aa.com 110<br>
+user tom //收件人登录<br>
+pass 123 //邮箱密码<br>
+list //列表查看邮件<br>
+retr 1 //读取编号为1的邮件<br>
+quit //退出邮箱<br>
+如图所示：<br> <img src="https://s4.51cto.com/images/blog/201802/28/fe4ac84c5faaae8196c782cae62da8fe.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/057e5d8921718c7b215741d1e3b69a2e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//验证成功<br>
+方法三：用win7客户端outlook2013收信验证<br>
+打开<br> <img src="https://s4.51cto.com/images/blog/201802/28/1e0e696632cf57cbc2c9d6d6df2a2f34.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+打开左上角，“文件”<br> <img src="https://s4.51cto.com/images/blog/201802/28/0a4c22f4aee8f2a57e79eb67c85d7715.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+点开账户设置<br> <img src="https://s4.51cto.com/images/blog/201802/28/5d9fc272eabe51f8cfe1c3a5940cc075.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+打开“新建”，<br> <img src="https://s4.51cto.com/images/blog/201802/28/8c800afc2006dc24711f780de71a6a21.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+手动设置，下一步<br> <img src="https://s4.51cto.com/images/blog/201802/28/1e8334548a8c9b5f0687ec771747beb2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+选择POP或IMAP，下一步<br> <img src="https://s4.51cto.com/images/blog/201802/28/166eac4dae217ce5a7b252627cba773f.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+配置tom信息，下一步<br> <img src="https://s4.51cto.com/images/blog/201802/28/ae2e0ead42fa51f47c6f5a2053fd9562.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+连接服务器成功<br> <img src="https://s4.51cto.com/images/blog/201802/28/ab665d4edb4f15739dee423be7cbc787.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+完成<br> <img src="https://s4.51cto.com/images/blog/201802/28/7b2a32ee283ee677f1f458ae0abefa63.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></p> <p>点开左侧“所有文件夹”，tom帐户已登录<br> <img src="https://s4.51cto.com/images/blog/201802/28/4d4b0af8c0b50830e7958f6381374260.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+点开“收件箱”，tom已成功接收到邮件<br> <img src="https://s4.51cto.com/images/blog/201802/28/4430b4f3f678bacb7fba9d90e3bc9879.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//验证成功<br>
+注意：如果收信慢，可点击右上角接收<br> <img src="https://s4.51cto.com/images/blog/201802/28/e4a07547cf0412e6a44cc44af6533560.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></p> <p>第四部分：发信认证配置</p> <ol><li>编辑认证配置文件<br>
+---------安装cyrus-sasl软件-------------<br>
+[root@localhost ~]# yum install -y cyrus-sasl <em>//注意，此处加上“</em>”，包含安装该软件所包含插件<br>
+----------编辑配置文件---------------<br>
+[root@localhost ~]# vi /etc/sasl2/smtpd.conf<br> <img src="https://s4.51cto.com/images/blog/201802/28/38080520721fe723dcc00e1295e0ca72.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //配置认证方式<br>
+保存退出<br>
+[root@localhost ~]# vi /etc/sysconfig/saslauthd<br> <img src="https://s4.51cto.com/images/blog/201802/28/0a1c0f11237b063090122fa65d5ab097.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //本地用户认证<br>
+保存退出<br>
+-------------启动服务--------------<br>
+[root@localhost ~]# systemctl start saslauthd<br>
+[root@localhost ~]# systemctl enable saslauthd</li> <li>编辑postfix主配置文件<br>
+[root@localhost ~]# vi /etc/postfix/main.cf<br>
+添加以下内容：<br>
+smtpd_sasl_auth_enable = yes //开启认证<br>
+smtpd_sasl_security_options = noanonymous //不允许匿名发信<br>
+mynetworks = 127.0.0.0/8 //允许的网段，如果增加本机所在网段就会出现允许不验证也能向外域发信<br>
+smtpd_recipient_restrictions = permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination //允许本地域以及认证成功的发信，拒绝认证失败的发信<br>
+如图：<br> <img src="https://s4.51cto.com/images/blog/201802/28/65e318a64b9bd5e2d0e220d8c45e219e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+[root@localhost ~]# postfix check //检查语法错误<br>
+[root@localhost ~]# systemctl restart postfix //重启postfix服务</li> <li>测试普通发信验证<br> <img src="https://s4.51cto.com/images/blog/201802/28/9b37be1a9554d092b3b81822f37baa81.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//注意：由于abc@163.com未认证，所以拒绝访问，发送失败</li> <li>将邮件用户名和密码生成密文<br>
+[root@localhost ~]# printf &quot;jack&quot; | openssl base64 //帐户加密<br>
+[root@localhost ~]# printf &quot;123&quot; | openssl base64 //密码加密<br> <img src="https://s4.51cto.com/images/blog/201802/28/4b8a2ac3bae3f1d489b368d16ded63a5.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>字符终端测试认证发信<br>
+[root@localhost ~]# telnet mail.aa.com 25<br>
+ehlo mail.aa.com //注意是ehlo不是helo<br>
+auth login //认证登录<br>
+amFjaw== //密文用户名<br>
+MTIz //密文密码<br>
+mail from:jack@aa.com<br>
+rcpt to:aa@163.com<br>
+data<br>
+this is test<br>
+.<br>
+quit<br>
+//发送成功</li> <li>win7客户端用outlook2013测试认证发信<br>
+更改帐户配置<br> <img src="https://s4.51cto.com/images/blog/201802/28/ae4d148e5487e5001eedad78ddf93476.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+点开“其它设置”<br> <img src="https://s4.51cto.com/images/blog/201802/28/1cc87650559f379f943289be9feb4f2c.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+发送服务器，打√，使用与接收邮件服务器相同的设置<br> <img src="https://s4.51cto.com/images/blog/201802/28/f98da6a9eff4a15d4e66e40ef6bf1405.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+下一步，成功<br> <img src="https://s4.51cto.com/images/blog/201802/28/70cd76e519c03dc3af5d786d11f48adb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+新建电子邮件<br> <img src="https://s4.51cto.com/images/blog/201802/28/60443a70d6900b2bf18d12e765c9b801.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+写信<br> <img src="https://s4.51cto.com/images/blog/201802/28/4cd8b3ce7e533f95eaa06d62e765b52f.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//查看jack是否接收到邮件<br>
+Outlook添加jack帐户，与添加tom方法一样，其它设置中记得打√<br> <img src="https://s4.51cto.com/images/blog/201802/28/4901a6050479cad8b100d6ced8d20fec.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//验证成功</li></ol> <p>第五部分：配置squirrelmail收发邮件（小松鼠网页浏览邮箱）<br>
+---------------搭建LAMP环境-------------</p> <ol><li>安装httpd，mariadb，php服务<br>
+yum install -y \<br>
+httpd \ //Apache服务<br>
+mariadb-server mariadb \ //Mysql服务<br>
+php \ //PHP服务<br>
+php-mysql \ //PHP关联数据库<br>
+php-gd \<br>
+libjpeg* \<br>
+php-ldap \<br>
+php-odbc \<br>
+php-pear \<br>
+php-xml \<br>
+php-xmlrpc \<br>
+php-mhash</li> <li>编辑Apache主配置文件<br>
+[root@localhost ~]# vi /etc/httpd/conf/httpd.conf<br> <img src="https://s4.51cto.com/images/blog/201802/28/2a5872542dfe447a67cc34682dbcf71b.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"> //域名<br> <img src="https://s4.51cto.com/images/blog/201802/28/d490eedb9080266e92ad6c5d0043b068.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出</li> <li>编辑PHP主配置文件<br>
+[root@localhost ~]# vi /etc/php.ini<br> <img src="https://s4.51cto.com/images/blog/201802/28/7936fe6b5b7df47f00aac50c6cc3a330.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出</li> <li>启动服务<br>
+[root@localhost ~]# systemctl start httpd //启动Apache服务<br>
+[root@localhost ~]# systemctl enable httpd //设置开机启动<br>
+[root@localhost ~]# systemctl start mariadb //启动mysql数据库服务<br>
+[root@localhost ~]# systemctl enable mariadb //设置开机启动<br>
+[root@localhost ~]# netstat -anpt | grep 80 //查看httpd端口状态<br> <img src="https://s4.51cto.com/images/blog/201802/28/b0cb66f88a3f0f3669089c2ceea22a60.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+[root@localhost ~]# netstat -anpt | grep 3306 //查看mysql端口状态<br> <img src="https://s4.51cto.com/images/blog/201802/28/7748a6705db57a8b9987795ebf71c205.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>网页测试 <a href="http://192.168.80.10/" target="_blank" rel="noopener noreferrer">http://192.168.80.10/<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a><br> <img src="https://s4.51cto.com/images/blog/201802/28/fe8fe93d2f628e666ec5c1d950d89175.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>编辑mysql数据库安全配置<br>
+[root@localhost ~]# mysql_secure_installation<br> <img src="https://s4.51cto.com/images/blog/201802/28/0b7544d85eee85c784f24b3d629a6ab5.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//使用本地管理员root进入<br> <img src="https://s4.51cto.com/images/blog/201802/28/1b9f2fbe0f9c07376513756cb9faabf5.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//创建数据库管理员密码，回车，输入两遍密码（123）<br> <img src="https://s4.51cto.com/images/blog/201802/28/d3569e9109a52a3fbab3e52d5a129844.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//移除匿名用户<br> <img src="https://s4.51cto.com/images/blog/201802/28/8a57e889e9749dc9711b9e64d326efab.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//不允许管理员远程登录，选择否<br> <img src="https://s4.51cto.com/images/blog/201802/28/3ea666bf26a30dc6e0cdf7db713f8925.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//删除测试数据库<br> <img src="https://s4.51cto.com/images/blog/201802/28/d2e37bf1cafe44771270a2d9602e4a86.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//重新载入权限配置</li> <li>编辑php测试文件<br>
+[root@localhost ~]# vi /var/www/html/index.php<br>
+创建php默认配置文件，并添加以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/cb88f3af7e9d39c08509461fe1c6e0f9.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+//网页测试 <a href="http://192.168.80.10/" target="_blank" rel="noopener noreferrer">http://192.168.80.10/<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a><br> <img src="https://s4.51cto.com/images/blog/201802/28/c428bb268f06556c4b20474c78cf806f.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//测试成功</li> <li>编辑mysql数据库<br>
+//进入数据库，建立授权帐号<br>
+[root@localhost ~]# mysql -u root –p<br>
+输入数据库密码（123），回车进入，输入以下内容<br> <img src="https://s4.51cto.com/images/blog/201802/28/2484637ad7d94f9115e5e00f9676f7d5.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//测试数据库工作是否正常<br>
+[root@localhost ~]# vi /var/www/html/index.php<br>
+将其它内容删除，并输入以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/932c77aa938d6fd82c2f63fe2a39e8b2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+刷新网页<br> <img src="https://s4.51cto.com/images/blog/201802/28/e9e0ffa2ee8b646ac47a515eb25138bc.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//测试成功<br>
+----------------搭建小松鼠网页邮箱--------------</li> <li>准备工作<br> <a href="http://www.squirrelmail.org/download.php" target="_blank" rel="noopener noreferrer">http://www.squirrelmail.org/download.php<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a><br>
+到该网站去下载压缩包到Linux服务器<br>
+安装包：<img src="https://s4.51cto.com/images/blog/201802/28/1633912e1336bd693cb54181f5090203.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+汉化包：<img src="https://s4.51cto.com/images/blog/201802/28/0f73d8b5d9e801bc6efb5a2d7486432c.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/7208e96fb955d0fde50d3d16a93ecddd.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>解压<br>
+[root@localhost ~]# tar xzvf squirrelmail-webmail-1.4.22.tar.gz<br>
+//解压安装包，生成一个安装文件<br>
+[root@localhost ~]# tar xzvf all_locales-1.4.18-20090526.tar.gz -C squirrelmail-webmail-1.4.22<br>
+//解压汉化包到安装文件里面<br> <img src="https://s4.51cto.com/images/blog/201802/28/46e703e7cc7c86ecbc287dda62f144c0.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+[root@localhost ~]# cp -rv squirrelmail-webmail-1.4.22 /var/www/html/mail<br>
+//复制该文件到http默认目录下<br>
+[root@localhost ~]# cd /var/www/html/mail/<br> <img src="https://s4.51cto.com/images/blog/201802/28/4ad735117113868a87e8a46442febd31.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>创建小松鼠网页默认配置文件<br>
+[root@localhost mail]# mkdir attach<br>
+[root@localhost mail]# chown -R apache:apache attach/ data/<br>
+[root@localhost mail]# cd config<br>
+[root@localhost config]# cp config_default.php config.php<br> <img src="https://s4.51cto.com/images/blog/201802/28/f6d0592d94da0ceb2606e180defb9390.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li> <li>编辑配置文件<br>
+[root@localhost config]# vi config.php<br>
+修改以下内容：<br>
+$domain = 'aa.com'; //域名<br>
+$imap_server_type = 'dovecot'; //服务类型<br>
+$data_dir = '/var/www/html/mail/data'; //数据目录<br>
+$attachment_dir = '/var/www/html/mail/attach/'; //附件目录<br>
+$squirrelmail_default_language = 'zh_CN'; //默认语言环境<br>
+$default_charset = 'zh_CN.UTF-8'; //默认字符编码<br>
+保存退出<br>
+//注意特殊字符，“$”与“;”不要漏掉</li> <li>网页验证测试 <a href="http://192.168.80.10/mail" target="_blank" rel="noopener noreferrer">http://192.168.80.10/mail<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a><br> <img src="https://s4.51cto.com/images/blog/201802/28/c97d9c466b0bdd287802ae26f7314abd.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+输入jack或者tom帐户密码登录<br> <img src="https://s4.51cto.com/images/blog/201802/28/6eef08134e8e80fa6ee58010b768ab26.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//验证成功</li></ol> <p>第六部分：邮件群发配置</p> <ol><li>设置邮件组<br>
+[root@localhost ~]# vi /etc/aliases<br>
+添加以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/e7d9dd9c276db0647284e91bf6220329.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//将jack，tom加入到student组里面<br>
+保存退出<br>
+[root@localhost ~]# newaliases //生成新的hash数据库文件</li> <li>重启postfix服务<br>
+[root@localhost ~]# systemctl restart postfix /重启postfix服务</li> <li>添加lucy邮件测试用户<br>
+[root@localhost ~]# useradd -g mailusers -s /sbin/nologin lucy<br>
+[root@localhost ~]# passwd lucy</li> <li>登录outlook2013，登录lucy帐户，给student组群发邮件<br>
+//在outlook中添加lucy帐户<br>
+//用lucy帐户发信<br> <img src="https://s4.51cto.com/images/blog/201802/28/8e0c839e6e9a50d7eeaa40d4d0d171d0.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></li></ol> <p>//查看tom与jack帐户收信<br>
+Jack成功收信<br> <img src="https://s4.51cto.com/images/blog/201802/28/1bd7a4d8348e4495af533a42101a0696.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+tom成功收信<br> <img src="https://s4.51cto.com/images/blog/201802/28/c41fefa3814d8d0075fc8df4ee56facc.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//验证成功</p> <p>第七部分：发送邮件容量大小限制<br>
+------------编辑配置文件--------------<br>
+[root@localhost ~]# vi /etc/postfix/main.cf //编辑postfix配置文件<br>
+最后添加以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/be7cf5a8dd3d12973923c175b1411661.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//限制发送的邮件大小最大为5MB<br>
+保存退出<br>
+[root@localhost ~]# systemctl restart postfix //重启postfix服务<br>
+--------------------用outlook验证----------------------<br>
+//发送一个超过5M的文件<br> <img src="https://s4.51cto.com/images/blog/201802/28/86e17ef76a3c3280050af5a337470912.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/999740736a88c3696dc6968e844bd960.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/a93e6b7e76ff8c6129564d482d57b127.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/4c8d0026ac19884ffa3d9e562fcf0f38.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"></p> <p>//发送失败，验证成功</p> <p>第八部分：通过配置用户磁盘配额实现限制用户邮箱空间<br>
+-----------开启磁盘配额------------<br>
+[root@localhost ~]# df –hT //查看邮件目录挂载信息<br> <img src="https://s4.51cto.com/images/blog/201802/28/c1af25052f32ca2a869ceda65b28f015.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+[root@localhost ~]# vi /etc/fstab<br>
+//修改配置文件，实现开机自动挂载<br>
+修改以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/b5a8ea93086e91ded40dd85cf9a66bb7.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost ~]# mount //查看sda2磁盘配额开启状态<br> <img src="https://s4.51cto.com/images/blog/201802/28/a71900f90035b95bade7c13d3b190c15.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+[root@localhost ~]# umount /home/ //卸载home目录<br>
+[root@localhost ~]# mount –a //重新挂载<br>
+[root@localhost ~]# mount //查看挂载状态<br> <img src="https://s4.51cto.com/images/blog/201802/28/17b114ca082a2c7752370ea79eee2c05.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//挂载成功<br>
+[root@localhost ~]# quotaon -p /home/<br>
+//确认home目录磁盘配额已开启<br> <img src="https://s4.51cto.com/images/blog/201802/28/0878f4b6bb51fc70b875ced0ad443745.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//由于sda2分区格式为xfs，默认自动开启磁盘配额功能<br>
+--------------为jack用户配置磁盘配额限制---------------<br>
+[root@localhost ~]# edquota -u jack<br> <img src="https://s4.51cto.com/images/blog/201802/28/33539ca8b6bbb5b31c10ba18e26c50fc.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//配置jack用户邮箱大小为最大10M<br>
+-------------测试，验证--------------<br>
+//将邮件发送大小限制去掉<br>
+[root@localhost ~]# vi /etc/postfix/main.cf<br>
+删除以下内容：<br> <img src="https://s4.51cto.com/images/blog/201802/28/63d3cb16abbb97d14f2b7065049ecae0.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+保存退出<br>
+[root@localhost ~]# systemctl restart postfix //重启服务<br>
+//用outlook发送邮件给jack<br> <img src="https://s4.51cto.com/images/blog/201802/28/b769a87995b39a95d668d176a8ffd5ac.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br> <img src="https://s4.51cto.com/images/blog/201802/28/100f6bbc3d0062a9ac0be5803bbfb1e4.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//发出第三封邮件之后，邮箱提示，硬盘配额溢出<br>
+[root@localhost ~]# cd /home/jack/Maildir/cur/<br>
+//进入jack用户存放邮件的目录查看接收邮件的大小<br> <img src="https://s4.51cto.com/images/blog/201802/28/3919dd87b55c0ecd19470877e00ddcc4.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux运维高级篇—CentOS 7下Postfix邮件服务器搭建"><br>
+//系统默认接收到两封邮件后容量已达7.1M，无法再接收第三封3M的邮件，磁盘配额生效，测试成功！！</p> <p>©著作权归作者所有：来自51CTO博客作者0行云流水0的原创作品，如需转载，请注明出处，否则将追究法律责任</p> <p><a href="https://blog.51cto.com/search/result?q=linux" target="_blank" rel="noopener noreferrer">linux<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://blog.51cto.com/search/result?q=%E6%9E%84%E5%BB%BA" target="_blank" rel="noopener noreferrer">构建<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://blog.51cto.com/search/result?q=postfi+" target="_blank" rel="noopener noreferrer">postfi<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/基础设施/linux-powshell/2020-10-12-yum update与yum upgrade区别.html" class="prev">
+        yum update 与 yum upgrade区别
+      </a></span> <span class="next"><a href="/docs/基础设施/linux-powshell/2020-7-10-HyperV上安装centos，外网联通.html">
+        【hyperv上安装centos7】外网联通，宿主机共享文件
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.93dd6926.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/132.9c744f7b.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>
