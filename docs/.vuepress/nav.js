@@ -76,7 +76,7 @@ module.exports = [{
 },
 {
     "text": "证券业务", "items": [
-        { "text": "股票", "link": "/股票/" }
+        { "text": "股票", "link": "/证券业务/股票/" }
     ]
 }
 ];
