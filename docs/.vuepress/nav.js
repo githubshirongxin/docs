@@ -73,5 +73,10 @@ module.exports = [{
     "text": "webpack", "items": [
         { "text": "webpack", "link": "/webpack/" }
     ]
+},
+{
+    "text": "证券业务", "items": [
+        { "text": "股票", "link": "/股票/" }
+    ]
 }
 ];
