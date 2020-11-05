@@ -78,5 +78,10 @@ module.exports = [{
     "text": "证券业务", "items": [
         { "text": "股票", "link": "/证券业务/股票/" }
     ]
+},
+{
+    "text": "管理", "items": [
+        { "text": "見積", "link": "/管理/見積/" }
+    ]
 }
 ];
