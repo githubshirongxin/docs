@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【nexus-docker仓库配置使用（二）】nexus作为docker镜像的私服 nginx代理ssl方式
+title: 【nexus安装】【nexus-docker仓库搭建】nginx代理ssl方式
 ---
 
 ::: warnning
