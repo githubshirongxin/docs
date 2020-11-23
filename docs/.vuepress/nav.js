@@ -28,8 +28,8 @@ module.exports = [{
 {
     "text": "application", "items": [
         { "text": "在线教育", "link": "/application/在线教育/" },
-        { "text": "application", "link": "/application/" }
-    ]
+        { "text": "考试系统", "link": "/application/考试系统/" },
+        { "text": "application", "link": "/application/" }]
 },
 {
     "text": "前端", "items": [
