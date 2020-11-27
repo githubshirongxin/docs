@@ -46,6 +46,7 @@ module.exports = [{
         { "text": "kotlin", "link": "/后端/kotlin/" },
         { "text": "nodejs", "link": "/后端/nodejs/" },
         { "text": "python", "link": "/后端/python/" },
+        { "text": "java", "link": "/后端/java/" },
         { "text": "微服务", "link": "/后端/微服务/" }
     ]
 },
