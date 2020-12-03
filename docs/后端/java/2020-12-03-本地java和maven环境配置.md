@@ -23,6 +23,11 @@ title: java环境maven环境安装配置
 
 - 3.2 【好】使用mvn 命令生成maven项目。
   因为pom.xml里面包含了很多默认内容。不用自己一点点写，更省劲。
+```
+mvn -B archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+```
+  - 1.4好使，我的maven3.6.2，java1.8。
+  - 不过生成的jdk版本是1.7需要手工该成1.8
 
 ### 为什么生成而不是手动一个目录一个目录创建
 有些规则必须遵守。例如必须有main包和test包。src目录和pom.xml必须同级。
