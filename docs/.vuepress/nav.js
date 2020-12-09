@@ -71,7 +71,8 @@ module.exports = [{
         { "text": "C++", "link": "/偏硬件5G/C++/" },
         { "text": "汇编", "link": "/偏硬件5G/汇编/" },
         { "text": "C", "link": "/偏硬件5G/C/" },
-        { "text": "lot", "link": "/偏硬件5G/lot/" }
+        { "text": "lot", "link": "/偏硬件5G/lot/" },
+        { "text": "processing", "link": "/偏硬件5G/processing/" }
     ]
 },
 {
