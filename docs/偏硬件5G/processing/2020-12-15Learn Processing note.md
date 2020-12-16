@@ -5,7 +5,7 @@ title: 《Learning Processing - Daniel Shiffman》读书笔记
 
 ![](/docs/images/2020-12-15-21-33-55.png)
 
-# lession 1
+## lession 1
 
 ## 1, 像素
 ![](/docs/images/2020-12-16-09-20-06.png)
@@ -121,7 +121,7 @@ void mousePressed() {
 ```
 ![](/docs/images/2020-12-16-10-19-13.png)
 
-### 3.3 练习
+## lession1 总结
 ![](/docs/images/2020-12-16-10-20-46.png)
 ```java
 void setup() {
@@ -163,7 +163,7 @@ void mousePressed() {
 ```
 
 ---
-# Lession2
+## Lession2
 ## 4，Variables  P45
 
 ### 4.1 base
@@ -792,13 +792,154 @@ void setup() {
 }
 ```
 
-# lession2 的总结工程
+### example 6-9
+![](/docs/images/2020-12-16-16-39-59.png)
+```java
+void setup() {
+  size(255, 255);
+  background(0);
+}
+void draw() {
+  background(0);
+  // Start with i as 0
+  int i = 0;
+  // While i is less than the width of the window
+  while (i < width) {
+    noStroke(); 
 
+    // 这两行，定义了每个竖条的规律。距离鼠标越远，它的值越大
+    // 越大就是越亮
+    float distance = abs(mouseX - i);
+    fill(distance);
+    
+    rect(i, 0, 10, height);
+    // Increase i by 10
+    i +=10;
+  }
+}
+```
 
+## lession2 的总结工程
+
+---
+## lession3 组织
 ## 7，Functions P101
+
+### example7-3 原来轮回小球的例子，重构出几个function
+```java
+ // Declare all global variables (stays the same)
+int x = 0;
+int speed = 1;
+// Setup does not change
+void setup() {
+  size(200, 200);
+  smooth();
+}
+void draw() {
+  background(255);
+  move();
+  bounce();
+  display();
+}
+// A function to move the ball
+void move() {
+  // Change the x location by speed
+  x = x + speed;
+}
+// A function to bounce the ball
+void bounce() {
+  // If we’ve reached an edge, reverse speed
+  if ((x> width) || (x < 0)) {
+    speed = speed * - 1;
+  }
+}
+// A function to display the ball
+void display() {
+  stroke(0);
+  fill(175);
+  ellipse(x, 100, 32, 32);
+}
+
+ ```
+
+### 7-4 example
+![](/docs/images/2020-12-16-17-07-16.png)
+```java
+void setup() {
+  size(200, 200);
+}
+void draw() {
+  background(0);
+  stroke(0);
+  // Top left square
+  fill(distance(0, 0, mouseX, mouseY));
+  rect(0, 0, width/2 - 1, height/2 - 1);
+  // Top right square
+  fill(distance(width, 0, mouseX, mouseY));
+  rect(width/2, 0, width/2 - 1, height/2 - 1);
+  // Bottom left square
+  fill(distance(0, height, mouseX, mouseY));
+  rect(0, height/2, width/2 - 1, height/2 - 1);
+  // Bottom right square
+  fill(distance(width, height, mouseX, mouseY));
+  rect(width/2, height/2, width/2 - 1, height/2 - 1);
+}
+float distance(float x1, float y1, float x2, float y2)
+{
+  float dx = x1 - x2;
+  float dy = y1 - y2;
+  float d = sqrt(dx*dx + dy*dy);
+  return d;
+} 
+```
 
 ## 8，Objects P121
 
+### example 8-01 定义和使用类
+::: warning
+ 可以：new tab，把类放到另外一个文件。
+:::
+```java
+Car myCar;
+void setup() {
+  size(200, 200);
+  // Initialize Car object
+  myCar = new Car();
+}
+void draw() {
+  background(0);
+  // Operate Car object.
+  myCar.move();
+  myCar.display();
+} 
+
+class Car {
+  color c;
+  float xpos;
+  float ypos;
+  float xspeed;
+  Car() {
+    c = color(255);
+    xpos = width/2;
+    ypos = height/2;
+    xspeed = 1;
+  }
+  void display() {
+    // The car is just a square
+    rectMode(CENTER);
+    fill(c);
+    rect(xpos, ypos, 20, 10);
+  }
+  void move() {
+    xpos = xpos + xspeed;
+    if (xpos > width) {
+      xpos = 0;
+    }
+  }
+}
+```
+---
+## lession4 
 ## 9，Arrays  P141
 
 ## 10，Algorithms  P165
