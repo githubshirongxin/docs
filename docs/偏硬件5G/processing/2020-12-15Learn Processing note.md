@@ -938,9 +938,298 @@ class Car {
   }
 }
 ```
+
+### example 8-3
+```java
+Zoog zoog;
+void setup() {
+  size(200, 200);
+  smooth();
+  zoog = new Zoog(100, 125, 60, 60, 16);
+}
+void draw() {
+  background(255);
+  // mouseX position determines speed factor
+  float factor = constrain(mouseX/10, 0, 5);
+  zoog.jiggle(factor);
+  zoog.display();
+}
+class Zoog {
+  // Zoog's variables
+  float x, y, w, h, eyeSize;
+  // Zoog constructor
+  Zoog(float tempX, float tempY, float tempW, float tempH, float tempEyeSize) {
+    x = tempX;
+    y = tempY;
+    w = tempW;
+    h = tempH;
+    eyeSize = tempEyeSize;
+  } 
+  // Move Zoog
+  void jiggle(float speed) {
+    // Change the location of Zoog randomly
+    x = x + random(-1, 1)*speed;
+    y = y + random(-1, 1)*speed;
+    // Constrain Zoog to window
+    x = constrain(x, 0, width);
+    y = constrain(y, 0, height);
+  }
+  // Display Zoog
+  void display() {
+    // Set ellipses and rects to CENTER mode
+    ellipseMode(CENTER);
+    rectMode(CENTER);
+    // Draw Zoog's arms with a for loop
+    for (float i = y - h/3; i < y + h/2; i += 10) {
+      stroke(0);
+      line(x-w/4, i, x + w/4, i);
+    }
+    // Draw Zoog's body
+    stroke(0);
+    fill(175);
+    rect(x, y, w/6, h);
+    // Draw Zoog's head
+    stroke(0);
+    fill(255);
+    ellipse(x, y-h, w, h);
+    // Draw Zoog's eyes
+    fill(0);
+    ellipse(x-w/3, y-h, eyeSize, eyeSize*2);
+    ellipse(x + w/3, y - h, eyeSize, eyeSize*2);
+    // Draw Zoog's legs
+    stroke(0);
+    line(x - w/12, y + h/2, x - w/4, y + h/2 + 10);
+    line(x + w/12, y + h/2, x + w/4, y + h/2 + 10);
+  }
+} 
+```
+
 ---
 ## lession4 
 ## 9，Arrays  P141
+```java
+int[] arrayOfInts = new int[42];
+int num = 50;
+Car[] cars = new Car[num];
+SpaceShip[] ships = new SpaceShip[num*2+3];
+
+for( int i =0 ;i< values.length;i++){
+  values[i] = 0 ;
+}
+```
+
+### example 9-8 追着鼠标的蛇  写得比较好。
+::: warning
+ 写的好
+:::
+![](/docs/images/2020-12-16-17-38-21.png)
+```java
+// x and y positions
+int[] xpos = new int[50];
+int[] ypos = new int[50];
+void setup() {
+  size(200, 200);
+  smooth();
+  // Initialize
+  for (int i = 0; i <xpos.length;i++) {
+    xpos[i] = 0;
+    ypos[i]= 0;
+  }
+} 
+void draw() {
+  background(255);
+  // Shift array values
+  for (int i = 0; i < xpos.length-1; i++ ) {
+    xpos [i]= xpos[i + 1];
+    ypos[i]= ypos[i + 1];
+  }
+  // New location
+  xpos[xpos.length-1] = mouseX;
+  ypos[ypos.length-1] = mouseY;
+  // Draw everything
+  for (int i = 0; i < xpos.length; i++ ) {
+    noStroke();
+    fill(255-i*5); // 越古老的点越亮
+    ellipse(xpos[i], ypos[i], i, i); // 越古老的点越小
+  }
+} 
+```
+
+
+### example9-9 仅仅为了演示对象数组
+![](/docs/images/2020-12-16-17-47-14.png)
+```java
+Car[] cars = new Car[100];
+
+void setup(){
+  size(200,200);
+  smooth();
+  for( int i = 0 ;i< cars.length; i++){
+    cars[i] = new Car(color(i*2),0,i*2,i/20.0); 
+  }
+}
+
+void draw(){
+ background(255);
+ for( int i=0;i< cars.length;i++){
+   cars[i].move();
+   cars[i].display();
+ }
+}
+
+class Car{
+ color c; 
+ float xpos;
+ float ypos;
+ float xspeed;
+ 
+ Car(color c_ , float xpos_,float ypos_, float xspeed_){
+   c = c_;
+   xpos = xpos_;
+   ypos = ypos_;
+   xspeed = xspeed_;
+ }
+ 
+ void display(){
+   rectMode(CENTER);
+   stroke(0);
+   fill(c);
+   rect(xpos,ypos,20,10);
+ }
+ 
+ void move(){
+   xpos = xpos + xspeed;
+   if( xpos > width){
+     xpos =0;
+   }
+ }
+  
+}
+```
+
+### example 9-10 与数组里的对象互动
+多个竖条向右移动，叠加。鼠标放上去高亮。
+![](/docs/images/2020-12-16-18-03-57.png)
+```java
+// An array of stripes
+Stripe[] stripes = new Stripe[10];
+void setup() {
+  size(200, 200);
+  // Initialize all " stripes "
+  for (int i = 0; i < stripes.length; i++ ) {
+    stripes[i] = new Stripe();
+  }
+}
+void draw() {
+  background(100);
+  // Move and display all " stripes "
+  for (int i = 0; i < stripes.length; i++ ) {
+    // Check if mouse is over the Stripe
+    stripes[i].rollover(mouseX, mouseY);
+    stripes[i].move();
+    stripes[i].display();
+  }
+} 
+class Stripe {
+  float x; // horizontal location of stripe
+  float speed; // speed of stripe
+  float w; // width of stripe
+  boolean mouse; // state of stripe (mouse is over or not?)
+  Stripe() {
+    x = 0; // All stripes start at 0
+    speed = random(1); // All stripes have a random positive speed
+    w = random(10, 30);
+    mouse = false;
+  }
+  // Draw stripe
+  void display() {
+    if (mouse) {
+      fill(255);
+    } else {
+      fill(255, 100);
+    }
+    noStroke();
+    rect(x, 0, w, height);
+  }
+  // Move stripe
+  void move() {
+    x +=speed;
+    if (x > width + 20) x = -20;
+  } 
+  // Check if point is inside of Stripe
+  void rollover(int mx, int my) {
+    // Left edge is x, Right edge is x + w
+    if (mx > x && mx < x + w) {
+      mouse = true;
+    } else {
+      mouse = false;
+    }
+  }
+}
+```
+
+### example 鼠标点击生成下落的小球 （好）
+![](/docs/images/2020-12-16-18-09-48.png)
+```java
+Ball[] balls = new Ball[1];
+float gravity = 0.1;
+void setup() {
+  size(200, 200);
+  smooth();
+  frameRate(30);
+  // Initialize ball index 0
+  balls[0] = new Ball(50, 0, 10);
+}
+void draw() {
+  background(100);
+  // Update and display all balls
+  for (int i = 0; i < balls.length; i++ ) {
+    balls[i].gravity();
+    balls[i].move();
+    balls[i].display();
+  }
+} 
+
+void mousePressed() {
+  // A new ball object
+  Ball b = new Ball(mouseX, mouseY, 10);
+  // Append to array
+  balls = (Ball[]) append(balls, b);
+} 
+
+class Ball {
+  float x;
+  float y;
+  float speed;
+  float w; 
+  Ball(float tempX, float tempY, float tempW) {
+    x = tempX;
+    y = tempY;
+    w = tempW;
+    speed = 0;
+  } 
+  void gravity() {
+    // Add gravity to speed
+    speed = speed + gravity;
+  }
+  void move() {
+    // Add speed to y location
+    y = y + speed;
+    // If square reaches the bottom
+    // Reverse speed
+    if (y > height) {
+      speed = speed * -0.95;
+      y = height;
+    }
+  }
+  void display() {
+    // Display the circle
+    fill(255);
+    noStroke();
+    ellipse(x, y, w, w);
+  }
+} 
+```
 
 ## 10，Algorithms  P165
 
