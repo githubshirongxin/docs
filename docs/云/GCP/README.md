@@ -58,3 +58,5 @@ https://cloud.google.com/storage/docs/uploading-objects#gsutil
 ```shell
 gsutil cp OBJECT_LOCATION gs://DESTINATION_BUCKET_NAME/
 ```
+
+![](/docs/images/2020-12-18-15-23-19.png)
