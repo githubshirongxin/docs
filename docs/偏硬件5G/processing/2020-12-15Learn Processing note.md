@@ -1168,20 +1168,23 @@ class Stripe {
 }
 ```
 
-### example 鼠标点击生成下落的小球 （好）
+### example 鼠标点击生成下落的小球 （好） 彩球
 ![](/docs/images/2020-12-16-18-09-48.png)
+
+这个模型的理解，可以去参考数学公式。去看另一本书。介绍向量。
 ```java
 Ball[] balls = new Ball[1];
 float gravity = 0.1;
 void setup() {
-  size(200, 200);
+  //size(200, 200);
+  fullScreen();
   smooth();
   frameRate(30);
   // Initialize ball index 0
-  balls[0] = new Ball(50, 0, 10);
+  balls[0] = new Ball(50, 0, 20,color(random(255),random(255),random(255)));
 }
 void draw() {
-  background(100);
+  background(0);
   // Update and display all balls
   for (int i = 0; i < balls.length; i++ ) {
     balls[i].gravity();
@@ -1192,7 +1195,7 @@ void draw() {
 
 void mousePressed() {
   // A new ball object
-  Ball b = new Ball(mouseX, mouseY, 10);
+  Ball b = new Ball(mouseX, mouseY, 20,color(random(255),random(255),random(255)));
   // Append to array
   balls = (Ball[]) append(balls, b);
 } 
@@ -1202,11 +1205,13 @@ class Ball {
   float y;
   float speed;
   float w; 
-  Ball(float tempX, float tempY, float tempW) {
+  color c;
+  Ball(float tempX, float tempY, float tempW,color tempC) {
     x = tempX;
     y = tempY;
     w = tempW;
     speed = 0;
+    c = tempC;
   } 
   void gravity() {
     // Add gravity to speed
@@ -1224,14 +1229,94 @@ class Ball {
   }
   void display() {
     // Display the circle
-    fill(255);
+    fill(c);
     noStroke();
     ellipse(x, y, w, w);
   }
 } 
 ```
 
+### example 9-12 就是多个青蛙，没什么特别
+![](/docs/images/2020-12-17-11-10-25.png)
+```java
+Zoog[] zoogies = new Zoog[200];
+void setup() {
+  size(400, 400);
+  smooth();
+  for (int i = 0; i < zoogies.length; i++ ) {
+    zoogies[i] = new Zoog(random(width), random(height), 30, 30, 8);
+  }
+}
+void draw() {
+  background(255); // Draw a black background
+  for (int i = 0; i < zoogies.length; i++ ) {
+    
+    zoogies[i].jiggle();
+    zoogies[i].display();
+  }
+}
+class Zoog {
+  // Zoog's variables
+  float x, y, w, h, eyeSize;
+  // Zoog constructor
+  Zoog(float tempX, float tempY, float tempW, float tempH, float tempEyeSize) {
+    x = tempX;
+    y = tempY;
+    w = tempW;
+    h = tempH;
+    eyeSize = tempEyeSize;
+  } 
+  // Move Zoog
+  void jiggle() {
+    // Change the location
+    x = x + random(-1, 1);
+    y = y + random(-1, 1);
+    // Constrain Zoog to window
+    x = constrain(x, 0, width);
+    y = constrain(y, 0, height);
+  }
+  // Display Zoog
+  void display() {
+    // Set ellipses and rects to CENTER mode
+    ellipseMode(CENTER);
+    rectMode(CENTER);
+    // Draw Zoog's arms with a for loop
+    for (float i = y-h/3; i < y + h/2; i += 10) {
+      stroke(0);
+      line(x-w/4, i, x + w/4, i);
+    }
+    // Draw Zoog's body
+    stroke(0);
+    fill(175);
+    rect(x, y, w/6, h);
+    // Draw Zoog's head
+    stroke(0);
+    fill(255);
+    ellipse(x, y-h, w, h);
+    // Draw Zoog's eyes
+    fill(0);
+    ellipse(x-w/3, y-h, eyeSize, eyeSize*2);
+    ellipse(x + w/3, y-h, eyeSize, eyeSize*2);
+    // Draw Zoog's legs
+    stroke(0);
+    line(x-w/12, y + h/2, x-w/4, y + h/2 + 10);
+    line(x + w/12, y + h/2, x + w/4, y + h/2 + 10);
+  }
+}
+
+```
+## lessin5 算法，DEBUG，库
 ## 10，Algorithms  P165
+- 算法就是实现它的步骤
+- 复杂系统分成足够小的能写伪代码的块
+- 分块设计伪代码
+  - 先写一个对象雨滴
+  - 验证这一个对象，然后在创建两个雨滴来验证原型。
+  - 没问题的话，创建多个雨滴继续验证原型
+- 在把分块组合起来，优化
+- 最后面向对象的方式组合起来
+
+
 
 ## 11，Debugging P191
 

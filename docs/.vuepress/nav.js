@@ -14,6 +14,7 @@ module.exports = [{
         { "text": "NFS", "link": "/基础设施/NFS/" },
         { "text": "git", "link": "/基础设施/git/" },
         { "text": "k8s", "link": "/基础设施/k8s/" },
+        { "text": "静态代码分析", "link": "/基础设施/静态代码分析/" },
         { "text": "基础设施", "link": "/基础设施/" }]
 },
 {
