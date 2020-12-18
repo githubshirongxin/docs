@@ -61,9 +61,6 @@ https://cloud.google.com/sdk/docs/authorizing
 gcloud auth login
 ```
 
-
-
-
 ## 上传对象
 https://cloud.google.com/storage/docs/uploading-objects#gsutil
 
