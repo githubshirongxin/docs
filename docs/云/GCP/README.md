@@ -37,11 +37,22 @@ sudo yum install google-cloud-sdk
 ## 初始化SDK
 ```shell
 gcloud init
+或者
+gcloud init --skip-diagnostics
 ```
 
 ## 设置SDK
 https://cloud.google.com/sdk/docs/initializing
 https://cloud.google.com/sdk/docs/proxy-settings
+
+
+## 代理设置
+代理不配置的话，gsutil cp 被长城防火墙防住。
+```shell
+gcloud config set proxy/type http
+gcloud config set proxy/address 192.168.3.102
+gcloud config set proxy/port 1080
+```
 
 ## 授权
 https://cloud.google.com/sdk/docs/authorizing
@@ -50,13 +61,20 @@ https://cloud.google.com/sdk/docs/authorizing
 gcloud auth login
 ```
 
+
+
+
 ## 上传对象
 https://cloud.google.com/storage/docs/uploading-objects#gsutil
 
 ![](/docs/images/2020-12-18-15-19-37.png)
 
 ```shell
-gsutil cp OBJECT_LOCATION gs://DESTINATION_BUCKET_NAME/
+[root@centos109 ~]# gsutil cp ./client.csr gs://cjb_test
+Copying file://./client.csr [Content-Type=application/octet-stream]...
+- [1 files][  1.5 KiB/  1.5 KiB]
+Operation completed over 1 objects/1.5 KiB.
+[root@centos109 ~]#
 ```
 
-![](/docs/images/2020-12-18-15-23-19.png)
+![](/docs/images/2020-12-18-16-12-15.png)
