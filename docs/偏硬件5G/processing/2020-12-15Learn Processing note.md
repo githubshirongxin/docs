@@ -5,7 +5,7 @@ title: 《Learning Processing - Daniel Shiffman》读书笔记
 
 ![](/docs/images/2020-12-15-21-33-55.png)
 
-## lession 1
+## -------------lession 1-------------
 
 ## 1, 像素
 ![](/docs/images/2020-12-16-09-20-06.png)
@@ -163,7 +163,7 @@ void mousePressed() {
 ```
 
 ---
-## Lession2
+## -------------Lession2-------------
 ## 4，Variables  P45
 
 ### 4.1 base
@@ -822,7 +822,7 @@ void draw() {
 ## lession2 的总结工程
 
 ---
-## lession3 组织
+## -------------lession3 组织-------------
 ## 7，Functions P101
 
 ### example7-3 原来轮回小球的例子，重构出几个function
@@ -1005,7 +1005,7 @@ class Zoog {
 ```
 
 ---
-## lession4 
+## -------------lession4 -------------
 ## 9，Arrays  P141
 ```java
 int[] arrayOfInts = new int[42];
@@ -1305,7 +1305,7 @@ class Zoog {
 }
 
 ```
-## lessin5 算法，DEBUG，库
+## -------------lessin5 算法，DEBUG，库-------------
 ## 10，Algorithms  P165
 - 算法就是实现它的步骤
 - 复杂系统分成足够小的能写伪代码的块
@@ -1316,30 +1316,260 @@ class Zoog {
 - 在把分块组合起来，优化
 - 最后面向对象的方式组合起来
 
+### 1. 主程序
+```
+int dropNum = 50;
+int totalDrops =0 ;
+Drop[] drops ;
+Timer timer ;
+color backgroudColor=0;
+Catcher catcher ;
+
+void setup() {
+
+  size(400, 400);
+  background(backgroudColor);
+  smooth();
+  frameRate(30);
+
+  // 1. create catcher object
+  catcher = new Catcher(10);
+
+  // 2. create arrray of drops
+  drops = new Drop[dropNum];
+
+  // 3. set totalDrops = 0 
+  totalDrops =0 ;
+
+  // 4. create Timer object
+  // record passedTime
+  timer = new Timer(2000);
+
+
+  // 5. start Timer
+  timer.start();
+}
+
+void draw() {
+  background(backgroudColor);
+
+  // ## set Cather location to mouse location
+  // (no need)
+
+  // ## Display Catcher
+  catcher.display();
+
+
+
+  for ( int i=0; i<totalDrops; i++) {
+    if ( null!=drops[i] ) {
+      // ## Move all alailable Drops
+      drops[i].move();
+      drops[i].reverse();
+      // ## Display all available Drops
+      drops[i].display();
+    }
+  }  
+
+  for ( int i=0; i<totalDrops; i++) {
+    // ## If the Catcher intersects any Drops 
+    if ( null!=drops[i] && catcher.intersect(drops[i])) {
+      // - Remove Drop from screen
+      catcher.flash();
+      
+      drops[i] = null;
+    }
+  }  
+  // ## If the timer is finished
+  if (timer.isFinished()) {
+    // - Increate the number of drops
+    drops[totalDrops] = new Drop(10, random(-5, 5), random(-5, 5), color(127));
+    totalDrops += 1;
+    if ( totalDrops >= dropNum) {
+      totalDrops =0 ;
+    }
+
+    // - Restart timer
+    timer.start();
+  }
+}
+```
+
+### 2. Catcher类
+```java
+class Catcher{
+ float r; // r is radius
+ color c = color(127);
+ Catcher(float r_){
+   this.r = r_;
+ }
+ 
+ // show catcher as cricle
+ void display(){
+   background(0);
+   noStroke();
+   fill(c);
+   circle(mouseX,mouseY,2*r);
+ }
+ 
+ void flash(){
+   c = color(255,255,255);
+   display();
+   c = color(127);
+   display();
+ }
+ 
+ boolean intersect(Drop drop){
+   //println("dist="+dist(mouseX,mouseY,drop.xpos,drop.ypos)+",(r + drop.r) ="+(r + drop.r) );
+   if( dist(mouseX,mouseY,drop.xpos,drop.ypos) <=  (r + drop.r) ){
+     println("intersect!");
+     return true; 
+   }else{
+     return false; 
+   }
+   
+ }
+}
+```
+
+### 3.Drop
+```java
+class Drop {
+  //1.elements
+  // x , y ,r
+  // speed
+  float xpos, ypos;
+  float r; // radius
+  float xspeed, yspeed;
+  color c;
+  float gravity = 0.1;
+
+  //2. Constructor [r is radius]
+  Drop( float r_, float xspeed_, float yspeed_, color c_) {
+    this.xpos = random(width);
+    this.r = r_;
+    this.ypos = -r*4 ;
+    this.xspeed = xspeed_;
+    this.yspeed = yspeed_;
+    this.c = c_;
+  }
+
+  //3.functions
+  /**
+   * move() caculate x and y by speed.
+   */
+  // move()
+  void move() {
+    xpos = xpos + xspeed;
+    ypos = ypos + yspeed;
+    yspeed += gravity;
+  }
+
+  /**
+   * reverse() if outof bounds reverse 
+   */
+  void reverse() {
+    if ( xpos > width ) {
+      xpos = width;
+      xspeed = xspeed * -1;
+    } else if ( xpos < 0) {
+      xpos = 0;
+      xspeed = xspeed * -1;
+    }
+
+    if ( ypos < 0 ) {
+      ypos = 0;
+      yspeed *= -1;
+    }
+  }
+  /**
+   * display() draw a circle.
+   */
+  // display()
+  void display() {
+    // grey 
+    noStroke();
+    fill(c);
+    // circle
+    circle(xpos, ypos, 2*r);//r is banjing
+    // drop , with multi ellipse .
+    //for (int i = 2; i < r; i++ ) {
+    //  ellipse(xpos, ypos + i*4, i*2, i*2);
+    //}
+  }
+
+
+  /**
+   * intersect(Ball) ball is intersect another ball. 
+   */
+  boolean intersect(Drop ball2) {
+    if ( dist(this.xpos, this.ypos, ball2.xpos, ball2.ypos) <= (this.r+ball2.r) ) {
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+```
+
+### 4. Timer
+```java
+class Timer {
+  int savedTime;
+  int totalTime;
+
+  Timer(int tempTime) {
+    this.totalTime = tempTime;
+  }
+
+  void start() {
+    this.savedTime = millis();
+  }
+
+  boolean isFinished() {
+    int passedTime = millis() - savedTime;
+    if ( passedTime > totalTime) {
+      this.savedTime = millis();
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+```
+
+
 
 
 ## 11，Debugging P191
 
 ## 12，librarys P195
 
+## lessin6 math-------------
 ## 13，Mathematics P201
 
 ## 14，Translation and Rotation P227
 
+
+## -------------lessin7 pixel-------------
 ## 15，Images P255
 
 ## 16，Video P275
 
+## -------------lessin8 IO-------------
 ## 17，Text P305
 
 ## 18，DataInput  P325
  
 ## 19，Data Streams  P357
 
+## lessin9 Making Noise
 ## 20，Sound P381
 
 ## 21，Exporting P397
 
+## lessin10
 ## 22，Advance OOP P409
 
 ## 23，Java P423

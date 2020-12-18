@@ -77,6 +77,11 @@ module.exports = [{
     ]
 },
 {
+    "text": "云", "items": [
+        { "text": "GCP", "link": "/云/GCP/" }        
+    ]
+},
+{
     "text": "微信相关", "items": [
         { "text": "小程序", "link": "/微信相关/小程序/" },
         { "text": "微信相关", "link": "/微信相关/" }
