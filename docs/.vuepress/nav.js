@@ -1,7 +1,6 @@
 module.exports = [{
     "text": "基础设施",
     "items": [
-        { "text": "windows", "link": "/基础设施/linux-powshell/windows/" },
         { "text": "linux-powshell", "link": "/基础设施/linux-powshell/" },
         { "text": "windows", "link": "/基础设施/windows/" },
         { "text": "maven-nexus", "link": "/基础设施/maven-nexus/" },        
