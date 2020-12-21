@@ -3,7 +3,11 @@ module.exports = [{
     "items": [
         { "text": "linux-powshell", "link": "/基础设施/linux-powshell/" },
         { "text": "windows", "link": "/基础设施/windows/" },
-        { "text": "maven-nexus", "link": "/基础设施/maven-nexus/" },        
+        { "text": "maven", "link": "/基础设施/maven/" },        
+        { "text": "nexus", "link": "/基础设施/nexus/" },     
+        { "text": "nexus-docker", "link": "/基础设施/nexus-docker/" },        
+        { "text": "nexus-maven", "link": "/基础设施/nexus-maven/" },        
+        { "text": "nexus-npm", "link": "/基础设施/nexus-npm/" },           
         { "text": "vuepress", "link": "/基础设施/vuepress/" },
         { "text": "eclipse", "link": "/基础设施/eclipse/" },
         { "text": "docker", "link": "/基础设施/docker/" },
