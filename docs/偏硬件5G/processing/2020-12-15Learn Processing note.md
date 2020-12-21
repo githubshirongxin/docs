@@ -1539,12 +1539,11 @@ class Timer {
 }
 ```
 
+## 11，Debugging P191 （基础）
+略，多于老程序员来说，不用赘言。
 
 
-
-## 11，Debugging P191
-
-## 12，librarys P195
+## 12，librarys P195 （基础）
 
 ## lessin6 math-------------
 ## 13，Mathematics P201
