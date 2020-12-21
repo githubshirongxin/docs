@@ -1543,13 +1543,190 @@ class Timer {
 略，多于老程序员来说，不用赘言。
 
 
-## 12，librarys P195 （基础）
+## 12，librarys P195 （基础）（终于开始接触库了）
+简单介绍了一下，可以引用库。没什么实质内容。
+
 
 ## lessin6 math-------------
+想要知道为什么需要看这个的话，
+
 ## 13，Mathematics P201
+取余→随机数→概率论→概率编码→佩林噪声→角度→三角计算→振荡→递归→二维矩阵→
+### 13.1 A%C 的结果永远不会比C大。所以，取余经常用来循环一个变量回到0。例如，index=（index+1）% array.length ;
+### 13.2 概率用来编码，每个事件概率0.n，然后随机一个数1. 然后if else 判断。
+::: warning
+学会这种设定事件概率的模式。
+:::
+  ``` java
+  void setup() {
+  size(200, 200);
+  background(255);
+  smooth();
+  noStroke();
+}
+void draw() {
+  // Probabilities for 3 different cases
+  // These need to add up to 100%!
+  float red_prob = 0.60; // 60% chance of red color
+  float green_prob = 0.10; // 10% chance of green color
+  float blue_prob = 0.30; // 30% chance of blue color
+  float num = random(1); // pick a random number between 0 and 1
+  // If random number is less than .6
+  if (num < red_prob) {
+    fill(255, 53, 2, 150);
+    // If random number is between .6 and .7
+  } else if (num < green_prob+ red_prob) {
+    fill(156, 255, 28, 150);
+    // All other cases (i.e. between .7 and 1.0)
+  } else {
+    fill(10, 52, 178, 150);
+  }
+  ellipse(random(width), random(height), 64, 64);
+} 
+```
+### 13.3 佩林噪声
+模拟有机体的一些随机。不像随机数那么跳动剧烈。佩林噪声比较连续。
+可以模拟云，风景，大理石纹理，等有一定连续的东西。
+![](/docs/images/2020-12-21-13-47-46.png)
+
+下面用佩林噪声，输入一个时间参数，得到一个0~1之间的随机数。
+- 该随机数*width得到一个在宽度范围内波动的位置。
+```java
+void setup() {
+  size(800, 800);
+  background(127);
+  smooth();
+  noStroke();
+}
+
+float t = 0.0;
+float x = 0.0;
+float y = 0.0;
+void draw() {
+  background(127);
+  float noisevalue = noise(t);
+  float xvalue = noise(x)*width;
+  float yvalue = noise(y)*height;
+  println(noisevalue);
+  t = t + 0.0001;
+  x = x + 0.001;
+  y = y + 0.005;
+  float radius = noisevalue*width*0.8;
+  
+  fill(0);
+  println(radius);
+  stroke(127);
+  ellipse(xvalue%(width-radius),yvalue,radius,radius);
+   
+}
+
+```
+
+### 13.4 弧度
+ - Radians = 2 * PI * (degrees/360) 一个整圆就是2Pi，算某个角度对应的pi，就是360的比例。
+```java
+ float angle = radians(60);
+ rotate(angle);
+```
+
+### 13.5 三角函数
+![](/docs/images/2020-12-21-15-31-44.png)
+• soh: sine $ opposite/hypotenuse
+• cah: cosine $ adjacent/hypotenuse
+• toa: tangent $ opposite/adjacent
+
+笛卡尔坐标，笛卡尔空间。弧度和半径。
+::: warning 领悟
+ x，y随着弧度变化，固定了半径，变化弧度，就能得到一个圆环的。
+ x = r * cos(theta)
+ y = r * sin(theta)
+ 这样的x，y设定，就能得到一个圆环轨迹。
+:::
+```java
+// A Polar coordinate
+float r = 75;
+float theta = 0;
+void setup() {
+  size(200, 200);
+  background(255);
+  smooth();
+}
+void draw() {
+  // Polar to Cartesian conversion
+  float x = r * cos(theta);
+  float y = r * sin(theta);
+  // Draw an ellipse at x,y
+  noStroke();
+  fill(0);
+  ellipse(x + width/2, y + height/2, 16, 16); // Adjust for center of window
+  // Increment the angle
+  theta +=0.01;
+} 
+```
+
+### 作业
+![](/docs/images/2020-12-21-15-45-52.png)
+```java
+// A Polar coordinate
+float r = 0;
+float theta = 0;
+
+void setup() {
+  size(400, 400);
+  background(255);
+  smooth();
+}
+void draw() {
+  
+  // Polar to Cartesian conversion
+  float x = r * cos(theta);
+  float y = r * sin(theta);
+  // Draw an ellipse at x,y
+  noStroke();
+  fill(0);
+  ellipse(x + width/2, y + height/2, 16, 16); // Adjust for center of window
+  // Increment the angle
+  r = r+0.05; // 其实就是半径不断变长。固定长就是一个圆。
+  theta +=0.01;
+} 
+```
+
+### 13.6 振动
+我自己写的
+::: warning 心得
+  就是用sin(变化的弧度)*width：得到一个在width之间摆动（-1，1）。
+:::
+![](/docs/images/2020-12-21-16-07-32.png)
+```java
+float theta = 0;
+void steup(){
+ background(255);
+ 
+}
+
+void draw(){
+ background(255);
+ stroke(0);
+ float x = width/2 * sin(theta);
+ line(width/2,0,x+width/2,height/2);
+ fill(0);
+ ellipse(x+width/2,height/2,16,16);
+ theta += 0.1;
+}
+```
 
 ## 14，Translation and Rotation P227
+Z轴→P3D vs OpenGL→顶点形状→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
 
+### 总结：做一个生物系统。（非常重要）
+::: error 重要
+ 非常重要的一个练习。
+:::
+用佩林噪声控制生物运动
+用振荡模拟生物呼吸
+用递归设计生物
+用顶点形状来设计自定义多边形
+用回转来描述生物行为
 
 ## -------------lessin7 pixel-------------
 ## 15，Images P255
