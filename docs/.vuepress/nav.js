@@ -4,6 +4,7 @@ module.exports = [{
         { "text": "windows", "link": "/基础设施/linux-powshell/windows/" },
         { "text": "linux-powshell", "link": "/基础设施/linux-powshell/" },
         { "text": "maven-nexus", "link": "/基础设施/maven-nexus/" },
+        { "text": "windows", "link": "/基础设施/maven-nexus/windows/" },
         { "text": "vuepress", "link": "/基础设施/vuepress/" },
         { "text": "eclipse", "link": "/基础设施/eclipse/" },
         { "text": "docker", "link": "/基础设施/docker/" },
