@@ -1826,8 +1826,388 @@ void branch(float x, float y,float h) {
   }
 }
 ```
+### 13.8 二维数组=矩阵
+![](/docs/images/2020-12-22-11-26-56.png)
+width,height每个像素都是二维数组的元素。每个元素的值随机了一个灰度。然后用这个灰度定义stroke。一个元素作为一个point显示。
+```java
+void setup() {
+  // Set up dimensions
+  size(200, 200);
+  int cols = width;
+  int rows = height;
+  // Declare 2D array
+  int[][] myArray = new int[cols][rows];
+  // Initialize 2D array values
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      myArray[i][j] = int(random(255));
+    }
+  }
+  // Draw points
+  for (int i = 0; i < cols; i ++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      stroke(myArray[i][j]);
+      point(i, j);
+    }
+  }
+}
+```
+
+例子2，颜色有规律在一个区间交替变化(想到振荡)
+::: warning 值得学习的地方
+ - 每个区块的颜色在一定范围内变化，首先，想到用振荡来实现。
+ - 像波浪一样，这个是设计不出来的。还是
+:::
+![](/docs/images/2020-12-22-11-34-08.png)
+```java
+// 2D Array of objects
+Cell[][] grid;
+// Number of columns and rows in the grid
+int cols = 10;
+int rows = 10;
+void setup() {
+  size(200, 200);
+  grid = new Cell[cols][rows];
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      // Initialize each object
+      grid[i][j] = new Cell(i*20, j*20, 20, 20, i + j);
+    }
+  }
+}
+void draw() {
+  background(0);
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      // Oscillate and display each object
+      grid[i][j].oscillate();
+      grid[i][j].display();
+    }
+  }
+}
+// A Cell object
+class Cell {
+  float x, y; // x,y location
+  float w, h; // width and height
+  float angle; // angle for oscillating brightness
+  // Cell Constructor
+  Cell(float tempX, float tempY, float tempW, float tempH, float tempAngle) {
+    x = tempX;
+    y = tempY;
+    w = tempW;
+    h = tempH;
+    angle = tempAngle;
+  }
+  // Oscillation means increase angle
+  void oscillate() {
+    angle +=0.02;
+  }
+  void display() {
+    stroke(255);
+    // Color calculated using sine wave
+    fill(127 + 127*sin(angle));
+    rect(x, y, w, h);
+  }
+}
+```
+
+例子，定义类，鼠标点击变色
+![](/docs/images/2020-12-22-11-50-23.png)
+::: warning 学习点
+ 判断鼠标在格子里的方法。
+:::
+```java
+Cell[][] board;
+int cols=3;
+int rows=3;
+void setup() {
+  // FILL IN
+  size(90, 90);
+  board = new Cell[cols][rows];
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      board[i][j] = new Cell(i*30,j*30,30,30);
+    }
+  }
+}
+void draw() {
+  background(0);
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      board[i][j].display();
+    }
+  }
+}
+void mousePressed() {
+  // FILL IN
+  for (int i = 0; i < cols; i++ ) {
+    for (int j = 0; j < rows; j++ ) {
+      board[i][j].click(mouseX,mouseY);
+    }
+  }
+}
+// A Cell object
+class Cell {
+  float x, y;
+  float w, h;
+  int state;
+  // Cell Constructor
+  Cell(float tempX, float tempY, float tempW, float tempH) {
+    // FILL IN
+    x = tempX;
+    y = tempY;
+    w = tempW;
+    h = tempH;
+    state = 0;
+  }
+  void click(int mx, int my) {
+
+    if ( mx > x && mx < x + w  && my > y && my < y+h) {
+      //isclick =true;
+      // FILL IN
+      if ( state == 0 ) {
+        state = 1;
+      } else {
+        state = 0;
+      }
+    }
+  }
+
+  void display() {
+    // FILL IN
+    if ( state == 0 ) {
+      fill(127);
+    } else {
+      fill(0);
+    }
+    rect(x, y, w, h);
+  }
+} 
+```
+
+上面例子改成画X,只需要修改display（）
+![](/docs/images/2020-12-22-11-57-24.png)
+```java
+  void display() {
+    // FILL IN
+    if ( state == 0 ) {
+      //fill(255);
+      rect(x, y, w, h);
+    } else {
+     // fill(127);
+      rect(x, y, w, h);
+      line(x, y, x+w, y+h);
+      line(x, y+h, x+w, y);
+    }
+  }
+```
+
 ## 14，Translation and Rotation P227
 Z轴→P3D vs OpenGL→顶点形状→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+
+### 14.1 理解translate ，之后rect都是相对这个点作为原点，写x，y。而不是默认0，0作为原点。
+```java 
+float z = 80; // a variable for the Z (depth) coordinate
+void setup() {
+  size(200, 200);
+  background(255);
+  stroke(127);
+  fill(255, 100);
+  translate(50,50); // 相对于默认初始点（0，0）二维移动
+  rect(0, 0, 100, 100);
+  translate(50, -50);// 相对于上一个点二维移动
+  rect(0, 0, 100, 100);
+  translate(-50, 150);// 相对于上一个点二维移动
+  line(0, 0, -50, 50);
+}
+```
+↓
+Z轴→**P3D vs OpenGL**→顶点形状→自定义3D图形→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+### 14.2 P3D vs OpenGL 两者速度谁快？ 比较了一下，差不多。
+```java
+ import processing.opengl.*; 
+ size(200,200); // using the default JAVA2D mode
+ size(200,200,P3D); // using P3D （纯软件）
+ size(200,200,OPENGL); // using OPENGL （带硬件加速）
+ ```
+### 14.3 自定义多边形。自定义曲线。
+Z轴→P3D vs OpenGL→**顶点形状**→自定义3D图形→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+
+`rect(50,50,100,100); ` 等于
+```java
+ beginShape();
+ vertex(50,50);
+ vertex(150,50);
+ vertex(150,150);
+ vertex(50,150);
+ endShape(CLOSE); 
+```
+自定义曲线。
+![](/docs/images/2020-12-22-13-50-00.png)
+```java
+void setup() {
+  noFill();
+  stroke(0);
+  println(width);
+  beginShape();
+  
+  for (int i = 10; i < width; i += 20) {
+    curveVertex(i, 10);
+    curveVertex(i, height-10);
+  }
+  endShape();
+}
+
+```
+Z轴→P3D vs OpenGL→顶点形状→**自定义3D图形**→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+### 14.4 自定义3D图形
+难点在长度于坐标需要计算才能闭合。
+::: error 目前的课题
+各个点的相对位置不太容易计算。
+可以先不考虑会不会出窗口的话，还容易些。所以可以先把相对关系写上，如果出窗口了，再调整。
+这样比较科学。
+:::
+```java
+void setup() {
+  size(200, 200, P3D);
+}
+void draw() {
+  background(255);
+  translate(100, 100, 0); // 把原点挪到中心。
+  drawPyramid(140);
+  int t = 180;
+  println(t*tan(t/sqrt(sq(t)+sq(2*t))));
+}
+void drawPyramid(int t) {
+  stroke(0);
+  // this pyramid has 4 sides, each drawn as a separate triangle
+  // each side has 3 vertices, making up a triangle shape
+  // the parameter " t "determines the size of the pyramid
+  beginShape(TRIANGLES);
+  fill(255, 150);
+  vertex(-t, -t, -t); // 这个点于原点还要远离t
+  vertex( t, -t, -t);
+  vertex( 0, 0, t);
+  fill(150, 150);
+  vertex( t, -t, -t);
+  vertex( t, t, -t);
+  vertex( 0, 0, t);
+  fill(255, 150);
+  vertex( t, t, -t);
+  vertex(-t, t, -t);
+  vertex( 0, 0, t); 
+  fill(150, 150);
+  vertex(-t, t, -t);
+  vertex(-t, -t, -t);
+  vertex( 0, 0, t);
+  endShape();
+} 
+```
+
+Z轴→P3D vs OpenGL→顶点形状→自定义3D图形→**绕Z轴旋转**→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+### 14.5 简单旋转,就是rotate（弧度）
+```java
+ float theta = PI*mouseX / width;
+ // Rotate by the angle theta
+ rotate(theta); // 绕着Z轴旋转
+```
+### 14.6 绕别的轴旋转
+- 画一个普普通通的平面形状。下面同时绕某一个轴。
+  - 调用rotateZ：绕Z轴旋转，
+  - 调用rotateX：绕X轴旋转，
+  - 调用rotateY：绕Y轴旋转，
+```java
+float theta = 0.0;
+void setup() {
+  size(200, 200, P3D);
+}
+void draw() {
+  background(255);
+  stroke(0);
+  fill(175);
+  translate(width/2, 
+    height/2);
+  rotateY(theta);
+  rectMode(CENTER);
+  rect(0, 0, 100, 100);
+  theta +=0.02;
+} 
+```
+- 二维图形，同时绕两个轴旋转
+![](/docs/images/2020-12-22-16-38-36.png)
+```java
+void setup() {
+  size(200, 200, P3D);
+}
+void draw() {
+  background(255);
+  stroke(0);
+  fill(175);
+  translate(width/2, height/2);
+  rotateX(PI*mouseY/height);
+  rotateY(PI*mouseX/width);
+  rectMode(CENTER);
+  rect(0, 0, 100, 100);
+} 
+```
+- 三维图形绕两轴旋转
+::: warning 心得
+ 1. 首先，图形于旋转没关系。原来怎么画图形，现在还怎么画，不用考虑旋转。
+ 2. 也就是说，旋转功能可以后来加进来。
+ 3. 旋转定义好弧度和旋转函数，放到draw里，所有图形都会按规律旋转。
+:::
+```java
+float theta = 0.0;
+void setup() {
+  size(200, 200, P3D);
+}
+void draw() {
+  background(144);
+  
+  theta +=0.01;
+  
+  translate(100, 100, 0);
+  rotateX(theta);
+  rotateY(theta);
+  drawPyramid(50);
+  
+  // translate the scene again
+  translate(50, 50, 20);
+  // call the pyramid drawing function
+  drawPyramid(10);
+}
+void drawPyramid(int t) {
+  stroke(0);
+  // this pyramid has 4 sides, each drawn as a separate triangle
+  // each side has 3 vertices, making up a triangle shape
+  // the parameter "t" determines the size of the pyramid
+  fill(150, 0, 0, 127);
+  beginShape(TRIANGLES);
+  
+  vertex(-t, -t, -t);
+  vertex( t, -t, -t);
+  vertex( 0, 0, t);
+  
+  fill(0, 150, 0, 127);
+  vertex( t, -t, -t);
+  vertex( t, t, -t);
+  vertex( 0, 0, t);
+  
+  fill(0, 0, 150, 127);
+  vertex( t, t, -t);
+  vertex(-t, t, -t);
+  vertex( 0, 0, t);
+  
+  fill(150, 0, 150, 127);
+  vertex(-t, t, -t);
+  vertex(-t, -t, -t);
+  vertex( 0, 0, t);
+  
+  endShape();
+}
+```
+
+
 
 ### 总结：做一个生物系统。（非常重要）
 ::: error 重要
