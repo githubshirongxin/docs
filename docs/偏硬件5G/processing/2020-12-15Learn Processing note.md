@@ -1543,7 +1543,7 @@ class Timer {
 略，多于老程序员来说，不用赘言。
 
 
-## 12，librarys P195 （基础）（终于开始接触库了）
+## 12，librarys P214 （基础）（终于开始接触库了）
 简单介绍了一下，可以引用库。没什么实质内容。
 
 
@@ -2492,9 +2492,11 @@ class Planet {
 
 
 ## ------ lessin9 Making Noise----
-## 20，Sound P381
+## 20，Sound P398
+简单声音 → sonia和minim → 基本声音回放 → 操作声音 → 音频传感器（麦克？） → 音量门槛 → 
 
-## 21，Exporting P397
+## 21，Exporting P416 展示你写的程序
+web applet → 单个application → 高分辨率图片PDF → 保存某帧图片 → 用保存的图片制作电影 → 
 
 ## -----lessin10-----
 ## 22，Advance OOP P409
