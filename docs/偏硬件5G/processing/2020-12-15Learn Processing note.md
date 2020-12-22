@@ -2367,16 +2367,18 @@ void draw() {
     pushMatrix();
     rotate(theta + i);
     line(0, 0, 100, 0);
+    
     // Loop from 0 to 360 degrees (2*PI radians)
     for (float j = 0; j < TWO_PI; j += 0.5) {
       // Push, translate, rotate and draw a line!
-      pushMatrix();
+      pushMatrix(); // 因为转之前没有pop，所以下面的图形会有上面图形一样的转动轨迹。
       translate(100, 0);
-      rotate(-theta-j);
+      rotate(-theta-j); 
       line(0, 0, 50, 0);
       // We're done with the inside loop, pop!
-      popMatrix();
+      popMatrix(); // 保证下一个循环的图形，不受本次图形干扰。（只受循环外的图形影响。）
     }
+
     // We're done with the outside loop, pop!
     popMatrix();
   }
@@ -2385,6 +2387,64 @@ void draw() {
   theta += 0.01;
 } 
 ```
+
+练习，简单的太阳系。**星球类**。
+![](/docs/images/2020-12-22-18-54-16.png)
+```java
+// An array of 8 planet objects
+Planet[] planets = new Planet[8];
+void setup() {
+  size(200, 200);
+  smooth();
+  // The planet objects are initialized using the counter variable
+  for (int i = 0; i < planets.length; i++ ) {
+    planets[i] = new Planet(20 + i*10, i + 8);
+  }
+}
+void draw() {
+  background(255);
+  // Drawing the Sun
+  pushMatrix();
+  translate(width/2, height/2);
+  stroke(0);
+  fill(255);
+  ellipse(0, 0, 20, 20);
+  // Drawing all Planets
+  for (int i = 0; i < planets.length; i++ ) {
+    planets[i].update();
+    planets[i].display();
+  }
+  popMatrix();
+} 
+
+class Planet {
+  float theta; // Rotation around sun 传入rotate（）
+  float diameter; // Size of planet   ，大小
+  float distance; // Distance from sun  ， 传入translate（）
+  float orbitspeed; // Orbit speed ， 传入rotate（）
+  Planet(float distance_, float diameter_) {
+    distance= distance_;
+    diameter= diameter_;
+    theta = 0;
+    orbitspeed = random(0.01, 0.03);
+  }
+  void update() {
+    // Increment the angle to rotate
+    theta +=orbitspeed;
+  }
+  void display() {
+    pushMatrix();
+    rotate(theta); // rotate orbit
+    translate(distance, 0); // translate out distance
+    stroke(0);
+    fill(175);
+    ellipse(0, 0, diameter, diameter);
+    // Afer we are done, restore matrix!
+    popMatrix();
+  }
+}
+```
+
 
 
 ### 总结：做一个生物系统。（非常重要）
