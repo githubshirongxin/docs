@@ -1551,7 +1551,9 @@ class Timer {
 想要知道为什么需要看这个的话，
 
 ## 13，Mathematics P201
-取余→随机数→概率论→概率编码→佩林噪声→角度→三角计算→振荡→递归→二维矩阵→
+::: warning
+取余→随机数→概率论→概率编码→佩林噪声→角度→三角计算→振荡→递归→二维矩阵
+:::
 ### 13.1 A%C 的结果永远不会比C大。所以，取余经常用来循环一个变量回到0。例如，index=（index+1）% array.length ;
 ### 13.2 概率用来编码，每个事件概率0.n，然后随机一个数1. 然后if else 判断。
 ::: warning
@@ -1742,7 +1744,88 @@ void draw() {
 }
 ```
 
+### 13.7 递归
+- 例如，阶乘
+![](/docs/images/2020-12-21-17-55-58.png)
+![](/docs/images/2020-12-21-17-56-04.png)
 
+- 另外可以，循环画出很多东西，不用多次调用draw多次，而是一次draw很多东西。(不用递归也行)
+![](/docs/images/2020-12-21-18-00-06.png)
+```java
+void setup(){
+  size(200,200);
+  
+}
+void draw() {
+  stroke(0);
+  drawCircle(width/2,height/2,80);
+}
+
+void drawCircle(int x, int y, float radius) {
+  ellipse(x, y, radius, radius);
+  if (radius > 2) {
+    radius *= 0.75f;
+    drawCircle(x, y, radius);
+  }
+}
+```
+- 在本圆心左右两边端点上再画两个圆，大小是原来的一半。（这是它擅长的，不用递归不行）
+![](/docs/images/2020-12-21-18-02-39.png)
+```java
+void drawCircle(float x, float y, float radius) {
+  ellipse(x, y, radius, radius);
+  if (radius > 2) {
+    drawCircle(x + radius/2, y, radius/2);
+    drawCircle(x - radius/2, y, radius/2);
+  }
+}
+```
+
+- 在圆心的上下左右都画两个圆。
+![](/docs/images/2020-12-21-18-06-34.png)
+```java
+void drawCircle(float x, float y, float radius) {
+  ellipse(x, y, radius, radius);
+  if (radius > 8) {
+    drawCircle(x + radius/2, y, radius/2);
+    drawCircle(x - radius/2, y, radius/2);
+    drawCircle(x, y + radius/2, radius/2);
+    drawCircle(x, y - radius/2, radius/2);
+  }
+}
+```
+
+### 练习（重要！）
+![](/docs/images/2020-12-21-18-09-02.png)
+想了半天终于实现了。
+
+::: warning  心得体会
+难点在发现规律。诀窍在尽量别引入太多变量。我之前画三角引入了三个点，6个变量。
+6个变量之间的规律太难确定，不如引入一个点，再加上一个高。其他两个点通过这个高来推算。
+变化的部分就变成了一个。这很大程度上减少了思考的强度。
+另外，递归函数里面的规律，到底是x-h/2还是x-x，通过一个情况还验证还不够，还得通过多几个例子来验证，这样计算对不对。
+:::
+```java
+void setup() {
+  size(400, 200);
+  background(255);
+  stroke(0);
+  frameRate(1);
+}
+void draw() {
+  stroke(0);
+  branch(width/2, height,200);
+}
+
+void branch(float x, float y,float h) {
+   println(h);
+  triangle(x,y,x-h,y-h,x+h,y-h);
+  if(h>10){
+    branch(x-h/2,y/2,h/2);
+    branch(x+h/2,y/2,h/2);
+  }
+}
+```
 ## 14，Translation and Rotation P227
 Z轴→P3D vs OpenGL→顶点形状→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
 
