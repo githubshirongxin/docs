@@ -2059,10 +2059,12 @@ void setup() {
 }
 
 ```
-Z轴→P3D vs OpenGL→顶点形状→**自定义3D图形**→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+
 ### 14.4 自定义3D图形
-难点在长度于坐标需要计算才能闭合。
+- Z轴→P3D vs OpenGL→顶点形状→**自定义3D图形**→简单旋转→绕不同轴旋转→伸缩→推拉→做一个太阳系视觉系统
+
 ::: error 目前的课题
+难点在长度于坐标需要计算才能闭合。
 各个点的相对位置不太容易计算。
 可以先不考虑会不会出窗口的话，还容易些。所以可以先把相对关系写上，如果出窗口了，再调整。
 这样比较科学。
@@ -2111,7 +2113,8 @@ Z轴→P3D vs OpenGL→顶点形状→自定义3D图形→**绕Z轴旋转**→�
  // Rotate by the angle theta
  rotate(theta); // 绕着Z轴旋转
 ```
-### 14.6 绕别的轴旋转
+### 14.6 绕别的轴旋转 rotateY（角度）
+Z轴→P3D vs OpenGL→顶点形状→自定义3D图形→绕Z轴旋转→**绕不同轴旋转**→伸缩→推拉→做一个太阳系视觉系统
 - 画一个普普通通的平面形状。下面同时绕某一个轴。
   - 调用rotateZ：绕Z轴旋转，
   - 调用rotateX：绕X轴旋转，
@@ -2151,6 +2154,7 @@ void draw() {
 } 
 ```
 - 三维图形绕两轴旋转
+![](/docs/images/2020-12-22-17-09-43.png)
 ::: warning 心得
  1. 首先，图形于旋转没关系。原来怎么画图形，现在还怎么画，不用考虑旋转。
     - 也就是说，旋转功能可以后来加进来。
@@ -2210,6 +2214,177 @@ void drawPyramid(int t) {
 ```
 - 练习，把原来的金字塔旋转起来。
 
+### 14.7 伸缩 ： scale(0.5)一半，scale(3)三倍那么大 
+- Z轴→P3D vs OpenGL→顶点形状→自定义3D图形→绕Z轴旋转→绕不同轴旋转→**伸缩**→推拉→做一个太阳系视觉系统
+- 比较简单。
+```java
+float r = 0.0;
+void setup() {
+  size(200, 200);
+}
+void draw() {
+  background(0);
+  // Translate to center of window
+  translate(width/2, height/2);
+  // Scale any shapes according to value of r
+  scale(r);
+  // Display a rectangle in the middle of the screen
+  stroke(255);
+  fill(100);
+  rectMode(CENTER);
+  rect(0, 0, 10, 10);
+  // Increase the scale variable
+  r +=0.02;
+}
+```
+### 14.8 pushMatrix()把当前状态保存 popMatrix()恢复之前保存的状态
+- Z轴→P3D vs OpenGL→顶点形状→自定义3D图形→绕Z轴旋转→绕不同轴旋转→伸缩→**推拉**→做一个太阳系视觉系统
+
+目的： 为了使图形独立旋转。而不互相干扰。
+::: warning 
+ 好习惯：pushMatrix() , translate(),rotate() popMatrix();
+:::
+下面所有图形都互相不干扰，各自旋转。
+![](/docs/images/2020-12-22-18-09-41.png) 
+```java
+// An array of Rotater objects
+Rotater[] rotaters;
+void setup() {
+  size(200, 200);
+  rotaters= new Rotater[20];
+  // Rotaters are made randomly
+  for (int i = 0; i < rotaters.length; i++) {
+    rotaters[i] =new Rotater(random(width), random(height), random(-0.1, 0.1), random(48));
+  }
+}
+void draw() {
+  background(255);
+  // All Rotaters spin and are displayed
+  for (int i = 0; i < rotaters.length; i++) {
+    rotaters[i].spin();
+    rotaters[i].display();
+  }
+}
+// A Rotater class
+class Rotater {
+  float x, y; // x,y location
+  float theta; // angle of rotation
+  float speed; // speed of rotation
+  float w; // size of rectangle
+  Rotater(float tempX, float tempY, float tempSpeed, float tempW) {
+    x = tempX;
+    y = tempY;
+    theta = 0; // Angle is always initialized to 0
+    speed = tempSpeed;
+    w = tempW;
+  }
+  // Increment angle
+  void spin() {
+    theta +=speed;
+  }
+  // Display rectangle
+  void display() {
+    rectMode(CENTER);
+    stroke(0); 
+    fill(0, 100);
+    // Note the use of pushMatrix()
+    // and popMatrix() inside the object's
+    // display method!
+    pushMatrix(); // 好习惯 translate之前push
+    translate(x, y);
+    rotate(theta);
+    rect(0, 0, w, w);
+    popMatrix(); // 好习惯 rotate之后pop
+  }
+}
+```
+
+练习：简单的太阳系,就是为了练习push，pop
+![](/docs/images/2020-12-22-18-22-08.png)
+```java
+// Angle of rotation around sun and planets
+float theta = 0;
+void setup() {
+  size(200, 200);
+  smooth();
+}
+void draw() {
+  background(255);
+  stroke(0);
+  // Translate to center of window
+  
+  // to draw the sun.
+  translate(width/2, height/2);
+  //rotate(theta);
+  fill(255, 200, 50);
+  ellipse(0, 0, 20, 20);
+  
+  // The earth rotates around the sun
+  pushMatrix(); ////11111111111111
+  
+  rotate(theta);
+  translate(50, 0);
+  fill(50, 200, 255);
+  ellipse(0, 0, 10, 10);
+  
+  // Moon #1 rotates around the earth
+  pushMatrix();
+  rotate(-theta*4);
+  translate(15, 0);
+  fill(50, 255, 200);
+  ellipse(0, 0, 6, 6);
+  popMatrix();
+  
+  // Moon #2 also rotates around the earth
+  pushMatrix();
+  rotate(theta*2);
+  translate(25, 0);
+  fill(50, 255, 200);
+  ellipse(0, 0, 6, 6);
+  popMatrix();
+  
+  popMatrix(); ////////////2222222222222
+  theta +=0.01;
+} 
+```
+这也太漂亮了吧。
+![](/docs/images/2020-12-22-18-23-31.png)
+```java
+// Global angle for rotation
+float theta = 0;
+void setup() {
+  size(200, 200);
+  smooth();
+}
+void draw() {
+  background(100);
+  stroke(255);
+  // Translate to center of window
+  translate(width/2, height/2);
+  // Loop from 0 to 360 degrees (2*PI radians)
+  for (float i = 0; i < TWO_PI; i += 0.2) {
+    // Push, rotate and draw a line!
+    pushMatrix();
+    rotate(theta + i);
+    line(0, 0, 100, 0);
+    // Loop from 0 to 360 degrees (2*PI radians)
+    for (float j = 0; j < TWO_PI; j += 0.5) {
+      // Push, translate, rotate and draw a line!
+      pushMatrix();
+      translate(100, 0);
+      rotate(-theta-j);
+      line(0, 0, 50, 0);
+      // We're done with the inside loop, pop!
+      popMatrix();
+    }
+    // We're done with the outside loop, pop!
+    popMatrix();
+  }
+  endShape();
+  // Increment theta
+  theta += 0.01;
+} 
+```
 
 
 ### 总结：做一个生物系统。（非常重要）
