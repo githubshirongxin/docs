@@ -2463,7 +2463,23 @@ class Planet {
 
 ## -------------lessin7 pixel-------------
 ## 15，Images P274 长处在于交互和实时（动画）
-开始→用图来做动画→写过滤器除了图片→图片数组→更多的像素→图像处理介绍→第二个图像处理→直接写图片上的像素→像素组→创意
+**开始**→用图来做动画→写过滤器除了图片→图片数组→更多的像素→图像处理介绍→第二个图像处理→直接写图片上的像素→像素组→创意
+![](/docs/images/2020-12-24-18-03-07.png) 把图片添加进来才行。
+```java
+// Declaring a variable of type PImage
+PImage img;
+void setup() {
+  size(320, 240);
+  // Make a new instance of a PImage by loading an image file
+  img = loadImage( "1-2-i.png" ); 
+}
+void draw() {
+  background(0);
+  image(img, 0, 0); //  显示图片。
+}
+```
+
+开始→**用图来做动画**→写过滤器除了图片→图片数组→更多的像素→图像处理介绍→第二个图像处理→直接写图片上的像素→像素组→创意
 
 
 ## 16，Video P294
