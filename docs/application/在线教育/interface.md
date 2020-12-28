@@ -61,12 +61,12 @@ VXXXX
 ### A 课程一览：前台课程一览（点搜索或点Home）
 
 #### 点Home 或者 默认初始进入，初始页
-courseList/
+GET courseList/
 
 同下
 
-#### 点搜索
-courseList?courseName="搜索输入"
+#### CourseName搜索
+GET courseList?courseName="搜索输入"
 - 返回：
 课程列表
 ```json
@@ -95,12 +95,86 @@ courseList?courseName="搜索输入"
 ]
 ```
 
+#### videoName搜索 (模糊)
+GET /video?videoName="" 
+
+```json
+[
+"course":{
+    "categoryId": 1,
+    "categoryName":"",
+    "courseId":"",
+    "courseName":"",
+    "download1":"",
+    "download2":"",
+    "download3":"",
+    "download4":"",
+    "download5":"",
+    "download6":"",
+    "download7":"",
+    "download8":"",
+    "download9":"",
+    "download10":"",
+    "sections" : [
+     {
+       "sectionId": "",
+       "sectionName":"",
+       "videos":[
+         {
+          "videoId":"",
+          "videoName":"",
+          "videoPath":"",
+          "videoDoneFlg":"",
+          "videoDuration":""
+         }
+       ]
+      
+     }
+    ]
+  },
+  "course":{
+    "categoryId": 1,
+    "categoryName":"",
+    "courseId":"",
+    "courseName":"",
+    "download1":"",
+    "download2":"",
+    "download3":"",
+    "download4":"",
+    "download5":"",
+    "download6":"",
+    "download7":"",
+    "download8":"",
+    "download9":"",
+    "download10":"",
+    "sections" : [
+     {
+       "sectionId": "",
+       "sectionName":"",
+       "videos":[
+         {
+          "videoId":"",
+          "videoName":"",
+          "videoPath":"",
+          "videoDoneFlg":"",
+          "videoDuration":""
+         }
+       ]
+      
+     }
+    ]
+  },
+  ...
+
+]
+```
+
 
 
 ### B 课程：点击具体课程"某课程页面"
 
 - url：
-/course?courseId="123" 
+GET /course?courseId="123" 
 
 - 返回：
 课程内容
@@ -141,7 +215,7 @@ courseList?courseName="搜索输入"
 ```
 
 
-### C 视频画面：
+### C 视频画面：进入某视频
 - url:
 GET /video?videoId="123"
 
@@ -171,7 +245,7 @@ PUT /video?videoId="123"&videoDoneFlg=true
  "videoDoneFlg": ""
 ```
 
-### 课表
+### 课表 表结构
 course_schedule
 {scheduleId,scheduleName,userId,courseId,startDate,input1,2,3,4,5,6,7,endDate,donePercent,allDuration}
 
