@@ -165,7 +165,6 @@ GET /search?videoName=""
     ]
   },
   ...
-
 ]
 ```
 
@@ -208,12 +207,10 @@ GET /course?courseId="123"
          
          }
        ]
-      
      }
     ]
 }
 ```
-
 
 ### C 视频画面：进入某视频
 - url:
@@ -285,8 +282,13 @@ POST /schedule
 GET /schedule?courseId=""&userId=""
 
 ```json
-"schedule":{userId,courseId,videoId,planDate,overlayFlg}
-
+"schedule":{
+    "userId":"",
+    "courseId":"",
+    "videoId":"",
+    "planDate":"",
+    "overlayFlg":""
+  }
 ```
 
 #### 课表一览
@@ -295,41 +297,39 @@ GET /scheduleList?userId=""
 
 ```json
 "scheduleList":[
-{
-scheduleId: "",
-scheduleName: "",
-userId: "",
-courseId: "",
-startDate: "",
-input1: "",
-input2: "",
-intpu3: "",
-intput4: "",
-intput5: "",
-intput6: "",
-intput7: "",
-endDate: "",
-donePercent: "",
-allDuration
-},{
-scheduleId: "",
-scheduleName: "",
-userId: "",
-courseId: "",
-startDate: "",
-input1: "",
-input2: "",
-intpu3: "",
-intput4: "",
-intput5: "",
-intput6: "",
-intput7: "",
-endDate: "",
-donePercent: "",
-allDuration
-}
-...
-
+    {
+        "scheduleId" :  "",
+        "scheduleName" :  "",
+        "userId" :  "",
+        "courseId" :  "",
+        "startDate" :  "",
+        "input1" :  "",
+        "input2" :  "",
+        "intpu3" :  "",
+        "intput4" :  "",
+        "intput5" :  "",
+        "intput6" :  "",
+        "intput7" :  "",
+        "endDate" :  "",
+        "donePercent" :  "",
+        "allDuration"
+    },
+    {
+        "scheduleId" :  "",
+        "scheduleName" :  "",
+        "userId" :  "",
+        "courseId" :  "",
+        "startDate" :  "",
+        "input1" :  "",
+        "input2" :  "",
+        "intpu3" :  "",
+        "intput4" :  "",
+        "intput5" :  "",
+        "intput6" :  "",
+        "intput7" :  "",
+        "endDate" :  "",
+        "donePercent" :  "",
+        "allDuration"
+    }
 ]
-
 ```
