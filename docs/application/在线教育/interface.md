@@ -70,7 +70,7 @@ GET courseList?courseName="搜索输入"
 - 返回：
 课程列表
 ```json
-"course": [
+"courseList": [
     {
       "categoryId": 1,
       "categoryName":"",
@@ -96,11 +96,11 @@ GET courseList?courseName="搜索输入"
 ```
 
 #### videoName搜索 (模糊)
-GET /video?videoName="" 
+GET /search?videoName="" 
 
 ```json
 [
-"course":{
+"search":{
     "categoryId": 1,
     "categoryName":"",
     "courseId":"",
@@ -132,7 +132,7 @@ GET /video?videoName=""
      }
     ]
   },
-  "course":{
+  "search":{
     "categoryId": 1,
     "categoryName":"",
     "courseId":"",
@@ -221,7 +221,7 @@ GET /video?videoId="123"
 
 - return:
 ```json
- "videos": 
+ "video": 
     {
       "videoid": "",
       "videoPath": "",
@@ -241,8 +241,11 @@ PUT /video?videoId="123"&videoDoneFlg=true
 :::
 
 ```json
+"video": 
+ {
  "videoid": "",
  "videoDoneFlg": ""
+ }
 ```
 
 ### 课表 表结构
@@ -258,22 +261,22 @@ video_schedule
 POST /schedule
 
 ```json
-{
-scheduleId: "",
-scheduleName: "",
-userId: "",
-courseId: "",
-startDate: "",
-input1: "",
-input2: "",
-intpu3: "",
-intput4: "",
-intput5: "",
-intput6: "",
-intput7: "",
-endDate: "",
-donePercent: "",
-allDuration
+"schedule": {
+"scheduleId": "",
+"scheduleName": "",
+"userId": "",
+"courseId": "",
+"startDate": "",
+"input1": "",
+"input2": "",
+"intpu3": "",
+"intput4": "",
+"intput5": "",
+"intput6": "",
+"intput7": "",
+"endDate": "",
+"donePercent": "",
+"allDuration"
 }
 ```
 
@@ -282,16 +285,16 @@ allDuration
 GET /schedule?courseId=""&userId=""
 
 ```json
-{userId,courseId,videoId,planDate,overlayFlg}
+"schedule":{userId,courseId,videoId,planDate,overlayFlg}
 
 ```
 
 #### 课表一览
 
-GET /schedule?userId=""
+GET /scheduleList?userId=""
 
 ```json
-[
+"scheduleList":[
 {
 scheduleId: "",
 scheduleName: "",
