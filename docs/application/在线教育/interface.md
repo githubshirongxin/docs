@@ -99,8 +99,8 @@ GET courseList?courseName="搜索输入"
 GET /search?videoName="" 
 
 ```json
-[
-"search":{
+"search"[
+  "course":{
     "categoryId": 1,
     "categoryName":"",
     "courseId":"",
@@ -132,7 +132,7 @@ GET /search?videoName=""
      }
     ]
   },
-  "search":{
+  "course":{
     "categoryId": 1,
     "categoryName":"",
     "courseId":"",
@@ -255,10 +255,10 @@ video_schedule
 
 #### 新建课表
 
-POST /schedule
+POST /courseSchedule
 
 ```json
-"schedule": {
+"courseSchedule": {
 "scheduleId": "",
 "scheduleName": "",
 "userId": "",
@@ -279,10 +279,10 @@ POST /schedule
 
 #### 查询某用户的某课是否有课表,有的话返回具体某个课表。
 
-GET /schedule?courseId=""&userId=""
+GET /videoSchedule?courseId=""&userId=""
 
 ```json
-"schedule":{
+"videoSchedule":{
     "userId":"",
     "courseId":"",
     "videoId":"",
@@ -293,10 +293,10 @@ GET /schedule?courseId=""&userId=""
 
 #### 课表一览
 
-GET /scheduleList?userId=""
+GET /courseSchedule?userId=""
 
 ```json
-"scheduleList":[
+"courseSchedule":[
     {
         "scheduleId" :  "",
         "scheduleName" :  "",
