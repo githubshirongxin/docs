@@ -273,7 +273,7 @@ POST /courseSchedule
 "intput7": "",
 "endDate": "",
 "donePercent": "",
-"allDuration"
+"allDuration":""
 }
 ```
 
@@ -312,7 +312,7 @@ GET /courseSchedule?userId=""
         "intput7" :  "",
         "endDate" :  "",
         "donePercent" :  "",
-        "allDuration"
+        "allDuration":""
     },
     {
         "scheduleId" :  "",
@@ -329,7 +329,7 @@ GET /courseSchedule?userId=""
         "intput7" :  "",
         "endDate" :  "",
         "donePercent" :  "",
-        "allDuration"
+        "allDuration":""
     }
 ]
 ```
