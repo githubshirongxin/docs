@@ -40,6 +40,7 @@ module.exports = [{
 },
 {
     "text": "前端", "items": [
+        { "text": "前端工具", "link": "/前端/前端工具/" },
         { "text": "vue", "link": "/前端/vue/" },
         { "text": "angular", "link": "/前端/angular/" },
         { "text": "js", "link": "/前端/js/" },
