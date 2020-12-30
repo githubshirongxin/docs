@@ -35,6 +35,7 @@ module.exports = [{
     "text": "application", "items": [
         { "text": "在线教育", "link": "/application/在线教育/" },
         { "text": "考试系统", "link": "/application/考试系统/" },
+        { "text": "单点登录", "link": "/application/单点登录/" },
         { "text": "jira", "link": "/application/jira/" },
         { "text": "application", "link": "/application/" }]
 },
