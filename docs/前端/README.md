@@ -5,7 +5,7 @@ title: ----【前端相关】----
 
 ## A.前端工具：
 1. [vscode](https://houdunren.gitee.io/note/vscode/1%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.html) 自己搜索很多介绍。1day
-   - 如何开发html、css，安装哪些插件
+   - 如何开发html、css，安装哪些插件 live server, easy less.
    - 如何开发js，安装哪些插件
    - 如何开发angular，安装哪些插件
    - 如何写md文档，安装哪些插件
