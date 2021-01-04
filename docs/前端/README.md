@@ -14,16 +14,19 @@ title: ----【前端相关】----
 3. [json-server](http://shirongxin.gitlab.ccbjb.com.cn/docs/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/2020-12-29-jsonserver.html) 0.5day
 
 ## B.前端基础：
+[公司内部gitlab的前端基础学习代码](https://gitlab.ccbjb.com.cn/study/frontbase) 
 1. [HTML学习](https://www.bilibili.com/video/BV16J41187E4?p=2) 1day
 2. [CSS3学习](https://www.bilibili.com/video/BV1tJ411Y7fB) 3day
 3. [JS学习](https://www.bilibili.com/video/BV1NJ411W7wh) 3day
    [其他js资源](http://shirongxin.gitlab.ccbjb.com.cn/docs/%E5%89%8D%E7%AB%AF/js/2020-11-30-js%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB.html) 仅供参考
 
 ## C.前端语言：
+[公司内部gitlab的前端语言学习代码](https://gitlab.ccbjb.com.cn/study/frontframes)
 1. [Angular入门实战视频](https://www.bilibili.com/video/BV1Wt411V7RC?p=4) 5day
 待续
 
 ## D.前端第三方组件库学习：
+[公司内部gitlab的前端第三方组件的学习代码](https://gitlab.ccbjb.com.cn/study/thirdComponents)
 1. 前台UI库
 待续
 2. 前台表单验证库
@@ -35,7 +38,9 @@ title: ----【前端相关】----
 5. 前台音频播放库
 待续
 
-## E.爬虫基础
+## E.前端准产品或共通机能共同工具
+[公司内部gitlab的前端准产品共同机能共同工具的学习代码](https://gitlab.ccbjb.com.cn/study/frontpreproduct)
+待续
 
 
 
