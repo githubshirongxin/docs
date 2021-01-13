@@ -51,6 +51,7 @@ module.exports = [{
 {
     "text": "后端", "items": [
         { "text": "elasticSearch", "link": "/后端/elasticSearch/" },
+        { "text": "shiro", "link": "/后端/shiro/" },
         { "text": "golang", "link": "/后端/golang/" },
         { "text": "kotlin", "link": "/后端/kotlin/" },
         { "text": "nodejs", "link": "/后端/nodejs/" },
