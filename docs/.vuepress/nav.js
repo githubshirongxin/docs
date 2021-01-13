@@ -13,7 +13,6 @@ module.exports = [{
         { "text": "eclipse", "link": "/基础设施/eclipse/" },
         { "text": "docker", "link": "/基础设施/docker/" },
         { "text": "gitlab", "link": "/基础设施/gitlab/" },
-        { "text": "vscode", "link": "/基础设施/vscode/" },
         { "text": "mysql", "link": "/基础设施/mysql/" },
         { "text": "高可用系统", "link": "/基础设施/高可用系统/" },
         { "text": "NFS", "link": "/基础设施/NFS/" },
@@ -61,6 +60,13 @@ module.exports = [{
         { "text": "springboot", "link": "/后端/springboot/" },
         { "text": "springcloud", "link": "/后端/springcloud/" },
         { "text": "微服务", "link": "/后端/微服务/" }
+    ]
+},
+{
+    "text": "开发工具", "items": [
+        { "text": "eclipse", "link": "/开发工具/eclipse/" },
+        { "text": "vscode", "link": "/开发工具/vscode/" },
+        { "text": "tomcat", "link": "/开发工具/tomcat/" }
     ]
 },
 {
