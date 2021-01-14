@@ -26,4 +26,17 @@ svn 中的 8.0.x 分支将从移动到/tomcat/tc8.0.x/tomcat/archive/tc8.0.x
 预计最终的 8.0.x 版本将于 2018 年 6 月 30 日前不久发布。
 ```
 
-结论：还是别用tomcat了。
+## 再解决：
+- 参考：
+  - [Eclipse国内镜像源配置方法](https://www.cnblogs.com/sddai/p/9676096.html)
+  - [apache tomcat 9.x not working with eclipse & Java 10.0.1](https://stackoverflow.com/questions/50085750/apache-tomcat-9-x-not-working-with-eclipse-java-10-0-1)
+
+- 1. Install And Update 里输入这个地址。
+```
+http://mirrors.ustc.edu.cn/eclipse/webtools/repository/oxygen/
+```
+- 2. 下载更新，JST Server Adapters Extensions。之前安装过也没关系，就会更新。
+
+解决问题了！
+![](/docs/images/2021-01-14-14-48-07.png)
+
