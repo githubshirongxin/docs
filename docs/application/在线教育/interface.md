@@ -242,13 +242,17 @@ PUT /video?videoId="123"&videoDoneFlg=true
  残课题。
 :::
 
+- request:
 ```json
 "video": 
  {
+ "userid":"",
  "videoid": "",
  "videoDoneFlg": ""
- }
+ } 
 ```
+- response 
+无
 
 ### 课表 表结构
 course_schedule
