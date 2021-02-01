@@ -34,6 +34,8 @@ keytool -genkey -alias www.sys2.com -keyalg RSA -keystore www.sys2.com.jks -stor
 :::
 
 右键publish，就会把tomcat安装目录/conf/*.jks文件拷贝到Eclipse的工作目录。
+有时候也不好用，干脆直接拷贝到错误提示的目录即可。`Caused by: java.lang.IllegalArgumentException: F:\work\eclipseworkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\conf\www.sys1.com.jks (系统找不到指定的文件。)`
+
 ![](/docs/images/2021-02-01-14-26-57.png) 
 
 
