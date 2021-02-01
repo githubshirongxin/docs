@@ -15,6 +15,7 @@ module.exports = [{
         { "text": "gitlab", "link": "/基础设施/gitlab/" },
         { "text": "mysql", "link": "/基础设施/mysql/" },
         { "text": "高可用系统", "link": "/基础设施/高可用系统/" },
+        { "text": "自签证书", "link": "/基础设施/自签证书/" },
         { "text": "NFS", "link": "/基础设施/NFS/" },
         { "text": "git", "link": "/基础设施/git/" },
         { "text": "k8s", "link": "/基础设施/k8s/" },
