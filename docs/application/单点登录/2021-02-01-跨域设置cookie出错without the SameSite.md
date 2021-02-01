@@ -119,3 +119,13 @@ public class Test1CookieSetServlet extends HttpServlet {
 如此，就可以跨域写cookie了。
 - 可以看到www.sys1.com的cookie成功写入了。
 ![](/docs/images/2021-02-01-14-34-10.png)
+
+
+## 最后必须要做的。
+
+如果浏览器拦截了，说https://www.sys2.com:8444/是不安全的。你没有点继续执行的话，cookie也不会写成功。
+所以，浏览器需要安装三个网站的证书。就不用每次都手工去点同意继续访问了。
+
+
+- 这种状态没办法写入cookie的。提前安装好sys1,sys2的证书才行。
+![](/docs/images/2021-02-01-14-51-32.png)
