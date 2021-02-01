@@ -6,7 +6,7 @@ title: Eclipse里的tomcat调试用修改ssl
 
 1. 生成jks
 ```shell
-keytool -genkey -alias www.sys2.com -keyalg RSA -keystore www.sys2.com.jks -storepass 123.com
+keytool -genkey -alias www.sys2.com -keyalg RSA -keystore www.ca.com.jks -storepass 123.com
 ```
 
 

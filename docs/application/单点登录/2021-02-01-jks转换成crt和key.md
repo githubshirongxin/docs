@@ -42,7 +42,15 @@ openssl pkcs12 -in C:\cert\server.p12 -nocerts -nodes -out C:\cert\server.key
 ## 练习
 
 ```
-keytool -importkeystore -srckeystore ./www.ca.com.jks -destkeystore ./www.ca.com.p12 -srcstoretype jks -deststoretype pkcs12
+λ keytool -importkeystore -srckeystore ./www.ca.com.jks -destkeystore ./www.ca.com.p12 -srcstoretype jks -deststoretype pkcs12
+正在将密钥库 ./www.ca.com.jks 导入到 ./www.ca.com.p12...
+输入目标密钥库口令:
+再次输入新口令:
+输入源密钥库口令:
+已成功导入别名 www.ca.com 的条目。
+已完成导入命令: 1 个条目成功导入, 0 个条目失败或取消
 
 
+λ openssl pkcs12 -in ./www.ca.com.p12 -nokeys -clcerts -out ./www.ca.com.crt
+Enter Import Password:
 ```
