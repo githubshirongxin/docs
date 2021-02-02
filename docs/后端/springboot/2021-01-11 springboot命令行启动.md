@@ -18,3 +18,7 @@ mvn package # 将项目打包(会自动编译的),也可以使用mvn install 这
 cd target # 进入打包后的jar包的目录
 java -jar xxx.jar # 启动jar包
 ```
+
+## 参考：
+[如何运行SpringBoot项目](https://blog.csdn.net/datouniao1/article/details/81257562)
+[Spring Boot:jar中没有主清单属性](https://blog.csdn.net/u010429286/article/details/79085212)
