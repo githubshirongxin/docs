@@ -1,11 +1,11 @@
 ---
 layout: post
-title: jks转换成CRT和key
+title: jks转换成CRT和key,浏览器安装证书的方法
 ---
 
 https://segmentfault.com/a/1190000019085780?utm_source=tag-newest
 
-
+## 1. 讲jks导出证书
 
 1. 拿到jks证书，和证书密码(确认没有密码的，拿刀找你们运维去，或找供应方去)
 2. 先将jks 转换成p12格式，具体命令如下:
@@ -39,7 +39,7 @@ openssl pkcs12 -in C:\cert\server.p12 -nocerts -nodes -out C:\cert\server.key
 8. 如果还不行，(比如：网页访问，依然不安全) 请清空缓存，刷新
 
 
-## 练习
+### 练习
 
 ```
 λ keytool -importkeystore -srckeystore ./www.ca.com.jks -destkeystore ./www.ca.com.p12 -srcstoretype jks -deststoretype pkcs12
@@ -54,3 +54,23 @@ openssl pkcs12 -in C:\cert\server.p12 -nocerts -nodes -out C:\cert\server.key
 λ openssl pkcs12 -in ./www.ca.com.p12 -nokeys -clcerts -out ./www.ca.com.crt
 Enter Import Password:
 ```
+
+## 2. 浏览器安装证书
+
+必须先安装.pk12 然后安装crt。因为需要双向认证，所以安装了两个证书。
+
+安装方法，双击证书。
+
+### 2.1 先安装pk12证书
+
+
+参考手顺：https://blog.csdn.net/onepiecemonkey/article/details/79252050?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_utm_term-6&spm=1001.2101.3001.4242
+
+![](/docs/images/2021-02-05-13-47-25.png)
+输入密码之外都默认。
+![](/docs/images/2021-02-05-13-47-45.png)
+![](/docs/images/2021-02-05-13-48-07.png)
+
+## 2.2 再安装crt证书
+
+安装方法于pk12一样。s
