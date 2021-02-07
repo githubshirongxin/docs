@@ -67,7 +67,7 @@ module.exports = [{
 },
 {
     "text": "BT", "items": [
-        { "text": "COBOL", "link": "/后端/COBOL/" }
+        { "text": "COBOL", "link": "/BT/COBOL/" }
     ]
 },
 {
