@@ -74,6 +74,7 @@ module.exports = [{
     "text": "开发工具", "items": [
         { "text": "授课工具", "link": "/开发工具/授课工具/" },
         { "text": "eclipse", "link": "/开发工具/eclipse/" },
+        { "text": "IDEA", "link": "/开发工具/IDEA/" },
         { "text": "vscode", "link": "/开发工具/vscode/" },
         { "text": "tomcat", "link": "/开发工具/tomcat/" }
     ]
