@@ -66,6 +66,11 @@ module.exports = [{
     ]
 },
 {
+    "text": "BT", "items": [
+        { "text": "COBOL", "link": "/后端/COBOL/" }
+    ]
+},
+{
     "text": "开发工具", "items": [
         { "text": "授课工具", "link": "/开发工具/授课工具/" },
         { "text": "eclipse", "link": "/开发工具/eclipse/" },
