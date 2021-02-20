@@ -45,3 +45,4 @@ ng g service services/storage //放到services目录下。
         ```
 
 
+## router-outlet就是挂载子组件用.
