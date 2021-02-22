@@ -25,3 +25,6 @@ CREATE src/app/components/btn/btn.component.scss (0 bytes)
 UPDATE src/app/app.module.ts (1208 bytes)
 
 ```
+
+
+## --skip-import 也行
