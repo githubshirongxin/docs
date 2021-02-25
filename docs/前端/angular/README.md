@@ -3,6 +3,8 @@ layout: post
 title: ----【angular相关】----
 ---
 
+![](/docs/images/2021-02-25-10-00-28.png)
+
 - 启动服务
 ```
 ng serve --open
