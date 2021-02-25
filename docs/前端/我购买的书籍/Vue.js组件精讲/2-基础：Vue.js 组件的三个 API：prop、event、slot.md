@@ -1,10 +1,8 @@
 ---
-​---
 layout: post
-title:   基础：Vue.js 组件的三个 API：prop、event、slot
-​---
-
+title:  Vue.js 组件的三个 API：prop、event、slot
 ---
+
 
 # 基础：Vue.js 组件的三个 API：prop、event、slot
 

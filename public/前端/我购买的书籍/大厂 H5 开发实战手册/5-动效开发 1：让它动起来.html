@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>动效开发 1：让它动起来 | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.9f53ed1a.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/133.7b979069.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.b793d276.js"><link rel="prefetch" href="/docs/assets/js/100.0308e105.js"><link rel="prefetch" href="/docs/assets/js/101.4b75d1c5.js"><link rel="prefetch" href="/docs/assets/js/102.e92dbebe.js"><link rel="prefetch" href="/docs/assets/js/103.15453cb7.js"><link rel="prefetch" href="/docs/assets/js/104.076fbb6f.js"><link rel="prefetch" href="/docs/assets/js/105.d066c65c.js"><link rel="prefetch" href="/docs/assets/js/106.14cd96f3.js"><link rel="prefetch" href="/docs/assets/js/107.8965711d.js"><link rel="prefetch" href="/docs/assets/js/108.95bda9f8.js"><link rel="prefetch" href="/docs/assets/js/109.e97a61b3.js"><link rel="prefetch" href="/docs/assets/js/11.7fd2cb27.js"><link rel="prefetch" href="/docs/assets/js/110.724a7f61.js"><link rel="prefetch" href="/docs/assets/js/111.c1081b06.js"><link rel="prefetch" href="/docs/assets/js/112.1aefa311.js"><link rel="prefetch" href="/docs/assets/js/113.8e59756a.js"><link rel="prefetch" href="/docs/assets/js/114.4ad9f23a.js"><link rel="prefetch" href="/docs/assets/js/115.c2e5b1ba.js"><link rel="prefetch" href="/docs/assets/js/116.b055b179.js"><link rel="prefetch" href="/docs/assets/js/117.5faa5e40.js"><link rel="prefetch" href="/docs/assets/js/118.5fdc4d70.js"><link rel="prefetch" href="/docs/assets/js/119.dcb7fe08.js"><link rel="prefetch" href="/docs/assets/js/12.0d27e102.js"><link rel="prefetch" href="/docs/assets/js/120.296bb656.js"><link rel="prefetch" href="/docs/assets/js/121.45a37125.js"><link rel="prefetch" href="/docs/assets/js/122.fbd1771c.js"><link rel="prefetch" href="/docs/assets/js/123.69f9d5b5.js"><link rel="prefetch" href="/docs/assets/js/124.0bb30db3.js"><link rel="prefetch" href="/docs/assets/js/125.c1c8700c.js"><link rel="prefetch" href="/docs/assets/js/126.74913a3d.js"><link rel="prefetch" href="/docs/assets/js/127.23f6f081.js"><link rel="prefetch" href="/docs/assets/js/128.b3df328b.js"><link rel="prefetch" href="/docs/assets/js/129.d8c3064f.js"><link rel="prefetch" href="/docs/assets/js/13.14986227.js"><link rel="prefetch" href="/docs/assets/js/130.94c84187.js"><link rel="prefetch" href="/docs/assets/js/131.59ca6009.js"><link rel="prefetch" href="/docs/assets/js/132.727d2363.js"><link rel="prefetch" href="/docs/assets/js/134.1cec71fa.js"><link rel="prefetch" href="/docs/assets/js/135.9dd30e69.js"><link rel="prefetch" href="/docs/assets/js/136.6a07e37d.js"><link rel="prefetch" href="/docs/assets/js/137.bfbac9f3.js"><link rel="prefetch" href="/docs/assets/js/138.4d253931.js"><link rel="prefetch" href="/docs/assets/js/139.c524b655.js"><link rel="prefetch" href="/docs/assets/js/14.35b1256f.js"><link rel="prefetch" href="/docs/assets/js/140.6240c960.js"><link rel="prefetch" href="/docs/assets/js/141.a6f318d4.js"><link rel="prefetch" href="/docs/assets/js/142.142870fc.js"><link rel="prefetch" href="/docs/assets/js/143.3917fdb0.js"><link rel="prefetch" href="/docs/assets/js/144.016f6729.js"><link rel="prefetch" href="/docs/assets/js/145.29051a1b.js"><link rel="prefetch" href="/docs/assets/js/146.b89f4b58.js"><link rel="prefetch" href="/docs/assets/js/147.781f06a8.js"><link rel="prefetch" href="/docs/assets/js/148.7c4c8501.js"><link rel="prefetch" href="/docs/assets/js/149.ab7f275b.js"><link rel="prefetch" href="/docs/assets/js/15.461b8311.js"><link rel="prefetch" href="/docs/assets/js/150.d18cca0c.js"><link rel="prefetch" href="/docs/assets/js/151.0e3716e7.js"><link rel="prefetch" href="/docs/assets/js/152.b4c4db45.js"><link rel="prefetch" href="/docs/assets/js/153.a4b80fc3.js"><link rel="prefetch" href="/docs/assets/js/154.db35d609.js"><link rel="prefetch" href="/docs/assets/js/155.b0781fa7.js"><link rel="prefetch" href="/docs/assets/js/156.cbd6f82b.js"><link rel="prefetch" href="/docs/assets/js/157.7800b3e6.js"><link rel="prefetch" href="/docs/assets/js/158.fcdc3748.js"><link rel="prefetch" href="/docs/assets/js/159.56ab3bf0.js"><link rel="prefetch" href="/docs/assets/js/16.721d35b8.js"><link rel="prefetch" href="/docs/assets/js/160.11733cde.js"><link rel="prefetch" href="/docs/assets/js/161.5aeeb31b.js"><link rel="prefetch" href="/docs/assets/js/162.ffd2b692.js"><link rel="prefetch" href="/docs/assets/js/163.987a2f50.js"><link rel="prefetch" href="/docs/assets/js/164.18255d82.js"><link rel="prefetch" href="/docs/assets/js/165.f70fb60a.js"><link rel="prefetch" href="/docs/assets/js/166.7106568d.js"><link rel="prefetch" href="/docs/assets/js/167.ecdfbf07.js"><link rel="prefetch" href="/docs/assets/js/168.bb52f478.js"><link rel="prefetch" href="/docs/assets/js/169.700771aa.js"><link rel="prefetch" href="/docs/assets/js/17.07e47d44.js"><link rel="prefetch" href="/docs/assets/js/170.d7c73701.js"><link rel="prefetch" href="/docs/assets/js/171.72f8a7ef.js"><link rel="prefetch" href="/docs/assets/js/172.8a0d766c.js"><link rel="prefetch" href="/docs/assets/js/173.4f320ecd.js"><link rel="prefetch" href="/docs/assets/js/174.d6153b40.js"><link rel="prefetch" href="/docs/assets/js/175.98aa34ff.js"><link rel="prefetch" href="/docs/assets/js/176.307a84e6.js"><link rel="prefetch" href="/docs/assets/js/177.0d8617d2.js"><link rel="prefetch" href="/docs/assets/js/178.49ef23ab.js"><link rel="prefetch" href="/docs/assets/js/179.460f1c94.js"><link rel="prefetch" href="/docs/assets/js/18.1201a4f6.js"><link rel="prefetch" href="/docs/assets/js/180.42212e45.js"><link rel="prefetch" href="/docs/assets/js/181.50cbd4cd.js"><link rel="prefetch" href="/docs/assets/js/182.96a972bd.js"><link rel="prefetch" href="/docs/assets/js/183.393655bc.js"><link rel="prefetch" href="/docs/assets/js/184.a4111889.js"><link rel="prefetch" href="/docs/assets/js/185.c1e4cb2b.js"><link rel="prefetch" href="/docs/assets/js/186.f2e3d4fb.js"><link rel="prefetch" href="/docs/assets/js/187.a19c91d4.js"><link rel="prefetch" href="/docs/assets/js/188.f347fe64.js"><link rel="prefetch" href="/docs/assets/js/189.56f5f86a.js"><link rel="prefetch" href="/docs/assets/js/19.65173ce7.js"><link rel="prefetch" href="/docs/assets/js/190.700ac378.js"><link rel="prefetch" href="/docs/assets/js/191.d3d0ea82.js"><link rel="prefetch" href="/docs/assets/js/192.8f5e6f18.js"><link rel="prefetch" href="/docs/assets/js/193.2f824822.js"><link rel="prefetch" href="/docs/assets/js/194.04d82cfa.js"><link rel="prefetch" href="/docs/assets/js/195.0feaceff.js"><link rel="prefetch" href="/docs/assets/js/196.49856e45.js"><link rel="prefetch" href="/docs/assets/js/197.f71c1ec5.js"><link rel="prefetch" href="/docs/assets/js/198.84f8a007.js"><link rel="prefetch" href="/docs/assets/js/199.9087c0e0.js"><link rel="prefetch" href="/docs/assets/js/20.e4c7bd66.js"><link rel="prefetch" href="/docs/assets/js/200.2aa6cd75.js"><link rel="prefetch" href="/docs/assets/js/201.ff985140.js"><link rel="prefetch" href="/docs/assets/js/202.614944ad.js"><link rel="prefetch" href="/docs/assets/js/203.ad49fb39.js"><link rel="prefetch" href="/docs/assets/js/204.7e28a85a.js"><link rel="prefetch" href="/docs/assets/js/205.9ec47697.js"><link rel="prefetch" href="/docs/assets/js/206.2048bddc.js"><link rel="prefetch" href="/docs/assets/js/207.7d61fabd.js"><link rel="prefetch" href="/docs/assets/js/208.f007a6c1.js"><link rel="prefetch" href="/docs/assets/js/209.7dfd3514.js"><link rel="prefetch" href="/docs/assets/js/21.17ccefef.js"><link rel="prefetch" href="/docs/assets/js/210.a5fdc794.js"><link rel="prefetch" href="/docs/assets/js/211.e2beca7b.js"><link rel="prefetch" href="/docs/assets/js/212.876876eb.js"><link rel="prefetch" href="/docs/assets/js/213.53086fde.js"><link rel="prefetch" href="/docs/assets/js/214.fd32a6a8.js"><link rel="prefetch" href="/docs/assets/js/215.302d4d91.js"><link rel="prefetch" href="/docs/assets/js/216.b8410dc5.js"><link rel="prefetch" href="/docs/assets/js/217.60351612.js"><link rel="prefetch" href="/docs/assets/js/218.797fccf9.js"><link rel="prefetch" href="/docs/assets/js/219.c778b799.js"><link rel="prefetch" href="/docs/assets/js/22.a2412fbf.js"><link rel="prefetch" href="/docs/assets/js/220.7d56d728.js"><link rel="prefetch" href="/docs/assets/js/221.2345142e.js"><link rel="prefetch" href="/docs/assets/js/222.7b67404c.js"><link rel="prefetch" href="/docs/assets/js/223.5e9f1550.js"><link rel="prefetch" href="/docs/assets/js/224.f8c4c372.js"><link rel="prefetch" href="/docs/assets/js/225.09b40d30.js"><link rel="prefetch" href="/docs/assets/js/226.42b343b5.js"><link rel="prefetch" href="/docs/assets/js/227.cca0dd5d.js"><link rel="prefetch" href="/docs/assets/js/228.d17560ee.js"><link rel="prefetch" href="/docs/assets/js/229.e0a0782c.js"><link rel="prefetch" href="/docs/assets/js/23.bcc31ac7.js"><link rel="prefetch" href="/docs/assets/js/230.ca94821c.js"><link rel="prefetch" href="/docs/assets/js/231.c93ad033.js"><link rel="prefetch" href="/docs/assets/js/232.0c214c80.js"><link rel="prefetch" href="/docs/assets/js/233.d8db8588.js"><link rel="prefetch" href="/docs/assets/js/234.497286af.js"><link rel="prefetch" href="/docs/assets/js/235.f7a838bd.js"><link rel="prefetch" href="/docs/assets/js/236.841ec1bb.js"><link rel="prefetch" href="/docs/assets/js/237.02ff4e17.js"><link rel="prefetch" href="/docs/assets/js/238.220c9aa3.js"><link rel="prefetch" href="/docs/assets/js/239.1c047adf.js"><link rel="prefetch" href="/docs/assets/js/24.2719ac0a.js"><link rel="prefetch" href="/docs/assets/js/240.03c59a23.js"><link rel="prefetch" href="/docs/assets/js/241.dc44941e.js"><link rel="prefetch" href="/docs/assets/js/242.f62c471c.js"><link rel="prefetch" href="/docs/assets/js/243.f076ea2b.js"><link rel="prefetch" href="/docs/assets/js/244.60ba0fba.js"><link rel="prefetch" href="/docs/assets/js/245.0abfe782.js"><link rel="prefetch" href="/docs/assets/js/246.c27a39d7.js"><link rel="prefetch" href="/docs/assets/js/247.6186db9b.js"><link rel="prefetch" href="/docs/assets/js/248.f30e35dc.js"><link rel="prefetch" href="/docs/assets/js/249.cc736afd.js"><link rel="prefetch" href="/docs/assets/js/25.1a199685.js"><link rel="prefetch" href="/docs/assets/js/250.62f3319c.js"><link rel="prefetch" href="/docs/assets/js/251.940d83dc.js"><link rel="prefetch" href="/docs/assets/js/252.728eee91.js"><link rel="prefetch" href="/docs/assets/js/253.52b05d68.js"><link rel="prefetch" href="/docs/assets/js/254.6170779d.js"><link rel="prefetch" href="/docs/assets/js/255.776ba372.js"><link rel="prefetch" href="/docs/assets/js/256.eebb5efc.js"><link rel="prefetch" href="/docs/assets/js/257.2d25d404.js"><link rel="prefetch" href="/docs/assets/js/258.28491a0e.js"><link rel="prefetch" href="/docs/assets/js/259.36ec1fb2.js"><link rel="prefetch" href="/docs/assets/js/26.611c819f.js"><link rel="prefetch" href="/docs/assets/js/260.27b2d8c1.js"><link rel="prefetch" href="/docs/assets/js/261.395c9bff.js"><link rel="prefetch" href="/docs/assets/js/262.1b00205e.js"><link rel="prefetch" href="/docs/assets/js/263.1712e6e3.js"><link rel="prefetch" href="/docs/assets/js/264.3078600c.js"><link rel="prefetch" href="/docs/assets/js/265.fb14b6d8.js"><link rel="prefetch" href="/docs/assets/js/266.e927ec6e.js"><link rel="prefetch" href="/docs/assets/js/267.e193a448.js"><link rel="prefetch" href="/docs/assets/js/268.225a1d3d.js"><link rel="prefetch" href="/docs/assets/js/269.b48572a5.js"><link rel="prefetch" href="/docs/assets/js/27.fa5721a1.js"><link rel="prefetch" href="/docs/assets/js/270.2e0e27b0.js"><link rel="prefetch" href="/docs/assets/js/271.b60a9196.js"><link rel="prefetch" href="/docs/assets/js/272.b8431166.js"><link rel="prefetch" href="/docs/assets/js/273.5acef50d.js"><link rel="prefetch" href="/docs/assets/js/274.303fe53c.js"><link rel="prefetch" href="/docs/assets/js/275.4ed7df31.js"><link rel="prefetch" href="/docs/assets/js/276.083b836c.js"><link rel="prefetch" href="/docs/assets/js/277.8323533a.js"><link rel="prefetch" href="/docs/assets/js/278.2737e642.js"><link rel="prefetch" href="/docs/assets/js/279.405ede8f.js"><link rel="prefetch" href="/docs/assets/js/28.02f9ac08.js"><link rel="prefetch" href="/docs/assets/js/280.0e9c99e1.js"><link rel="prefetch" href="/docs/assets/js/281.d2f75daa.js"><link rel="prefetch" href="/docs/assets/js/282.7c653cc1.js"><link rel="prefetch" href="/docs/assets/js/283.4b9894ca.js"><link rel="prefetch" href="/docs/assets/js/284.99dc2c38.js"><link rel="prefetch" href="/docs/assets/js/285.4076427f.js"><link rel="prefetch" href="/docs/assets/js/286.a6a5c723.js"><link rel="prefetch" href="/docs/assets/js/287.655e3908.js"><link rel="prefetch" href="/docs/assets/js/288.080ce3b8.js"><link rel="prefetch" href="/docs/assets/js/289.011bf324.js"><link rel="prefetch" href="/docs/assets/js/29.091c7456.js"><link rel="prefetch" href="/docs/assets/js/290.e42f97f1.js"><link rel="prefetch" href="/docs/assets/js/291.6a8e7c10.js"><link rel="prefetch" href="/docs/assets/js/292.f18d676e.js"><link rel="prefetch" href="/docs/assets/js/293.fda998ad.js"><link rel="prefetch" href="/docs/assets/js/294.f17522ef.js"><link rel="prefetch" href="/docs/assets/js/295.94509d46.js"><link rel="prefetch" href="/docs/assets/js/296.da0c1ae6.js"><link rel="prefetch" href="/docs/assets/js/297.a770e16c.js"><link rel="prefetch" href="/docs/assets/js/298.51043991.js"><link rel="prefetch" href="/docs/assets/js/299.073afa2a.js"><link rel="prefetch" href="/docs/assets/js/30.a6f8c690.js"><link rel="prefetch" href="/docs/assets/js/300.f3539f89.js"><link rel="prefetch" href="/docs/assets/js/301.f7978781.js"><link rel="prefetch" href="/docs/assets/js/302.7a8267da.js"><link rel="prefetch" href="/docs/assets/js/303.f9a7e61f.js"><link rel="prefetch" href="/docs/assets/js/304.62d38b06.js"><link rel="prefetch" href="/docs/assets/js/305.0200d7d6.js"><link rel="prefetch" href="/docs/assets/js/306.8a2705a6.js"><link rel="prefetch" href="/docs/assets/js/307.2d4adcf0.js"><link rel="prefetch" href="/docs/assets/js/308.860af110.js"><link rel="prefetch" href="/docs/assets/js/309.3f26d144.js"><link rel="prefetch" href="/docs/assets/js/31.07a8346f.js"><link rel="prefetch" href="/docs/assets/js/310.6d545b11.js"><link rel="prefetch" href="/docs/assets/js/311.3ec8d57d.js"><link rel="prefetch" href="/docs/assets/js/312.15bde9ec.js"><link rel="prefetch" href="/docs/assets/js/313.2a1e6c15.js"><link rel="prefetch" href="/docs/assets/js/314.5a9ea92d.js"><link rel="prefetch" href="/docs/assets/js/315.ce850a23.js"><link rel="prefetch" href="/docs/assets/js/316.7acfcb96.js"><link rel="prefetch" href="/docs/assets/js/317.0f40910a.js"><link rel="prefetch" href="/docs/assets/js/318.a746c6dd.js"><link rel="prefetch" href="/docs/assets/js/319.20c852f0.js"><link rel="prefetch" href="/docs/assets/js/32.97333c81.js"><link rel="prefetch" href="/docs/assets/js/320.01e01bcc.js"><link rel="prefetch" href="/docs/assets/js/321.e69c2bd3.js"><link rel="prefetch" href="/docs/assets/js/322.145bf3a7.js"><link rel="prefetch" href="/docs/assets/js/323.ea3e3711.js"><link rel="prefetch" href="/docs/assets/js/324.b77b6154.js"><link rel="prefetch" href="/docs/assets/js/325.5c11e833.js"><link rel="prefetch" href="/docs/assets/js/326.032eeb23.js"><link rel="prefetch" href="/docs/assets/js/327.204fa9a1.js"><link rel="prefetch" href="/docs/assets/js/328.1608ee60.js"><link rel="prefetch" href="/docs/assets/js/329.b1ea8849.js"><link rel="prefetch" href="/docs/assets/js/33.f0a5723a.js"><link rel="prefetch" href="/docs/assets/js/330.ce69d8ba.js"><link rel="prefetch" href="/docs/assets/js/331.1e7a8661.js"><link rel="prefetch" href="/docs/assets/js/332.09666ed1.js"><link rel="prefetch" href="/docs/assets/js/333.2bd7c1f8.js"><link rel="prefetch" href="/docs/assets/js/334.c8f00c32.js"><link rel="prefetch" href="/docs/assets/js/335.dbc08a39.js"><link rel="prefetch" href="/docs/assets/js/336.0a531bde.js"><link rel="prefetch" href="/docs/assets/js/337.d4fd409a.js"><link rel="prefetch" href="/docs/assets/js/338.775846b7.js"><link rel="prefetch" href="/docs/assets/js/339.5a0f78f4.js"><link rel="prefetch" href="/docs/assets/js/34.575b5509.js"><link rel="prefetch" href="/docs/assets/js/340.a008e526.js"><link rel="prefetch" href="/docs/assets/js/341.10a3b547.js"><link rel="prefetch" href="/docs/assets/js/342.cfe4130b.js"><link rel="prefetch" href="/docs/assets/js/343.de582474.js"><link rel="prefetch" href="/docs/assets/js/344.8489dee3.js"><link rel="prefetch" href="/docs/assets/js/345.f43f3a63.js"><link rel="prefetch" href="/docs/assets/js/346.c11bbfd9.js"><link rel="prefetch" href="/docs/assets/js/347.3b387ba0.js"><link rel="prefetch" href="/docs/assets/js/348.558a96d1.js"><link rel="prefetch" href="/docs/assets/js/349.ef2dd531.js"><link rel="prefetch" href="/docs/assets/js/35.1439964e.js"><link rel="prefetch" href="/docs/assets/js/350.18208b0d.js"><link rel="prefetch" href="/docs/assets/js/351.4e35dbae.js"><link rel="prefetch" href="/docs/assets/js/352.31e49d69.js"><link rel="prefetch" href="/docs/assets/js/353.5835e31b.js"><link rel="prefetch" href="/docs/assets/js/354.e8acb3cd.js"><link rel="prefetch" href="/docs/assets/js/355.83e2a31f.js"><link rel="prefetch" href="/docs/assets/js/356.528ea521.js"><link rel="prefetch" href="/docs/assets/js/357.7c769794.js"><link rel="prefetch" href="/docs/assets/js/358.fb1b572a.js"><link rel="prefetch" href="/docs/assets/js/359.2e1ac221.js"><link rel="prefetch" href="/docs/assets/js/36.9faf9fbc.js"><link rel="prefetch" href="/docs/assets/js/360.a3915355.js"><link rel="prefetch" href="/docs/assets/js/361.ef05840d.js"><link rel="prefetch" href="/docs/assets/js/362.a9fb0ba3.js"><link rel="prefetch" href="/docs/assets/js/363.b0b11858.js"><link rel="prefetch" href="/docs/assets/js/364.aca2c202.js"><link rel="prefetch" href="/docs/assets/js/365.e8c4023c.js"><link rel="prefetch" href="/docs/assets/js/366.b4383cee.js"><link rel="prefetch" href="/docs/assets/js/367.98c8fa4b.js"><link rel="prefetch" href="/docs/assets/js/368.1f03615b.js"><link rel="prefetch" href="/docs/assets/js/369.0b3e5848.js"><link rel="prefetch" href="/docs/assets/js/37.88b14914.js"><link rel="prefetch" href="/docs/assets/js/370.d3336c96.js"><link rel="prefetch" href="/docs/assets/js/371.5606304a.js"><link rel="prefetch" href="/docs/assets/js/372.62d96bbe.js"><link rel="prefetch" href="/docs/assets/js/373.bdadec49.js"><link rel="prefetch" href="/docs/assets/js/374.fa73a057.js"><link rel="prefetch" href="/docs/assets/js/375.6e175563.js"><link rel="prefetch" href="/docs/assets/js/376.7a8cb018.js"><link rel="prefetch" href="/docs/assets/js/377.cd3540e5.js"><link rel="prefetch" href="/docs/assets/js/378.82f17350.js"><link rel="prefetch" href="/docs/assets/js/379.119a4d0e.js"><link rel="prefetch" href="/docs/assets/js/38.28c78f55.js"><link rel="prefetch" href="/docs/assets/js/380.e63bc440.js"><link rel="prefetch" href="/docs/assets/js/381.c3dbd007.js"><link rel="prefetch" href="/docs/assets/js/382.c23401b5.js"><link rel="prefetch" href="/docs/assets/js/383.50d1d0a7.js"><link rel="prefetch" href="/docs/assets/js/384.1c2dec49.js"><link rel="prefetch" href="/docs/assets/js/385.b5d71353.js"><link rel="prefetch" href="/docs/assets/js/386.61828ab2.js"><link rel="prefetch" href="/docs/assets/js/387.96d8f790.js"><link rel="prefetch" href="/docs/assets/js/388.70e7b0a1.js"><link rel="prefetch" href="/docs/assets/js/389.4a3e7b89.js"><link rel="prefetch" href="/docs/assets/js/39.c566a19e.js"><link rel="prefetch" href="/docs/assets/js/390.50b0d9a1.js"><link rel="prefetch" href="/docs/assets/js/391.63c0ff31.js"><link rel="prefetch" href="/docs/assets/js/392.22316750.js"><link rel="prefetch" href="/docs/assets/js/393.106c6b13.js"><link rel="prefetch" href="/docs/assets/js/394.bae4aea4.js"><link rel="prefetch" href="/docs/assets/js/395.2049c44c.js"><link rel="prefetch" href="/docs/assets/js/396.34ef39b8.js"><link rel="prefetch" href="/docs/assets/js/397.0ed2d0e2.js"><link rel="prefetch" href="/docs/assets/js/398.24ca224e.js"><link rel="prefetch" href="/docs/assets/js/399.46d9fed4.js"><link rel="prefetch" href="/docs/assets/js/4.429ea365.js"><link rel="prefetch" href="/docs/assets/js/40.2d22738d.js"><link rel="prefetch" href="/docs/assets/js/400.916200f0.js"><link rel="prefetch" href="/docs/assets/js/401.eb0a60c1.js"><link rel="prefetch" href="/docs/assets/js/402.873d69a2.js"><link rel="prefetch" href="/docs/assets/js/403.dfe05afd.js"><link rel="prefetch" href="/docs/assets/js/404.bb319ed4.js"><link rel="prefetch" href="/docs/assets/js/405.99a5ccdf.js"><link rel="prefetch" href="/docs/assets/js/406.389438a3.js"><link rel="prefetch" href="/docs/assets/js/407.d1651b7d.js"><link rel="prefetch" href="/docs/assets/js/408.968989cb.js"><link rel="prefetch" href="/docs/assets/js/409.7b620aec.js"><link rel="prefetch" href="/docs/assets/js/41.d96ed5cc.js"><link rel="prefetch" href="/docs/assets/js/410.7b17a84e.js"><link rel="prefetch" href="/docs/assets/js/411.e025d4c9.js"><link rel="prefetch" href="/docs/assets/js/412.021a6a6f.js"><link rel="prefetch" href="/docs/assets/js/413.197e2e0d.js"><link rel="prefetch" href="/docs/assets/js/414.bdf3c575.js"><link rel="prefetch" href="/docs/assets/js/415.6bc64022.js"><link rel="prefetch" href="/docs/assets/js/416.1f93cb0c.js"><link rel="prefetch" href="/docs/assets/js/417.86fe8395.js"><link rel="prefetch" href="/docs/assets/js/418.77668e04.js"><link rel="prefetch" href="/docs/assets/js/419.092b4f87.js"><link rel="prefetch" href="/docs/assets/js/42.27f49043.js"><link rel="prefetch" href="/docs/assets/js/420.617b5e23.js"><link rel="prefetch" href="/docs/assets/js/421.1e32caad.js"><link rel="prefetch" href="/docs/assets/js/422.590320f6.js"><link rel="prefetch" href="/docs/assets/js/423.0ba0e521.js"><link rel="prefetch" href="/docs/assets/js/424.648d633a.js"><link rel="prefetch" href="/docs/assets/js/425.dba396aa.js"><link rel="prefetch" href="/docs/assets/js/426.66953f86.js"><link rel="prefetch" href="/docs/assets/js/427.1fe37dfb.js"><link rel="prefetch" href="/docs/assets/js/428.8ecfeed6.js"><link rel="prefetch" href="/docs/assets/js/429.fb3bd9d8.js"><link rel="prefetch" href="/docs/assets/js/43.35205d0d.js"><link rel="prefetch" href="/docs/assets/js/430.628ef29c.js"><link rel="prefetch" href="/docs/assets/js/431.6983943f.js"><link rel="prefetch" href="/docs/assets/js/432.496c7ec4.js"><link rel="prefetch" href="/docs/assets/js/433.15147040.js"><link rel="prefetch" href="/docs/assets/js/434.2fb5a7cb.js"><link rel="prefetch" href="/docs/assets/js/435.5f8a6692.js"><link rel="prefetch" href="/docs/assets/js/436.c6298905.js"><link rel="prefetch" href="/docs/assets/js/437.e2785e82.js"><link rel="prefetch" href="/docs/assets/js/438.2d7726ee.js"><link rel="prefetch" href="/docs/assets/js/439.c447306c.js"><link rel="prefetch" href="/docs/assets/js/44.1d391cfb.js"><link rel="prefetch" href="/docs/assets/js/440.85f6f163.js"><link rel="prefetch" href="/docs/assets/js/441.e3fa2db3.js"><link rel="prefetch" href="/docs/assets/js/442.8fd69e9c.js"><link rel="prefetch" href="/docs/assets/js/443.ff326def.js"><link rel="prefetch" href="/docs/assets/js/444.ba6365fa.js"><link rel="prefetch" href="/docs/assets/js/445.bbaedcec.js"><link rel="prefetch" href="/docs/assets/js/446.7cc6ef38.js"><link rel="prefetch" href="/docs/assets/js/447.c4700445.js"><link rel="prefetch" href="/docs/assets/js/448.f9ac9d63.js"><link rel="prefetch" href="/docs/assets/js/449.680541d7.js"><link rel="prefetch" href="/docs/assets/js/45.c68d0c09.js"><link rel="prefetch" href="/docs/assets/js/450.af6df75f.js"><link rel="prefetch" href="/docs/assets/js/451.5a850ba3.js"><link rel="prefetch" href="/docs/assets/js/452.65868482.js"><link rel="prefetch" href="/docs/assets/js/453.e393b187.js"><link rel="prefetch" href="/docs/assets/js/454.bd6fd93e.js"><link rel="prefetch" href="/docs/assets/js/455.edbcfd4a.js"><link rel="prefetch" href="/docs/assets/js/456.1174dabf.js"><link rel="prefetch" href="/docs/assets/js/457.e6e2c3cd.js"><link rel="prefetch" href="/docs/assets/js/458.5f2d388f.js"><link rel="prefetch" href="/docs/assets/js/459.e894e60f.js"><link rel="prefetch" href="/docs/assets/js/46.513a1721.js"><link rel="prefetch" href="/docs/assets/js/460.9148d2e7.js"><link rel="prefetch" href="/docs/assets/js/461.5dd2a773.js"><link rel="prefetch" href="/docs/assets/js/462.bc2c60e3.js"><link rel="prefetch" href="/docs/assets/js/463.aa20b410.js"><link rel="prefetch" href="/docs/assets/js/464.04749cbe.js"><link rel="prefetch" href="/docs/assets/js/465.2c297f28.js"><link rel="prefetch" href="/docs/assets/js/466.09c2b6b8.js"><link rel="prefetch" href="/docs/assets/js/467.2aa28e02.js"><link rel="prefetch" href="/docs/assets/js/468.2974478b.js"><link rel="prefetch" href="/docs/assets/js/469.c30edf3b.js"><link rel="prefetch" href="/docs/assets/js/47.177ad890.js"><link rel="prefetch" href="/docs/assets/js/470.f7d86c0f.js"><link rel="prefetch" href="/docs/assets/js/471.20c0bc4f.js"><link rel="prefetch" href="/docs/assets/js/472.967a862c.js"><link rel="prefetch" href="/docs/assets/js/473.81927876.js"><link rel="prefetch" href="/docs/assets/js/474.b1e6b20c.js"><link rel="prefetch" href="/docs/assets/js/475.1f9626b1.js"><link rel="prefetch" href="/docs/assets/js/476.fb239a95.js"><link rel="prefetch" href="/docs/assets/js/477.696dac1f.js"><link rel="prefetch" href="/docs/assets/js/478.3ae9536b.js"><link rel="prefetch" href="/docs/assets/js/479.356762a9.js"><link rel="prefetch" href="/docs/assets/js/48.400950ad.js"><link rel="prefetch" href="/docs/assets/js/480.5e12cb14.js"><link rel="prefetch" href="/docs/assets/js/481.eb45600d.js"><link rel="prefetch" href="/docs/assets/js/482.fd54c247.js"><link rel="prefetch" href="/docs/assets/js/483.ee945ab8.js"><link rel="prefetch" href="/docs/assets/js/484.649009a5.js"><link rel="prefetch" href="/docs/assets/js/485.7d798390.js"><link rel="prefetch" href="/docs/assets/js/486.064d5e81.js"><link rel="prefetch" href="/docs/assets/js/487.8331ba1a.js"><link rel="prefetch" href="/docs/assets/js/488.6764c887.js"><link rel="prefetch" href="/docs/assets/js/489.c7fa411c.js"><link rel="prefetch" href="/docs/assets/js/49.698c26bb.js"><link rel="prefetch" href="/docs/assets/js/490.4b0a81f4.js"><link rel="prefetch" href="/docs/assets/js/491.8755a8ee.js"><link rel="prefetch" href="/docs/assets/js/492.68b1230c.js"><link rel="prefetch" href="/docs/assets/js/493.0ec120e4.js"><link rel="prefetch" href="/docs/assets/js/494.36bb488e.js"><link rel="prefetch" href="/docs/assets/js/495.48b2f5ea.js"><link rel="prefetch" href="/docs/assets/js/496.f1dcd501.js"><link rel="prefetch" href="/docs/assets/js/497.b0bc04de.js"><link rel="prefetch" href="/docs/assets/js/498.794eb916.js"><link rel="prefetch" href="/docs/assets/js/499.f34b72e8.js"><link rel="prefetch" href="/docs/assets/js/50.4d3ca76a.js"><link rel="prefetch" href="/docs/assets/js/500.c496b405.js"><link rel="prefetch" href="/docs/assets/js/501.9236669d.js"><link rel="prefetch" href="/docs/assets/js/502.e848f108.js"><link rel="prefetch" href="/docs/assets/js/503.1c000e61.js"><link rel="prefetch" href="/docs/assets/js/504.2579303d.js"><link rel="prefetch" href="/docs/assets/js/505.c462863c.js"><link rel="prefetch" href="/docs/assets/js/506.da0d95c3.js"><link rel="prefetch" href="/docs/assets/js/507.d22039a5.js"><link rel="prefetch" href="/docs/assets/js/508.669e27d0.js"><link rel="prefetch" href="/docs/assets/js/509.b615db11.js"><link rel="prefetch" href="/docs/assets/js/51.22605d78.js"><link rel="prefetch" href="/docs/assets/js/510.72cb7121.js"><link rel="prefetch" href="/docs/assets/js/511.929319cc.js"><link rel="prefetch" href="/docs/assets/js/512.f97ba399.js"><link rel="prefetch" href="/docs/assets/js/52.2c42a88f.js"><link rel="prefetch" href="/docs/assets/js/53.93a21098.js"><link rel="prefetch" href="/docs/assets/js/54.28ba5c54.js"><link rel="prefetch" href="/docs/assets/js/55.e2e18acf.js"><link rel="prefetch" href="/docs/assets/js/56.ffef444a.js"><link rel="prefetch" href="/docs/assets/js/57.d9bed9cc.js"><link rel="prefetch" href="/docs/assets/js/58.5a83fab0.js"><link rel="prefetch" href="/docs/assets/js/59.9d8d56fe.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.f4e0bc80.js"><link rel="prefetch" href="/docs/assets/js/61.6430554b.js"><link rel="prefetch" href="/docs/assets/js/62.7c6b2140.js"><link rel="prefetch" href="/docs/assets/js/63.1381e411.js"><link rel="prefetch" href="/docs/assets/js/64.5a46fd78.js"><link rel="prefetch" href="/docs/assets/js/65.0f0ddd37.js"><link rel="prefetch" href="/docs/assets/js/66.2238960d.js"><link rel="prefetch" href="/docs/assets/js/67.8184afbe.js"><link rel="prefetch" href="/docs/assets/js/68.718f552e.js"><link rel="prefetch" href="/docs/assets/js/69.d218cb4d.js"><link rel="prefetch" href="/docs/assets/js/7.5ca46f71.js"><link rel="prefetch" href="/docs/assets/js/70.4f5887a2.js"><link rel="prefetch" href="/docs/assets/js/71.f1ecf61d.js"><link rel="prefetch" href="/docs/assets/js/72.5f1499ed.js"><link rel="prefetch" href="/docs/assets/js/73.6528515d.js"><link rel="prefetch" href="/docs/assets/js/74.1355203a.js"><link rel="prefetch" href="/docs/assets/js/75.65ee440a.js"><link rel="prefetch" href="/docs/assets/js/76.65b91c64.js"><link rel="prefetch" href="/docs/assets/js/77.362d116c.js"><link rel="prefetch" href="/docs/assets/js/78.ee1780fe.js"><link rel="prefetch" href="/docs/assets/js/79.5b860f69.js"><link rel="prefetch" href="/docs/assets/js/8.b93c7b97.js"><link rel="prefetch" href="/docs/assets/js/80.c2f9e90a.js"><link rel="prefetch" href="/docs/assets/js/81.9d157ee8.js"><link rel="prefetch" href="/docs/assets/js/82.e9c6e562.js"><link rel="prefetch" href="/docs/assets/js/83.c6fffa2f.js"><link rel="prefetch" href="/docs/assets/js/84.cc4a02f6.js"><link rel="prefetch" href="/docs/assets/js/85.29d0da9d.js"><link rel="prefetch" href="/docs/assets/js/86.e9047ede.js"><link rel="prefetch" href="/docs/assets/js/87.09f39e44.js"><link rel="prefetch" href="/docs/assets/js/88.efd140af.js"><link rel="prefetch" href="/docs/assets/js/89.474b2ed7.js"><link rel="prefetch" href="/docs/assets/js/9.af7e6be7.js"><link rel="prefetch" href="/docs/assets/js/90.2ef5b1a6.js"><link rel="prefetch" href="/docs/assets/js/91.a21e1cc2.js"><link rel="prefetch" href="/docs/assets/js/92.b73e8681.js"><link rel="prefetch" href="/docs/assets/js/93.01ab8161.js"><link rel="prefetch" href="/docs/assets/js/94.563c47d4.js"><link rel="prefetch" href="/docs/assets/js/95.fb6e00b9.js"><link rel="prefetch" href="/docs/assets/js/96.bf30772b.js"><link rel="prefetch" href="/docs/assets/js/97.be0ca39f.js"><link rel="prefetch" href="/docs/assets/js/98.30214881.js"><link rel="prefetch" href="/docs/assets/js/99.927a9fed.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>大厂 H5 开发实战手册</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/1-大厂 H5 开发概述.html" class="sidebar-link">大厂 H5 开发概述</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/10-动效开发 6：动效之效.html" class="sidebar-link">动效开发 6：动效之效</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/11- 总结.html" class="sidebar-link">总结</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/2-基础页面开发.html" class="sidebar-link">基础页面开发</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/3-响应式页面开发.html" class="sidebar-link">响应式页面开发</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/4-滑屏应用开发.html" class="sidebar-link">滑屏应用开发</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/5-动效开发 1：让它动起来.html" class="active sidebar-link">动效开发 1：让它动起来</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/5-动效开发 1：让它动起来.html#css3-transition" class="sidebar-link">CSS3 Transition</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/5-动效开发 1：让它动起来.html#css3-animation" class="sidebar-link">CSS3 Animation</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/5-动效开发 1：让它动起来.html#小结" class="sidebar-link">小结</a></li></ul></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/6-动效开发 2：聊一聊 3D.html" class="sidebar-link">动效开发 2：聊一聊 3D</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/7-动效开发 3：补间动画.html" class="sidebar-link">动效开发 3：补间动画</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/8-动效开发 4：逐帧动画.html" class="sidebar-link">动效开发 4：逐帧动画</a></li><li><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/9- 动效开发 5：SVG 动画.html" class="sidebar-link">动效开发 5：SVG 动画</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="动效开发-1：让它动起来"><a href="#动效开发-1：让它动起来" class="header-anchor">#</a> 动效开发 1：让它动起来</h1> <p>在现实生活中，人们的大脑习惯了被动态的东西所吸引，适当的动画效果可以为网页添加有价值的交互和反馈，提升用户的情感体验。</p> <blockquote><p>情感设计的主要目标是促进人与人之间的沟通，即便媒介是网页。一旦我们在这方面做得到位，电脑本身将回归背后，而网页的个性化将因此得到凸显。<br>
+—— Aarron Walter，<a href="https://abookapart.com/products/designing-for-emotion" target="_blank" rel="noopener noreferrer"><em>Designing For Emotion</em><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 一书的作者</p></blockquote> <p>动画效果是情感设计的重要手段，从本小节开始，我们将为大家介绍「H5 开发」的第四个重要的能力 —— 「动画效果开发」，简称「动效开发」，即综合利用 JavaScript、CSS(3)、SVG、Canvas 等多种 Web 技术手段开发出动人的网页动态效果。</p> <p>回想下我们第 1 小节提及的 「H5 开发」三角形能力模型，「动效开发」处在三角形的上部，毫无疑问这项能力越强，在此岗位中的竞争力越大。</p> <p>动效开发 —— 先「动」而后「效」，为网页添加动态元素的方法有很多：</p> <ul><li>GIF、Flash —— 廉颇老矣，尚能饭否？</li> <li>视频 —— 可远观而不可亵玩焉</li> <li>CSS3 结合 JavaScript —— 当红小生</li></ul> <p>我们将把重心放在 CSS3 动画上面，因为 CSS3 在现如今的网页动效开发中占据着最为重要的一席，作为老大哥 CSS 的补充，它像是专门为「H5 开发」量身定制的动效武器。</p> <p>拿起这件武器准备杀出一条血路之前，得先找到它的扳机在哪里。</p> <h2 id="css3-transition"><a href="#css3-transition" class="header-anchor">#</a> CSS3 Transition</h2> <p>在 CSS3 的世界里，让网页元素动起来的第一个方法是利用 <code>transition</code>，基于 <code>transition</code> 可以让元素的某个 CSS 属性从指定的开始状态过渡到特定的结束状态。我们将元素「从指定的开始状态过渡到特定的结束状态」这个过程简称为「状态变换」，注意这里的<strong>过渡</strong>，事实上 <code>transition</code> 便像是页面元素「状态变换」的润滑剂，如果没有 <code>transition</code>，元素「状态变换」的过程将会显得生硬而突兀（如下图中左边的小圆球，<a href="https://codepen.io/mamboer/full/pLvLyv/" target="_blank" rel="noopener noreferrer">查看 DEMO<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）。</p> <p><img src="https://user-gold-cdn.xitu.io/2018/3/10/1620f2835b9b7448?w=950&amp;h=220&amp;f=gif&amp;s=97142" alt="transition"></p> <p><code>transition</code> 可作用于普通的 CSS 属性（如 <code>background</code> 、<code>opacity</code> …），也可以作用于 CSS3 出现时新引入的 <code>transform</code> 属性，而利用后者可以实现 3D 的过渡效果。<code>transform</code> 属性就像是 CSS3 这个动效武器子弹里的火药，大家可以通过 <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 的 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" target="_blank" rel="noopener noreferrer">《transform》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 一文进行进一步地了解学习，务必做到深谙其门道，避免一知半解。</p> <h3 id="一个-3d-过渡动效例子"><a href="#一个-3d-过渡动效例子" class="header-anchor">#</a> 一个 3D 过渡动效例子</h3> <p>如前面所说，利用 <code>transition</code> 结合 <code>transform</code> 可实现元素的 3D 过渡动效，所以我们这个例子的目标是：利用 <code>transform</code> 属性画一个立方体，然后利用 <code>transition</code> 实现立方体的翻转效果。大家不妨打开 <a href="https://codepen.io/" target="_blank" rel="noopener noreferrer">CodePen<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 按照以下步骤亲自动手试试，或者直接 <a href="https://codepen.io/mamboer/full/XEJqPy" target="_blank" rel="noopener noreferrer">查看 DEMO<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 体会最终的结果。</p> <h4 id="步骤-1-准备立方体的-html-代码"><a href="#步骤-1-准备立方体的-html-代码" class="header-anchor">#</a> 步骤 1 - 准备立方体的 HTML 代码</h4> <p>一个立方体（<code>.cube</code>）的 6 个面（<code>.cube-face</code>）。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div class=&quot;demo&quot;&gt;
+  &lt;div class=&quot;cube show-default&quot;&gt;
+    &lt;div class=&quot;cube-face is-front&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/1.jpg&quot; alt=&quot;pic1&quot;/&gt;&lt;/div&gt;
+    &lt;div class=&quot;cube-face is-back&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/2.jpg&quot; alt=&quot;pic2&quot;/&gt;&lt;/div&gt;
+    &lt;div class=&quot;cube-face is-right&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/3.jpg&quot; alt=&quot;pic3&quot;/&gt;&lt;/div&gt;
+    &lt;div class=&quot;cube-face is-left&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/4.jpg&quot; alt=&quot;pic4&quot;/&gt;&lt;/div&gt;
+    &lt;div class=&quot;cube-face is-top&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/5.jpg&quot; alt=&quot;pic5&quot;/&gt;&lt;/div&gt;
+    &lt;div class=&quot;cube-face is-bottom&quot;&gt;&lt;img src=&quot;https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/6.jpg&quot; alt=&quot;pic6&quot;/&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h4 id="步骤-2-利用-css-3-将-6-个面组装成立体形状的立方体"><a href="#步骤-2-利用-css-3-将-6-个面组装成立体形状的立方体" class="header-anchor">#</a> 步骤 2 - 利用 CSS(3) 将 6 个面组装成立体形状的立方体</h4> <blockquote><p>这里使用了 SCSS 样式预处理语言，如果你正在 CodePen 上跟着做，注意将样式预处理器（CSS Preprocessor）配置成为 SCSS。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>// demo styles
+$cube-size: 300px;
+$cube-radius: $cube-size / 2;
+.demo {
+  width: $cube-size;
+  height: $cube-size;
+  perspective: 1000px;
+  position: relative;
+  margin: 30px auto;
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  &amp;-face {
+    border: 2px solid #000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    opacity: 0.6;
+    backface-visibility: visible;
+    &amp;.is-front  {
+      transform: translateZ( $cube-radius );
+    }
+    &amp;.is-back   {
+      transform: rotateX( -180deg ) translateZ( $cube-radius );
+    }
+    &amp;.is-right {
+      transform: rotateY( 90deg ) translateZ( $cube-radius );
+    }
+    &amp;.is-left {
+      transform: rotateY( -90deg ) translateZ( $cube-radius );
+    }
+    &amp;.is-top {
+      transform: rotateX( 90deg ) translateZ( $cube-radius );
+    }
+    &amp;.is-bottom {
+      transform: rotateX( -90deg ) translateZ( $cube-radius );
+    }
+  }
+  img {
+    width: 100%;
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><p>至此，我们得到一个正面朝着我们的边长为 <code>300px</code> 的立方体，为了让它在网页上呈现 3D 的视觉效果，我们写了以下几行关键的代码：</p> <ol><li>利用 3D 旋转 <code>rotateX</code> 或 <code>rotateY</code>，以及 Z 轴位移 <code>translateZ</code> 来衔接拼装立方体的每一个面</li> <li>设置每一个面的背面可见性：<code>backface-visibility: visible</code>，注意这里前一行代码 <code>opacity: 0.6</code> 是辅助性的，而 <code>backface-visibility</code> 属性的默认值其实即 <code>visible</code>，这里写出来便于大家理解代码。</li> <li>在立方体的父级元素上设置透视距离：<code>perspective: 1000px</code></li> <li>在立方体上设置变形方式：<code>transform-style: preserve-3d</code></li></ol> <p>以上关键代码的关键 CSS 属性，在小册后面的「聊一聊 3D」小节中会有进一步的解读，这里就不多说了。读者也可自行在 <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 上搜到具体的说明资料，建议结合资料和本例子亲自把玩体会。</p> <h4 id="步骤-3-让立方体显得更立体点"><a href="#步骤-3-让立方体显得更立体点" class="header-anchor">#</a> 步骤 3 - 让立方体显得更立体点</h4> <p>为了让立方体默认看起来更立体点（不是单纯地正面对着我们），可以利用 <code>rotate</code> 将立方体在 X 和 Y 轴上各旋转 <code>15deg</code>，让它正面斜对着我们。</p> <p><strong>注意</strong>：以下代码需要合并到前面步骤 2 里的代码中去。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.cube {
+  ...
+  &amp;.show-default {
+    transform: translateZ( - $cube-radius ) rotateY( -15deg ) rotateX(-15deg);
+  }
+  &amp;.show-left {
+    transform: translateZ( - $cube-radius ) rotateY( 90deg );
+  }
+  &amp;-face {
+    ...
+    opacity: 0.9;
+    ...
+  }
+  ...
+}  
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>我们给立方体新增了两个表示状态的类 <code>show-default</code> 和 <code>show-left</code>，分别表示它「默认的展示状态 - 正面斜对着我们」和「左面正对着我们」，读者可以依样画葫芦添加另外几个面对着我们的样式代码。</p> <h4 id="步骤-4-设置立方体的-transition-属性"><a href="#步骤-4-设置立方体的-transition-属性" class="header-anchor">#</a> 步骤 4 - 设置立方体的 <code>transition</code> 属性</h4> <p>最后一步就是给立方体添加 <code>transition</code> 属性，让它的状态变换拥有过渡动画效果。</p> <p>通过查阅 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 资料可得 <code>transition</code> 的用法为：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.transition-target {
+  transition: &lt;property&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt;;
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>我们为立方体加上相应的代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.cube {
+  ...
+  // &lt;property&gt; = transform
+  // &lt;timing-function&gt; = ease
+  // &lt;duration&gt; = 1s
+  // &lt;delay&gt; = 0
+  transition: transform ease 1s;
+  ...
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>此时如果我们将立方体 <code>div</code> 容器的 <code>show-default</code> 类名替换成 <code>show-left</code>，就可以看到它左面旋转至我们眼前的 3D 效果啦。</p> <p>案例最终的效果如下图所示：</p> <p><img src="https://user-gold-cdn.xitu.io/2018/3/10/1620fe3acf281813?w=950&amp;h=376&amp;f=gif&amp;s=2510549" alt="3D transition"></p> <h3 id="transition-动画的局限性和适用性"><a href="#transition-动画的局限性和适用性" class="header-anchor">#</a> Transition 动画的局限性和适用性</h3> <p><code>transition</code> 实现的动画有下面这些特点：</p> <ol><li>支持有限的 CSS 属性</li></ol> <p>可通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_animated_properties" target="_blank" rel="noopener noreferrer">《CSS animated properties》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>一文查看支持过渡动效的 CSS 属性。</p> <ol start="2"><li>隐式过渡（implicit transitions）</li></ol> <p><code>transition</code> 的过渡动画是隐式的（如下图所示，图片来源于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>），即除了动画的开始状态和结束状态我们可以自定义之外，「状态变换」的具体过程由浏览器自动执行，中途无法进行人为干预。当然，我们还可以为浏览器执行动画时指定动画的具体时长（<code>duration</code>），以及时间轴函数（<code>timing function</code>）。</p> <p><img src="https://user-gold-cdn.xitu.io/2018/3/12/1621877fdfc0d719?w=706&amp;h=204&amp;f=png&amp;s=18685" alt="隐式过渡"></p> <ol start="3"><li>一次性、不可暂停或反转</li></ol> <p><code>transition</code> 只支持两个状态之间的变换过渡，不支持多个状态的连续变换过渡，并且状态的变换是一次性的（无法循环）， 不可暂停，且不可反转（从状态 A 过渡到 B 后不能立即又过渡回 A）。</p> <p>所以，在实际应用中我们常常利用 <code>transition</code> 来做那些轻量的、修饰性的动效，用于增强用户在网页上操作时得到的反馈。例如：</p> <ul><li>元素「hover」 或「点击」后的反馈</li> <li>弹窗「打开」或「关闭」时的效果</li> <li>…</li></ul> <h3 id="扩展阅读"><a href="#扩展阅读" class="header-anchor">#</a> 扩展阅读</h3> <ol><li>通过 Mozilla 的 <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 文档来了解 <code>transition</code> 的详细说明及使用示例：</li></ol> <ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" target="_blank" rel="noopener noreferrer">《Using CSS transitions》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <ol start="2"><li>结合 CodePen 代码示例了解 <code>transition</code> 和 <code>transform</code> 的相关属性:</li></ol> <ul><li><a href="https://robots.thoughtbot.com/transitions-and-transforms" target="_blank" rel="noopener noreferrer">《CSS Transitions and Transforms for Beginners》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <h2 id="css3-animation"><a href="#css3-animation" class="header-anchor">#</a> CSS3 Animation</h2> <p>如果我们想让元素的动效支持多个状态之间的连续过渡变换、支持循环，甚至支持暂停或反转，我们该怎么办？答案就是：<code>animation</code> – 利用 CSS3 让网页元素动起来的第二个方法。</p> <p>学习 <code>animation</code> 动画需首先掌握两个关键的基本知识点：</p> <ul><li>关键帧（<code>@keyframes</code>）</li> <li><code>animation</code> 属性</li></ul> <h3 id="关键帧（-keyframes）"><a href="#关键帧（-keyframes）" class="header-anchor">#</a> 关键帧（<code>@keyframes</code>）</h3> <p><code>@keyframes</code> 用来定义动画的具体内容，它包括以下内容：</p> <ul><li>动画叫什么名字？</li> <li>动画开始、中间及结束状态有哪些？（可以理解成每个状态对应一个关键帧）</li> <li>每个状态出现在动画过程中的哪个时间点？</li></ul> <p>我们来瞅一个 <code>@keyframes</code> 的实际例子，来源于有名的 <code>animation</code> 动画库 <a href="https://daneden.github.io/animate.css/" target="_blank" rel="noopener noreferrer">Animate.css<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，其中的「<a href="https://github.com/daneden/animate.css/blob/master/source/bouncing_entrances/bounceIn.css" target="_blank" rel="noopener noreferrer">bounceIn<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>」动效的关键帧代码如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><p>显然，这段关键帧的代码做了以下事情：</p> <ul><li>定义了动画的名称为「bounceIn」</li> <li>将动画过程划分成了 6 个状态（6 个关键帧）</li> <li>除了开始和结束这两个时间位置外，另外 4 个关键帧的时间位置分别为：20%、40%、60% 和 80%</li></ul> <h3 id="animation-属性"><a href="#animation-属性" class="header-anchor">#</a> <code>animation</code> 属性</h3> <p>细心的读者会发现上面示例中的 <code>animation-timing-function</code> 相关代码，其实是 <code>animation</code> 属性相关的知识点，除了关键帧之外，谙熟 <code>animation</code> 属性（及其“子”属性）的具体含义及用法，也是学习 <code>animation</code> 动效的基本要求。</p> <p><code>@keyframes</code> 用来定义一个动画的具体状态内容，而 <code>animation</code> 属性用来定义一个元素执行某个动画时的相关动画设定，包括：</p> <ul><li>指定元素用什么动画？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name" target="_blank" rel="noopener noreferrer">animation-name<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>动画的持续时间是多少？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration" target="_blank" rel="noopener noreferrer">animation-duration<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>浏览器用什么样的时间轴函数来执行该动画？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function" target="_blank" rel="noopener noreferrer">animation-timing-function<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>是否需要延时执行该动画？(<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay" target="_blank" rel="noopener noreferrer">animation-delay<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>)</li> <li>动画循环执行的次数是多少？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count" target="_blank" rel="noopener noreferrer">animation-iteration-count<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>动画执行的方向是什么？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction" target="_blank" rel="noopener noreferrer">animation-direction<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>动画填充模式是什么？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode" target="_blank" rel="noopener noreferrer">animation-fill-mode<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li> <li>动画执行状态是运行还是暂停？（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state" target="_blank" rel="noopener noreferrer">animation-play-state<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li></ul> <p>对于 <code>animation</code> 相关属性的介绍和使用示例，可以在 <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer">MDN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 找到十分详尽的资料，这里就不搬运了，读者可以点击括号内的链接进行逐一学习。</p> <p>值得一提的是，<code>animation</code> 动画的延时可以设置为负值（<a href="https://codepen.io/mamboer/pen/ZxGdpE" target="_blank" rel="noopener noreferrer">试试看<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>），善用负值的 <code>animation-delay</code> 有时候可以用最少的代码实现出乎意料的动效。</p> <p><img src="https://user-gold-cdn.xitu.io/2018/3/12/1621a4bc7d9c9595?w=950&amp;h=350&amp;f=gif&amp;s=575776" alt="负值animation-delay"></p> <p>上图的案例（<a href="https://codepen.io/mamboer/full/xWGvqj" target="_blank" rel="noopener noreferrer">查看 DEMO<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）来源于<a href="https://css-tricks.com/css-animation-tricks/" target="_blank" rel="noopener noreferrer">《CSS Animation Tricks: State Jumping, Negative Delays, Animating Origin, and More》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 一文，利用负值 <code>animation-delay</code> 复用同一个动画轻松实现。相同的效果如果用 GIF 或 <code>transition</code> 来实现的话，恐怕会复杂很多。</p> <h3 id="例子-让立方体自己转起来"><a href="#例子-让立方体自己转起来" class="header-anchor">#</a> 例子 - 让立方体自己转起来</h3> <p>为了更好地体会 <code>transition</code> 和 <code>animation</code> 两者做动效的异同之处，我们接下来试着利用 <code>animation</code> 改写前面 <code>transition</code> 做的立方体例子，让它自己转动起来。</p> <h4 id="步骤-1-利用-keyframes-定义转动的动画"><a href="#步骤-1-利用-keyframes-定义转动的动画" class="header-anchor">#</a> 步骤 1 - 利用 <code>@keyframes</code> 定义转动的动画</h4> <p>定义一个名为「autoRotate」的关键帧动画，并将 <code>transition</code> 版本例子中显示立方体每一面的代码搬到 <code>@keyframes</code> 中去。 立方体有 6 个面，所以我们把整个动画划分为 6 个关键帧，如下所示：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@keyframes autoRotate {
+  // show-front
+  0%, 100% {
+    transform: translateZ( - $cube-radius );
+  }
+  // show-back
+  16.5% {
+    transform: translateZ( - $cube-radius ) rotateX( -180deg );
+  }
+  // show-left
+  33% {
+    transform: translateZ( - $cube-radius ) rotateY( 90deg );
+  }
+  // show-right
+  49.5% {
+    transform: translateZ( - $cube-radius ) rotateY( -90deg );
+  }
+  // show-top
+  66% {
+    transform: translateZ( - $cube-radius ) rotateX( -90deg );
+  }
+  // show-bottom 
+  82.5% {
+    transform: translateZ( - $cube-radius ) rotateX( 90deg );
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h4 id="步骤2-将-transition-属性替换成-animation-属性"><a href="#步骤2-将-transition-属性替换成-animation-属性" class="header-anchor">#</a> 步骤2 - 将 <code>transition</code> 属性替换成 <code>animation</code> 属性</h4> <p>利用 <code>animation</code> 属性，在立方体上应用我们前面定义的「autoRotate」动画，并做以下设定：</p> <ul><li>时间轴函数（<code>animation-timing-function</code>）为 <code>ease</code></li> <li>持续时间（<code>animation-duration</code>）为 18 秒</li> <li>执行次数（<code>animation-iteration-count</code>）为 <code>infinite</code>，即无限次</li> <li>执行方向（<code>animation-direction</code>）为 <code>alternate</code>，即正、反向交替执行</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>// transition: transform ease 1s;
+animation: autoRotate ease 18s alternate infinite;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>以上两个简单的步骤完成了 <code>animation</code> 替代 <code>transition</code> 实现更丰富的动效，读者可以通过 <a href="https://codepen.io/mamboer/pen/bvVbxv" target="_blank" rel="noopener noreferrer">查看完整示例代码<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 并修改 <code>animation</code> 属性的其他设定（如 <code>animation-play-state</code> 等）来加深体会。</p> <h3 id="扩展阅读-2"><a href="#扩展阅读-2" class="header-anchor">#</a> 扩展阅读</h3> <ol><li>结合 CodePen 案例学习 <code>animation</code> 的每一个属性：<a href="https://robots.thoughtbot.com/css-animation-for-beginners" target="_blank" rel="noopener noreferrer">CSS Animation for Beginners<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li>学习 <code>animation</code> 动画的小奇巧：<a href="https://css-tricks.com/css-animation-tricks/" target="_blank" rel="noopener noreferrer">CSS Animation Tricks: State Jumping, Negative Delays, Animating Origin, and More<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ol> <h2 id="小结"><a href="#小结" class="header-anchor">#</a> 小结</h2> <p>动效开发以「动」为始，本小节结合示例介绍了利用 CSS3 让网页元素动起来的两种方法——<code>transition</code> 和 <code>animation</code>，通过对比和结合来加深读者对这两种方法制作动效的理解与体会。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">2/25/2021, 7:37:04 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/4-滑屏应用开发.html" class="prev">
+        滑屏应用开发
+      </a></span> <span class="next"><a href="/docs/前端/我购买的书籍/大厂 H5 开发实战手册/6-动效开发 2：聊一聊 3D.html">
+        动效开发 2：聊一聊 3D
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.9f53ed1a.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/133.7b979069.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>

@@ -1,7 +1,6 @@
 ---
 layout: post
-title:   更灵活的组件：Render 函数与 Functional Render
-
+title:  更灵活的组件：Render 函数与 Functional Render
 ---
 
 
@@ -110,20 +109,20 @@ h 有 3 个参数，分别是：
 
 1.  要渲染的元素或组件，可以是一个 html 标签、组件选项或一个函数（不常用），该参数为必填项。示例：
 
-    ```
+ ```
     // 1. html 标签
     h('div');
     // 2. 组件选项
     import DatePicker from '../component/date-picker.vue';
     h(DatePicker);
 
-    ```
+```
 
 2.  对应属性的数据对象，比如组件的 props、元素的 class、绑定的事件、slot、自定义指令等，该参数是可选的，上文所说的 Render 配置项多，指的就是这个参数。该参数的完整配置和示例，可以到 Vue.js 的文档查看，没必要全部记住，用到时查阅就好：[createElement 参数](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)。
 
 3.  子节点，可选，String 或 Array，它同样是一个 h。示例：
 
-    ```
+```
     [
     '内容',
     h('p', '内容'),
@@ -134,7 +133,7 @@ h 有 3 个参数，分别是：
     })
     ]
 
-    ```
+```
 
 ### 约束
 
@@ -229,6 +228,7 @@ export default {
 
 ```
 
+
 在 Render 函数里创建了一个 cloneVNode 的工厂函数，通过递归将 slot 所有子节点都克隆了一份，并对 VNode 的关键属性也进行了复制。
 
 深度克隆 slot 并非 Vue.js 内置方法，也没有得到推荐，属于黑科技，在一些特殊的场景才会使用到，正常业务几乎是用不到的。比如 iView 组件库的穿梭框组件 Transfer，就用到了这种方法：
@@ -259,30 +259,32 @@ export default {
 
 1.  使用两个相同 slot。在 template 中，Vue.js 不允许使用两个相同的 slot，比如下面的示例是错误的：
 
-    ```
+```
     <template>
-    ```
+   
   <div>
     <slot></slot>
     <slot></slot>
   </div>
     </template>
     
-    ```
+```
     
     解决方案就是上文中讲到的**约束**，使用一个深度克隆 VNode 节点的方法。
 
 2.  在 SSR 环境（服务端渲染），如果不是常规的 template 写法，比如通过 Vue.extend 和 new Vue 构造来生成的组件实例，是编译不过的，在前面小节也有所介绍。回顾上一节的 `$Alert` 组件的 notification.js 文件，当时是使用 Render 函数来渲染 Alert 组件，如果改成另一种写法，在 SSR 中会报错，对比两种写法：
 
-    ```
+```
     // 正确写法
     import Alert from './alert.vue';
     import Vue from 'vue';
 
     Alert.newInstance = properties => {
     const props = properties || {};
-    ```
-  ```
+```
+
+
+```
 
   const Instance = new Vue({
     data: props,
@@ -310,9 +312,9 @@ export default {
 
     export default Alert;
     
-  ```
+```
 
-    ```
+```
     // 在 SSR 下报错的写法
     import Alert from './alert.vue';
     import Vue from 'vue';
@@ -344,7 +346,7 @@ export default {
 
     export default Alert;
     
-    ```
+```
 
 3.  在 runtime 版本的 Vue.js 中，如果使用 Vue.extend 手动构造一个实例，使用 template 选项是会报错的，在第 9 节中也有所介绍。解决方案也很简单，把 template 改写为 Render 就可以了。需要注意的是，在开发独立组件时，可以通过配置 Vue.js 版本来使 template 选项可用，但这是在自己的环境，无法保证使用者的 Vue.js 版本，所以对于提供给他人用的组件，是需要考虑兼容 runtime 版本和 SSR 环境的。
 
@@ -367,7 +369,7 @@ Vue.js 提供了一个 `functional` 的布尔值选项，设置为 true 可以�
 
 1.  首先创建一个函数化组件 **render.js**：
 
-    ```
+```
     // render.js
     export default {
     functional: true,
@@ -379,16 +381,16 @@ Vue.js 提供了一个 `functional` 的布尔值选项，设置为 true 可以�
     }
     };
 
-    ```
+```
 
-    它只定义了一个 props：render，格式为 Function，因为是 functional，所以在 render 里使用了第二个参数 `ctx` 来获取 props。这是一个中间文件，并且可以复用，其它组件需要这个功能时，都可以引入它。
+它只定义了一个 props：render，格式为 Function，因为是 functional，所以在 render 里使用了第二个参数 `ctx` 来获取 props。这是一个中间文件，并且可以复用，其它组件需要这个功能时，都可以引入它。
 
 2.  创建组件：
 
-    ```
+```
     <!-- my-component.vue -->
     <template>
-    ```
+    
   <div>
     <Render :render="render"></Render>
   </div>
@@ -404,14 +406,15 @@ Vue.js 提供了一个 `functional` 的布尔值选项，设置为 true 可以�
   }
     </script>
 
-    ```
+```
 
 3.  使用上面的 my-compoennt 组件：
 
-    ```
+
+```
     <!-- demo.vue -->
     <template>
-    ```
+   
   <div>
     <my-component :render="render"></my-component>
   </div>
@@ -435,7 +438,7 @@ Vue.js 提供了一个 `functional` 的布尔值选项，设置为 true 可以�
   }
     </script>
 
-    ```
+```
 
 这里的 render.js 因为只是把 demo.vue 中的 Render 内容过继，并无其它用处，所以用了 Functional Render。
 

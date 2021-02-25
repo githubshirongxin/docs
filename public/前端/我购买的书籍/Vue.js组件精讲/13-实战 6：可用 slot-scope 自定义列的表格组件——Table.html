@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>实战 6：可用 slot-scope 自定义列的表格组件——Table实战 | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.9f53ed1a.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/94.563c47d4.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.b793d276.js"><link rel="prefetch" href="/docs/assets/js/100.0308e105.js"><link rel="prefetch" href="/docs/assets/js/101.4b75d1c5.js"><link rel="prefetch" href="/docs/assets/js/102.e92dbebe.js"><link rel="prefetch" href="/docs/assets/js/103.15453cb7.js"><link rel="prefetch" href="/docs/assets/js/104.076fbb6f.js"><link rel="prefetch" href="/docs/assets/js/105.d066c65c.js"><link rel="prefetch" href="/docs/assets/js/106.14cd96f3.js"><link rel="prefetch" href="/docs/assets/js/107.8965711d.js"><link rel="prefetch" href="/docs/assets/js/108.95bda9f8.js"><link rel="prefetch" href="/docs/assets/js/109.e97a61b3.js"><link rel="prefetch" href="/docs/assets/js/11.7fd2cb27.js"><link rel="prefetch" href="/docs/assets/js/110.724a7f61.js"><link rel="prefetch" href="/docs/assets/js/111.c1081b06.js"><link rel="prefetch" href="/docs/assets/js/112.1aefa311.js"><link rel="prefetch" href="/docs/assets/js/113.8e59756a.js"><link rel="prefetch" href="/docs/assets/js/114.4ad9f23a.js"><link rel="prefetch" href="/docs/assets/js/115.c2e5b1ba.js"><link rel="prefetch" href="/docs/assets/js/116.b055b179.js"><link rel="prefetch" href="/docs/assets/js/117.5faa5e40.js"><link rel="prefetch" href="/docs/assets/js/118.5fdc4d70.js"><link rel="prefetch" href="/docs/assets/js/119.dcb7fe08.js"><link rel="prefetch" href="/docs/assets/js/12.0d27e102.js"><link rel="prefetch" href="/docs/assets/js/120.296bb656.js"><link rel="prefetch" href="/docs/assets/js/121.45a37125.js"><link rel="prefetch" href="/docs/assets/js/122.fbd1771c.js"><link rel="prefetch" href="/docs/assets/js/123.69f9d5b5.js"><link rel="prefetch" href="/docs/assets/js/124.0bb30db3.js"><link rel="prefetch" href="/docs/assets/js/125.c1c8700c.js"><link rel="prefetch" href="/docs/assets/js/126.74913a3d.js"><link rel="prefetch" href="/docs/assets/js/127.23f6f081.js"><link rel="prefetch" href="/docs/assets/js/128.b3df328b.js"><link rel="prefetch" href="/docs/assets/js/129.d8c3064f.js"><link rel="prefetch" href="/docs/assets/js/13.14986227.js"><link rel="prefetch" href="/docs/assets/js/130.94c84187.js"><link rel="prefetch" href="/docs/assets/js/131.59ca6009.js"><link rel="prefetch" href="/docs/assets/js/132.727d2363.js"><link rel="prefetch" href="/docs/assets/js/133.7b979069.js"><link rel="prefetch" href="/docs/assets/js/134.1cec71fa.js"><link rel="prefetch" href="/docs/assets/js/135.9dd30e69.js"><link rel="prefetch" href="/docs/assets/js/136.6a07e37d.js"><link rel="prefetch" href="/docs/assets/js/137.bfbac9f3.js"><link rel="prefetch" href="/docs/assets/js/138.4d253931.js"><link rel="prefetch" href="/docs/assets/js/139.c524b655.js"><link rel="prefetch" href="/docs/assets/js/14.35b1256f.js"><link rel="prefetch" href="/docs/assets/js/140.6240c960.js"><link rel="prefetch" href="/docs/assets/js/141.a6f318d4.js"><link rel="prefetch" href="/docs/assets/js/142.142870fc.js"><link rel="prefetch" href="/docs/assets/js/143.3917fdb0.js"><link rel="prefetch" href="/docs/assets/js/144.016f6729.js"><link rel="prefetch" href="/docs/assets/js/145.29051a1b.js"><link rel="prefetch" href="/docs/assets/js/146.b89f4b58.js"><link rel="prefetch" href="/docs/assets/js/147.781f06a8.js"><link rel="prefetch" href="/docs/assets/js/148.7c4c8501.js"><link rel="prefetch" href="/docs/assets/js/149.ab7f275b.js"><link rel="prefetch" href="/docs/assets/js/15.461b8311.js"><link rel="prefetch" href="/docs/assets/js/150.d18cca0c.js"><link rel="prefetch" href="/docs/assets/js/151.0e3716e7.js"><link rel="prefetch" href="/docs/assets/js/152.b4c4db45.js"><link rel="prefetch" href="/docs/assets/js/153.a4b80fc3.js"><link rel="prefetch" href="/docs/assets/js/154.db35d609.js"><link rel="prefetch" href="/docs/assets/js/155.b0781fa7.js"><link rel="prefetch" href="/docs/assets/js/156.cbd6f82b.js"><link rel="prefetch" href="/docs/assets/js/157.7800b3e6.js"><link rel="prefetch" href="/docs/assets/js/158.fcdc3748.js"><link rel="prefetch" href="/docs/assets/js/159.56ab3bf0.js"><link rel="prefetch" href="/docs/assets/js/16.721d35b8.js"><link rel="prefetch" href="/docs/assets/js/160.11733cde.js"><link rel="prefetch" href="/docs/assets/js/161.5aeeb31b.js"><link rel="prefetch" href="/docs/assets/js/162.ffd2b692.js"><link rel="prefetch" href="/docs/assets/js/163.987a2f50.js"><link rel="prefetch" href="/docs/assets/js/164.18255d82.js"><link rel="prefetch" href="/docs/assets/js/165.f70fb60a.js"><link rel="prefetch" href="/docs/assets/js/166.7106568d.js"><link rel="prefetch" href="/docs/assets/js/167.ecdfbf07.js"><link rel="prefetch" href="/docs/assets/js/168.bb52f478.js"><link rel="prefetch" href="/docs/assets/js/169.700771aa.js"><link rel="prefetch" href="/docs/assets/js/17.07e47d44.js"><link rel="prefetch" href="/docs/assets/js/170.d7c73701.js"><link rel="prefetch" href="/docs/assets/js/171.72f8a7ef.js"><link rel="prefetch" href="/docs/assets/js/172.8a0d766c.js"><link rel="prefetch" href="/docs/assets/js/173.4f320ecd.js"><link rel="prefetch" href="/docs/assets/js/174.d6153b40.js"><link rel="prefetch" href="/docs/assets/js/175.98aa34ff.js"><link rel="prefetch" href="/docs/assets/js/176.307a84e6.js"><link rel="prefetch" href="/docs/assets/js/177.0d8617d2.js"><link rel="prefetch" href="/docs/assets/js/178.49ef23ab.js"><link rel="prefetch" href="/docs/assets/js/179.460f1c94.js"><link rel="prefetch" href="/docs/assets/js/18.1201a4f6.js"><link rel="prefetch" href="/docs/assets/js/180.42212e45.js"><link rel="prefetch" href="/docs/assets/js/181.50cbd4cd.js"><link rel="prefetch" href="/docs/assets/js/182.96a972bd.js"><link rel="prefetch" href="/docs/assets/js/183.393655bc.js"><link rel="prefetch" href="/docs/assets/js/184.a4111889.js"><link rel="prefetch" href="/docs/assets/js/185.c1e4cb2b.js"><link rel="prefetch" href="/docs/assets/js/186.f2e3d4fb.js"><link rel="prefetch" href="/docs/assets/js/187.a19c91d4.js"><link rel="prefetch" href="/docs/assets/js/188.f347fe64.js"><link rel="prefetch" href="/docs/assets/js/189.56f5f86a.js"><link rel="prefetch" href="/docs/assets/js/19.65173ce7.js"><link rel="prefetch" href="/docs/assets/js/190.700ac378.js"><link rel="prefetch" href="/docs/assets/js/191.d3d0ea82.js"><link rel="prefetch" href="/docs/assets/js/192.8f5e6f18.js"><link rel="prefetch" href="/docs/assets/js/193.2f824822.js"><link rel="prefetch" href="/docs/assets/js/194.04d82cfa.js"><link rel="prefetch" href="/docs/assets/js/195.0feaceff.js"><link rel="prefetch" href="/docs/assets/js/196.49856e45.js"><link rel="prefetch" href="/docs/assets/js/197.f71c1ec5.js"><link rel="prefetch" href="/docs/assets/js/198.84f8a007.js"><link rel="prefetch" href="/docs/assets/js/199.9087c0e0.js"><link rel="prefetch" href="/docs/assets/js/20.e4c7bd66.js"><link rel="prefetch" href="/docs/assets/js/200.2aa6cd75.js"><link rel="prefetch" href="/docs/assets/js/201.ff985140.js"><link rel="prefetch" href="/docs/assets/js/202.614944ad.js"><link rel="prefetch" href="/docs/assets/js/203.ad49fb39.js"><link rel="prefetch" href="/docs/assets/js/204.7e28a85a.js"><link rel="prefetch" href="/docs/assets/js/205.9ec47697.js"><link rel="prefetch" href="/docs/assets/js/206.2048bddc.js"><link rel="prefetch" href="/docs/assets/js/207.7d61fabd.js"><link rel="prefetch" href="/docs/assets/js/208.f007a6c1.js"><link rel="prefetch" href="/docs/assets/js/209.7dfd3514.js"><link rel="prefetch" href="/docs/assets/js/21.17ccefef.js"><link rel="prefetch" href="/docs/assets/js/210.a5fdc794.js"><link rel="prefetch" href="/docs/assets/js/211.e2beca7b.js"><link rel="prefetch" href="/docs/assets/js/212.876876eb.js"><link rel="prefetch" href="/docs/assets/js/213.53086fde.js"><link rel="prefetch" href="/docs/assets/js/214.fd32a6a8.js"><link rel="prefetch" href="/docs/assets/js/215.302d4d91.js"><link rel="prefetch" href="/docs/assets/js/216.b8410dc5.js"><link rel="prefetch" href="/docs/assets/js/217.60351612.js"><link rel="prefetch" href="/docs/assets/js/218.797fccf9.js"><link rel="prefetch" href="/docs/assets/js/219.c778b799.js"><link rel="prefetch" href="/docs/assets/js/22.a2412fbf.js"><link rel="prefetch" href="/docs/assets/js/220.7d56d728.js"><link rel="prefetch" href="/docs/assets/js/221.2345142e.js"><link rel="prefetch" href="/docs/assets/js/222.7b67404c.js"><link rel="prefetch" href="/docs/assets/js/223.5e9f1550.js"><link rel="prefetch" href="/docs/assets/js/224.f8c4c372.js"><link rel="prefetch" href="/docs/assets/js/225.09b40d30.js"><link rel="prefetch" href="/docs/assets/js/226.42b343b5.js"><link rel="prefetch" href="/docs/assets/js/227.cca0dd5d.js"><link rel="prefetch" href="/docs/assets/js/228.d17560ee.js"><link rel="prefetch" href="/docs/assets/js/229.e0a0782c.js"><link rel="prefetch" href="/docs/assets/js/23.bcc31ac7.js"><link rel="prefetch" href="/docs/assets/js/230.ca94821c.js"><link rel="prefetch" href="/docs/assets/js/231.c93ad033.js"><link rel="prefetch" href="/docs/assets/js/232.0c214c80.js"><link rel="prefetch" href="/docs/assets/js/233.d8db8588.js"><link rel="prefetch" href="/docs/assets/js/234.497286af.js"><link rel="prefetch" href="/docs/assets/js/235.f7a838bd.js"><link rel="prefetch" href="/docs/assets/js/236.841ec1bb.js"><link rel="prefetch" href="/docs/assets/js/237.02ff4e17.js"><link rel="prefetch" href="/docs/assets/js/238.220c9aa3.js"><link rel="prefetch" href="/docs/assets/js/239.1c047adf.js"><link rel="prefetch" href="/docs/assets/js/24.2719ac0a.js"><link rel="prefetch" href="/docs/assets/js/240.03c59a23.js"><link rel="prefetch" href="/docs/assets/js/241.dc44941e.js"><link rel="prefetch" href="/docs/assets/js/242.f62c471c.js"><link rel="prefetch" href="/docs/assets/js/243.f076ea2b.js"><link rel="prefetch" href="/docs/assets/js/244.60ba0fba.js"><link rel="prefetch" href="/docs/assets/js/245.0abfe782.js"><link rel="prefetch" href="/docs/assets/js/246.c27a39d7.js"><link rel="prefetch" href="/docs/assets/js/247.6186db9b.js"><link rel="prefetch" href="/docs/assets/js/248.f30e35dc.js"><link rel="prefetch" href="/docs/assets/js/249.cc736afd.js"><link rel="prefetch" href="/docs/assets/js/25.1a199685.js"><link rel="prefetch" href="/docs/assets/js/250.62f3319c.js"><link rel="prefetch" href="/docs/assets/js/251.940d83dc.js"><link rel="prefetch" href="/docs/assets/js/252.728eee91.js"><link rel="prefetch" href="/docs/assets/js/253.52b05d68.js"><link rel="prefetch" href="/docs/assets/js/254.6170779d.js"><link rel="prefetch" href="/docs/assets/js/255.776ba372.js"><link rel="prefetch" href="/docs/assets/js/256.eebb5efc.js"><link rel="prefetch" href="/docs/assets/js/257.2d25d404.js"><link rel="prefetch" href="/docs/assets/js/258.28491a0e.js"><link rel="prefetch" href="/docs/assets/js/259.36ec1fb2.js"><link rel="prefetch" href="/docs/assets/js/26.611c819f.js"><link rel="prefetch" href="/docs/assets/js/260.27b2d8c1.js"><link rel="prefetch" href="/docs/assets/js/261.395c9bff.js"><link rel="prefetch" href="/docs/assets/js/262.1b00205e.js"><link rel="prefetch" href="/docs/assets/js/263.1712e6e3.js"><link rel="prefetch" href="/docs/assets/js/264.3078600c.js"><link rel="prefetch" href="/docs/assets/js/265.fb14b6d8.js"><link rel="prefetch" href="/docs/assets/js/266.e927ec6e.js"><link rel="prefetch" href="/docs/assets/js/267.e193a448.js"><link rel="prefetch" href="/docs/assets/js/268.225a1d3d.js"><link rel="prefetch" href="/docs/assets/js/269.b48572a5.js"><link rel="prefetch" href="/docs/assets/js/27.fa5721a1.js"><link rel="prefetch" href="/docs/assets/js/270.2e0e27b0.js"><link rel="prefetch" href="/docs/assets/js/271.b60a9196.js"><link rel="prefetch" href="/docs/assets/js/272.b8431166.js"><link rel="prefetch" href="/docs/assets/js/273.5acef50d.js"><link rel="prefetch" href="/docs/assets/js/274.303fe53c.js"><link rel="prefetch" href="/docs/assets/js/275.4ed7df31.js"><link rel="prefetch" href="/docs/assets/js/276.083b836c.js"><link rel="prefetch" href="/docs/assets/js/277.8323533a.js"><link rel="prefetch" href="/docs/assets/js/278.2737e642.js"><link rel="prefetch" href="/docs/assets/js/279.405ede8f.js"><link rel="prefetch" href="/docs/assets/js/28.02f9ac08.js"><link rel="prefetch" href="/docs/assets/js/280.0e9c99e1.js"><link rel="prefetch" href="/docs/assets/js/281.d2f75daa.js"><link rel="prefetch" href="/docs/assets/js/282.7c653cc1.js"><link rel="prefetch" href="/docs/assets/js/283.4b9894ca.js"><link rel="prefetch" href="/docs/assets/js/284.99dc2c38.js"><link rel="prefetch" href="/docs/assets/js/285.4076427f.js"><link rel="prefetch" href="/docs/assets/js/286.a6a5c723.js"><link rel="prefetch" href="/docs/assets/js/287.655e3908.js"><link rel="prefetch" href="/docs/assets/js/288.080ce3b8.js"><link rel="prefetch" href="/docs/assets/js/289.011bf324.js"><link rel="prefetch" href="/docs/assets/js/29.091c7456.js"><link rel="prefetch" href="/docs/assets/js/290.e42f97f1.js"><link rel="prefetch" href="/docs/assets/js/291.6a8e7c10.js"><link rel="prefetch" href="/docs/assets/js/292.f18d676e.js"><link rel="prefetch" href="/docs/assets/js/293.fda998ad.js"><link rel="prefetch" href="/docs/assets/js/294.f17522ef.js"><link rel="prefetch" href="/docs/assets/js/295.94509d46.js"><link rel="prefetch" href="/docs/assets/js/296.da0c1ae6.js"><link rel="prefetch" href="/docs/assets/js/297.a770e16c.js"><link rel="prefetch" href="/docs/assets/js/298.51043991.js"><link rel="prefetch" href="/docs/assets/js/299.073afa2a.js"><link rel="prefetch" href="/docs/assets/js/30.a6f8c690.js"><link rel="prefetch" href="/docs/assets/js/300.f3539f89.js"><link rel="prefetch" href="/docs/assets/js/301.f7978781.js"><link rel="prefetch" href="/docs/assets/js/302.7a8267da.js"><link rel="prefetch" href="/docs/assets/js/303.f9a7e61f.js"><link rel="prefetch" href="/docs/assets/js/304.62d38b06.js"><link rel="prefetch" href="/docs/assets/js/305.0200d7d6.js"><link rel="prefetch" href="/docs/assets/js/306.8a2705a6.js"><link rel="prefetch" href="/docs/assets/js/307.2d4adcf0.js"><link rel="prefetch" href="/docs/assets/js/308.860af110.js"><link rel="prefetch" href="/docs/assets/js/309.3f26d144.js"><link rel="prefetch" href="/docs/assets/js/31.07a8346f.js"><link rel="prefetch" href="/docs/assets/js/310.6d545b11.js"><link rel="prefetch" href="/docs/assets/js/311.3ec8d57d.js"><link rel="prefetch" href="/docs/assets/js/312.15bde9ec.js"><link rel="prefetch" href="/docs/assets/js/313.2a1e6c15.js"><link rel="prefetch" href="/docs/assets/js/314.5a9ea92d.js"><link rel="prefetch" href="/docs/assets/js/315.ce850a23.js"><link rel="prefetch" href="/docs/assets/js/316.7acfcb96.js"><link rel="prefetch" href="/docs/assets/js/317.0f40910a.js"><link rel="prefetch" href="/docs/assets/js/318.a746c6dd.js"><link rel="prefetch" href="/docs/assets/js/319.20c852f0.js"><link rel="prefetch" href="/docs/assets/js/32.97333c81.js"><link rel="prefetch" href="/docs/assets/js/320.01e01bcc.js"><link rel="prefetch" href="/docs/assets/js/321.e69c2bd3.js"><link rel="prefetch" href="/docs/assets/js/322.145bf3a7.js"><link rel="prefetch" href="/docs/assets/js/323.ea3e3711.js"><link rel="prefetch" href="/docs/assets/js/324.b77b6154.js"><link rel="prefetch" href="/docs/assets/js/325.5c11e833.js"><link rel="prefetch" href="/docs/assets/js/326.032eeb23.js"><link rel="prefetch" href="/docs/assets/js/327.204fa9a1.js"><link rel="prefetch" href="/docs/assets/js/328.1608ee60.js"><link rel="prefetch" href="/docs/assets/js/329.b1ea8849.js"><link rel="prefetch" href="/docs/assets/js/33.f0a5723a.js"><link rel="prefetch" href="/docs/assets/js/330.ce69d8ba.js"><link rel="prefetch" href="/docs/assets/js/331.1e7a8661.js"><link rel="prefetch" href="/docs/assets/js/332.09666ed1.js"><link rel="prefetch" href="/docs/assets/js/333.2bd7c1f8.js"><link rel="prefetch" href="/docs/assets/js/334.c8f00c32.js"><link rel="prefetch" href="/docs/assets/js/335.dbc08a39.js"><link rel="prefetch" href="/docs/assets/js/336.0a531bde.js"><link rel="prefetch" href="/docs/assets/js/337.d4fd409a.js"><link rel="prefetch" href="/docs/assets/js/338.775846b7.js"><link rel="prefetch" href="/docs/assets/js/339.5a0f78f4.js"><link rel="prefetch" href="/docs/assets/js/34.575b5509.js"><link rel="prefetch" href="/docs/assets/js/340.a008e526.js"><link rel="prefetch" href="/docs/assets/js/341.10a3b547.js"><link rel="prefetch" href="/docs/assets/js/342.cfe4130b.js"><link rel="prefetch" href="/docs/assets/js/343.de582474.js"><link rel="prefetch" href="/docs/assets/js/344.8489dee3.js"><link rel="prefetch" href="/docs/assets/js/345.f43f3a63.js"><link rel="prefetch" href="/docs/assets/js/346.c11bbfd9.js"><link rel="prefetch" href="/docs/assets/js/347.3b387ba0.js"><link rel="prefetch" href="/docs/assets/js/348.558a96d1.js"><link rel="prefetch" href="/docs/assets/js/349.ef2dd531.js"><link rel="prefetch" href="/docs/assets/js/35.1439964e.js"><link rel="prefetch" href="/docs/assets/js/350.18208b0d.js"><link rel="prefetch" href="/docs/assets/js/351.4e35dbae.js"><link rel="prefetch" href="/docs/assets/js/352.31e49d69.js"><link rel="prefetch" href="/docs/assets/js/353.5835e31b.js"><link rel="prefetch" href="/docs/assets/js/354.e8acb3cd.js"><link rel="prefetch" href="/docs/assets/js/355.83e2a31f.js"><link rel="prefetch" href="/docs/assets/js/356.528ea521.js"><link rel="prefetch" href="/docs/assets/js/357.7c769794.js"><link rel="prefetch" href="/docs/assets/js/358.fb1b572a.js"><link rel="prefetch" href="/docs/assets/js/359.2e1ac221.js"><link rel="prefetch" href="/docs/assets/js/36.9faf9fbc.js"><link rel="prefetch" href="/docs/assets/js/360.a3915355.js"><link rel="prefetch" href="/docs/assets/js/361.ef05840d.js"><link rel="prefetch" href="/docs/assets/js/362.a9fb0ba3.js"><link rel="prefetch" href="/docs/assets/js/363.b0b11858.js"><link rel="prefetch" href="/docs/assets/js/364.aca2c202.js"><link rel="prefetch" href="/docs/assets/js/365.e8c4023c.js"><link rel="prefetch" href="/docs/assets/js/366.b4383cee.js"><link rel="prefetch" href="/docs/assets/js/367.98c8fa4b.js"><link rel="prefetch" href="/docs/assets/js/368.1f03615b.js"><link rel="prefetch" href="/docs/assets/js/369.0b3e5848.js"><link rel="prefetch" href="/docs/assets/js/37.88b14914.js"><link rel="prefetch" href="/docs/assets/js/370.d3336c96.js"><link rel="prefetch" href="/docs/assets/js/371.5606304a.js"><link rel="prefetch" href="/docs/assets/js/372.62d96bbe.js"><link rel="prefetch" href="/docs/assets/js/373.bdadec49.js"><link rel="prefetch" href="/docs/assets/js/374.fa73a057.js"><link rel="prefetch" href="/docs/assets/js/375.6e175563.js"><link rel="prefetch" href="/docs/assets/js/376.7a8cb018.js"><link rel="prefetch" href="/docs/assets/js/377.cd3540e5.js"><link rel="prefetch" href="/docs/assets/js/378.82f17350.js"><link rel="prefetch" href="/docs/assets/js/379.119a4d0e.js"><link rel="prefetch" href="/docs/assets/js/38.28c78f55.js"><link rel="prefetch" href="/docs/assets/js/380.e63bc440.js"><link rel="prefetch" href="/docs/assets/js/381.c3dbd007.js"><link rel="prefetch" href="/docs/assets/js/382.c23401b5.js"><link rel="prefetch" href="/docs/assets/js/383.50d1d0a7.js"><link rel="prefetch" href="/docs/assets/js/384.1c2dec49.js"><link rel="prefetch" href="/docs/assets/js/385.b5d71353.js"><link rel="prefetch" href="/docs/assets/js/386.61828ab2.js"><link rel="prefetch" href="/docs/assets/js/387.96d8f790.js"><link rel="prefetch" href="/docs/assets/js/388.70e7b0a1.js"><link rel="prefetch" href="/docs/assets/js/389.4a3e7b89.js"><link rel="prefetch" href="/docs/assets/js/39.c566a19e.js"><link rel="prefetch" href="/docs/assets/js/390.50b0d9a1.js"><link rel="prefetch" href="/docs/assets/js/391.63c0ff31.js"><link rel="prefetch" href="/docs/assets/js/392.22316750.js"><link rel="prefetch" href="/docs/assets/js/393.106c6b13.js"><link rel="prefetch" href="/docs/assets/js/394.bae4aea4.js"><link rel="prefetch" href="/docs/assets/js/395.2049c44c.js"><link rel="prefetch" href="/docs/assets/js/396.34ef39b8.js"><link rel="prefetch" href="/docs/assets/js/397.0ed2d0e2.js"><link rel="prefetch" href="/docs/assets/js/398.24ca224e.js"><link rel="prefetch" href="/docs/assets/js/399.46d9fed4.js"><link rel="prefetch" href="/docs/assets/js/4.429ea365.js"><link rel="prefetch" href="/docs/assets/js/40.2d22738d.js"><link rel="prefetch" href="/docs/assets/js/400.916200f0.js"><link rel="prefetch" href="/docs/assets/js/401.eb0a60c1.js"><link rel="prefetch" href="/docs/assets/js/402.873d69a2.js"><link rel="prefetch" href="/docs/assets/js/403.dfe05afd.js"><link rel="prefetch" href="/docs/assets/js/404.bb319ed4.js"><link rel="prefetch" href="/docs/assets/js/405.99a5ccdf.js"><link rel="prefetch" href="/docs/assets/js/406.389438a3.js"><link rel="prefetch" href="/docs/assets/js/407.d1651b7d.js"><link rel="prefetch" href="/docs/assets/js/408.968989cb.js"><link rel="prefetch" href="/docs/assets/js/409.7b620aec.js"><link rel="prefetch" href="/docs/assets/js/41.d96ed5cc.js"><link rel="prefetch" href="/docs/assets/js/410.7b17a84e.js"><link rel="prefetch" href="/docs/assets/js/411.e025d4c9.js"><link rel="prefetch" href="/docs/assets/js/412.021a6a6f.js"><link rel="prefetch" href="/docs/assets/js/413.197e2e0d.js"><link rel="prefetch" href="/docs/assets/js/414.bdf3c575.js"><link rel="prefetch" href="/docs/assets/js/415.6bc64022.js"><link rel="prefetch" href="/docs/assets/js/416.1f93cb0c.js"><link rel="prefetch" href="/docs/assets/js/417.86fe8395.js"><link rel="prefetch" href="/docs/assets/js/418.77668e04.js"><link rel="prefetch" href="/docs/assets/js/419.092b4f87.js"><link rel="prefetch" href="/docs/assets/js/42.27f49043.js"><link rel="prefetch" href="/docs/assets/js/420.617b5e23.js"><link rel="prefetch" href="/docs/assets/js/421.1e32caad.js"><link rel="prefetch" href="/docs/assets/js/422.590320f6.js"><link rel="prefetch" href="/docs/assets/js/423.0ba0e521.js"><link rel="prefetch" href="/docs/assets/js/424.648d633a.js"><link rel="prefetch" href="/docs/assets/js/425.dba396aa.js"><link rel="prefetch" href="/docs/assets/js/426.66953f86.js"><link rel="prefetch" href="/docs/assets/js/427.1fe37dfb.js"><link rel="prefetch" href="/docs/assets/js/428.8ecfeed6.js"><link rel="prefetch" href="/docs/assets/js/429.fb3bd9d8.js"><link rel="prefetch" href="/docs/assets/js/43.35205d0d.js"><link rel="prefetch" href="/docs/assets/js/430.628ef29c.js"><link rel="prefetch" href="/docs/assets/js/431.6983943f.js"><link rel="prefetch" href="/docs/assets/js/432.496c7ec4.js"><link rel="prefetch" href="/docs/assets/js/433.15147040.js"><link rel="prefetch" href="/docs/assets/js/434.2fb5a7cb.js"><link rel="prefetch" href="/docs/assets/js/435.5f8a6692.js"><link rel="prefetch" href="/docs/assets/js/436.c6298905.js"><link rel="prefetch" href="/docs/assets/js/437.e2785e82.js"><link rel="prefetch" href="/docs/assets/js/438.2d7726ee.js"><link rel="prefetch" href="/docs/assets/js/439.c447306c.js"><link rel="prefetch" href="/docs/assets/js/44.1d391cfb.js"><link rel="prefetch" href="/docs/assets/js/440.85f6f163.js"><link rel="prefetch" href="/docs/assets/js/441.e3fa2db3.js"><link rel="prefetch" href="/docs/assets/js/442.8fd69e9c.js"><link rel="prefetch" href="/docs/assets/js/443.ff326def.js"><link rel="prefetch" href="/docs/assets/js/444.ba6365fa.js"><link rel="prefetch" href="/docs/assets/js/445.bbaedcec.js"><link rel="prefetch" href="/docs/assets/js/446.7cc6ef38.js"><link rel="prefetch" href="/docs/assets/js/447.c4700445.js"><link rel="prefetch" href="/docs/assets/js/448.f9ac9d63.js"><link rel="prefetch" href="/docs/assets/js/449.680541d7.js"><link rel="prefetch" href="/docs/assets/js/45.c68d0c09.js"><link rel="prefetch" href="/docs/assets/js/450.af6df75f.js"><link rel="prefetch" href="/docs/assets/js/451.5a850ba3.js"><link rel="prefetch" href="/docs/assets/js/452.65868482.js"><link rel="prefetch" href="/docs/assets/js/453.e393b187.js"><link rel="prefetch" href="/docs/assets/js/454.bd6fd93e.js"><link rel="prefetch" href="/docs/assets/js/455.edbcfd4a.js"><link rel="prefetch" href="/docs/assets/js/456.1174dabf.js"><link rel="prefetch" href="/docs/assets/js/457.e6e2c3cd.js"><link rel="prefetch" href="/docs/assets/js/458.5f2d388f.js"><link rel="prefetch" href="/docs/assets/js/459.e894e60f.js"><link rel="prefetch" href="/docs/assets/js/46.513a1721.js"><link rel="prefetch" href="/docs/assets/js/460.9148d2e7.js"><link rel="prefetch" href="/docs/assets/js/461.5dd2a773.js"><link rel="prefetch" href="/docs/assets/js/462.bc2c60e3.js"><link rel="prefetch" href="/docs/assets/js/463.aa20b410.js"><link rel="prefetch" href="/docs/assets/js/464.04749cbe.js"><link rel="prefetch" href="/docs/assets/js/465.2c297f28.js"><link rel="prefetch" href="/docs/assets/js/466.09c2b6b8.js"><link rel="prefetch" href="/docs/assets/js/467.2aa28e02.js"><link rel="prefetch" href="/docs/assets/js/468.2974478b.js"><link rel="prefetch" href="/docs/assets/js/469.c30edf3b.js"><link rel="prefetch" href="/docs/assets/js/47.177ad890.js"><link rel="prefetch" href="/docs/assets/js/470.f7d86c0f.js"><link rel="prefetch" href="/docs/assets/js/471.20c0bc4f.js"><link rel="prefetch" href="/docs/assets/js/472.967a862c.js"><link rel="prefetch" href="/docs/assets/js/473.81927876.js"><link rel="prefetch" href="/docs/assets/js/474.b1e6b20c.js"><link rel="prefetch" href="/docs/assets/js/475.1f9626b1.js"><link rel="prefetch" href="/docs/assets/js/476.fb239a95.js"><link rel="prefetch" href="/docs/assets/js/477.696dac1f.js"><link rel="prefetch" href="/docs/assets/js/478.3ae9536b.js"><link rel="prefetch" href="/docs/assets/js/479.356762a9.js"><link rel="prefetch" href="/docs/assets/js/48.400950ad.js"><link rel="prefetch" href="/docs/assets/js/480.5e12cb14.js"><link rel="prefetch" href="/docs/assets/js/481.eb45600d.js"><link rel="prefetch" href="/docs/assets/js/482.fd54c247.js"><link rel="prefetch" href="/docs/assets/js/483.ee945ab8.js"><link rel="prefetch" href="/docs/assets/js/484.649009a5.js"><link rel="prefetch" href="/docs/assets/js/485.7d798390.js"><link rel="prefetch" href="/docs/assets/js/486.064d5e81.js"><link rel="prefetch" href="/docs/assets/js/487.8331ba1a.js"><link rel="prefetch" href="/docs/assets/js/488.6764c887.js"><link rel="prefetch" href="/docs/assets/js/489.c7fa411c.js"><link rel="prefetch" href="/docs/assets/js/49.698c26bb.js"><link rel="prefetch" href="/docs/assets/js/490.4b0a81f4.js"><link rel="prefetch" href="/docs/assets/js/491.8755a8ee.js"><link rel="prefetch" href="/docs/assets/js/492.68b1230c.js"><link rel="prefetch" href="/docs/assets/js/493.0ec120e4.js"><link rel="prefetch" href="/docs/assets/js/494.36bb488e.js"><link rel="prefetch" href="/docs/assets/js/495.48b2f5ea.js"><link rel="prefetch" href="/docs/assets/js/496.f1dcd501.js"><link rel="prefetch" href="/docs/assets/js/497.b0bc04de.js"><link rel="prefetch" href="/docs/assets/js/498.794eb916.js"><link rel="prefetch" href="/docs/assets/js/499.f34b72e8.js"><link rel="prefetch" href="/docs/assets/js/50.4d3ca76a.js"><link rel="prefetch" href="/docs/assets/js/500.c496b405.js"><link rel="prefetch" href="/docs/assets/js/501.9236669d.js"><link rel="prefetch" href="/docs/assets/js/502.e848f108.js"><link rel="prefetch" href="/docs/assets/js/503.1c000e61.js"><link rel="prefetch" href="/docs/assets/js/504.2579303d.js"><link rel="prefetch" href="/docs/assets/js/505.c462863c.js"><link rel="prefetch" href="/docs/assets/js/506.da0d95c3.js"><link rel="prefetch" href="/docs/assets/js/507.d22039a5.js"><link rel="prefetch" href="/docs/assets/js/508.669e27d0.js"><link rel="prefetch" href="/docs/assets/js/509.b615db11.js"><link rel="prefetch" href="/docs/assets/js/51.22605d78.js"><link rel="prefetch" href="/docs/assets/js/510.72cb7121.js"><link rel="prefetch" href="/docs/assets/js/511.929319cc.js"><link rel="prefetch" href="/docs/assets/js/512.f97ba399.js"><link rel="prefetch" href="/docs/assets/js/52.2c42a88f.js"><link rel="prefetch" href="/docs/assets/js/53.93a21098.js"><link rel="prefetch" href="/docs/assets/js/54.28ba5c54.js"><link rel="prefetch" href="/docs/assets/js/55.e2e18acf.js"><link rel="prefetch" href="/docs/assets/js/56.ffef444a.js"><link rel="prefetch" href="/docs/assets/js/57.d9bed9cc.js"><link rel="prefetch" href="/docs/assets/js/58.5a83fab0.js"><link rel="prefetch" href="/docs/assets/js/59.9d8d56fe.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.f4e0bc80.js"><link rel="prefetch" href="/docs/assets/js/61.6430554b.js"><link rel="prefetch" href="/docs/assets/js/62.7c6b2140.js"><link rel="prefetch" href="/docs/assets/js/63.1381e411.js"><link rel="prefetch" href="/docs/assets/js/64.5a46fd78.js"><link rel="prefetch" href="/docs/assets/js/65.0f0ddd37.js"><link rel="prefetch" href="/docs/assets/js/66.2238960d.js"><link rel="prefetch" href="/docs/assets/js/67.8184afbe.js"><link rel="prefetch" href="/docs/assets/js/68.718f552e.js"><link rel="prefetch" href="/docs/assets/js/69.d218cb4d.js"><link rel="prefetch" href="/docs/assets/js/7.5ca46f71.js"><link rel="prefetch" href="/docs/assets/js/70.4f5887a2.js"><link rel="prefetch" href="/docs/assets/js/71.f1ecf61d.js"><link rel="prefetch" href="/docs/assets/js/72.5f1499ed.js"><link rel="prefetch" href="/docs/assets/js/73.6528515d.js"><link rel="prefetch" href="/docs/assets/js/74.1355203a.js"><link rel="prefetch" href="/docs/assets/js/75.65ee440a.js"><link rel="prefetch" href="/docs/assets/js/76.65b91c64.js"><link rel="prefetch" href="/docs/assets/js/77.362d116c.js"><link rel="prefetch" href="/docs/assets/js/78.ee1780fe.js"><link rel="prefetch" href="/docs/assets/js/79.5b860f69.js"><link rel="prefetch" href="/docs/assets/js/8.b93c7b97.js"><link rel="prefetch" href="/docs/assets/js/80.c2f9e90a.js"><link rel="prefetch" href="/docs/assets/js/81.9d157ee8.js"><link rel="prefetch" href="/docs/assets/js/82.e9c6e562.js"><link rel="prefetch" href="/docs/assets/js/83.c6fffa2f.js"><link rel="prefetch" href="/docs/assets/js/84.cc4a02f6.js"><link rel="prefetch" href="/docs/assets/js/85.29d0da9d.js"><link rel="prefetch" href="/docs/assets/js/86.e9047ede.js"><link rel="prefetch" href="/docs/assets/js/87.09f39e44.js"><link rel="prefetch" href="/docs/assets/js/88.efd140af.js"><link rel="prefetch" href="/docs/assets/js/89.474b2ed7.js"><link rel="prefetch" href="/docs/assets/js/9.af7e6be7.js"><link rel="prefetch" href="/docs/assets/js/90.2ef5b1a6.js"><link rel="prefetch" href="/docs/assets/js/91.a21e1cc2.js"><link rel="prefetch" href="/docs/assets/js/92.b73e8681.js"><link rel="prefetch" href="/docs/assets/js/93.01ab8161.js"><link rel="prefetch" href="/docs/assets/js/95.fb6e00b9.js"><link rel="prefetch" href="/docs/assets/js/96.bf30772b.js"><link rel="prefetch" href="/docs/assets/js/97.be0ca39f.js"><link rel="prefetch" href="/docs/assets/js/98.30214881.js"><link rel="prefetch" href="/docs/assets/js/99.927a9fed.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue.js组件精讲</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/1-开篇：Vue.js 的精髓——组件.html" class="sidebar-link">开篇：Vue.js 的精髓——组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/10-实战 4：全局提示组件.html" class="sidebar-link">实战 4：全局提示组件——\$Alert</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/11-更灵活的组件：Render 函数与 Functional Rendermd.html" class="sidebar-link">更灵活的组件：Render 函数与 Functional Render</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/12-实战 5：可用 Render 自定义列的表格组件——Table.html" class="sidebar-link">实战 5：可用 Render 自定义列的表格组件——Table</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html" class="active sidebar-link">实战 6：可用 slot-scope 自定义列的表格组件——Table实战</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html#什么是-slot-scope" class="sidebar-link">什么是 slot-scope</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html#方案一" class="sidebar-link">方案一</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html#方案二" class="sidebar-link">方案二</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html#方案三" class="sidebar-link">方案三</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html#结语" class="sidebar-link">结语</a></li></ul></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/14-递归组件与动态组件.html" class="sidebar-link">递归组件与动态组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/14-递归组件与动态组件md.html" class="sidebar-link">递归组件与动态组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/15-实战 7：树形控件——Tree.html" class="sidebar-link">实战 7：树形控件——Tree</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/16-拓展：Vue.js 容易忽略的 API 详解.html" class="sidebar-link">拓展：Vue.js 容易忽略的 API 详解</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/17-拓展：Vue.js 面试、常见问题答疑.html" class="sidebar-link">拓展：Vue.js 面试、常见问题答疑</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/18-拓展：如何做好一个开源项目（上篇）.html" class="sidebar-link">拓展：如何做好一个开源项目（上篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/19-.html#%20%E6%8B%93%E5%B1%95%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%80%E4%B8%AA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%B8%8B%E7%AF%87%EF%BC%89.html" class="sidebar-link">拓展：如何做好一个开源项目（下篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/19-拓展：如何做好一个开源项目（下篇）.html" class="sidebar-link">拓展：如何做好一个开源项目（下篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/2-基础：Vue.js 组件的三个 API：prop、event、slot.html" class="sidebar-link">Vue.js 组件的三个 API：prop、event、slot</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/20- 写在最后.html" class="sidebar-link">写在最后</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html" class="sidebar-link">组件的通信 1：provide / inject</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/4-组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法.html" class="sidebar-link">组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/5-实战 1：具有数据校验功能的表单组件——Form.html" class="sidebar-link">实战 1：具有数据校验功能的表单组件——Form</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/6-组件的通信 3：找到任意组件实例——findComponents 系列方法.html" class="sidebar-link">组件的通信 3：找到任意组件实例——findComponents 系列方法</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/7-实战 2：组合多选框组件.html" class="sidebar-link">实战 2：组合多选框组件——CheckboxGroup \&amp; Checkbox</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/8-Vue 的构造器.html" class="sidebar-link">Vue 的构造器——extend 与手动挂载——\$mount</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/9-实战 3：动态渲染 .vue 文件的组件—— Display.html" class="sidebar-link">实战 3：动态渲染 .vue 文件的组件—— Display</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>上一节，我们基于 Render 函数实现了在表格中自定义列模板的组件 Table，虽说 Render 函数能够完全发挥 JavaScript 的编程能力，实现几乎所有的自定义工作，但本质上，使用者写的是一个庞大的 JS 对象，它不具备 DOM 结构，可读性和可维护性都比较差。对于大部分写 Vue.js 的开发者来说，更倾向于使用 template 的语法，毕竟它是 Vue.js 独有的特性。本小节则在上一节的 Table 组件基础上修改，实现一种达到同样渲染效果，但对使用者更友好的 slot-scope 写法。</p> <h2 id="什么是-slot-scope"><a href="#什么是-slot-scope" class="header-anchor">#</a> 什么是 slot-scope</h2> <p>slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，用于分发内容。那 slot-scope 是什么呢？先来看一个场景，比如某组件拥有下面的模板：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;ul&gt;
+  &lt;li v-for=&quot;book in books&quot; :key=&quot;book.id&quot;&gt;
+    {{ book.name }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>使用者传递一个数组 <code>books</code>，由组件内的 <code>v-for</code> 循环显示，这里的 <code>book.name</code> 是纯文本输出，如果想自定义它的模板（即内容分发），就要用到 slot，但 slot 只能是固定的模板，没法自定义循环体中的一个具体的项，事实上这跟上一节的 Table 场景是类似的。</p> <p>常规的 slot 无法实现对组件循环体的每一项进行不同的内容分发，这就要用到 slot-scope，它本质上跟 slot 一样，只不过可以传递参数。比如上面的示例，使用 slot-scope 封装：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;ul&gt;
+  &lt;li v-for=&quot;book in books&quot; :key=&quot;book.id&quot;&gt;
+    &lt;slot :book=&quot;book&quot;&gt;
+      &lt;!-- 默认内容 --&gt;
+      {{ book.name }}
+    &lt;/slot&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>在 slot 上，传递了一个自定义的参数 <code>book</code>，它的值绑定的是当前循环项的数据 book，这样在父级使用时，就可以在 slot 中访问它了：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;book-list :books=&quot;books&quot;&gt;
+  &lt;template slot-scope=&quot;slotProps&quot;&gt;
+    &lt;span v-if=&quot;slotProps.book.sale&quot;&gt;限时优惠&lt;/span&gt;
+    {{ slotProps.book.name }}
+  &lt;/template&gt;
+&lt;/book-list&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>使用 slot-scope 指定的参数 <code>slotProps</code> 就是这个 slot 的全部参数，它是一个对象，在 slot-scope 中是可以传递多个参数的，上例我们只写了一个参数 <code>book</code>，所以访问它就是 <code>slotProps.book</code>。这里推荐使用 ES6 的解构，能让参数使用起来更方便：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;book-list :books=&quot;books&quot;&gt;
+  &lt;template slot-scope=&quot;{ book }&quot;&gt;
+    &lt;span v-if=&quot;book.sale&quot;&gt;限时优惠&lt;/span&gt;
+    {{ book.name }}
+  &lt;/template&gt;
+&lt;/book-list&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>除了可以传递参数，其它用法跟 slot 是一样的，比如也可以“具名”：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;slot :book=&quot;book&quot; name=&quot;book&quot;&gt;
+  {{ book.name }}
+&lt;/slot&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template slot-scope=&quot;{ book }&quot; slot=&quot;book&quot;&gt;
+  &lt;span v-if=&quot;book.sale&quot;&gt;限时优惠&lt;/span&gt;
+  {{ book.name }}
+&lt;/template&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>这就是作用域 slot（slot-scope），能够在组件的循环体中做内容分发，有了它，Table 组件的自定义列模板就不用写一长串的 Render 函数了。</p> <p>为了把 Render 函数和 slot-scope 理解透彻，下面我们用 3 种方法来改写 Table，实现 slot-scope 自定义列模板。</p> <h2 id="方案一"><a href="#方案一" class="header-anchor">#</a> 方案一</h2> <p>第一种方案，用最简单的 slot-scope 实现，同时也兼容 Render 函数的旧用法。拷贝上一节的 Table 组件目录，更名为 <code>table-slot</code>，同时也拷贝路由，更名为 <code>table-slot.vue</code>。为了兼容旧的 Render 函数用法，在 columns 的列配置 column 中，新增一个字段 <code>slot</code> 来指定 slot-scope 的名称：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;!-- src/components/table-slot/table.vue --&gt;
+&lt;template&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th v-for=&quot;col in columns&quot;&gt;{{ col.title }}&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr v-for=&quot;(row, rowIndex) in data&quot;&gt;
+        &lt;td v-for=&quot;col in columns&quot;&gt;
+          &lt;template v-if=&quot;'render' in col&quot;&gt;
+            &lt;Render :row=&quot;row&quot; :column=&quot;col&quot; :index=&quot;rowIndex&quot; :render=&quot;col.render&quot;&gt;&lt;/Render&gt;
+          &lt;/template&gt;
+          &lt;template v-else-if=&quot;'slot' in col&quot;&gt;
+            &lt;slot :row=&quot;row&quot; :column=&quot;col&quot; :index=&quot;rowIndex&quot; :name=&quot;col.slot&quot;&gt;&lt;/slot&gt;
+          &lt;/template&gt;
+          &lt;template v-else&gt;{{ row[col.key] }}&lt;/template&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/template&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>相比原先的文件，只在 <code>'render' in col</code> 的条件下新加了一个 <code>template</code> 的标签，如果使用者的 column 配置了 render 字段，就优先以 Render 函数渲染，然后再判断是否用 slot-scope 渲染。在定义的作用域 slot 中，将行数据 <code>row</code>、列数据 <code>column</code> 和第几行 <code>index</code> 作为 slot 的参数，并根据 column 中指定的 slot 字段值，动态设置了具名 <code>name</code>。使用者在配置 columns 时，只要指定了某一列的 slot，那就可以在 Table 组件中使用 slot-scope。我们以上一节的可编辑整行数据为例，用 slot-scope 的写法实现完全一样的效果：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;!-- src/views/table-slot.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;table-slot :columns=&quot;columns&quot; :data=&quot;data&quot;&gt;
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;name&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editName&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.name }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;age&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editAge&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.age }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;birthday&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editBirthday&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ getBirthday(row.birthday) }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;address&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editAddress&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.address }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;action&quot;&gt;
+        &lt;div v-if=&quot;editIndex === index&quot;&gt;
+          &lt;button @click=&quot;handleSave(index)&quot;&gt;保存&lt;/button&gt;
+          &lt;button @click=&quot;editIndex = -1&quot;&gt;取消&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div v-else&gt;
+          &lt;button @click=&quot;handleEdit(row, index)&quot;&gt;操作&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/template&gt;
+    &lt;/table-slot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  import TableSlot from '../components/table-slot/table.vue';
+
+  export default {
+    components: { TableSlot },
+    data () {
+      return {
+        columns: [
+          {
+            title:  '姓名',
+            slot: 'name'
+          },
+          {
+            title:  '年龄',
+            slot: 'age'
+          },
+          {
+            title:  '出生日期',
+            slot: 'birthday'
+          },
+          {
+            title:  '地址',
+            slot: 'address'
+          },
+          {
+            title:  '操作',
+            slot: 'action'
+          }
+        ],
+        data: [
+          {
+            name: '王小明',
+            age: 18,
+            birthday: '919526400000',
+            address: '北京市朝阳区芍药居'
+          },
+          {
+            name: '张小刚',
+            age: 25,
+            birthday: '696096000000',
+            address: '北京市海淀区西二旗'
+          },
+          {
+            name: '李小红',
+            age: 30,
+            birthday: '563472000000',
+            address: '上海市浦东新区世纪大道'
+          },
+          {
+            name: '周小伟',
+            age: 26,
+            birthday: '687024000000',
+            address: '深圳市南山区深南大道'
+          }
+        ],
+        editIndex: -1,  // 当前聚焦的输入框的行数
+        editName: '',  // 第一列输入框，当然聚焦的输入框的输入内容，与 data 分离避免重构的闪烁
+        editAge: '',  // 第二列输入框
+        editBirthday: '',  // 第三列输入框
+        editAddress: '',  // 第四列输入框
+      }
+    },
+    methods: {
+      handleEdit (row, index) {
+        this.editName = row.name;
+        this.editAge = row.age;
+        this.editAddress = row.address;
+        this.editBirthday = row.birthday;
+        this.editIndex = index;
+      },
+      handleSave (index) {
+        this.data[index].name = this.editName;
+        this.data[index].age = this.editAge;
+        this.data[index].birthday = this.editBirthday;
+        this.data[index].address = this.editAddress;
+        this.editIndex = -1;
+      },
+      getBirthday (birthday) {
+        const date = new Date(parseInt(birthday));
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        return `${year}-${month}-${day}`;
+      }
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br></div></div><p>示例中在 <code>&lt;table-slot&gt;</code> 内的每一个 <code>&lt;template&gt;</code> 就对应某一列的 slot-scope 模板，通过配置的 <code>slot</code> 字段，指定具名的 slot-scope。可以看到，基本是把 Render 函数还原成了 html 的写法，这样看起来直接多了，渲染效果是完全一样的。在 slot-scope 中，平时怎么写组件，这里就怎么写，Vue.js 所有的 API 都是可以直接使用的。</p> <p>方案一是最优解，一般情况下，使用这种方案就可以了，其余两种方案是基于 Render 的。</p> <h2 id="方案二"><a href="#方案二" class="header-anchor">#</a> 方案二</h2> <p>第二种方案，不需要修改原先的 Table 组件代码，只是在使用层面修改即可。先来看具体的使用代码，然后再做分析。注意，这里使用的 Table 组件，仍然是上一节 <code>src/components/table-render</code> 的组件，它只有 Render 函数，没有定义 slot-scope：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;!-- src/views/table-render.vue 的改写 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;table-render ref=&quot;table&quot; :columns=&quot;columns&quot; :data=&quot;data&quot;&gt;
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;name&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editName&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.name }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;age&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editAge&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.age }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;birthday&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editBirthday&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ getBirthday(row.birthday) }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;address&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;editAddress&quot; v-if=&quot;editIndex === index&quot; /&gt;
+        &lt;span v-else&gt;{{ row.address }}&lt;/span&gt;
+      &lt;/template&gt;
+
+      &lt;template slot-scope=&quot;{ row, index }&quot; slot=&quot;action&quot;&gt;
+        &lt;div v-if=&quot;editIndex === index&quot;&gt;
+          &lt;button @click=&quot;handleSave(index)&quot;&gt;保存&lt;/button&gt;
+          &lt;button @click=&quot;editIndex = -1&quot;&gt;取消&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div v-else&gt;
+          &lt;button @click=&quot;handleEdit(row, index)&quot;&gt;操作&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/template&gt;
+    &lt;/table-render&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  import TableRender from '../components/table-render/table.vue';
+
+  export default {
+    components: { TableRender },
+    data () {
+      return {
+        columns: [
+          {
+            title:  '姓名',
+            render: (h, { row, column, index }) =&gt; {
+              return h(
+                'div',
+                this.$refs.table.$scopedSlots.name({
+                  row: row,
+                  column: column,
+                  index: index
+                })
+              )
+            }
+          },
+          {
+            title:  '年龄',
+            render: (h, { row, column, index }) =&gt; {
+              return h(
+                'div',
+                this.$refs.table.$scopedSlots.age({
+                  row: row,
+                  column: column,
+                  index: index
+                })
+              )
+            }
+          },
+          {
+            title:  '出生日期',
+            render: (h, { row, column, index }) =&gt; {
+              return h(
+                'div',
+                this.$refs.table.$scopedSlots.birthday({
+                  row: row,
+                  column: column,
+                  index: index
+                })
+              )
+            }
+          },
+          {
+            title:  '地址',
+            render: (h, { row, column, index }) =&gt; {
+              return h(
+                'div',
+                this.$refs.table.$scopedSlots.address({
+                  row: row,
+                  column: column,
+                  index: index
+                })
+              )
+            }
+          },
+          {
+            title:  '操作',
+            render: (h, { row, column, index }) =&gt; {
+              return h(
+                'div',
+                this.$refs.table.$scopedSlots.action({
+                  row: row,
+                  column: column,
+                  index: index
+                })
+              )
+            }
+          }
+        ],
+        data: [],
+        editIndex: -1,  // 当前聚焦的输入框的行数
+        editName: '',  // 第一列输入框，当然聚焦的输入框的输入内容，与 data 分离避免重构的闪烁
+        editAge: '',  // 第二列输入框
+        editBirthday: '',  // 第三列输入框
+        editAddress: '',  // 第四列输入框
+      }
+    },
+    methods: {
+      handleEdit (row, index) {
+        this.editName = row.name;
+        this.editAge = row.age;
+        this.editAddress = row.address;
+        this.editBirthday = row.birthday;
+        this.editIndex = index;
+      },
+      handleSave (index) {
+        this.data[index].name = this.editName;
+        this.data[index].age = this.editAge;
+        this.data[index].birthday = this.editBirthday;
+        this.data[index].address = this.editAddress;
+        this.editIndex = -1;
+      },
+      getBirthday (birthday) {
+        const date = new Date(parseInt(birthday));
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        return `${year}-${month}-${day}`;
+      }
+    },
+    mounted () {
+      this.data = [
+        {
+          name: '王小明',
+          age: 18,
+          birthday: '919526400000',
+          address: '北京市朝阳区芍药居'
+        },
+        {
+          name: '张小刚',
+          age: 25,
+          birthday: '696096000000',
+          address: '北京市海淀区西二旗'
+        },
+        {
+          name: '李小红',
+          age: 30,
+          birthday: '563472000000',
+          address: '上海市浦东新区世纪大道'
+        },
+        {
+          name: '周小伟',
+          age: 26,
+          birthday: '687024000000',
+          address: '深圳市南山区深南大道'
+        }
+      ];
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br></div></div><p>在 slot-scope 的使用上（即 template 的内容），与方案一是完全一致的，可以看到，在 column 的定义上，仍然使用了 render 字段，只不过每个 render 都渲染了一个 div 节点，而这个 div 的内容，是指定来在 <code>&lt;table-render&gt;</code> 中定义的 slot-scope：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>render: (h, { row, column, index }) =&gt; {
+  return h(
+    'div',
+    this.$refs.table.$scopedSlots.name({
+      row: row,
+      column: column,
+      index: index
+    })
+  )
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>这正是 Render 函数灵活的一个体现，使用 <code>$scopedSlots</code> 可以访问 slot-scope，所以上面这段代码的意思是，name 这一列仍然是使用 Functional Render，只不过 Render 的是一个预先定义好的 slot-scope 模板。</p> <p>有一点需要注意的是，示例中的 <code>data</code> 默认是空数组，而在 mounted 里才赋值的，是因为这样定义的 slot-scope，初始时读取 <code>this.$refs.table.$scopedSlots</code> 是读不到的，会报错，当没有数据时，也就不会去渲染，也就避免了报错。</p> <p>这种方案虽然可行，但归根到底是一种 hack，不是非常推荐，之所以列出来，是为了对 Render 和 slot-scope 有进一步的认识。</p> <h2 id="方案三"><a href="#方案三" class="header-anchor">#</a> 方案三</h2> <p>第 3 中方案的思路和第 2 种是一样的，它介于方案 1 与方案 2 之间。这种方案要修改 Table 组件代码，但是用例与方案 1 完全一致。</p> <p>在方案 2 中，我们是通过修改用例使用 slot-scope 的，也就是说 Table 组件本身没有支持 slot-scope，是我们“强加”上去的，如果把强加的部分，集成到 Table 内，那对使用者就很友好了，同时也避免了初始化报错，不得不把 data 写在 mounted 的问题。</p> <p>保持方案 1 的用例不变，修改 <code>src/components/table-render</code> 中的代码。为了同时兼容 Render 与 slot-scope，我们在 <code>table-render</code> 下新建一个 slot.js 的文件：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// src/components/table-render/slot.js
+export default {
+  functional: true,
+  inject: ['tableRoot'],
+  props: {
+    row: Object,
+    column: Object,
+    index: Number
+  },
+  render: (h, ctx) =&gt; {
+    return h('div', ctx.injections.tableRoot.$scopedSlots[ctx.props.column.slot]({
+      row: ctx.props.row,
+      column: ctx.props.column,
+      index: ctx.props.index
+    }));
+  }
+};
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>它仍然是一个 Functional Render，使用 <code>inject</code> 注入了父级组件 table.vue（下文改写） 中提供的实例 <code>tableRoot</code>。在 render 里，也是通过方案 2 中使用 <code>$scopedSlots</code> 定义的 slot，不过这是在组件级别定义，对用户来说是透明的，只要按方案 1 的用例来写就可以了。</p> <p>table.vue 也要做一点修改：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;!-- src/components/table-slot/table.vue 的改写，部分代码省略 --&gt;
+&lt;template&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th v-for=&quot;col in columns&quot;&gt;{{ col.title }}&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr v-for=&quot;(row, rowIndex) in data&quot;&gt;
+        &lt;td v-for=&quot;col in columns&quot;&gt;
+          &lt;template v-if=&quot;'render' in col&quot;&gt;
+            &lt;Render :row=&quot;row&quot; :column=&quot;col&quot; :index=&quot;rowIndex&quot; :render=&quot;col.render&quot;&gt;&lt;/Render&gt;
+          &lt;/template&gt;
+          &lt;template v-else-if=&quot;'slot' in col&quot;&gt;
+            &lt;slot-scope :row=&quot;row&quot; :column=&quot;col&quot; :index=&quot;rowIndex&quot;&gt;&lt;/slot-scope&gt;
+          &lt;/template&gt;
+          &lt;template v-else&gt;{{ row[col.key] }}&lt;/template&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  import Render from './render.js';
+  import SlotScope from './slot.js';
+
+  export default {
+    components: { Render, SlotScope },
+    provide () {
+      return {
+        tableRoot: this
+      };
+    },
+    props: {
+      columns: {
+        type: Array,
+        default () {
+          return [];
+        }
+      },
+      data: {
+        type: Array,
+        default () {
+          return [];
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><p>因为 slot-scope 模板是写在 table.vue 中的（对使用者来说，相当于写在组件 <code>&lt;table-slot&gt;&lt;/table-slot&gt;</code> 之间），所以在 table.vue 中使用 provide 向下提供了 Table 的实例，这样在 slot.js 中就可以通过 inject 访问到它，继而通过 <code>$scopedSlots</code> 获取到 slot。需要注意的是，在 Functional Render 是没有 this 上下文的，都是通过 h 的第二个参数临时上下文 ctx 来访问 prop、inject 等的。</p> <p>方案 3 也是推荐使用的，当 Table 的功能足够复杂，层级会嵌套的比较深，那时方案 1 的 slot 就不会定义在第一级组件中，中间可能会隔许多组件，slot 就要一层层中转，相比在任何地方都能直接使用的 Render 就要麻烦了。所以，如果你的组件层级简单，推荐用第一种方案；如果你的组件已经成型（某 API 基于 Render 函数），但一时间不方便支持 slot-scope，而使用者又想用，那就选方案 2；如果你的组件已经成型（某 API 基于 Render 函数），但组件层级复杂，要按方案 1 那样支持 slot-scope 可能改动较大，还有可能带来新的 bug，那就用方案 3，它不会破坏原有的任何内容，但会额外支持 slot-scope 用法，关键是改动简单。</p> <h2 id="结语"><a href="#结语" class="header-anchor">#</a> 结语</h2> <p>理论上，绝大多数能用 Render 的地方，都可以用 slot-scope。对于极客来说，喜欢挑战各种新奇的写法，所以会在 Vue.js 中大量使用 Render 函数、JSX 甚至 TS；而对于求稳的开发者来说，常规的 template、slot、slot-scope 写法会是好的选择。如果非要选一种，那要从你团队的整体情况来定，如果团队大部分是写后端为主的，那可能更倾向于 TS；如果写过 React，或许 JSX 是不错的选择；如果实在不知道选什么，那就求稳吧！</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">2/25/2021, 7:37:04 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/前端/我购买的书籍/Vue.js组件精讲/12-实战 5：可用 Render 自定义列的表格组件——Table.html" class="prev">
+        实战 5：可用 Render 自定义列的表格组件——Table
+      </a></span> <span class="next"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/14-递归组件与动态组件.html">
+        递归组件与动态组件
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.9f53ed1a.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/94.563c47d4.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>

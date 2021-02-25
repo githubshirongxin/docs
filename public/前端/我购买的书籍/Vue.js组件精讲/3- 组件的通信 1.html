@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>组件的通信 1：provide / inject | 积累</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="icon" href="/docs/logo.png">
+    <link rel="manifest" href="/docs/manifest.json">
+    <link rel="apple-touch-icon" href="/docs/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/docs/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="共享库">
+    <meta name="name" content="cjb的资料库">
+    <meta name="keywords" content="k8s,微服务,gitlab,分布式存储">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/docs/assets/css/0.styles.bfb3f1ff.css" as="style"><link rel="preload" href="/docs/assets/js/app.9f53ed1a.js" as="script"><link rel="preload" href="/docs/assets/js/5.8209fb6d.js" as="script"><link rel="preload" href="/docs/assets/js/2.50270cf7.js" as="script"><link rel="preload" href="/docs/assets/js/105.d066c65c.js" as="script"><link rel="preload" href="/docs/assets/js/3.8061788f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.b793d276.js"><link rel="prefetch" href="/docs/assets/js/100.0308e105.js"><link rel="prefetch" href="/docs/assets/js/101.4b75d1c5.js"><link rel="prefetch" href="/docs/assets/js/102.e92dbebe.js"><link rel="prefetch" href="/docs/assets/js/103.15453cb7.js"><link rel="prefetch" href="/docs/assets/js/104.076fbb6f.js"><link rel="prefetch" href="/docs/assets/js/106.14cd96f3.js"><link rel="prefetch" href="/docs/assets/js/107.8965711d.js"><link rel="prefetch" href="/docs/assets/js/108.95bda9f8.js"><link rel="prefetch" href="/docs/assets/js/109.e97a61b3.js"><link rel="prefetch" href="/docs/assets/js/11.7fd2cb27.js"><link rel="prefetch" href="/docs/assets/js/110.724a7f61.js"><link rel="prefetch" href="/docs/assets/js/111.c1081b06.js"><link rel="prefetch" href="/docs/assets/js/112.1aefa311.js"><link rel="prefetch" href="/docs/assets/js/113.8e59756a.js"><link rel="prefetch" href="/docs/assets/js/114.4ad9f23a.js"><link rel="prefetch" href="/docs/assets/js/115.c2e5b1ba.js"><link rel="prefetch" href="/docs/assets/js/116.b055b179.js"><link rel="prefetch" href="/docs/assets/js/117.5faa5e40.js"><link rel="prefetch" href="/docs/assets/js/118.5fdc4d70.js"><link rel="prefetch" href="/docs/assets/js/119.dcb7fe08.js"><link rel="prefetch" href="/docs/assets/js/12.0d27e102.js"><link rel="prefetch" href="/docs/assets/js/120.296bb656.js"><link rel="prefetch" href="/docs/assets/js/121.45a37125.js"><link rel="prefetch" href="/docs/assets/js/122.fbd1771c.js"><link rel="prefetch" href="/docs/assets/js/123.69f9d5b5.js"><link rel="prefetch" href="/docs/assets/js/124.0bb30db3.js"><link rel="prefetch" href="/docs/assets/js/125.c1c8700c.js"><link rel="prefetch" href="/docs/assets/js/126.74913a3d.js"><link rel="prefetch" href="/docs/assets/js/127.23f6f081.js"><link rel="prefetch" href="/docs/assets/js/128.b3df328b.js"><link rel="prefetch" href="/docs/assets/js/129.d8c3064f.js"><link rel="prefetch" href="/docs/assets/js/13.14986227.js"><link rel="prefetch" href="/docs/assets/js/130.94c84187.js"><link rel="prefetch" href="/docs/assets/js/131.59ca6009.js"><link rel="prefetch" href="/docs/assets/js/132.727d2363.js"><link rel="prefetch" href="/docs/assets/js/133.7b979069.js"><link rel="prefetch" href="/docs/assets/js/134.1cec71fa.js"><link rel="prefetch" href="/docs/assets/js/135.9dd30e69.js"><link rel="prefetch" href="/docs/assets/js/136.6a07e37d.js"><link rel="prefetch" href="/docs/assets/js/137.bfbac9f3.js"><link rel="prefetch" href="/docs/assets/js/138.4d253931.js"><link rel="prefetch" href="/docs/assets/js/139.c524b655.js"><link rel="prefetch" href="/docs/assets/js/14.35b1256f.js"><link rel="prefetch" href="/docs/assets/js/140.6240c960.js"><link rel="prefetch" href="/docs/assets/js/141.a6f318d4.js"><link rel="prefetch" href="/docs/assets/js/142.142870fc.js"><link rel="prefetch" href="/docs/assets/js/143.3917fdb0.js"><link rel="prefetch" href="/docs/assets/js/144.016f6729.js"><link rel="prefetch" href="/docs/assets/js/145.29051a1b.js"><link rel="prefetch" href="/docs/assets/js/146.b89f4b58.js"><link rel="prefetch" href="/docs/assets/js/147.781f06a8.js"><link rel="prefetch" href="/docs/assets/js/148.7c4c8501.js"><link rel="prefetch" href="/docs/assets/js/149.ab7f275b.js"><link rel="prefetch" href="/docs/assets/js/15.461b8311.js"><link rel="prefetch" href="/docs/assets/js/150.d18cca0c.js"><link rel="prefetch" href="/docs/assets/js/151.0e3716e7.js"><link rel="prefetch" href="/docs/assets/js/152.b4c4db45.js"><link rel="prefetch" href="/docs/assets/js/153.a4b80fc3.js"><link rel="prefetch" href="/docs/assets/js/154.db35d609.js"><link rel="prefetch" href="/docs/assets/js/155.b0781fa7.js"><link rel="prefetch" href="/docs/assets/js/156.cbd6f82b.js"><link rel="prefetch" href="/docs/assets/js/157.7800b3e6.js"><link rel="prefetch" href="/docs/assets/js/158.fcdc3748.js"><link rel="prefetch" href="/docs/assets/js/159.56ab3bf0.js"><link rel="prefetch" href="/docs/assets/js/16.721d35b8.js"><link rel="prefetch" href="/docs/assets/js/160.11733cde.js"><link rel="prefetch" href="/docs/assets/js/161.5aeeb31b.js"><link rel="prefetch" href="/docs/assets/js/162.ffd2b692.js"><link rel="prefetch" href="/docs/assets/js/163.987a2f50.js"><link rel="prefetch" href="/docs/assets/js/164.18255d82.js"><link rel="prefetch" href="/docs/assets/js/165.f70fb60a.js"><link rel="prefetch" href="/docs/assets/js/166.7106568d.js"><link rel="prefetch" href="/docs/assets/js/167.ecdfbf07.js"><link rel="prefetch" href="/docs/assets/js/168.bb52f478.js"><link rel="prefetch" href="/docs/assets/js/169.700771aa.js"><link rel="prefetch" href="/docs/assets/js/17.07e47d44.js"><link rel="prefetch" href="/docs/assets/js/170.d7c73701.js"><link rel="prefetch" href="/docs/assets/js/171.72f8a7ef.js"><link rel="prefetch" href="/docs/assets/js/172.8a0d766c.js"><link rel="prefetch" href="/docs/assets/js/173.4f320ecd.js"><link rel="prefetch" href="/docs/assets/js/174.d6153b40.js"><link rel="prefetch" href="/docs/assets/js/175.98aa34ff.js"><link rel="prefetch" href="/docs/assets/js/176.307a84e6.js"><link rel="prefetch" href="/docs/assets/js/177.0d8617d2.js"><link rel="prefetch" href="/docs/assets/js/178.49ef23ab.js"><link rel="prefetch" href="/docs/assets/js/179.460f1c94.js"><link rel="prefetch" href="/docs/assets/js/18.1201a4f6.js"><link rel="prefetch" href="/docs/assets/js/180.42212e45.js"><link rel="prefetch" href="/docs/assets/js/181.50cbd4cd.js"><link rel="prefetch" href="/docs/assets/js/182.96a972bd.js"><link rel="prefetch" href="/docs/assets/js/183.393655bc.js"><link rel="prefetch" href="/docs/assets/js/184.a4111889.js"><link rel="prefetch" href="/docs/assets/js/185.c1e4cb2b.js"><link rel="prefetch" href="/docs/assets/js/186.f2e3d4fb.js"><link rel="prefetch" href="/docs/assets/js/187.a19c91d4.js"><link rel="prefetch" href="/docs/assets/js/188.f347fe64.js"><link rel="prefetch" href="/docs/assets/js/189.56f5f86a.js"><link rel="prefetch" href="/docs/assets/js/19.65173ce7.js"><link rel="prefetch" href="/docs/assets/js/190.700ac378.js"><link rel="prefetch" href="/docs/assets/js/191.d3d0ea82.js"><link rel="prefetch" href="/docs/assets/js/192.8f5e6f18.js"><link rel="prefetch" href="/docs/assets/js/193.2f824822.js"><link rel="prefetch" href="/docs/assets/js/194.04d82cfa.js"><link rel="prefetch" href="/docs/assets/js/195.0feaceff.js"><link rel="prefetch" href="/docs/assets/js/196.49856e45.js"><link rel="prefetch" href="/docs/assets/js/197.f71c1ec5.js"><link rel="prefetch" href="/docs/assets/js/198.84f8a007.js"><link rel="prefetch" href="/docs/assets/js/199.9087c0e0.js"><link rel="prefetch" href="/docs/assets/js/20.e4c7bd66.js"><link rel="prefetch" href="/docs/assets/js/200.2aa6cd75.js"><link rel="prefetch" href="/docs/assets/js/201.ff985140.js"><link rel="prefetch" href="/docs/assets/js/202.614944ad.js"><link rel="prefetch" href="/docs/assets/js/203.ad49fb39.js"><link rel="prefetch" href="/docs/assets/js/204.7e28a85a.js"><link rel="prefetch" href="/docs/assets/js/205.9ec47697.js"><link rel="prefetch" href="/docs/assets/js/206.2048bddc.js"><link rel="prefetch" href="/docs/assets/js/207.7d61fabd.js"><link rel="prefetch" href="/docs/assets/js/208.f007a6c1.js"><link rel="prefetch" href="/docs/assets/js/209.7dfd3514.js"><link rel="prefetch" href="/docs/assets/js/21.17ccefef.js"><link rel="prefetch" href="/docs/assets/js/210.a5fdc794.js"><link rel="prefetch" href="/docs/assets/js/211.e2beca7b.js"><link rel="prefetch" href="/docs/assets/js/212.876876eb.js"><link rel="prefetch" href="/docs/assets/js/213.53086fde.js"><link rel="prefetch" href="/docs/assets/js/214.fd32a6a8.js"><link rel="prefetch" href="/docs/assets/js/215.302d4d91.js"><link rel="prefetch" href="/docs/assets/js/216.b8410dc5.js"><link rel="prefetch" href="/docs/assets/js/217.60351612.js"><link rel="prefetch" href="/docs/assets/js/218.797fccf9.js"><link rel="prefetch" href="/docs/assets/js/219.c778b799.js"><link rel="prefetch" href="/docs/assets/js/22.a2412fbf.js"><link rel="prefetch" href="/docs/assets/js/220.7d56d728.js"><link rel="prefetch" href="/docs/assets/js/221.2345142e.js"><link rel="prefetch" href="/docs/assets/js/222.7b67404c.js"><link rel="prefetch" href="/docs/assets/js/223.5e9f1550.js"><link rel="prefetch" href="/docs/assets/js/224.f8c4c372.js"><link rel="prefetch" href="/docs/assets/js/225.09b40d30.js"><link rel="prefetch" href="/docs/assets/js/226.42b343b5.js"><link rel="prefetch" href="/docs/assets/js/227.cca0dd5d.js"><link rel="prefetch" href="/docs/assets/js/228.d17560ee.js"><link rel="prefetch" href="/docs/assets/js/229.e0a0782c.js"><link rel="prefetch" href="/docs/assets/js/23.bcc31ac7.js"><link rel="prefetch" href="/docs/assets/js/230.ca94821c.js"><link rel="prefetch" href="/docs/assets/js/231.c93ad033.js"><link rel="prefetch" href="/docs/assets/js/232.0c214c80.js"><link rel="prefetch" href="/docs/assets/js/233.d8db8588.js"><link rel="prefetch" href="/docs/assets/js/234.497286af.js"><link rel="prefetch" href="/docs/assets/js/235.f7a838bd.js"><link rel="prefetch" href="/docs/assets/js/236.841ec1bb.js"><link rel="prefetch" href="/docs/assets/js/237.02ff4e17.js"><link rel="prefetch" href="/docs/assets/js/238.220c9aa3.js"><link rel="prefetch" href="/docs/assets/js/239.1c047adf.js"><link rel="prefetch" href="/docs/assets/js/24.2719ac0a.js"><link rel="prefetch" href="/docs/assets/js/240.03c59a23.js"><link rel="prefetch" href="/docs/assets/js/241.dc44941e.js"><link rel="prefetch" href="/docs/assets/js/242.f62c471c.js"><link rel="prefetch" href="/docs/assets/js/243.f076ea2b.js"><link rel="prefetch" href="/docs/assets/js/244.60ba0fba.js"><link rel="prefetch" href="/docs/assets/js/245.0abfe782.js"><link rel="prefetch" href="/docs/assets/js/246.c27a39d7.js"><link rel="prefetch" href="/docs/assets/js/247.6186db9b.js"><link rel="prefetch" href="/docs/assets/js/248.f30e35dc.js"><link rel="prefetch" href="/docs/assets/js/249.cc736afd.js"><link rel="prefetch" href="/docs/assets/js/25.1a199685.js"><link rel="prefetch" href="/docs/assets/js/250.62f3319c.js"><link rel="prefetch" href="/docs/assets/js/251.940d83dc.js"><link rel="prefetch" href="/docs/assets/js/252.728eee91.js"><link rel="prefetch" href="/docs/assets/js/253.52b05d68.js"><link rel="prefetch" href="/docs/assets/js/254.6170779d.js"><link rel="prefetch" href="/docs/assets/js/255.776ba372.js"><link rel="prefetch" href="/docs/assets/js/256.eebb5efc.js"><link rel="prefetch" href="/docs/assets/js/257.2d25d404.js"><link rel="prefetch" href="/docs/assets/js/258.28491a0e.js"><link rel="prefetch" href="/docs/assets/js/259.36ec1fb2.js"><link rel="prefetch" href="/docs/assets/js/26.611c819f.js"><link rel="prefetch" href="/docs/assets/js/260.27b2d8c1.js"><link rel="prefetch" href="/docs/assets/js/261.395c9bff.js"><link rel="prefetch" href="/docs/assets/js/262.1b00205e.js"><link rel="prefetch" href="/docs/assets/js/263.1712e6e3.js"><link rel="prefetch" href="/docs/assets/js/264.3078600c.js"><link rel="prefetch" href="/docs/assets/js/265.fb14b6d8.js"><link rel="prefetch" href="/docs/assets/js/266.e927ec6e.js"><link rel="prefetch" href="/docs/assets/js/267.e193a448.js"><link rel="prefetch" href="/docs/assets/js/268.225a1d3d.js"><link rel="prefetch" href="/docs/assets/js/269.b48572a5.js"><link rel="prefetch" href="/docs/assets/js/27.fa5721a1.js"><link rel="prefetch" href="/docs/assets/js/270.2e0e27b0.js"><link rel="prefetch" href="/docs/assets/js/271.b60a9196.js"><link rel="prefetch" href="/docs/assets/js/272.b8431166.js"><link rel="prefetch" href="/docs/assets/js/273.5acef50d.js"><link rel="prefetch" href="/docs/assets/js/274.303fe53c.js"><link rel="prefetch" href="/docs/assets/js/275.4ed7df31.js"><link rel="prefetch" href="/docs/assets/js/276.083b836c.js"><link rel="prefetch" href="/docs/assets/js/277.8323533a.js"><link rel="prefetch" href="/docs/assets/js/278.2737e642.js"><link rel="prefetch" href="/docs/assets/js/279.405ede8f.js"><link rel="prefetch" href="/docs/assets/js/28.02f9ac08.js"><link rel="prefetch" href="/docs/assets/js/280.0e9c99e1.js"><link rel="prefetch" href="/docs/assets/js/281.d2f75daa.js"><link rel="prefetch" href="/docs/assets/js/282.7c653cc1.js"><link rel="prefetch" href="/docs/assets/js/283.4b9894ca.js"><link rel="prefetch" href="/docs/assets/js/284.99dc2c38.js"><link rel="prefetch" href="/docs/assets/js/285.4076427f.js"><link rel="prefetch" href="/docs/assets/js/286.a6a5c723.js"><link rel="prefetch" href="/docs/assets/js/287.655e3908.js"><link rel="prefetch" href="/docs/assets/js/288.080ce3b8.js"><link rel="prefetch" href="/docs/assets/js/289.011bf324.js"><link rel="prefetch" href="/docs/assets/js/29.091c7456.js"><link rel="prefetch" href="/docs/assets/js/290.e42f97f1.js"><link rel="prefetch" href="/docs/assets/js/291.6a8e7c10.js"><link rel="prefetch" href="/docs/assets/js/292.f18d676e.js"><link rel="prefetch" href="/docs/assets/js/293.fda998ad.js"><link rel="prefetch" href="/docs/assets/js/294.f17522ef.js"><link rel="prefetch" href="/docs/assets/js/295.94509d46.js"><link rel="prefetch" href="/docs/assets/js/296.da0c1ae6.js"><link rel="prefetch" href="/docs/assets/js/297.a770e16c.js"><link rel="prefetch" href="/docs/assets/js/298.51043991.js"><link rel="prefetch" href="/docs/assets/js/299.073afa2a.js"><link rel="prefetch" href="/docs/assets/js/30.a6f8c690.js"><link rel="prefetch" href="/docs/assets/js/300.f3539f89.js"><link rel="prefetch" href="/docs/assets/js/301.f7978781.js"><link rel="prefetch" href="/docs/assets/js/302.7a8267da.js"><link rel="prefetch" href="/docs/assets/js/303.f9a7e61f.js"><link rel="prefetch" href="/docs/assets/js/304.62d38b06.js"><link rel="prefetch" href="/docs/assets/js/305.0200d7d6.js"><link rel="prefetch" href="/docs/assets/js/306.8a2705a6.js"><link rel="prefetch" href="/docs/assets/js/307.2d4adcf0.js"><link rel="prefetch" href="/docs/assets/js/308.860af110.js"><link rel="prefetch" href="/docs/assets/js/309.3f26d144.js"><link rel="prefetch" href="/docs/assets/js/31.07a8346f.js"><link rel="prefetch" href="/docs/assets/js/310.6d545b11.js"><link rel="prefetch" href="/docs/assets/js/311.3ec8d57d.js"><link rel="prefetch" href="/docs/assets/js/312.15bde9ec.js"><link rel="prefetch" href="/docs/assets/js/313.2a1e6c15.js"><link rel="prefetch" href="/docs/assets/js/314.5a9ea92d.js"><link rel="prefetch" href="/docs/assets/js/315.ce850a23.js"><link rel="prefetch" href="/docs/assets/js/316.7acfcb96.js"><link rel="prefetch" href="/docs/assets/js/317.0f40910a.js"><link rel="prefetch" href="/docs/assets/js/318.a746c6dd.js"><link rel="prefetch" href="/docs/assets/js/319.20c852f0.js"><link rel="prefetch" href="/docs/assets/js/32.97333c81.js"><link rel="prefetch" href="/docs/assets/js/320.01e01bcc.js"><link rel="prefetch" href="/docs/assets/js/321.e69c2bd3.js"><link rel="prefetch" href="/docs/assets/js/322.145bf3a7.js"><link rel="prefetch" href="/docs/assets/js/323.ea3e3711.js"><link rel="prefetch" href="/docs/assets/js/324.b77b6154.js"><link rel="prefetch" href="/docs/assets/js/325.5c11e833.js"><link rel="prefetch" href="/docs/assets/js/326.032eeb23.js"><link rel="prefetch" href="/docs/assets/js/327.204fa9a1.js"><link rel="prefetch" href="/docs/assets/js/328.1608ee60.js"><link rel="prefetch" href="/docs/assets/js/329.b1ea8849.js"><link rel="prefetch" href="/docs/assets/js/33.f0a5723a.js"><link rel="prefetch" href="/docs/assets/js/330.ce69d8ba.js"><link rel="prefetch" href="/docs/assets/js/331.1e7a8661.js"><link rel="prefetch" href="/docs/assets/js/332.09666ed1.js"><link rel="prefetch" href="/docs/assets/js/333.2bd7c1f8.js"><link rel="prefetch" href="/docs/assets/js/334.c8f00c32.js"><link rel="prefetch" href="/docs/assets/js/335.dbc08a39.js"><link rel="prefetch" href="/docs/assets/js/336.0a531bde.js"><link rel="prefetch" href="/docs/assets/js/337.d4fd409a.js"><link rel="prefetch" href="/docs/assets/js/338.775846b7.js"><link rel="prefetch" href="/docs/assets/js/339.5a0f78f4.js"><link rel="prefetch" href="/docs/assets/js/34.575b5509.js"><link rel="prefetch" href="/docs/assets/js/340.a008e526.js"><link rel="prefetch" href="/docs/assets/js/341.10a3b547.js"><link rel="prefetch" href="/docs/assets/js/342.cfe4130b.js"><link rel="prefetch" href="/docs/assets/js/343.de582474.js"><link rel="prefetch" href="/docs/assets/js/344.8489dee3.js"><link rel="prefetch" href="/docs/assets/js/345.f43f3a63.js"><link rel="prefetch" href="/docs/assets/js/346.c11bbfd9.js"><link rel="prefetch" href="/docs/assets/js/347.3b387ba0.js"><link rel="prefetch" href="/docs/assets/js/348.558a96d1.js"><link rel="prefetch" href="/docs/assets/js/349.ef2dd531.js"><link rel="prefetch" href="/docs/assets/js/35.1439964e.js"><link rel="prefetch" href="/docs/assets/js/350.18208b0d.js"><link rel="prefetch" href="/docs/assets/js/351.4e35dbae.js"><link rel="prefetch" href="/docs/assets/js/352.31e49d69.js"><link rel="prefetch" href="/docs/assets/js/353.5835e31b.js"><link rel="prefetch" href="/docs/assets/js/354.e8acb3cd.js"><link rel="prefetch" href="/docs/assets/js/355.83e2a31f.js"><link rel="prefetch" href="/docs/assets/js/356.528ea521.js"><link rel="prefetch" href="/docs/assets/js/357.7c769794.js"><link rel="prefetch" href="/docs/assets/js/358.fb1b572a.js"><link rel="prefetch" href="/docs/assets/js/359.2e1ac221.js"><link rel="prefetch" href="/docs/assets/js/36.9faf9fbc.js"><link rel="prefetch" href="/docs/assets/js/360.a3915355.js"><link rel="prefetch" href="/docs/assets/js/361.ef05840d.js"><link rel="prefetch" href="/docs/assets/js/362.a9fb0ba3.js"><link rel="prefetch" href="/docs/assets/js/363.b0b11858.js"><link rel="prefetch" href="/docs/assets/js/364.aca2c202.js"><link rel="prefetch" href="/docs/assets/js/365.e8c4023c.js"><link rel="prefetch" href="/docs/assets/js/366.b4383cee.js"><link rel="prefetch" href="/docs/assets/js/367.98c8fa4b.js"><link rel="prefetch" href="/docs/assets/js/368.1f03615b.js"><link rel="prefetch" href="/docs/assets/js/369.0b3e5848.js"><link rel="prefetch" href="/docs/assets/js/37.88b14914.js"><link rel="prefetch" href="/docs/assets/js/370.d3336c96.js"><link rel="prefetch" href="/docs/assets/js/371.5606304a.js"><link rel="prefetch" href="/docs/assets/js/372.62d96bbe.js"><link rel="prefetch" href="/docs/assets/js/373.bdadec49.js"><link rel="prefetch" href="/docs/assets/js/374.fa73a057.js"><link rel="prefetch" href="/docs/assets/js/375.6e175563.js"><link rel="prefetch" href="/docs/assets/js/376.7a8cb018.js"><link rel="prefetch" href="/docs/assets/js/377.cd3540e5.js"><link rel="prefetch" href="/docs/assets/js/378.82f17350.js"><link rel="prefetch" href="/docs/assets/js/379.119a4d0e.js"><link rel="prefetch" href="/docs/assets/js/38.28c78f55.js"><link rel="prefetch" href="/docs/assets/js/380.e63bc440.js"><link rel="prefetch" href="/docs/assets/js/381.c3dbd007.js"><link rel="prefetch" href="/docs/assets/js/382.c23401b5.js"><link rel="prefetch" href="/docs/assets/js/383.50d1d0a7.js"><link rel="prefetch" href="/docs/assets/js/384.1c2dec49.js"><link rel="prefetch" href="/docs/assets/js/385.b5d71353.js"><link rel="prefetch" href="/docs/assets/js/386.61828ab2.js"><link rel="prefetch" href="/docs/assets/js/387.96d8f790.js"><link rel="prefetch" href="/docs/assets/js/388.70e7b0a1.js"><link rel="prefetch" href="/docs/assets/js/389.4a3e7b89.js"><link rel="prefetch" href="/docs/assets/js/39.c566a19e.js"><link rel="prefetch" href="/docs/assets/js/390.50b0d9a1.js"><link rel="prefetch" href="/docs/assets/js/391.63c0ff31.js"><link rel="prefetch" href="/docs/assets/js/392.22316750.js"><link rel="prefetch" href="/docs/assets/js/393.106c6b13.js"><link rel="prefetch" href="/docs/assets/js/394.bae4aea4.js"><link rel="prefetch" href="/docs/assets/js/395.2049c44c.js"><link rel="prefetch" href="/docs/assets/js/396.34ef39b8.js"><link rel="prefetch" href="/docs/assets/js/397.0ed2d0e2.js"><link rel="prefetch" href="/docs/assets/js/398.24ca224e.js"><link rel="prefetch" href="/docs/assets/js/399.46d9fed4.js"><link rel="prefetch" href="/docs/assets/js/4.429ea365.js"><link rel="prefetch" href="/docs/assets/js/40.2d22738d.js"><link rel="prefetch" href="/docs/assets/js/400.916200f0.js"><link rel="prefetch" href="/docs/assets/js/401.eb0a60c1.js"><link rel="prefetch" href="/docs/assets/js/402.873d69a2.js"><link rel="prefetch" href="/docs/assets/js/403.dfe05afd.js"><link rel="prefetch" href="/docs/assets/js/404.bb319ed4.js"><link rel="prefetch" href="/docs/assets/js/405.99a5ccdf.js"><link rel="prefetch" href="/docs/assets/js/406.389438a3.js"><link rel="prefetch" href="/docs/assets/js/407.d1651b7d.js"><link rel="prefetch" href="/docs/assets/js/408.968989cb.js"><link rel="prefetch" href="/docs/assets/js/409.7b620aec.js"><link rel="prefetch" href="/docs/assets/js/41.d96ed5cc.js"><link rel="prefetch" href="/docs/assets/js/410.7b17a84e.js"><link rel="prefetch" href="/docs/assets/js/411.e025d4c9.js"><link rel="prefetch" href="/docs/assets/js/412.021a6a6f.js"><link rel="prefetch" href="/docs/assets/js/413.197e2e0d.js"><link rel="prefetch" href="/docs/assets/js/414.bdf3c575.js"><link rel="prefetch" href="/docs/assets/js/415.6bc64022.js"><link rel="prefetch" href="/docs/assets/js/416.1f93cb0c.js"><link rel="prefetch" href="/docs/assets/js/417.86fe8395.js"><link rel="prefetch" href="/docs/assets/js/418.77668e04.js"><link rel="prefetch" href="/docs/assets/js/419.092b4f87.js"><link rel="prefetch" href="/docs/assets/js/42.27f49043.js"><link rel="prefetch" href="/docs/assets/js/420.617b5e23.js"><link rel="prefetch" href="/docs/assets/js/421.1e32caad.js"><link rel="prefetch" href="/docs/assets/js/422.590320f6.js"><link rel="prefetch" href="/docs/assets/js/423.0ba0e521.js"><link rel="prefetch" href="/docs/assets/js/424.648d633a.js"><link rel="prefetch" href="/docs/assets/js/425.dba396aa.js"><link rel="prefetch" href="/docs/assets/js/426.66953f86.js"><link rel="prefetch" href="/docs/assets/js/427.1fe37dfb.js"><link rel="prefetch" href="/docs/assets/js/428.8ecfeed6.js"><link rel="prefetch" href="/docs/assets/js/429.fb3bd9d8.js"><link rel="prefetch" href="/docs/assets/js/43.35205d0d.js"><link rel="prefetch" href="/docs/assets/js/430.628ef29c.js"><link rel="prefetch" href="/docs/assets/js/431.6983943f.js"><link rel="prefetch" href="/docs/assets/js/432.496c7ec4.js"><link rel="prefetch" href="/docs/assets/js/433.15147040.js"><link rel="prefetch" href="/docs/assets/js/434.2fb5a7cb.js"><link rel="prefetch" href="/docs/assets/js/435.5f8a6692.js"><link rel="prefetch" href="/docs/assets/js/436.c6298905.js"><link rel="prefetch" href="/docs/assets/js/437.e2785e82.js"><link rel="prefetch" href="/docs/assets/js/438.2d7726ee.js"><link rel="prefetch" href="/docs/assets/js/439.c447306c.js"><link rel="prefetch" href="/docs/assets/js/44.1d391cfb.js"><link rel="prefetch" href="/docs/assets/js/440.85f6f163.js"><link rel="prefetch" href="/docs/assets/js/441.e3fa2db3.js"><link rel="prefetch" href="/docs/assets/js/442.8fd69e9c.js"><link rel="prefetch" href="/docs/assets/js/443.ff326def.js"><link rel="prefetch" href="/docs/assets/js/444.ba6365fa.js"><link rel="prefetch" href="/docs/assets/js/445.bbaedcec.js"><link rel="prefetch" href="/docs/assets/js/446.7cc6ef38.js"><link rel="prefetch" href="/docs/assets/js/447.c4700445.js"><link rel="prefetch" href="/docs/assets/js/448.f9ac9d63.js"><link rel="prefetch" href="/docs/assets/js/449.680541d7.js"><link rel="prefetch" href="/docs/assets/js/45.c68d0c09.js"><link rel="prefetch" href="/docs/assets/js/450.af6df75f.js"><link rel="prefetch" href="/docs/assets/js/451.5a850ba3.js"><link rel="prefetch" href="/docs/assets/js/452.65868482.js"><link rel="prefetch" href="/docs/assets/js/453.e393b187.js"><link rel="prefetch" href="/docs/assets/js/454.bd6fd93e.js"><link rel="prefetch" href="/docs/assets/js/455.edbcfd4a.js"><link rel="prefetch" href="/docs/assets/js/456.1174dabf.js"><link rel="prefetch" href="/docs/assets/js/457.e6e2c3cd.js"><link rel="prefetch" href="/docs/assets/js/458.5f2d388f.js"><link rel="prefetch" href="/docs/assets/js/459.e894e60f.js"><link rel="prefetch" href="/docs/assets/js/46.513a1721.js"><link rel="prefetch" href="/docs/assets/js/460.9148d2e7.js"><link rel="prefetch" href="/docs/assets/js/461.5dd2a773.js"><link rel="prefetch" href="/docs/assets/js/462.bc2c60e3.js"><link rel="prefetch" href="/docs/assets/js/463.aa20b410.js"><link rel="prefetch" href="/docs/assets/js/464.04749cbe.js"><link rel="prefetch" href="/docs/assets/js/465.2c297f28.js"><link rel="prefetch" href="/docs/assets/js/466.09c2b6b8.js"><link rel="prefetch" href="/docs/assets/js/467.2aa28e02.js"><link rel="prefetch" href="/docs/assets/js/468.2974478b.js"><link rel="prefetch" href="/docs/assets/js/469.c30edf3b.js"><link rel="prefetch" href="/docs/assets/js/47.177ad890.js"><link rel="prefetch" href="/docs/assets/js/470.f7d86c0f.js"><link rel="prefetch" href="/docs/assets/js/471.20c0bc4f.js"><link rel="prefetch" href="/docs/assets/js/472.967a862c.js"><link rel="prefetch" href="/docs/assets/js/473.81927876.js"><link rel="prefetch" href="/docs/assets/js/474.b1e6b20c.js"><link rel="prefetch" href="/docs/assets/js/475.1f9626b1.js"><link rel="prefetch" href="/docs/assets/js/476.fb239a95.js"><link rel="prefetch" href="/docs/assets/js/477.696dac1f.js"><link rel="prefetch" href="/docs/assets/js/478.3ae9536b.js"><link rel="prefetch" href="/docs/assets/js/479.356762a9.js"><link rel="prefetch" href="/docs/assets/js/48.400950ad.js"><link rel="prefetch" href="/docs/assets/js/480.5e12cb14.js"><link rel="prefetch" href="/docs/assets/js/481.eb45600d.js"><link rel="prefetch" href="/docs/assets/js/482.fd54c247.js"><link rel="prefetch" href="/docs/assets/js/483.ee945ab8.js"><link rel="prefetch" href="/docs/assets/js/484.649009a5.js"><link rel="prefetch" href="/docs/assets/js/485.7d798390.js"><link rel="prefetch" href="/docs/assets/js/486.064d5e81.js"><link rel="prefetch" href="/docs/assets/js/487.8331ba1a.js"><link rel="prefetch" href="/docs/assets/js/488.6764c887.js"><link rel="prefetch" href="/docs/assets/js/489.c7fa411c.js"><link rel="prefetch" href="/docs/assets/js/49.698c26bb.js"><link rel="prefetch" href="/docs/assets/js/490.4b0a81f4.js"><link rel="prefetch" href="/docs/assets/js/491.8755a8ee.js"><link rel="prefetch" href="/docs/assets/js/492.68b1230c.js"><link rel="prefetch" href="/docs/assets/js/493.0ec120e4.js"><link rel="prefetch" href="/docs/assets/js/494.36bb488e.js"><link rel="prefetch" href="/docs/assets/js/495.48b2f5ea.js"><link rel="prefetch" href="/docs/assets/js/496.f1dcd501.js"><link rel="prefetch" href="/docs/assets/js/497.b0bc04de.js"><link rel="prefetch" href="/docs/assets/js/498.794eb916.js"><link rel="prefetch" href="/docs/assets/js/499.f34b72e8.js"><link rel="prefetch" href="/docs/assets/js/50.4d3ca76a.js"><link rel="prefetch" href="/docs/assets/js/500.c496b405.js"><link rel="prefetch" href="/docs/assets/js/501.9236669d.js"><link rel="prefetch" href="/docs/assets/js/502.e848f108.js"><link rel="prefetch" href="/docs/assets/js/503.1c000e61.js"><link rel="prefetch" href="/docs/assets/js/504.2579303d.js"><link rel="prefetch" href="/docs/assets/js/505.c462863c.js"><link rel="prefetch" href="/docs/assets/js/506.da0d95c3.js"><link rel="prefetch" href="/docs/assets/js/507.d22039a5.js"><link rel="prefetch" href="/docs/assets/js/508.669e27d0.js"><link rel="prefetch" href="/docs/assets/js/509.b615db11.js"><link rel="prefetch" href="/docs/assets/js/51.22605d78.js"><link rel="prefetch" href="/docs/assets/js/510.72cb7121.js"><link rel="prefetch" href="/docs/assets/js/511.929319cc.js"><link rel="prefetch" href="/docs/assets/js/512.f97ba399.js"><link rel="prefetch" href="/docs/assets/js/52.2c42a88f.js"><link rel="prefetch" href="/docs/assets/js/53.93a21098.js"><link rel="prefetch" href="/docs/assets/js/54.28ba5c54.js"><link rel="prefetch" href="/docs/assets/js/55.e2e18acf.js"><link rel="prefetch" href="/docs/assets/js/56.ffef444a.js"><link rel="prefetch" href="/docs/assets/js/57.d9bed9cc.js"><link rel="prefetch" href="/docs/assets/js/58.5a83fab0.js"><link rel="prefetch" href="/docs/assets/js/59.9d8d56fe.js"><link rel="prefetch" href="/docs/assets/js/6.4661a010.js"><link rel="prefetch" href="/docs/assets/js/60.f4e0bc80.js"><link rel="prefetch" href="/docs/assets/js/61.6430554b.js"><link rel="prefetch" href="/docs/assets/js/62.7c6b2140.js"><link rel="prefetch" href="/docs/assets/js/63.1381e411.js"><link rel="prefetch" href="/docs/assets/js/64.5a46fd78.js"><link rel="prefetch" href="/docs/assets/js/65.0f0ddd37.js"><link rel="prefetch" href="/docs/assets/js/66.2238960d.js"><link rel="prefetch" href="/docs/assets/js/67.8184afbe.js"><link rel="prefetch" href="/docs/assets/js/68.718f552e.js"><link rel="prefetch" href="/docs/assets/js/69.d218cb4d.js"><link rel="prefetch" href="/docs/assets/js/7.5ca46f71.js"><link rel="prefetch" href="/docs/assets/js/70.4f5887a2.js"><link rel="prefetch" href="/docs/assets/js/71.f1ecf61d.js"><link rel="prefetch" href="/docs/assets/js/72.5f1499ed.js"><link rel="prefetch" href="/docs/assets/js/73.6528515d.js"><link rel="prefetch" href="/docs/assets/js/74.1355203a.js"><link rel="prefetch" href="/docs/assets/js/75.65ee440a.js"><link rel="prefetch" href="/docs/assets/js/76.65b91c64.js"><link rel="prefetch" href="/docs/assets/js/77.362d116c.js"><link rel="prefetch" href="/docs/assets/js/78.ee1780fe.js"><link rel="prefetch" href="/docs/assets/js/79.5b860f69.js"><link rel="prefetch" href="/docs/assets/js/8.b93c7b97.js"><link rel="prefetch" href="/docs/assets/js/80.c2f9e90a.js"><link rel="prefetch" href="/docs/assets/js/81.9d157ee8.js"><link rel="prefetch" href="/docs/assets/js/82.e9c6e562.js"><link rel="prefetch" href="/docs/assets/js/83.c6fffa2f.js"><link rel="prefetch" href="/docs/assets/js/84.cc4a02f6.js"><link rel="prefetch" href="/docs/assets/js/85.29d0da9d.js"><link rel="prefetch" href="/docs/assets/js/86.e9047ede.js"><link rel="prefetch" href="/docs/assets/js/87.09f39e44.js"><link rel="prefetch" href="/docs/assets/js/88.efd140af.js"><link rel="prefetch" href="/docs/assets/js/89.474b2ed7.js"><link rel="prefetch" href="/docs/assets/js/9.af7e6be7.js"><link rel="prefetch" href="/docs/assets/js/90.2ef5b1a6.js"><link rel="prefetch" href="/docs/assets/js/91.a21e1cc2.js"><link rel="prefetch" href="/docs/assets/js/92.b73e8681.js"><link rel="prefetch" href="/docs/assets/js/93.01ab8161.js"><link rel="prefetch" href="/docs/assets/js/94.563c47d4.js"><link rel="prefetch" href="/docs/assets/js/95.fb6e00b9.js"><link rel="prefetch" href="/docs/assets/js/96.bf30772b.js"><link rel="prefetch" href="/docs/assets/js/97.be0ca39f.js"><link rel="prefetch" href="/docs/assets/js/98.30214881.js"><link rel="prefetch" href="/docs/assets/js/99.927a9fed.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.bfb3f1ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/logo.png" alt="积累" class="logo"> <span class="site-name can-hide">积累</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础设施" class="dropdown-title"><span class="title">基础设施</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/基础设施/linux-powshell/" class="nav-link">
+  linux-powshell
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/windows/" class="nav-link">
+  windows
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mac/" class="nav-link">
+  mac
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/maven/" class="nav-link">
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus/" class="nav-link">
+  nexus
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-docker/" class="nav-link">
+  nexus-docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-maven/" class="nav-link">
+  nexus-maven
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/nexus-npm/" class="nav-link">
+  nexus-npm
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/vuepress/" class="nav-link">
+  vuepress
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/gitlab/" class="nav-link">
+  gitlab
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/mysql/" class="nav-link">
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/高可用系统/" class="nav-link">
+  高可用系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/自签证书/" class="nav-link">
+  自签证书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/NFS/" class="nav-link">
+  NFS
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/git/" class="nav-link">
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/k8s/" class="nav-link">
+  k8s
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/静态代码分析/" class="nav-link">
+  静态代码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/基础设施/" class="nav-link">
+  基础设施
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="移动端" class="dropdown-title"><span class="title">移动端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/react-native/" class="nav-link">
+  react-native
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/flutter/" class="nav-link">
+  flutter
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/ios/" class="nav-link">
+  ios
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/跨平台/" class="nav-link">
+  跨平台
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/安卓/" class="nav-link">
+  安卓
+</a></li><li class="dropdown-item"><!----> <a href="/docs/移动端/" class="nav-link">
+  移动端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="application" class="dropdown-title"><span class="title">application</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/application/在线教育/" class="nav-link">
+  在线教育
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/考试系统/" class="nav-link">
+  考试系统
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/单点登录/" class="nav-link">
+  单点登录
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/jira/" class="nav-link">
+  jira
+</a></li><li class="dropdown-item"><!----> <a href="/docs/application/" class="nav-link">
+  application
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/前端/前端工具/" class="nav-link">
+  前端工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/angular/" class="nav-link">
+  angular
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/js/" class="nav-link">
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/我购买的书籍.html" class="nav-link">
+  我购买的书籍
+</a></li><li class="dropdown-item"><!----> <a href="/docs/前端/" class="nav-link">
+  前端
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/后端/elasticSearch/" class="nav-link">
+  elasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/redis/" class="nav-link">
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/hadoop/" class="nav-link">
+  hadoop
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/shiro/" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/golang/" class="nav-link">
+  golang
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/kotlin/" class="nav-link">
+  kotlin
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/nodejs/" class="nav-link">
+  nodejs
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/python/" class="nav-link">
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/java/" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/junit/" class="nav-link">
+  junit
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springboot/" class="nav-link">
+  springboot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/springcloud/" class="nav-link">
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/docs/后端/微服务/" class="nav-link">
+  微服务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="BT" class="dropdown-title"><span class="title">BT</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/BT/COBOL/" class="nav-link">
+  COBOL
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开发工具" class="dropdown-title"><span class="title">开发工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/开发工具/授课用工具/" class="nav-link">
+  授课用工具
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/cmder/" class="nav-link">
+  cmder
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/eclipse/" class="nav-link">
+  eclipse
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/IDEA/" class="nav-link">
+  IDEA
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/vscode/" class="nav-link">
+  vscode
+</a></li><li class="dropdown-item"><!----> <a href="/docs/开发工具/tomcat/" class="nav-link">
+  tomcat
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="底层研究" class="dropdown-title"><span class="title">底层研究</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/底层研究/nginx源码分析/" class="nav-link">
+  nginx源码分析
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/linux内核/" class="nav-link">
+  linux内核
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/网络编程/" class="nav-link">
+  网络编程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/底层研究/" class="nav-link">
+  底层研究
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="媒体" class="dropdown-title"><span class="title">媒体</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/媒体/nginx直播点播/" class="nav-link">
+  nginx直播点播
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="偏硬件5G" class="dropdown-title"><span class="title">偏硬件5G</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C++/" class="nav-link">
+  C++
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/汇编/" class="nav-link">
+  汇编
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/C/" class="nav-link">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/lot/" class="nav-link">
+  lot
+</a></li><li class="dropdown-item"><!----> <a href="/docs/偏硬件5G/processing/" class="nav-link">
+  processing
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云" class="dropdown-title"><span class="title">云</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/云/GCP/" class="nav-link">
+  GCP
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="微信相关" class="dropdown-title"><span class="title">微信相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/微信相关/小程序/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/微信相关/" class="nav-link">
+  微信相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/webpack/" class="nav-link">
+  webpack
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="证券业务" class="dropdown-title"><span class="title">证券业务</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/证券业务/股票/" class="nav-link">
+  股票
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="管理" class="dropdown-title"><span class="title">管理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/管理/見積/" class="nav-link">
+  見積
+</a></li><li class="dropdown-item"><!----> <a href="/docs/管理/新人导入/" class="nav-link">
+  新人导入
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue.js组件精讲</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/1-开篇：Vue.js 的精髓——组件.html" class="sidebar-link">开篇：Vue.js 的精髓——组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/10-实战 4：全局提示组件.html" class="sidebar-link">实战 4：全局提示组件——\$Alert</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/11-更灵活的组件：Render 函数与 Functional Rendermd.html" class="sidebar-link">更灵活的组件：Render 函数与 Functional Render</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/12-实战 5：可用 Render 自定义列的表格组件——Table.html" class="sidebar-link">实战 5：可用 Render 自定义列的表格组件——Table</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/13-实战 6：可用 slot-scope 自定义列的表格组件——Table.html" class="sidebar-link">实战 6：可用 slot-scope 自定义列的表格组件——Table实战</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/14-递归组件与动态组件.html" class="sidebar-link">递归组件与动态组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/14-递归组件与动态组件md.html" class="sidebar-link">递归组件与动态组件</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/15-实战 7：树形控件——Tree.html" class="sidebar-link">实战 7：树形控件——Tree</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/16-拓展：Vue.js 容易忽略的 API 详解.html" class="sidebar-link">拓展：Vue.js 容易忽略的 API 详解</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/17-拓展：Vue.js 面试、常见问题答疑.html" class="sidebar-link">拓展：Vue.js 面试、常见问题答疑</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/18-拓展：如何做好一个开源项目（上篇）.html" class="sidebar-link">拓展：如何做好一个开源项目（上篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/19-.html#%20%E6%8B%93%E5%B1%95%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%80%E4%B8%AA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%B8%8B%E7%AF%87%EF%BC%89.html" class="sidebar-link">拓展：如何做好一个开源项目（下篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/19-拓展：如何做好一个开源项目（下篇）.html" class="sidebar-link">拓展：如何做好一个开源项目（下篇）</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/2-基础：Vue.js 组件的三个 API：prop、event、slot.html" class="sidebar-link">Vue.js 组件的三个 API：prop、event、slot</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/20- 写在最后.html" class="sidebar-link">写在最后</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html" class="active sidebar-link">组件的通信 1：provide / inject</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html#什么是-provide-inject" class="sidebar-link">什么是 provide / inject</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html#替代-vuex" class="sidebar-link">替代 Vuex</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html#进阶技巧" class="sidebar-link">进阶技巧</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html#独立组件中使用" class="sidebar-link">独立组件中使用</a></li><li class="sidebar-sub-header"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/3- 组件的通信 1.html#结语" class="sidebar-link">结语</a></li></ul></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/4-组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法.html" class="sidebar-link">组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/5-实战 1：具有数据校验功能的表单组件——Form.html" class="sidebar-link">实战 1：具有数据校验功能的表单组件——Form</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/6-组件的通信 3：找到任意组件实例——findComponents 系列方法.html" class="sidebar-link">组件的通信 3：找到任意组件实例——findComponents 系列方法</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/7-实战 2：组合多选框组件.html" class="sidebar-link">实战 2：组合多选框组件——CheckboxGroup \&amp; Checkbox</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/8-Vue 的构造器.html" class="sidebar-link">Vue 的构造器——extend 与手动挂载——\$mount</a></li><li><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/9-实战 3：动态渲染 .vue 文件的组件—— Display.html" class="sidebar-link">实战 3：动态渲染 .vue 文件的组件—— Display</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="组件的通信-1：provide-inject"><a href="#组件的通信-1：provide-inject" class="header-anchor">#</a> 组件的通信 1：provide / inject</h1> <p>上一节中我们说到，<code>ref</code> 和 <code>$parent / $children</code> 在<strong>跨级</strong>通信时是有弊端的。当组件 A 和组件 B 中间隔了数代（甚至不确定具体级别）时，以往会借助 Vuex 或 Bus 这样的解决方案，不得不引入三方库来支持。本小节则介绍一种无依赖的组件通信方法：Vue.js 内置的 provide / inject 接口。</p> <h2 id="什么是-provide-inject"><a href="#什么是-provide-inject" class="header-anchor">#</a> 什么是 provide / inject</h2> <p><code>provide / inject</code> 是 Vue.js 2.2.0 版本后新增的 API，在文档中这样介绍 ：</p> <blockquote><p><a href="https://cn.vuejs.org/v2/api/#provide-inject" target="_blank" rel="noopener noreferrer">https://cn.vuejs.org/v2/api/#provide-inject<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似。</p></blockquote> <p>并且文档中有如下提示：</p> <blockquote><p>provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p></blockquote> <p>看不懂上面的介绍没有关系，不过上面的这句提示应该明白，就是说 Vue.js 不建议在业务中使用这对 API，而是在插件 / 组件库（比如 iView，事实上 iView 的很多组件都在用）。<strong>不过建议归建议，如果你用好了，这个 API 会非常有用。</strong></p> <p>我们先来看一下这个 API 怎么用，假设有两个组件： <strong>A.vue</strong> 和 <strong>B.vue</strong>，B 是 A 的子组件。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// A.vue
+export default {
+  provide: {
+    name: 'Aresn'
+  }
+}
+
+// B.vue
+export default {
+  inject: ['name'],
+  mounted () {
+    console.log(this.name);  // Aresn
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>可以看到，在 A.vue 里，我们设置了一个 <strong>provide: name</strong>，值为 Aresn，它的作用就是将 <strong>name</strong> 这个变量提供给它的所有子组件。而在 B.vue 中，通过 <code>inject</code> 注入了从 A 组件中提供的 <strong>name</strong> 变量，那么在组件 B 中，就可以直接通过 <strong><a href="http://this.name" target="_blank" rel="noopener noreferrer">this.name<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong> 访问这个变量了，它的值也是 Aresn。这就是 provide / inject API 最核心的用法。</p> <p>需要注意的是：</p> <blockquote><p>provide 和 inject 绑定并<strong>不是可响应</strong>的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p></blockquote> <p>所以，上面 A.vue 的 name 如果改变了，B.vue 的 <a href="http://this.name" target="_blank" rel="noopener noreferrer">this.name<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 是不会改变的，仍然是 Aresn。</p> <h2 id="替代-vuex"><a href="#替代-vuex" class="header-anchor">#</a> 替代 Vuex</h2> <p>我们知道，在做 Vue 大型项目时，可以使用 Vuex 做状态管理，它是一个专为 Vue.js 开发的<strong>状态管理模式</strong>，用于集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p> <p>那了解了 provide / inject 的用法，下面来看怎样替代 Vuex。当然，我们的目的并不是为了替代 Vuex，它还是有相当大的用处，这里只是介绍另一种可行性。</p> <p>使用 Vuex，最主要的目的是跨组件通信、全局数据维护、多人协同开发。需求比如有：用户的登录信息维护、通知信息维护等全局的状态和数据。</p> <p>一般在 webpack 中使用 Vue.js，都会有一个入口文件 <strong>main.js</strong>，里面通常导入了 Vue、VueRouter、iView 等库，通常也会导入一个入口组件 <code>app.vue</code> 作为根组件。一个简单的 app.vue 可能只有以下代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>使用 provide / inject 替代 Vuex，就是在这个 app.vue 文件上做文章。</p> <p>我们把 app.vue 理解为一个最外层的根组件，用来存储所有需要的全局数据和状态，甚至是计算属性（computed）、方法（methods）等。因为你的项目中所有的组件（包含路由），它的父组件（或根组件）都是 app.vue，所以我们<strong>把整个 app.vue 实例通过 <code>provide</code> 对外提供</strong>。</p> <p><em>app.vue：</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    provide () {
+      return {
+        app: this
+      }
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>上面，我们把整个 app.vue 的实例 <code>this</code> 对外提供，命名为 <strong>app</strong>（这个名字可以自定义，推荐使用 app，使用这个名字后，子组件不能再使用它作为局部属性）。接下来，任何组件（或路由）只要通过 <code>inject</code> 注入 app.vue 的 app 的话，都可以直接通过 <strong><a href="http://this.app.xxx" target="_blank" rel="noopener noreferrer">this.app.xxx<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong> 来访问 app.vue 的 <code>data</code>、<code>computed</code>、<code>methods</code> 等内容。</p> <p>app.vue 是整个项目第一个被渲染的组件，而且只会渲染一次（即使切换路由，app.vue 也不会被再次渲染），利用这个特性，很适合做一次性全局的状态数据管理，例如，我们将用户的登录信息保存起来：</p> <p><em>app.vue，部分代码省略：</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;script&gt;
+  export default {
+    provide () {
+      return {
+        app: this
+      }
+    },
+    data () {
+      return {
+        userInfo: null
+      }
+    },
+    methods: {
+      getUserInfo () {
+        // 这里通过 ajax 获取用户信息后，赋值给 this.userInfo，以下为伪代码
+        $.ajax('/user/info', (data) =&gt; {
+          this.userInfo = data;
+        });
+      }
+    },
+    mounted () {
+      this.getUserInfo();
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><p>这样，任何页面或组件，只要通过 <code>inject</code> 注入 <code>app</code> 后，就可以直接访问 <code>userInfo</code> 的数据了，比如：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div&gt;
+    {{ app.userInfo }}
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    inject: ['app']
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>是不是很简单呢。除了直接使用数据，还可以调用方法。比如在某个页面里，修改了个人资料，这时一开始在 <code>app.vue</code> 里获取的 <code>userInfo</code> 已经不是最新的了，需要重新获取。可以这样使用：</p> <p><em>某个页面：</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div&gt;
+    {{ app.userInfo }}
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    inject: ['app'],
+    methods: {
+      changeUserInfo () {
+        // 这里修改完用户数据后，通知 app.vue 更新，以下为伪代码
+        $.ajax('/user/update', () =&gt; {
+          // 直接通过 this.app 就可以调用 app.vue 里的方法
+          this.app.getUserInfo();
+        })
+      }
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>同样非常简单。只要理解了 <code>this.app</code> 是直接获取整个 <code>app.vue</code> 的实例后，使用起来就得心应手了。想一想，配置复杂的 Vuex 的全部功能，现在是不是都可以通过 <code>provide / inject</code> 来实现了呢？</p> <h2 id="进阶技巧"><a href="#进阶技巧" class="header-anchor">#</a> 进阶技巧</h2> <p>如果你的项目足够复杂，或需要多人协同开发时，在 <code>app.vue</code> 里会写非常多的代码，多到结构复杂难以维护。这时可以使用 Vue.js 的混合 <code>mixins</code>，将不同的逻辑分开到不同的 js 文件里。</p> <p>比如上面的用户信息，就可以放到混合里：</p> <p><em>user.js：</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>export default {
+  data () {
+    return {
+      userInfo: null
+    }
+  },
+  methods: {
+    getUserInfo () {
+      // 这里通过 ajax 获取用户信息后，赋值给 this.userInfo，以下为伪代码
+      $.ajax('/user/info', (data) =&gt; {
+        this.userInfo = data;
+      });
+    }
+  },
+  mounted () {
+    this.getUserInfo();
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>然后在 <code>app.vue</code> 中混合：</p> <p><em>app.vue：</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;script&gt;
+  import mixins_user from '../mixins/user.js';
+
+  export default {
+    mixins: [mixins_user],
+    data () {
+      return {
+
+      }
+    }
+  }
+&lt;/script&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>这样，跟用户信息相关的逻辑，都可以在 <code>user.js</code> 里维护，或者由某个人来维护，<code>app.vue</code> 也就很容易维护了。</p> <h2 id="独立组件中使用"><a href="#独立组件中使用" class="header-anchor">#</a> 独立组件中使用</h2> <p>如果你顾忌 Vue.js 文档中所说，provide / inject 不推荐直接在应用程序中使用，那没有关系，仍然使用你熟悉的 Vuex 或 Bus 来管理你的项目就好。我们介绍的这对 API，主要还是在独立组件中发挥作用的。</p> <p>只要一个组件使用了 <code>provide</code> 向下提供数据，那其下所有的子组件都可以通过 <code>inject</code> 来注入，不管中间隔了多少代，而且可以注入多个来自不同父级提供的数据。需要注意的是，一旦注入了某个数据，比如上面示例中的 <code>app</code>，那这个组件中就不能再声明 <code>app</code> 这个数据了，因为它已经被父级占有。</p> <p>独立组件使用 provide / inject 的场景，主要是具有联动关系的组件，比如接下来很快会介绍的第一个实战：具有数据校验功能的表单组件 Form。它其实是两个组件，一个是 Form，一个是 FormItem，FormItem 是 Form 的子组件，它会依赖 Form 组件上的一些特性（props），所以就需要得到父组件 Form，这在 Vue.js 2.2.0 版本以前，是没有 provide / inject 这对 API 的，而 Form 和 FormItem 不一定是父子关系，中间很可能间隔了其它组件，所以不能单纯使用 <code>$parent</code> 来向上获取实例。在 Vue.js 2.2.0 之前，一种比较可行的方案是用计算属性动态获取：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>computed: {
+  form () {
+    let parent = this.$parent;
+    while (parent.$options.name !== 'Form') {
+      parent = parent.$parent;
+    }
+    return parent;
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>每个组件都可以设置 <code>name</code> 选项，作为组件名的标识，利用这个特点，通过向上遍历，直到找到需要的组件。这个方法可行，但相比一个 <code>inject</code> 来说，太费劲了，而且不那么优雅和 native。如果用 inject，可能只需要一行代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>export default {
+  inject: ['form']
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>不过，这一切的前提是你使用 Vue.js 2.2.0 以上版本。</p> <h2 id="结语"><a href="#结语" class="header-anchor">#</a> 结语</h2> <p>如果这是你第一次听说 provide / inject 这对 API，一定觉得它太神奇了，至少笔者第一时间知晓时是这样的。它解决了独立组件间通信的问题，用好了还有出乎意料的效果。笔者在开发 <a href="https://dev.iviewui.com" target="_blank" rel="noopener noreferrer">iView Developer<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 时，全站就是使用这种方法来做全局数据的管理的，如果你有机会一个人做一个项目时，不妨试试这种方法。</p> <p>下一节，将介绍另一种组件间通信的方法，不同于 provide / inject 的是，它们不是 Vue.js 内置的 API。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">2/25/2021, 7:37:04 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/前端/我购买的书籍/Vue.js组件精讲/20- 写在最后.html" class="prev">
+        写在最后
+      </a></span> <span class="next"><a href="/docs/前端/我购买的书籍/Vue.js组件精讲/4-组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法.html">
+        组件的通信 2：派发与广播——自行实现 dispatch 和 broadcast 方法
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.9f53ed1a.js" defer></script><script src="/docs/assets/js/5.8209fb6d.js" defer></script><script src="/docs/assets/js/2.50270cf7.js" defer></script><script src="/docs/assets/js/105.d066c65c.js" defer></script><script src="/docs/assets/js/3.8061788f.js" defer></script>
+  </body>
+</html>

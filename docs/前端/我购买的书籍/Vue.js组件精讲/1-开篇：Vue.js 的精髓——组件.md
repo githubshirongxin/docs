@@ -1,7 +1,6 @@
 ---
 layout: post
-title:   开篇：Vue.js 的精髓——组件
-
+title: 开篇：Vue.js 的精髓——组件
 ---
 
 
