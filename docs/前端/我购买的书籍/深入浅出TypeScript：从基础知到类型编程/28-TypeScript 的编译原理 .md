@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript 的编译原理
+
+---
+
+
 # TypeScript 的编译原理
 
 我们的学习从本节开始进入了新的阶段，之前我们的所有内容只停留在 TypeScript 的使用阶段，而真正的 TypeScript 高手是可以定制 TypeScript 的，笔者也不是这方面的高手，只花两节的内容能粗略介绍下，只当做抛砖引玉。

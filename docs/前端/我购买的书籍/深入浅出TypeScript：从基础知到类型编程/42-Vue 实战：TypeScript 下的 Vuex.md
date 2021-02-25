@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Vue 实战：TypeScript 下的 Vuex
+
+---
+
+
 # Vue 实战：TypeScript 下的 Vuex
 
 我们已经基本完成了 UI 层面的编写，接下来我们需要对逻辑层进行实现。

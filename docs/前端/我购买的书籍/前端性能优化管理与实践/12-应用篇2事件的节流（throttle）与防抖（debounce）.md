@@ -1,3 +1,10 @@
+---
+layout: post
+title:  应用篇2事件的节流（throttle）与防抖（debounce）
+
+---
+
+
 # 事件的节流（throttle）与防抖（debounce）
 
 上一节我们一起通过监听滚动事件，实现了各大网站喜闻乐见的懒加载效果。但我们提到，scroll 事件是一个非常容易被反复触发的事件。其实不止 scroll 事件，resize 事件、鼠标事件（比如 mousemove、mouseover 等）、键盘事件（keyup、keydown 等）都存在被频繁触发的风险。

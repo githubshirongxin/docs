@@ -1,3 +1,10 @@
+---
+layout: post
+title:  组件的通信 3：找到任意组件实例——findComponents 系列方法
+
+---
+
+
 # 组件的通信 3：找到任意组件实例——findComponents 系列方法
 
 ## 概述

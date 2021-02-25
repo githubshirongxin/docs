@@ -1,3 +1,10 @@
+---
+layout: post
+title:  实战:编写 JavaScript 库编写声明文件
+
+---
+
+
 # 实战:编写 JavaScript 库编写声明文件
 
 本节我们正式开始声明文件的编写实战,因此我们得找一个没有 `d.ts` 声明的开源库,比较常用但是却用纯 js 编写的库我想到了 `events`,这个库就是 Node.js 中 `events` 模块的浏览器和 node 通用版,具体的 API 可见 [EventEmitter](https://nodejs.org/api/events.html)。

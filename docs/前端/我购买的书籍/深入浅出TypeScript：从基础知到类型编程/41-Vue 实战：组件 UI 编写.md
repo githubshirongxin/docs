@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Vue 实战：组件 UI 编写
+
+---
+
+
 # Vue 实战：组件 UI 编写
 
 我们本节开始正式编写组件，我们尽量在组件的编写过程中串联上我们的知识点，因此，有些时候我们的用法并不是最优解，而是为了要把一些重要的 API 用法带到实战项目中去。
@@ -56,7 +63,7 @@ export default class Header extends Vue {
             name: "plus",
             arrow: "right"
           },
-          title: "我的待办"
+          title:  "我的待办"
         };
       case "create":
         return {
@@ -64,7 +71,7 @@ export default class Header extends Vue {
             name: "arrow-left",
             arrow: "left"
           },
-          title: "新建任务"
+          title:  "新建任务"
         };
 
       default:

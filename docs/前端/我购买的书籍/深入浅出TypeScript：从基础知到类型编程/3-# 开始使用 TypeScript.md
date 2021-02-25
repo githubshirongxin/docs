@@ -1,3 +1,10 @@
+---
+layout: post
+title:  开始使用 TypeScript
+
+---
+
+
 # 开始使用 TypeScript
 
 在开始使用 TypeScript 前你最好有以下准备：

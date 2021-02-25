@@ -1,3 +1,11 @@
+---
+​---
+layout: post
+title:   基础：Vue.js 组件的三个 API：prop、event、slot
+​---
+
+---
+
 # 基础：Vue.js 组件的三个 API：prop、event、slot
 
 > 如果您已经对 Vue.js 组件的基础用法了如指掌，可以跳过本小节，不过当做复习稍读一下也无妨。
@@ -172,7 +180,7 @@ A 和 B、B 和 C、B 和 D 都是父子关系，C 和 D 是兄弟关系，A 和
 export default {
   data () {
     return {
-      title: 'Vue.js'
+      title:  'Vue.js'
     }
   },
   methods: {

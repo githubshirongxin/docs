@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Typescript 中其他常见类型
+
+---
+
+
 # Typescript 中其他常见类型
 
 我们上一节了解了 TypeScript 中的原始类型,其实还有一些常见的类型没有涉及。

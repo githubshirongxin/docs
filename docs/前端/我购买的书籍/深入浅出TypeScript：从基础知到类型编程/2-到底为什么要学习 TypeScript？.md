@@ -1,3 +1,10 @@
+---
+layout: post
+title:   到底为什么要学习 TypeScript？
+
+---
+
+
 # 到底为什么要学习 TypeScript？
 
 TypeScript 在推出之初就既受追捧又受质疑，在社区和各种论坛中总有一些这样的声音：

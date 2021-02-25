@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Typescript 的原始类型
+
+---
+
+
 # Typescript 的原始类型
 
 如果你了解 JavaScript 的基础类型，那么这一节你会很好理解。

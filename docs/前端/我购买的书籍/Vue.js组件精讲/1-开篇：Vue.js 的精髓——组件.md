@@ -1,3 +1,10 @@
+---
+layout: post
+title:   开篇：Vue.js 的精髓——组件
+
+---
+
+
 # 开篇：Vue.js 的精髓——组件
 
 ## 写在前面

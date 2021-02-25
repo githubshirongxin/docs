@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript与React实战\(Redux篇\)
+
+---
+
+
 # TypeScript与React实战\(Redux篇\)
 
 我们在真正的项目中不可能仅仅只用组件就可以完成开发工作，一定会涉及到状态管理工具，目前最主流的莫过于 redux，我们会结合 redux 继续开发我们的 todo 应用。

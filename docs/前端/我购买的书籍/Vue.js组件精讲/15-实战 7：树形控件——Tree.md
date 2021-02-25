@@ -1,3 +1,12 @@
+
+
+---
+layout: post
+title:   实战 7：树形控件——Tree
+
+---
+
+
 # 实战 7：树形控件——Tree
 
 本小节基于 Vue.js 的递归组件知识，来开发一个常见的树形控件—Tree。
@@ -20,29 +29,29 @@ Tree 是典型的数据驱动型组件，所以节点的配置就是一个 data�
 ```
 data: [
   {
-    title: 'parent 1',
+    title:  'parent 1',
     expand: true,
     children: [
       {
-        title: 'parent 1-1',
+        title:  'parent 1-1',
         expand: true,
         children: [
           {
-            title: 'leaf 1-1-1'
+            title:  'leaf 1-1-1'
           },
           {
-            title: 'leaf 1-1-2'
+            title:  'leaf 1-1-2'
           }
         ]
       },
       {
-        title: 'parent 1-2',
+        title:  'parent 1-2',
         children: [
           {
-            title: 'leaf 1-2-1'
+            title:  'leaf 1-2-1'
           },
           {
-            title: 'leaf 1-2-1'
+            title:  'leaf 1-2-1'
           }
         ]
       }

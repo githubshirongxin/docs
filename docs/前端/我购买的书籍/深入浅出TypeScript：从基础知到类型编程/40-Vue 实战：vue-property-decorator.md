@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Vue 实战：vue-property-decorator
+
+---
+
+
 # Vue 实战：vue-property-decorator
 
 我们打开项目，发现最大的不同是额外引入了一个库 `vue-property-decorator`。

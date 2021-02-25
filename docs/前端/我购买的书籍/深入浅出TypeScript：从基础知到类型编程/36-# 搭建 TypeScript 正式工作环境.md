@@ -1,3 +1,10 @@
+---
+layout: post
+title:  搭建 TypeScript 正式工作环境
+
+---
+
+
 # 搭建 TypeScript 正式工作环境
 
 俗话说得好「工欲善其事,必先利其器」,我们在上一节已经搭建好了基础的 TypeScript 环境,并写下了第一行 TypeScript 代码,但是这并不足以支持大家日常的开发,在本节我们将搭建一个在生产环境可用的 TypeScript 环境,以此帮助大家了解 TypeScript 的工具生态.

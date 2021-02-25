@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Anime.js
+
+---
+
+
 ## Anime.js
 
 [A](https://github.com/juliangarnier/anime)[nime.js](https://github.com/juliangarnier/anime) 是一个强大的用来制作动画的 javascript 库，虽然功能没有 GASP（greensock）这种大型平台的功能丰富，但胜在它足够轻便，gzip 压缩完只有6kb 左右，麻雀虽小，却五脏俱全。 相比较其它动画平台，Anime.js 具有一下一些优点：

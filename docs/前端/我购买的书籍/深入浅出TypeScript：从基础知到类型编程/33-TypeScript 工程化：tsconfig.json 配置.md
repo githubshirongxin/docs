@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript 工程化：tsconfig.json 配置
+
+---
+
+
 # TypeScript 工程化：tsconfig.json 配置
 
 [官方网站](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)其实有一章专门讲了 tsconfig.json 配置,但是大多数人可能跟我一样，读了一遍之后根本不知道在干什么，我们就用白话逐条来解读 tsconfig.json 的配置项。

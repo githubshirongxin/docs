@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript几个实用技巧
+
+---
+
+
 # TypeScript几个实用技巧
 
 ## 注释的妙用

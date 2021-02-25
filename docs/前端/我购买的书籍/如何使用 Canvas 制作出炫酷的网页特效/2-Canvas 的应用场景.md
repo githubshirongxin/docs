@@ -1,3 +1,10 @@
+---
+layout: post
+title:   Canvas 的应用场景
+
+---
+
+
 # Canvas 的应用场景
 
 经过第 1 节的介绍，你应该了解

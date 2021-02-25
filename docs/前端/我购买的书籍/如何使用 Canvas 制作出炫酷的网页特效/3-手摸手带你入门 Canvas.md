@@ -1,3 +1,10 @@
+---
+layout: post
+title:   手摸手带你入门 Canvas
+
+---
+
+
 # 手摸手带你入门 Canvas
 
 ## 创建 Canvas 画布

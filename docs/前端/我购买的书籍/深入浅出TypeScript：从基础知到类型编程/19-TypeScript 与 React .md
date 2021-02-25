@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript 与 React 实战\(组件篇上\)
+
+---
+
+
 # TypeScript 与 React 实战\(组件篇上\)
 
 我们虽然已经通过前几节了解了 TypeScript 相关的基础知识，但是这不足以保证我们在实际项目中可以灵活运用，比如现在绝大部分前端开发者的项目都是依赖于框架的，因此我们需要几节来讲一下React与TypeScript应该如何结合运用。

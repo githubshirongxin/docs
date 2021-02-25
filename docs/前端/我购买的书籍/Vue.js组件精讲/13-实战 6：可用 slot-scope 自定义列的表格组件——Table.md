@@ -1,3 +1,10 @@
+---
+layout: post
+title:   实战 6：可用 slot-scope 自定义列的表格组件——Table
+
+---
+
+
 # 实战 6：可用 slot-scope 自定义列的表格组件——Table
 
 上一节，我们基于 Render 函数实现了在表格中自定义列模板的组件 Table，虽说 Render 函数能够完全发挥 JavaScript 的编程能力，实现几乎所有的自定义工作，但本质上，使用者写的是一个庞大的 JS 对象，它不具备 DOM 结构，可读性和可维护性都比较差。对于大部分写 Vue.js 的开发者来说，更倾向于使用 template 的语法，毕竟它是 Vue.js 独有的特性。本小节则在上一节的 Table 组件基础上修改，实现一种达到同样渲染效果，但对使用者更友好的 slot-scope 写法。
@@ -155,23 +162,23 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
       return {
         columns: [
           {
-            title: '姓名',
+            title:  '姓名',
             slot: 'name'
           },
           {
-            title: '年龄',
+            title:  '年龄',
             slot: 'age'
           },
           {
-            title: '出生日期',
+            title:  '出生日期',
             slot: 'birthday'
           },
           {
-            title: '地址',
+            title:  '地址',
             slot: 'address'
           },
           {
-            title: '操作',
+            title:  '操作',
             slot: 'action'
           }
         ],
@@ -291,7 +298,7 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
       return {
         columns: [
           {
-            title: '姓名',
+            title:  '姓名',
             render: (h, { row, column, index }) => {
               return h(
                 'div',
@@ -304,7 +311,7 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
             }
           },
           {
-            title: '年龄',
+            title:  '年龄',
             render: (h, { row, column, index }) => {
               return h(
                 'div',
@@ -317,7 +324,7 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
             }
           },
           {
-            title: '出生日期',
+            title:  '出生日期',
             render: (h, { row, column, index }) => {
               return h(
                 'div',
@@ -330,7 +337,7 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
             }
           },
           {
-            title: '地址',
+            title:  '地址',
             render: (h, { row, column, index }) => {
               return h(
                 'div',
@@ -343,7 +350,7 @@ slot（插槽）我们都很熟悉，它是 Vue.js 组件的 3 个 API 之一，
             }
           },
           {
-            title: '操作',
+            title:  '操作',
             render: (h, { row, column, index }) => {
               return h(
                 'div',

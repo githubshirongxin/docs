@@ -1,3 +1,10 @@
+---
+layout: post
+title:  解一道 LeetCode 中国招聘面试题
+
+---
+
+
 # 解一道 LeetCode 中国招聘面试题
 
 LeetCode 在其 github 上几道面试题,将代码发送 review 后可能获得免一轮面试的机会,其中就有一道 TypeScript 题目,主要考察如何编写复杂的 TypeScript 类型.

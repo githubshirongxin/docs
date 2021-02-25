@@ -1,3 +1,10 @@
+---
+layout: post
+title:   更灵活的组件：Render 函数与 Functional Render
+
+---
+
+
 # 更灵活的组件：Render 函数与 Functional Render
 
 Vue.js 2.x 与 Vue.js 1.x 最大的区别就在于 2.x 使用了 Virtual DOM（虚拟 DOM）来更新 DOM 节点，提升渲染性能。
@@ -274,6 +281,7 @@ export default {
 
     Alert.newInstance = properties => {
     const props = properties || {};
+    ```
   ```
 
   const Instance = new Vue({
@@ -302,8 +310,8 @@ export default {
 
     export default Alert;
     
-    ```
-    
+  ```
+
     ```
     // 在 SSR 下报错的写法
     import Alert from './alert.vue';

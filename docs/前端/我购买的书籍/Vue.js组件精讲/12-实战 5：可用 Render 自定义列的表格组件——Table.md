@@ -1,3 +1,10 @@
+---
+layout: post
+title:   实战 5：可用 Render 自定义列的表格组件——Table
+
+---
+
+
 # 实战 5：可用 Render 自定义列的表格组件——Table
 
 表格组件 Table 是中后台产品中最常用的组件之一，用于展示大量结构化的数据。大多数组件库都提供了表格组件，比如 [iView](https://www.iviewui.com/components/table)，功能也是非常强大。正规的表格，是由 `<table>`、`<thead>`、`<tbody>`、`<tr>`、`<th>`、`<td>` 这些标签组成，一般分为表头 **columns** 和数据 **data**。本小节就来开发一个最基本的表格组件 Table，它支持使用 Render 函数来自定义某一列。
@@ -60,11 +67,11 @@
   ```
   [
   {
-    title: '姓名',
+    title:  '姓名',
     key: 'name'
   },
   {
-    title: '年龄',
+    title:  '年龄',
     key: 'age'
   }
   ]
@@ -178,23 +185,23 @@ tbody 内嵌套使用了两次 `v-for`，外层循环数据 data，内层循环�
       return {
         columns: [
           {
-            title: '姓名',
+            title:  '姓名',
             key: 'name'
           },
           {
-            title: '年龄',
+            title:  '年龄',
             key: 'age'
           },
           {
-            title: '出生日期',
+            title:  '出生日期',
             key: 'birthday'
           },
           {
-            title: '地址',
+            title:  '地址',
             key: 'address'
           },
           {
-            title: '操作'
+            title:  '操作'
           }
         ],
         data: [
@@ -329,7 +336,7 @@ export default {
       columns: [
         // ...
         {
-          title: '出生日期',
+          title:  '出生日期',
           render: (h, { row, column, index }) => {
             const date = new Date(parseInt(row.birthday));
             const year = date.getFullYear();
@@ -404,7 +411,7 @@ export default {
     columns: [
       // ...
       {
-        title: '操作',
+        title:  '操作',
         render: (h, { row, index }) => {
           // 如果当前行是编辑状态，则渲染两个按钮
           if (this.editIndex === index) {
@@ -468,7 +475,7 @@ render 里的 `if / else` 可以先看 else，因为默认是非编辑状态，�
     columns: [
       // ...
       {
-        title: '姓名',
+        title:  '姓名',
         key: 'name',
         render: (h, { row, index }) => {
           let edit;
@@ -512,7 +519,7 @@ render 里的 `if / else` 可以先看 else，因为默认是非编辑状态，�
       columns: [
         // ...
         {
-          title: '年龄',
+          title:  '年龄',
           key: 'age',
           render: (h, { row, index }) => {
             let edit;
@@ -539,7 +546,7 @@ render 里的 `if / else` 可以先看 else，因为默认是非编辑状态，�
           }
         },
         {
-          title: '出生日期',
+          title:  '出生日期',
           render: (h, { row, index }) => {
             let edit;
 
@@ -570,7 +577,7 @@ render 里的 `if / else` 可以先看 else，因为默认是非编辑状态，�
           }
         },
         {
-          title: '地址',
+          title:  '地址',
           key: 'address',
           render: (h, { row, index }) => {
             let edit;

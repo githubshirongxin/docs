@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript 与 React 实战\(组件篇下\)
+
+---
+
+
 # TypeScript 与 React 实战\(组件篇下\)
 
 上一节我们讲到用 class 一处编写能两处复用的方式虽然非常实用，但是我们不得不用一些 Hack 手段来避免后续的报错，有没有更优雅、更严谨的解决方案？

@@ -1,3 +1,10 @@
+---
+layout: post
+title:  TypeScript 工程化：代码检测
+
+---
+
+
 # TypeScript 工程化：代码检测
 
 很多人可能会疑惑，TypeScript 自带静态类型检测，为什么还需要代码检测工具？

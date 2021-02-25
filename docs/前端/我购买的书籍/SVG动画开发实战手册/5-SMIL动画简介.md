@@ -1,3 +1,10 @@
+---
+layout: post
+title:  SMIL动画简介
+
+---
+
+
 ## SMIL动画简介
 
 所谓SMIL动画指在 SVG 集成了 Synchronized Multimedia Integration Language \(SMIL\) 这种动画标准，该语言被 SVG 原生支持，主要是使用标签来描述动画。

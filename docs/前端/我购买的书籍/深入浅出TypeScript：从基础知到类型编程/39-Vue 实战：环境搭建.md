@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Vue 实战：环境搭建
+
+---
+
+
 # Vue 实战：环境搭建
 
 我们现在就用 Vue 最主流的技术栈结合 typescript 来实现一个「待办 WebAPP」。

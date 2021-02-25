@@ -1,3 +1,10 @@
+---
+layout: post
+title:   拓展：Vue.js 容易忽略的 API 详解
+
+---
+
+
 # 拓展：Vue.js 容易忽略的 API 详解
 
 前面的 15 小节已经覆盖了 Vue.js 组件的绝大部分内容，但还是有一些 API 容易忽略。本节则对 Vue.js 的一些重要且易忽略的 API 进行详细介绍。
@@ -231,7 +238,7 @@ props 一般不能在组件内修改，它是通过父级修改的，因此实�
 看起来要比 v-model 的实现简单多，实现的效果是一样的。v-model 在一个组件中只能有一个，但 .sync 可以设置很多个。.sync 虽好，但也有限制，比如：
 
 * **不能**和表达式一起使用（如 `v-bind:title.sync="doc.title + '!'"` 是无效的）；
-* **不能**用在字面量对象上（如 `v-bind.sync="{ title: doc.title }"` 是无法正常工作的）。
+* **不能**用在字面量对象上（如 `v-bind.sync="{ title:  doc.title }"` 是无法正常工作的）。
 
 ## \$set
 

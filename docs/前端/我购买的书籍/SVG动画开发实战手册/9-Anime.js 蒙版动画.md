@@ -1,3 +1,10 @@
+---
+layout: post
+title:  Anime.js 蒙版动画
+
+---
+
+
 ## Anime.js 蒙版动画
 
 ## 蒙版 Morphing 动画实战

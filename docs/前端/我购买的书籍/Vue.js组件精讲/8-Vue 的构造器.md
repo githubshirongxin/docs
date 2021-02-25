@@ -1,3 +1,10 @@
+---
+layout: post
+title:   Vue 的构造器——extend 与手动挂载——\$mount
+
+---
+
+
 # Vue 的构造器——extend 与手动挂载——\$mount
 
 本节介绍两个 Vue.js 内置但却不常用的 API——extend 和 \$mount，它们经常一起使用。不常用，是因为在业务开发中，基本没有它们的用武之地，但在独立组件开发时，在一些特定的场景它们是至关重要的。
