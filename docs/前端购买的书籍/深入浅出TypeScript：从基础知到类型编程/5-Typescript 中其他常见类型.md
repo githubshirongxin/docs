@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  Typescript 中其他常见类型
-
 ---
 
 

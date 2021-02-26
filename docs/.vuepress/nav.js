@@ -45,7 +45,6 @@ module.exports = [{
         { "text": "vue", "link": "/前端/vue/" },
         { "text": "angular", "link": "/前端/angular/" },
         { "text": "js", "link": "/前端/js/" },
-        { "text": "我购买的书籍", "link": "/前端/我购买的书籍/" },
         { "text": "前端", "link": "/前端/" }
     ]
 },
