@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  开始使用 TypeScript
-
 ---
 
 
