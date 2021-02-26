@@ -47,11 +47,21 @@ module.exports = [{
         { "text": "js", "link": "/前端/js/" },
         { "text": "我购买的书籍", "link": "/前端/我购买的书籍/" },
         { "text": "前端", "link": "/前端/" }
-        
-
-        
     ]
 },
+{
+    "text": "前端购买的书籍", "items": [
+        { "text": "大厂 H5 开发实战手册", "link": "/前端购买的书籍/大厂 H5 开发实战手册/" },
+        { "text": "前端性能优化管理与实践", "link": "/前端购买的书籍/前端性能优化管理与实践/" },
+        { "text": "如何使用 Canvas 制作出炫酷的网页特效", "link": "/前端购买的书籍/如何使用 Canvas 制作出炫酷的网页特效/" },
+        { "text": "深入浅出TypeScript：从基础知到类型编程", "link": "/前端购买的书籍/深入浅出TypeScript：从基础知到类型编程/" },
+        { "text": "玩转CSS的艺术之美", "link": "/前端购买的书籍/玩转CSS的艺术之美/" },
+        { "text": "SVG动画开发实战手册", "link": "/前端购买的书籍/SVG动画开发实战手册/" },
+        { "text": "Vue.js组件精讲", "link": "/前端购买的书籍/Vue.js组件精讲/" },
+        { "text": "前端购买的书籍", "link": "/前端购买的书籍/" }
+    ]
+},
+
 {
     "text": "后端", "items": [
         { "text": "elasticSearch", "link": "/后端/elasticSearch/" },
