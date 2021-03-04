@@ -46,6 +46,7 @@ module.exports = [{
         { "text": "angular", "link": "/前端/angular/" },
         { "text": "js", "link": "/前端/js/" },
         { "text": "TS", "link": "/前端/TS/" },
+        { "text": "Rxjs", "link": "/前端/Rxjs/" },
         { "text": "前端", "link": "/前端/" }
     ]
 },
