@@ -29,5 +29,5 @@ vscode就能开发运行es6，包括多个js模块使用都是可以的。
 - 运行：
 Vscode中，在html页面上，右键-》Open With Live Server -》 在打开的浏览器按F12查看结果。
 
-
+[尚硅谷Web前端ES6教程](https://www.bilibili.com/video/BV1uK411H7on?p=43&spm_id_from=pageDriver)
 ![](/docs/images/2021-03-08-13-21-46.png)
