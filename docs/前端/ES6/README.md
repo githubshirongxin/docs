@@ -81,7 +81,7 @@ html
 
 ## 4. npm包引入
 
-例如jquery包。
+[例如jquery包。](https://www.bilibili.com/video/BV1uK411H7on?p=47)
 
 1. app.js
 ```js
