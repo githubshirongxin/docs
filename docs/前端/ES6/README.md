@@ -6,6 +6,8 @@ title: ES6
 
 [ECMAScript 6 入门(阮一峰)](https://es6.ruanyifeng.com/#docs/array)
 
+[尚硅谷Web前端ES6教程，涵盖ES6-ES11(比阮一峰的更好!)](https://www.bilibili.com/video/BV1uK411H7on?p=9&spm_id_from=pageDriver)
+
 ## ES6的开发和运行环境。
 
 
