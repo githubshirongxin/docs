@@ -37,6 +37,7 @@ module.exports = [{
         { "text": "考试系统", "link": "/application/考试系统/" },
         { "text": "单点登录", "link": "/application/单点登录/" },
         { "text": "jira", "link": "/application/jira/" },
+        { "text": "PMO接口", "link": "/application/PMO接口/" },
         { "text": "application", "link": "/application/" }]
 },
 {
