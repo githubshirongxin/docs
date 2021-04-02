@@ -313,6 +313,11 @@ config.json  docker.ccbjb.com.cn  harbor.ccbjb.com.cn  nexus.ccbjb.com.cn
 DOCKER_USER, 你自己的。CJB公司的用户名就是你的邮件@前面的字母。
 DOCKER_PASSWORD
 
+- 拷贝docker.ccbjb.com.cn的root.crt到目标发布服务器上
+进入目标服务器的下列目录`/etc/docker/certs.d/docker.ccbjb.com.cn/root.crt `
+然后把root.crt 拷贝到改目录。
+root.crt在3.138（某个已经发布的目标服务器）。以后挂载网站上。供大家使用。
+
 ## 手动执行
 在3.121（Runner）上手动执行
 
