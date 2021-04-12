@@ -3,7 +3,9 @@ layout: post
 title: IDEA相关，IntelliJ IDEA 2020.3.2激活破解教程（亲测激活至 2099 年，长期更新）
 ---
 
-[参考](https://www.exception.site/essay/how-to-free-use-intellij-idea-2019-3)
+
+## 如果激活码有一天失效，去原帖（不断更新）
+[https://www.exception.site/essay/how-to-free-use-intellij-idea-2019-3](https://www.exception.site/essay/how-to-free-use-intellij-idea-2019-3)
 
 
 ## 文件
