@@ -1,4 +1,8 @@
-### K8S可视化管理ServiceAccount做成手顺
+---
+laytout: post
+title: K8S可视化管理ServiceAccount做成手顺
+---
+# K8S可视化管理ServiceAccount做成手顺
 
 #### 1.先用管理员token登录
 
