@@ -11,7 +11,7 @@ title: K8S可视化管理ServiceAccount做成手顺
       ```
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kuboard-user | awk '{print $1}')
       ```
-![](/docs/images/2021-02-05-09-43-46.png)
+
 ![image-20210428140224990](/docs/images/Kuboard/image-20210428140224990.png)
 
 #### 2.生成特殊用的ServiceAccount
