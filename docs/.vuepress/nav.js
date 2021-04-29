@@ -92,6 +92,7 @@ module.exports = [{
     "text": "开发工具", "items": [
         { "text": "授课用工具", "link": "/开发工具/授课用工具/" },
         { "text": "cmder", "link": "/开发工具/cmder/" },
+        { "text": "爬虫", "link": "/开发工具/爬虫/" },
         { "text": "eclipse", "link": "/开发工具/eclipse/" },
         { "text": "IDEA", "link": "/开发工具/IDEA/" },
         { "text": "vscode", "link": "/开发工具/vscode/" },
