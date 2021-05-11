@@ -288,6 +288,20 @@ deploy:
     - ssh root@$SERVER_IP "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.ccbjb.com.cn; docker stop $APP_NAME; docker system prune -a -f; docker pull $DOCKER_REPO; docker container run -d --name $APP_NAME -p $PORT:8080 -e SPRING_PROFILES_ACTIVE=$SPRING_ACTIVE_PROFILE $DOCKER_REPO; docker logout"
 
 ```
+::: warning
+为什么 上面-p $PORT:8080 ，并且Dockerfile把`#EXPOSE 80`注释了呢？
+
+因为：trion/nginx-angular 
+```
+From nginx:alpine
+EXPOSE 8080
+```
+所以后面EXPOSE没有起作用。
+
+ $PORT是宿主机的端口。
+ 8080是容器里的端口。
+
+:::
 
 ### Dockerfile
 ```dockerfile
@@ -296,6 +310,7 @@ COPY dist/cjb-educate/ /usr/share/nginx/html/
 #EXPOSE 80
 #CMD ["nginx", "-g", "daemon off;"]
 ```
+
 
 ### .dev.env 承接gitlab环境变量的值。
 ```properties
