@@ -9,7 +9,7 @@ title: 【GitlabRunner安装配置】
 参考：https://docs.gitlab.com/runner/install/linux-repository.html
 
 ```
- curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/sc ript.rpm.sh | sudo bash
+ curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
 
  sudo yum install gitlab-runner
 ```
