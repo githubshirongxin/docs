@@ -138,7 +138,8 @@ module.exports = [{
     {
         "text": "云",
         "items": [
-            { "text": "GCP", "link": "/云/GCP/" }
+            { "text": "GCP", "link": "/云/GCP/" },
+            { "text": "大数据", "link": "/云/大数据/" }
         ]
     },
     {
