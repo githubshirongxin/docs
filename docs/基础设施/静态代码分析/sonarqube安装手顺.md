@@ -1,4 +1,9 @@
-﻿# docker 安装sonarqube
+﻿---
+layout: post
+title: 【docker 安装sonarqube】
+---
+
+# docker 安装sonarqube
 首先需要安装数据库，开源的可以用 mysql 或者postgresql 。官网上已经声明 sonarQube 7.9 版本以上不再支持 mysql 了，为了以后升级新版本不做数据库迁移，使用postgresql
 
 ## 安装前准备
